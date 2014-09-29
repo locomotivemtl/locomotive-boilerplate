@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 		autoprefixer: {
 			build: {
 				options: {
-					browsers: ['last 2 versions', '> 1%']
+					browsers: ['last 2 versions', '> 1%', 'ie 8', 'ie 9']
 				},
 				files: [
 					{
