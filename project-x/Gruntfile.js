@@ -22,8 +22,7 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'assets/styles/corim.css': 'assets/styles/src/corim.scss',
-					'assets/styles/corim.ie8.css': 'assets/styles/src/corim.ie8.scss'
+					'assets/styles/project-x.css': 'assets/styles/src/project-x.scss'
 				}
 			}
 		},
