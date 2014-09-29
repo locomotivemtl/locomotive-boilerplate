@@ -11,30 +11,30 @@ module.exports = function(grunt) {
 		watch: {
 			css: {
 				files: ['assets/styles/src/**/*.scss'],
-				tasks: ['sass', 'autoprefixer', 'notify:watch', 'notify_hooks'],
+				tasks: ['sass', 'autoprefixer', 'notify:watch'],
 				options: {
 					spawn: false,
 					livereload: true
 				}
 			}
 		},
-
 		sass: {
 			dist: {
 				files: {
-					'assets/styles/project-x.css': 'assets/styles/src/project-x.scss'
+					'assets/styles/dist/main.css': 'assets/styles/src/main.scss',
+					'assets/styles/dist/main.ie8.css': 'assets/styles/src/main.ie8.scss'
 				}
 			}
 		},
 		autoprefixer: {
 			build: {
 				options: {
-					browsers: ['last 2 versions', '> 1%', 'ie 8', 'ie 9']
+					browsers: ['last 2 versions', '> 1%', 'ie >= 8']
 				},
 				files: [
 					{
-						src : ['assets/styles/*.css'],
-						dest : 'assets/styles/',
+						src : ['assets/styles/dist/*.css'],
+						dest : 'assets/styles/dist/',
 						expand : true,
 						flatten: true
 					}
@@ -42,46 +42,50 @@ module.exports = function(grunt) {
 			}
 		},
 		notify: {
-			task_name: {
-				options: {
-					// Task-specific options go here.
-				}
-			},
 			watch: {
 				options: {
-					title: 'Sass',  // optional
-					message: 'SASS compiled', //required
+					title: 'SASS',
+					message: 'SASS compiled',
 				}
-			}
-		},
-		notify_hooks: {
-			options: {
-				enabled: true,
-				title: "Project-x" // defaults to the name in package.json, or will use project directory's name
 			}
 		},
 		concat: {
-			jsbasic: {
-				src: 'assets/scripts/src/*.js',
-				dest: 'assets/scripts/main.js'
-			}
+			global: {
+				src: [
+					 'assets/scripts/src/global.js'
+					,'assets/scripts/src/vendor/jquery-1.11.1.min.js'
+				],
+      			dest: 'assets/scripts/dist/main.js',
+			}/*,
+			home: {
+				src: [
+					 'assets/scripts/src/vendor/carousel.js'
+					,'assets/scripts/src/templates/home.js'
+					,'assets/scripts/src/objects/video.js'
+				],
+      			dest: 'assets/scripts/dist/home.js',
+			}*/
 		},
 		uglify: {
 			my_target: {
 				files: {
-					'assets/scripts/main.js': ['assets/scripts/main.js']
+					'assets/scripts/dist/': ['assets/scripts/dist/*.js']
 				}
 			}
+		},
+		imagemin: {                          // Task
+			dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'assets/images/',
+                    src: ['*.{png,jpg,gif}'],
+                    dest: 'assets/images/'
+                }]
+            }
 		}
 	});
 
-	// Configure automatic messaging
-	// grunt.task.run('notify_hooks');
-
-	// Integrate jQuery specific tasks
-	// grunt.loadTasks('tasks');
-
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['responsive_images']);
+	grunt.registerTask('build', ['uglify']);
 
 };
