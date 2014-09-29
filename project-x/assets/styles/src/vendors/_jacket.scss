@@ -1,0 +1,112 @@
+///////////////////////////////////////////////////////////
+// Jacket
+// Conditional Styles with Sass. Dress you CSS appropriately.
+///////////////////////////////////////////////////////////
+
+// Jacket is a Compass component that prints and hides styles based on
+// context variables you set in your stylesheet. Write and maintain a master
+// stylesheet, then output custom tailored stylesheets for modern and legacy
+// browsers, site and app builds, or any other context you can think of.
+
+///////////////////////////////////////////////////////////
+// Settings variables
+///////////////////////////////////////////////////////////
+
+// Default list of jacket contexts.
+$jacket: null !default;
+
+// Private variable used by jacket-context().
+$jckt-context: null;
+
+///////////////////////////////////////////////////////////
+// Jacket mixin
+// Takes a list of jacket contexts.
+// Outputs a block of styles if a context is set.
+///////////////////////////////////////////////////////////
+@mixin jacket($contexts...) {
+
+  $naked: false;
+  $selectors: ();
+  $filtered: ();
+  $selector-string: '';
+
+  // Set the global context variable.
+  $jckt-context: $contexts;
+
+  // If jacket is a single context and selector list, encapsulate.
+  @if list-separator($jacket) == 'space' {
+    $jacket: $jacket, null;
+  }
+
+  // Test if a jacket context and jacket value match.
+  @each $item in $jacket {
+    @each $context in $contexts {
+      @if index($context, nth($item, 1)) {
+
+        // Gather wrapping selectors.
+        @if length($item) == 1 {
+          $naked: true;
+        }
+        @if length($item) == 2 {
+          $selectors: append($selectors, nth($item, 2) + ' &');
+        }
+      }
+    }
+  }
+
+  // Filter out duplicate selectors.
+  // If reject() is added to Sass we can remove the $filtered holder variable.
+  @each $selector in $selectors {
+    @if index($filtered, $selector) == false {
+      $filtered: append($filtered, $selector);
+    }
+  }
+
+  // Build the selector string.
+  @each $selector in $filtered {
+    @if $selector-string != '' {
+      $selector-string: $selector-string + ", ";
+    }
+    $selector-string: $selector-string + $selector;
+  }
+
+  // If the weather is right, output that jacketed code!
+  @if $naked {
+    @content;
+  }
+  @if $selector-string != '' {
+    #{$selector-string} {
+      @content;
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////
+// Jacket function
+// Takes a list of jacket contexts.
+// Outputs a value if a context is set.
+///////////////////////////////////////////////////////////
+@function jacket($value, $contexts...) {
+
+  @each $item in $jacket {
+    @each $context in $contexts {
+      @if index($context, nth($item, 1)) {
+        // If the weather is right, return the value!
+        @return $value;
+      }
+    }
+  }
+
+  // Else return null. If null is the only value for a selector, the selector
+  // will not be printed.
+  @return null;
+}
+
+///////////////////////////////////////////////////////////
+// Jacket Context function
+// Takes a jacket context value. Use when code inside a jacket
+// needs to know if a specific jacket context is set.
+///////////////////////////////////////////////////////////
+@function jacket-context($context) {
+  @return if(index($jckt-context, $context), true, false);
+}

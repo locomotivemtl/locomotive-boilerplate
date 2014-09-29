@@ -1,0 +1,37 @@
+// ============================================================================
+// Colour Palette
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography
+// ============================================================================
+$base-font-size   : 16px;
+$base-line-height : 24px;
+$font-family-sans : Open Sans, Helmet, Freesans, Trebuchet MS, sans-serif;
+
+
+$heading-size-1: 30px !default; // .alpha
+$heading-size-2: 24px !default; // .beta
+$heading-size-3: 20px !default; // .gamma
+$heading-size-4: 18px !default; // .delta
+$heading-size-5: 16px !default; // .epsilon
+$heading-size-6: 14px !default; // .zeta
+
+$milli-size:        12px !default;
+$micro-size:        10px !default;
+
+
+// Spacings
+// ============================================================================
+$margin10 :  10px;
+$margin20 :  20px;
+$margin30 :  30px;
+$margin40 :  40px;
+
+// z-index
+// ============================================================================
+$z-index-1: 50;
+$z-index-2: 150;
+$z-index-3: 250;
