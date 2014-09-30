@@ -1,2 +1,4 @@
 /boilerplate.sublime-project
 /boilerplate.sublime-workspace
+project-x/node_modules/
+project-x/.sass-cache/
