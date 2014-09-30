@@ -1,0 +1,26 @@
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.center-vertically {
+    text-align: center;
+    height: 100%;
+
+    &:before {
+        content        : "";
+        display        : inline-block;
+        height         : 100%;
+        vertical-align : middle;
+    }
+
+    > * {
+        display        : inline-block;
+        vertical-align : middle;
+    }
+}

@@ -1,0 +1,33 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size        : $font-size;
+	font-family      : $font-family;
+	line-height      : $line-height;
+	color            : $ia-body-text-color;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img, svg {
+    vertical-align: middle;
+}
+
+textarea {
+    resize: vertical;
+}

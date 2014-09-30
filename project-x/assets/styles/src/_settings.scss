@@ -7,6 +7,7 @@
 $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
+$color: #222;
 
 $heading-1: 32px; // .alpha
 $heading-2: 24px; // .beta
@@ -54,4 +55,6 @@ $to-laptop: $from-laptop - 1;
 $from-wide: 1680px;
 $to-wide: $from-wide - 1;
 
-
+/* Transitions
+   ========================================================================== */
+$speed: 0.3s;
