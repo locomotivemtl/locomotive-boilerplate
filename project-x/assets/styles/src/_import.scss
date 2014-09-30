@@ -4,15 +4,19 @@
 @import
 	  'settings'
 
-	, 'vendor/jacket'
+	, 'vendors/jacket'
 
 	, 'tools/functions'
 	, 'tools/mixins'
-	, 'tools/trumps'
 
-	, 'base/fonts'
+	, 'generic/helpers'
+	, 'generic/trumps'
+
 	, 'base/normalize'
-	, 'base/page'
+	, 'base/fonts'
+	, 'base/base'
 	, 'base/headings'
+	, 'base/grid'
+	, 'base/forms'
 
 	;

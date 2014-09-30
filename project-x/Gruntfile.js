@@ -26,7 +26,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		
 		autoprefixer: {
 			build: {
 				options: {
