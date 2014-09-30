@@ -26,8 +26,22 @@ hr {
 
 img, svg {
     vertical-align: middle;
+    max-width: 100%;
 }
 
 textarea {
     resize: vertical;
+}
+
+a {
+	color: $link;
+
+	&:hover {
+		color: $link-hover;
+	}
+}
+
+.container {
+	position: relative;
+	margin: 0 auto;
 }
