@@ -1,37 +1,57 @@
-// ============================================================================
-// Colour Palette
-// ============================================================================
+/* ==========================================================================
+   Settings
+   ========================================================================== */
+
+/* Typography
+   ========================================================================== */
+$font-size: 16px;
+$line-height: 1.4;
+$font-family: sans-serif;
+
+$heading-1: 32px; // .alpha
+$heading-2: 24px; // .beta
+$heading-3: 19px; // .gamma
+$heading-4: 16px; // .delta
+$heading-5: 13px; // .epsilon
+$heading-6: 11px; // .zeta
+$heading-line-height: 1.2;
+
+$milli-size: 10px !default;
+$micro-size: 8px !default;
 
 
-
-// ============================================================================
-// Typography
-// ============================================================================
-$base-font-size   : 16px;
-$base-line-height : 24px;
-$font-family-sans : Open Sans, Helmet, Freesans, Trebuchet MS, sans-serif;
+/* Colour Palette
+   ========================================================================== */
+$black: #000000;
+$white: #ffffff;
 
 
-$heading-size-1: 30px !default; // .alpha
-$heading-size-2: 24px !default; // .beta
-$heading-size-3: 20px !default; // .gamma
-$heading-size-4: 18px !default; // .delta
-$heading-size-5: 16px !default; // .epsilon
-$heading-size-6: 14px !default; // .zeta
-
-$milli-size:        12px !default;
-$micro-size:        10px !default;
+/* Spacings
+   ========================================================================== */
+$margin-10: 10px;
+$margin-20: 20px;
+$margin-30: 30px;
+$margin-40: 40px;
 
 
-// Spacings
-// ============================================================================
-$margin10 :  10px;
-$margin20 :  20px;
-$margin30 :  30px;
-$margin40 :  40px;
-
-// z-index
-// ============================================================================
+/* Z-index
+   ========================================================================== */
 $z-index-1: 50;
 $z-index-2: 150;
 $z-index-3: 250;
+
+/* Screen widths
+   ========================================================================== */
+$from-tablet: 768px;
+$to-tablet: $from-tablet - 1;
+
+$from-desktop: 1024px;
+$to-desktop: $from-desktop - 1;
+
+$from-laptop: 1280px;
+$to-laptop: $from-laptop - 1;
+
+$from-wide: 1680px;
+$to-wide: $from-wide - 1;
+
+
