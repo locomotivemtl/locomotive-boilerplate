@@ -1,30 +1,30 @@
 h1, .h1, .alpha{
-    font-size: em($heading-1);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-1;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
 h2, .h2, .beta{
-    font-size: em($heading-2);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-2;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
 h3, .h3, .gamma{
-    font-size: em($heading-3);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-3;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
 h4, .h4, .delta{
-    font-size: em($heading-4);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-4;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
 h5, .h5, .epsilon{
-    font-size: em($heading-5);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-5;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
 h6, .h6, .zeta{
-    font-size: em($heading-6);
-    line-height:1;
-    margin-top:0;
+    font-size: $heading-6;
+    line-height: $heading-line-height;
+    margin-top: 0;
 }
