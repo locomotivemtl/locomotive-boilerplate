@@ -7,16 +7,14 @@
 $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
-$color: #222;
-
-$heading-1: 32px; // .alpha
-$heading-2: 24px; // .beta
-$heading-3: 19px; // .gamma
-$heading-4: 16px; // .delta
-$heading-5: 13px; // .epsilon
-$heading-6: 11px; // .zeta
+$color: #222222;
+$heading-n1: 32px; // .alpha
+$heading-n2: 24px; // .beta
+$heading-n3: 19px; // .gamma
+$heading-n4: 16px; // .delta
+$heading-n5: 13px; // .epsilon
+$heading-n6: 11px; // .zeta
 $heading-line-height: 1.2;
-
 $milli-size: 10px !default;
 $micro-size: 8px !default;
 
@@ -24,37 +22,34 @@ $micro-size: 8px !default;
 /* Colour Palette
    ========================================================================== */
 $black: #000000;
-$white: #ffffff;
-
-$link: #1a0dab;
-$link-hover: darken(#1a0dab, 10%);
+$white: #FFFFFF;
+$link: #1A0DAB;
+$link-hover: darken(#1A0DAB, 10%);
+$body: #3D3D3D;
 
 
 /* Spacings
    ========================================================================== */
-$margin-10: 10px;
-$margin-20: 20px;
-$margin-30: 30px;
-$margin-40: 40px;
+$margin-n10: 10px;
+$margin-n20: 20px;
+$margin-n30: 30px;
+$margin-n40: 40px;
 
 
 /* Z-index
    ========================================================================== */
-$z-index-1: 50;
-$z-index-2: 150;
-$z-index-3: 250;
+$z-index-n1: 50;
+$z-index-n2: 150;
+$z-index-n3: 250;
 
 /* Screen widths
    ========================================================================== */
 $from-tablet: 768px;
 $to-tablet: $from-tablet - 1;
-
 $from-desktop: 1024px;
 $to-desktop: $from-desktop - 1;
-
 $from-laptop: 1280px;
 $to-laptop: $from-laptop - 1;
-
 $from-wide: 1680px;
 $to-wide: $from-wide - 1;
 
