@@ -1,10 +1,11 @@
 /* ==========================================================================
-   Forms
+   Forms | http://codepen.io/AntoineBoulanger/pen/uBJmi
+   ========================================================================== */
+
+/* Input
    ========================================================================== */
 .input {
-
 	background-color: #cccccc;
-
 	display: block;
 
 	width: 100%;
@@ -19,15 +20,73 @@
 	        appearance: none;
 }
 
+/* Select
+   ========================================================================== */
+// Wrapper
 .select {
+	display: block;
+	position: relative;
+	// Select arrow
+	&:after	{
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 30px;
+		height: 100%;
+		display: block;
+		background-color: #ccc;
+		background-image: url('../../images/select-arrow.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		pointer-events: none;
+	}
+}
+// Select
+.select__input {
 	@extend .input;
-	min-width: 300px;
+	padding-right: 30px;
+
+	&::-ms-expand {
+		display: none;
+	}
 }
 
+
+/* Checkbox
+   ========================================================================== */
+// Wrapper
 .checkbox {
+	display: inline-block;
+}
+// Real input hidden
+.checkbox__input {
+	display: none;
+
+	&:checked {
+		+ .checkbox__check {
+			&:after {
+				visibility: visible;
+			}
+		}
+	}
+}
+// Fake input visible
+.checkbox__check {
 	@extend .input;
 	display: inline-block;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
+
+	&:after {
+		content: "";
+		display: block;
+		background-image: url('../../images/check.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 25px;
+		height: 25px;
+		visibility: hidden;
+	}
 }
 

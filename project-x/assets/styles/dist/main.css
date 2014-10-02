@@ -22,118 +22,6 @@
 /* Transitions
    ========================================================================== */
 /* ==========================================================================
-<<<<<<< HEAD
-   Base
-   ========================================================================== */
-*, *:before, *:after {
-  box-sizing: inherit; }
-
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: sans-serif;
-  line-height: 1.4;
-  color: #3d3d3d; }
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none; }
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none; }
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0; }
-
-img, svg {
-  vertical-align: middle;
-  max-width: 100%; }
-
-textarea {
-  resize: vertical; }
-
-a {
-  color: #1a0dab; }
-  a:hover {
-    color: #11097c; }
-
-.container {
-  position: relative;
-  margin: 0 auto; }
-
-/* ==========================================================================
-   Fonts
-   ========================================================================== */
-/* ==========================================================================
-   Forms
-   ========================================================================== */
-.input {
-  width: 100%;
-  display: block;
-  border: none;
-  outline: none;
-  color: #000000;
-  border-radius: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
-
-/* ==========================================================================
-   Grid
-   ========================================================================== */
-.grid {
-  position: relative;
-  margin-left: -20px;
-  font-size: 0; }
-
-.grid--full {
-  margin-left: 0; }
-  .grid--full .grid__item, .grid--full .whole, .grid--full .half, .grid--full .third, .grid--full .two-thirds, .grid--full .quarter, .grid--full .fifth {
-    padding-left: 0;
-    margin-bottom: 0; }
-
-.grid__item, .whole, .half, .third, .two-thirds, .quarter, .fifth {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-  padding-left: 20px;
-  margin-bottom: 20px; }
-
-@media (min-width: 1024px) {
-  .half {
-    width: 50%; } }
-
-@media (min-width: 1024px) {
-  .third {
-    width: span(0.33333); } }
-
-@media (min-width: 1024px) {
-  .two-thirds {
-    width: span(0.66667); } }
-
-@media (min-width: 768px) {
-  .quarter {
-    width: 50%; } }
-@media (min-width: 1024px) {
-  .quarter {
-    width: span(0.25); } }
-
-@media (min-width: 768px) {
-  .fifth {
-    width: 50%; } }
-@media (min-width: 1024px) {
-  .fifth {
-    width: span(0.2); } }
-
-/* ==========================================================================
-=======
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
    Functions
    ========================================================================== */
 /* ==========================================================================
@@ -142,12 +30,8 @@ a {
 /* ==========================================================================
    Helpers
    ========================================================================== */
-<<<<<<< HEAD
-.clearfix:before, .clearfix:after {
-=======
 .clearfix:before,
 .clearfix:after {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   content: " ";
   display: table; }
 
@@ -166,8 +50,6 @@ a {
     display: inline-block;
     vertical-align: middle; }
 
-<<<<<<< HEAD
-=======
 /* ==========================================================================
    Trumps
    ========================================================================== */
@@ -235,7 +117,6 @@ a {
 .invisible {
   visibility: hidden; }
 
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -263,9 +144,6 @@ body {
  * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-<<<<<<< HEAD
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
-=======
 article,
 aside,
 details,
@@ -278,21 +156,16 @@ main,
 nav,
 section,
 summary {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   display: block; }
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-<<<<<<< HEAD
-audio, canvas, progress, video {
-=======
 audio,
 canvas,
 progress,
 video {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
@@ -310,12 +183,8 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-<<<<<<< HEAD
-[hidden], template {
-=======
 [hidden],
 template {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   display: none; }
 
 /* Links
@@ -329,12 +198,8 @@ a {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-<<<<<<< HEAD
-a:active, a:hover {
-=======
 a:active,
 a:hover {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   outline: 0; }
 
 /* Text-level semantics
@@ -348,12 +213,8 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-<<<<<<< HEAD
-b, strong {
-=======
 b,
 strong {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   font-weight: bold; }
 
 /**
@@ -386,12 +247,8 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-<<<<<<< HEAD
-sub, sup {
-=======
 sub,
 sup {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -441,14 +298,10 @@ pre {
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-<<<<<<< HEAD
-code, kbd, pre, samp {
-=======
 code,
 kbd,
 pre,
 samp {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   font-family: monospace, monospace;
   font-size: 1em; }
 
@@ -464,15 +317,11 @@ samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-<<<<<<< HEAD
-button, input, optgroup, select, textarea {
-=======
 button,
 input,
 optgroup,
 select,
 textarea {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   color: inherit;
   /* 1 */
   font: inherit;
@@ -492,12 +341,8 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-<<<<<<< HEAD
-button, select {
-=======
 button,
 select {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   text-transform: none; }
 
 /**
@@ -507,14 +352,10 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-<<<<<<< HEAD
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
-=======
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -523,23 +364,15 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-<<<<<<< HEAD
-button[disabled], html input[disabled] {
-=======
 button[disabled],
 html input[disabled] {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-<<<<<<< HEAD
-button::-moz-focus-inner, input::-moz-focus-inner {
-=======
 button::-moz-focus-inner,
 input::-moz-focus-inner {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   border: 0;
   padding: 0; }
 
@@ -557,12 +390,8 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-<<<<<<< HEAD
-input[type="checkbox"], input[type="radio"] {
-=======
 input[type="checkbox"],
 input[type="radio"] {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -573,12 +402,8 @@ input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-<<<<<<< HEAD
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
-=======
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   height: auto; }
 
 /**
@@ -597,12 +422,8 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-<<<<<<< HEAD
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
-=======
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
   -webkit-appearance: none; }
 
 /**
@@ -645,76 +466,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-<<<<<<< HEAD
-td, th {
-  padding: 0; }
-
-/* ==========================================================================
-   Trumps
-   ========================================================================== */
-.left {
-  float: left !important; }
-
-.right {
-  float: right !important; }
-
-.align-left {
-  text-align: left !important; }
-
-.align-right {
-  text-align: right !important; }
-
-.align-center {
-  text-align: center !important; }
-
-.is-visible {
-  visibility: visible !important;
-  opacity: 1 !important; }
-
-.is-hidden {
-  visibility: hidden !important;
-  opacity: 0 !important; }
-
-/* Accessibility
-   ========================================================================== */
-/*
- * Hide visually and from screen readers: h5bp.com/u
- */
-.hidden {
-  display: none !important;
-  visibility: hidden; }
-
-/*
- * Hide only visually, but have it available for screen readers: h5bp.com/v
- */
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px; }
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto; }
-
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-.invisible {
-  visibility: hidden; }
-=======
 td,
 th {
   padding: 0; }
@@ -850,8 +601,11 @@ h6, .h6, .zeta {
 /* ==========================================================================
    Forms
    ========================================================================== */
-.input, .select, .checkbox {
-  background-color: #cccccc;
+/* Input
+   ========================================================================== */
+.input, .select__input, .checkbox__check {
+  background-color: #ccc;
+  width: 100%;
   display: block;
   border: none;
   outline: none;
@@ -861,11 +615,50 @@ h6, .h6, .zeta {
   -moz-appearance: none;
   appearance: none; }
 
+/* Select
+   ========================================================================== */
 .select {
-  min-width: 300px; }
+  display: block;
+  position: relative; }
+  .select:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    display: block;
+    background-color: #ccc;
+    background-image: url("../../images/select-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none; }
 
+.select__input {
+  padding-right: 30px; }
+  .select__input::-ms-expand {
+    display: none; }
+
+/* Checkbox
+   ========================================================================== */
 .checkbox {
+  display: inline-block; }
+
+.checkbox__input {
+  display: none; }
+  .checkbox__input:checked + .checkbox__check:after {
+    visibility: visible; }
+
+.checkbox__check {
   display: inline-block;
-  width: 30px;
-  height: 30px; }
->>>>>>> df5d306088635c119947b46a6aafbb6d67a1c502
+  width: 25px;
+  height: 25px; }
+  .checkbox__check:after {
+    content: "";
+    display: block;
+    background-image: url("../../images/check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+    visibility: hidden; }
