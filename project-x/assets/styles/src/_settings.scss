@@ -8,12 +8,12 @@ $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
 $color: #222222;
-$heading-n1: 32px; // .alpha
-$heading-n2: 24px; // .beta
-$heading-n3: 19px; // .gamma
-$heading-n4: 16px; // .delta
-$heading-n5: 13px; // .epsilon
-$heading-n6: 11px; // .zeta
+$heading1: 32px; // .alpha
+$heading2: 24px; // .beta
+$heading3: 19px; // .gamma
+$heading4: 16px; // .delta
+$heading5: 13px; // .epsilon
+$heading6: 11px; // .zeta
 $heading-line-height: 1.2;
 $milli-size: 10px !default;
 $micro-size: 8px !default;
@@ -30,17 +30,17 @@ $body: #3D3D3D;
 
 /* Spacings
    ========================================================================== */
-$margin-n10: 10px;
-$margin-n20: 20px;
-$margin-n30: 30px;
-$margin-n40: 40px;
+$margin10: 10px;
+$margin20: 20px;
+$margin30: 30px;
+$margin40: 40px;
 
 
 /* Z-index
    ========================================================================== */
-$z-index-n1: 50;
-$z-index-n2: 150;
-$z-index-n3: 250;
+$z-index1: 50;
+$z-index2: 150;
+$z-index3: 250;
 
 /* Screen widths
    ========================================================================== */
