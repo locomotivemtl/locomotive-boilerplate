@@ -12,7 +12,10 @@ html {
 
 	box-sizing: border-box;
 
-	color: $body;
+	font-size        : $font-size;
+	font-family      : $font-family;
+	line-height      : $line-height;
+	color            : $color;
 }
 
 ::selection {

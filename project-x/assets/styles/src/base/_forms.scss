@@ -2,6 +2,9 @@
    Forms
    ========================================================================== */
 .input {
+
+	background-color: #cccccc;
+
 	display: block;
 
 	width: 100%;
@@ -16,6 +19,15 @@
 	        appearance: none;
 }
 
+.select {
+	@extend .input;
+	min-width: 300px;
+}
 
-
+.checkbox {
+	@extend .input;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+}
 
