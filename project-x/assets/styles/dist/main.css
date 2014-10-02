@@ -601,8 +601,11 @@ h6, .h6, .zeta {
 /* ==========================================================================
    Forms
    ========================================================================== */
-.input, .select, .checkbox {
-  background-color: #cccccc;
+/* Input
+   ========================================================================== */
+.input, .select__input, .checkbox__check {
+  background-color: #ccc;
+  width: 100%;
   display: block;
   border: none;
   outline: none;
@@ -612,10 +615,50 @@ h6, .h6, .zeta {
   -moz-appearance: none;
   appearance: none; }
 
+/* Select
+   ========================================================================== */
 .select {
-  min-width: 300px; }
+  display: block;
+  position: relative; }
+  .select:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    display: block;
+    background-color: #ccc;
+    background-image: url("../../images/select-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none; }
 
+.select__input {
+  padding-right: 30px; }
+  .select__input::-ms-expand {
+    display: none; }
+
+/* Checkbox
+   ========================================================================== */
 .checkbox {
+  display: inline-block; }
+
+.checkbox__input {
+  display: none; }
+  .checkbox__input:checked + .checkbox__check:after {
+    visibility: visible; }
+
+.checkbox__check {
   display: inline-block;
-  width: 30px;
-  height: 30px; }
+  width: 25px;
+  height: 25px; }
+  .checkbox__check:after {
+    content: "";
+    display: block;
+    background-image: url("../../images/check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+    visibility: hidden; }
