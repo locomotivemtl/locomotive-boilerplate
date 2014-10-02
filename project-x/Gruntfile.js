@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 	'use strict';
-	// Load Grunt tasks from NPM packages
-	// Project configuration.
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( 'package.json' ),
 
@@ -30,7 +29,6 @@ module.exports = function(grunt) {
 	            dest: 'assets/styles/src/'
 	        }
 		},
-
 		autoprefixer: {
 			build: {
 				options: {
@@ -101,7 +99,7 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['uglify']);
+	grunt.registerTask('build', ['uglify', 'imagemin']);
 	grunt.registerTask('c', ['csscomb']);
 	grunt.registerTask('s', ['sass']);
 

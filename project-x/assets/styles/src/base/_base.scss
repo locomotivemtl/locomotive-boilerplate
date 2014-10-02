@@ -7,15 +7,15 @@
 
 html {
 	font-family: $font-family;
+	font-family: $font-family;
 	font-size: $font-size;
+	font-size: $font-size;
+	line-height: $line-height;
 	line-height: $line-height;
 
 	box-sizing: border-box;
 
-	font-size        : $font-size;
-	font-family      : $font-family;
-	line-height      : $line-height;
-	color            : $color;
+	color: $color;
 }
 
 ::selection {
