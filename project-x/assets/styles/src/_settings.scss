@@ -8,6 +8,7 @@ $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
 $color: #222222;
+//
 $heading1: 32px; // .alpha
 $heading2: 24px; // .beta
 $heading3: 19px; // .gamma
@@ -15,6 +16,7 @@ $heading4: 16px; // .delta
 $heading5: 13px; // .epsilon
 $heading6: 11px; // .zeta
 $heading-line-height: 1.2;
+//
 $milli-size: 10px !default;
 $micro-size: 8px !default;
 
@@ -23,9 +25,9 @@ $micro-size: 8px !default;
    ========================================================================== */
 $black: #000000;
 $white: #FFFFFF;
+//
 $link: #1A0DAB;
 $link-hover: darken(#1A0DAB, 10%);
-$body: #3D3D3D;
 
 
 /* Spacings

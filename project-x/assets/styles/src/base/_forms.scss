@@ -5,7 +5,6 @@
 /* Input
    ========================================================================== */
 .input {
-	background-color: #cccccc;
 	display: block;
 
 	width: 100%;
@@ -14,6 +13,7 @@
 	border: none;
 	border-radius: 0;
 	outline: none;
+	background-color: #CCCCCC;
 
 	-webkit-appearance: none;
 	   -moz-appearance: none;
@@ -24,28 +24,34 @@
    ========================================================================== */
 // Wrapper
 .select {
-	display: block;
 	position: relative;
+
+	display: block;
 	// Select arrow
-	&:after	{
-		content: "";
+	&:after {
 		position: absolute;
 		top: 0;
 		right: 0;
+
+		display: block;
+
 		width: 30px;
 		height: 100%;
-		display: block;
-		background-color: #ccc;
-		background-image: url('../../images/select-arrow.svg');
+
+		content: "";
+		pointer-events: none;
+
+		background-color: #CCCCCC;
+		background-image: url("../../images/select-arrow.svg");
 		background-repeat: no-repeat;
 		background-position: center;
-		pointer-events: none;
 	}
 }
 // Select
 .select__input {
-	@extend .input;
 	padding-right: 30px;
+
+	@extend .input;
 
 	&::-ms-expand {
 		display: none;
@@ -73,20 +79,25 @@
 }
 // Fake input visible
 .checkbox__check {
-	@extend .input;
 	display: inline-block;
+
 	width: 25px;
 	height: 25px;
 
+	@extend .input;
+
 	&:after {
-		content: "";
 		display: block;
-		background-image: url('../../images/check.svg');
-		background-repeat: no-repeat;
-		background-position: center;
+		visibility: hidden;
+
 		width: 25px;
 		height: 25px;
-		visibility: hidden;
+
+		content: "";
+
+		background-image: url("../../images/check.svg");
+		background-repeat: no-repeat;
+		background-position: center;
 	}
 }
 
