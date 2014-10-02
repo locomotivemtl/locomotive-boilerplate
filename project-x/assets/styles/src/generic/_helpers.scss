@@ -1,29 +1,33 @@
 /* ==========================================================================
    Helpers
    ========================================================================== */
-.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
+.clearfix:before, .clearfix:after {
+	display: table;
+
+	content: " ";
 }
 
 .clearfix:after {
-    clear: both;
+	clear: both;
 }
 
 .center-vertically {
-    text-align: center;
-    height: 100%;
+	height: 100%;
 
-    &:before {
-        content        : "";
-        display        : inline-block;
-        height         : 100%;
-        vertical-align : middle;
-    }
+	text-align: center;
 
-    > * {
-        display        : inline-block;
-        vertical-align : middle;
-    }
+	&:before {
+		display: inline-block;
+
+		height: 100%;
+
+		content: "";
+		vertical-align: middle;
+	}
+
+	> * {
+		display: inline-block;
+
+		vertical-align: middle;
+	}
 }

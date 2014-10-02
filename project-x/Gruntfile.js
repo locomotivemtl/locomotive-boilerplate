@@ -1,9 +1,6 @@
 module.exports = function(grunt) {
 	'use strict';
-
 	// Load Grunt tasks from NPM packages
-	require('load-grunt-tasks')(grunt);
-
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -21,11 +18,19 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'assets/styles/dist/main.css': 'assets/styles/src/main.scss',
-					'assets/styles/dist/main.ie8.css': 'assets/styles/src/main.ie8.scss'
+					'assets/styles/dist/main.css': 'assets/styles/src/main.scss'
 				}
 			}
 		},
+		csscomb: {
+	        build: {
+	            expand: true,
+	            cwd: 'assets/styles/src/',
+	            src: ['**/*.scss'],
+	            dest: 'assets/styles/src/'
+	        }
+		},
+
 		autoprefixer: {
 			build: {
 				options: {
@@ -85,7 +90,19 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	//grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-notify');
+	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-csscomb');
+
+
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('build', ['uglify']);
+	grunt.registerTask('c', ['csscomb']);
+	grunt.registerTask('s', ['sass']);
 
 };

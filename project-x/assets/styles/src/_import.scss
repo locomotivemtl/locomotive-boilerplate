@@ -2,21 +2,19 @@
    Imports
    ========================================================================== */
 @import
-	  'settings'
+	  "settings"
 
-	, 'vendors/jacket'
+	, "vendors/jacket"
 
-	, 'tools/functions'
-	, 'tools/mixins'
+	, "base/base"
+	, "base/fonts"
+	, "base/forms"
+	, "base/grid"
 
-	, 'generic/helpers'
-	, 'generic/trumps'
-
-	, 'base/normalize'
-	, 'base/fonts'
-	, 'base/base'
-	, 'base/headings'
-	, 'base/grid'
-	, 'base/forms'
-
+	, "tools/functions"
+	, "tools/mixins"
+	
+	, "generic/helpers"
+	, "generic/normalize"
+	, "generic/trumps"
 	;

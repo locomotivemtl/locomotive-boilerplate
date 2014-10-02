@@ -23,11 +23,13 @@
 
 .is-visible {
 	visibility: visible !important;
+
 	opacity: 1 !important;
 }
 
 .is-hidden {
 	visibility: hidden !important;
+
 	opacity: 0 !important;
 }
 
@@ -38,8 +40,8 @@
  */
 
 .hidden {
-    display: none !important;
-    visibility: hidden;
+	display: none !important;
+	visibility: hidden;
 }
 
 /*
@@ -47,14 +49,17 @@
  */
 
 .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+	position: absolute;
+
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+
+	border: 0;
 }
 
 /*
@@ -62,14 +67,15 @@
  * when navigated to via the keyboard: h5bp.com/p
  */
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+	position: static;
+
+	overflow: visible;
+	clip: auto;
+
+	width: auto;
+	height: auto;
+	margin: 0;
 }
 
 /*
@@ -77,5 +83,5 @@
  */
 
 .invisible {
-    visibility: hidden;
+	visibility: hidden;
 }

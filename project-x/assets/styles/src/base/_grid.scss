@@ -2,26 +2,30 @@
    Grid
    ========================================================================== */
 .grid {
-	position: relative;
-	margin-left: -$margin-20;
 	font-size: 0;
+
+	position: relative;
+
+	margin-left: -$margin-20;
 }
 
 .grid--full {
 	margin-left: 0;
 
 	.grid__item {
-		padding-left: 0;
 		margin-bottom: 0;
+		padding-left: 0;
 	}
 }
 
 .grid__item {
-    display: inline-block;
-    width: 100%;
-    vertical-align: top;
-	padding-left: $margin-20;
+	display: inline-block;
+
+	width: 100%;
 	margin-bottom: $margin-20;
+	padding-left: $margin-20;
+
+	vertical-align: top;
 }
 
 .whole {

@@ -6,7 +6,12 @@
 }
 
 html {
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+
 	box-sizing: border-box;
+
 	font-size        : $font-size;
 	font-family      : $font-family;
 	line-height      : $line-height;
@@ -14,26 +19,29 @@ html {
 }
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: #B3D4FC;
+	text-shadow: none;
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+	display: block;
+
+	height: 1px;
+	margin: 1em 0;
+	padding: 0;
+
+	border: 0;
+	border-top: 1px solid #CCCCCC;
 }
 
 img, svg {
-    vertical-align: middle;
-    max-width: 100%;
+	max-width: 100%;
+
+	vertical-align: middle;
 }
 
 textarea {
-    resize: vertical;
+	resize: vertical;
 }
 
 a {
@@ -46,5 +54,6 @@ a {
 
 .container {
 	position: relative;
+
 	margin: 0 auto;
 }
