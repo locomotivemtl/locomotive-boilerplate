@@ -13,12 +13,12 @@
         <link rel="apple-touch-icon-precomposed" href="{{#assets.images}}favicon-152.png{{/assets.images}}">
         <!--[if IE]><link rel="shortcut icon" href="assets/images/favicon-32.ico"><![endif]-->
 
-        <link rel="stylesheet" href="{{#assets.styles}}main.css{{/assets.styles}}">
+        <link rel="stylesheet" href="modules/{{module}}/assets/styles/dist/main.css">
 
         <meta name="description" content="{{meta_description}}">
         {{opengraph_tags}}
 
-        {{!-- Only include analytics if it is set in the configuration --}}
+        {{! Only include analytics if it is set in the configuration}}
         {{#cfg.google_analytics}}
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,13 +31,8 @@
         </script>
         {{/cfg.google_analytics}}
 
-        {{!-- A final chance to have custom headers tags (like styles or scripts) in the controllers --}}
+        {{!A final chance to have custom headers tags (like styles or scripts) in the controllers}}
         {{extra_header_content}}
 
     </head>
     <body>
-
-
-        <!--<script src="modules/{{module}}/assets/scripts/dist/main.js"></script>-->
-    </body>
-</html>
