@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Helpers
+   ========================================================================== */
+.clearfix:before, .clearfix:after {
+	display: table;
+
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.center-vertically {
+	height: 100%;
+
+	text-align: center;
+
+	&:before {
+		display: inline-block;
+
+		height: 100%;
+
+		content: "";
+		vertical-align: middle;
+	}
+
+	> * {
+		display: inline-block;
+
+		vertical-align: middle;
+	}
+}

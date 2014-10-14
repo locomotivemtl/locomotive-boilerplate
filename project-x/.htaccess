@@ -1,0 +1,123 @@
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+
+
+<IfModule mod_deflate.c>
+
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+    RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+  </IfModule>
+</IfModule>
+
+<IfModule filter_module>
+  FilterDeclare   COMPRESS
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
+  FilterChain     COMPRESS
+  FilterProtocol  COMPRESS  change=yes;byteranges=no
+</IfModule>
+
+<IfModule !mod_filter.c>
+  # Legacy versions of Apache
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript 
+  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+</IfModule>
+
+  <FilesMatch "\.(ttf|otf|eot|svg|woff)$" >
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
+
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+  ExpiresDefault                          "access plus 1 month"
+  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  
+  ExpiresByType text/xml                  "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType application/json          "access plus 1 day"
+
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+
+  ExpiresByType image/x-icon              "access plus 1 week" 
+
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/jpg                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType video/ogg                 "access plus 1 month"
+  ExpiresByType audio/ogg                 "access plus 1 month"
+  ExpiresByType video/mp4                 "access plus 1 month"
+  ExpiresByType video/webm                "access plus 1 month"
+  ExpiresByType audio/webm                "access plus 1 month"
+
+  ExpiresByType text/x-component          "access plus 1 month"
+  
+  ExpiresByType font/truetype             "access plus 1 month"
+  ExpiresByType font/opentype             "access plus 1 month"
+  ExpiresByType application/x-font-woff   "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+  
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+  
+</IfModule>
+
+
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+
+FileETag None
+
+<IfModule mod_rewrite.c>
+RewriteRule get-asset-(\w*) admin/assets?t=$1&%{QUERY_STRING} [L,NC]
+  Options +FollowSymlinks
+  RewriteEngine On
+</IfModule>
+
+
+Options -MultiViews 
+
+ErrorDocument 400 /400.php
+ErrorDocument 401 /401.php
+ErrorDocument 402 /402.php
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js .xml .json .rss
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+	RewriteRule "(^|/)\." - [F]
+
+	# Sections
+	RewriteRule ^.*-([a-zA-Z]{2})-([0-9]+)    index.php?%{query_string}&s=$2&lang=$1
+	
+	# Charcoal
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ charcoal.php?action=$1&%{QUERY_STRING} [PT,L]
+
+</IfModule>
+

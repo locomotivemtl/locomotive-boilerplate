@@ -1,4 +1,4 @@
-locomotive-boilerplate
+Charcoal-Boilerplate
 ======================
 
-Boilerplate for projects by Locomotive.
+Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomotive.

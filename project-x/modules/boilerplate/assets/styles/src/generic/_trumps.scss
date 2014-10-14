@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Trumps
+   ========================================================================== */
+.left {
+	float: left !important;
+}
+
+.right {
+	float: right !important;
+}
+
+.align-left {
+	text-align: left !important;
+}
+
+.align-right {
+	text-align: right !important;
+}
+
+.align-center {
+	text-align: center !important;
+}
+
+.is-visible {
+	visibility: visible !important;
+
+	opacity: 1 !important;
+}
+
+.is-hidden {
+	visibility: hidden !important;
+
+	opacity: 0 !important;
+}
+
+/* Accessibility
+   ========================================================================== */
+/*
+ * Hide visually and from screen readers: h5bp.com/u
+ */
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers: h5bp.com/v
+ */
+
+.visuallyhidden {
+	position: absolute;
+
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+
+	border: 0;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+	position: static;
+
+	overflow: visible;
+	clip: auto;
+
+	width: auto;
+	height: auto;
+	margin: 0;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
