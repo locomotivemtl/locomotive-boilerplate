@@ -188,26 +188,26 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-markdown-pdf");
 
 	grunt.registerTask('default', [
+		'concat',
+		'watch'
+	]);
+	grunt.registerTask('wlint', [
 		// Javasript
 		'jshint',
 		'jsonlint',
 		'concat',
-		'uglify',
 
 		// PHP
 		'phplint',
-
-		// CSS
-		'csscomb',
-		'sass',
-		'autoprefixer',
 
 		// Utilities
 		'watch'
 	]);
 	grunt.registerTask('build', [
+		'sass',
+		'autoprefixer',
 		'concat',
-		'uglify', 
+		'uglify',
 		'imagemin'
 	]);
 	grunt.registerTask('c', [
@@ -216,5 +216,4 @@ module.exports = function(grunt) {
 	grunt.registerTask('s', [
 		'sass'
 	]);
-
 };

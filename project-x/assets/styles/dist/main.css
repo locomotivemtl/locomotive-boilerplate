@@ -384,7 +384,7 @@ textarea {
 a {
   color: #1A0DAB; }
   a:hover {
-    color: #11097c; }
+    color: #13097c; }
 
 .container {
   position: relative;
@@ -405,12 +405,12 @@ a {
     padding-left: 0; }
 
 .grid__item, .whole, .half, .third, .two-thirds, .quarter, .fifth {
+  font-size: 16px;
   display: inline-block;
   width: 100%;
   margin-bottom: 20px;
   padding-left: 20px;
-  vertical-align: top;
-  font-size: 16px; }
+  vertical-align: top; }
 
 @media (min-width: 1024px) {
   .half {
