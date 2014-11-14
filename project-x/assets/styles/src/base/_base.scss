@@ -52,6 +52,11 @@ a {
 	}
 }
 
+a[href^=tel]{
+    color:inherit;
+    text-decoration:none;
+}
+
 .container {
 	position: relative;
 
