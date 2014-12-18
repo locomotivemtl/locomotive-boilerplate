@@ -6,8 +6,9 @@
     "Stephen Bégay <stephen@locomotive.ca>",
     "Antoine Boulanger <antoine@locomotive.ca>"
   ],
+
+
   "dependencies": {
-    /*To get the last versions do: npm update --save */
     "grunt": "*",
     "grunt-autoprefixer": "*",
     "grunt-contrib-concat": "*",
