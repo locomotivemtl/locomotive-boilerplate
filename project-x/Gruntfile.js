@@ -83,6 +83,10 @@ module.exports = function(grunt) {
 					spawn: false,
 					livereload: true
 				}
+			},
+			concat: {
+				files: ['assets/scripts/src/**/*.js'],
+				tasks: ['concat']
 			}
 		},
 
@@ -160,6 +164,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// cssmin: Compress CSS files
+		cssmin: {
+		  combine: {
+		    files: {
+		      'assets/styles/dist/': ['assets/scripts/dist/*.css']
+		    }
+		  }
+		},
+
 		// imagemin: Minify PNG and JPEG images.
 		imagemin: {
 			dynamic: {
@@ -187,10 +200,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-csscomb');
 	grunt.loadNpmTasks("grunt-markdown-pdf");
 
-	grunt.registerTask('default', [
-		'concat',
-		'watch'
-	]);
+	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('wlint', [
 		// Javasript
 		'jshint',
@@ -208,6 +218,7 @@ module.exports = function(grunt) {
 		'autoprefixer',
 		'concat',
 		'uglify',
+		'cssmin',
 		'imagemin'
 	]);
 	grunt.registerTask('c', [

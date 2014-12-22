@@ -6,23 +6,20 @@
     "Stephen Bégay <stephen@locomotive.ca>",
     "Antoine Boulanger <antoine@locomotive.ca>"
   ],
-
-
   "dependencies": {
     "grunt": "*",
     "grunt-autoprefixer": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-jshint": "*",
-    "grunt-contrib-sass": "*",
     "grunt-contrib-uglify": "*",
+    "grunt-contrib-cssmin": "*",
     "grunt-contrib-watch": "*",
     "grunt-csscomb": "*",
     "grunt-jsonlint": "*",
     "grunt-markdown-pdf": "*",
     "grunt-notify": "*",
     "grunt-phplint": "*",
-    "grunt-sass": "*",
-    "load-grunt-tasks": "*"
+    "grunt-sass": "*"
   }
 }
