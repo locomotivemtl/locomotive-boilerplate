@@ -4,6 +4,25 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( 'package.json' ),
 
+		// concat: Concatenate files
+		concat: {
+			global: {
+				src: [
+					 'modules/boilerplate/assets/scripts/src/global.js'
+					,'modules/boilerplate/assets/scripts/src/vendor/jquery-1.11.1.min.js'
+				],
+      			dest: 'modules/boilerplate/assets/scripts/dist/main.js',
+			}/*,
+			home: {
+				src: [
+					 'modules/boilerplate/assets/scripts/src/vendor/carousel.js'
+					,'modules/boilerplate/assets/scripts/src/templates/home.js'
+					,'modules/boilerplate/assets/scripts/src/objects/video.js'
+				],
+      			dest: 'modules/boilerplate/assets/scripts/dist/home.js',
+			}*/
+		},
+
 		// jsonlint: Validate JSON files
 		jsonlint:{
 			project:{
@@ -77,7 +96,7 @@ module.exports = function(grunt) {
 		// watch: Run tasks whenever watched files change
 		watch: {
 			css: {
-				files: ['assets/styles/src/**/*.scss'],
+				files: ['modules/boilerplate/assets/styles/src/**/*.scss'],
 				tasks: ['sass', 'autoprefixer', 'notify:watch'],
 				options: {
 					spawn: false,
@@ -85,8 +104,12 @@ module.exports = function(grunt) {
 				}
 			},
 			concat: {
-				files: ['assets/scripts/src/**/*.js'],
+				files: ['modules/boilerplate/assets/scripts/src/**/*.js'],
 				tasks: ['concat']
+			},
+			svgstore: {
+				files: ['modules/boilerplate/assets/images/svgs/*.svg'],
+				tasks: ['svgstore']
 			}
 		},
 
@@ -94,7 +117,7 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'assets/styles/dist/main.css': 'assets/styles/src/main.scss'
+					'modules/boilerplate/assets/styles/dist/main.css': 'modules/boilerplate/assets/styles/src/main.scss'
 				}
 			}
 		},
@@ -103,9 +126,9 @@ module.exports = function(grunt) {
 		csscomb: {
 	        build: {
 	            expand: true,
-	            cwd: 'assets/styles/src/',
+	            cwd: 'modules/boilerplate/assets/styles/src/',
 	            src: ['**/*.scss'],
-	            dest: 'assets/styles/src/'
+	            dest: 'modules/boilerplate/assets/styles/src/'
 	        }
 		},
 
@@ -117,8 +140,8 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src : ['assets/styles/dist/*.css'],
-						dest : 'assets/styles/dist/',
+						src : ['modules/boilerplate/assets/styles/dist/*.css'],
+						dest : 'modules/boilerplate/assets/styles/dist/',
 						expand : true,
 						flatten: true
 					}
@@ -136,30 +159,23 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// concat: Concatenate files
-		concat: {
-			global: {
-				src: [
-					 'assets/scripts/src/global.js'
-					,'assets/scripts/src/vendor/jquery-1.11.1.min.js'
-				],
-      			dest: 'assets/scripts/dist/main.js',
-			}/*,
-			home: {
-				src: [
-					 'assets/scripts/src/vendor/carousel.js'
-					,'assets/scripts/src/templates/home.js'
-					,'assets/scripts/src/objects/video.js'
-				],
-      			dest: 'assets/scripts/dist/home.js',
-			}*/
+		// svgstore: Merge svgs from a folder
+		svgstore: {
+			options: {
+
+			},
+			default : {
+			  files: {
+			    'modules/boilerplate/assets/templates/svg.php': ['modules/boilerplate/assets/images/svgs/*.svg'],
+			  },
+			},
 		},
 
 		// uglify: Minify (javascript)files with UglifyJS
 		uglify: {
 			my_target: {
 				files: {
-					'assets/scripts/dist/': ['assets/scripts/dist/*.js']
+					'modules/boilerplate/assets/scripts/dist/': ['modules/boilerplate/assets/scripts/dist/*.js']
 				}
 			}
 		},
@@ -168,7 +184,7 @@ module.exports = function(grunt) {
 		cssmin: {
 		  combine: {
 		    files: {
-		      'assets/styles/dist/': ['assets/scripts/dist/*.css']
+		      'modules/boilerplate/assets/styles/dist/': ['modules/boilerplate/assets/scripts/dist/*.css']
 		    }
 		  }
 		},
@@ -178,9 +194,9 @@ module.exports = function(grunt) {
 			dynamic: {
 				files: [{
 					expand: true,
-					cwd: 'assets/images/',
+					cwd: 'modules/boilerplate/assets/images/',
 					src: ['*.{png,jpg,gif}'],
-					dest: 'assets/images/'
+					dest: 'modules/boilerplate/assets/images/'
 				}]
 			}
 		}
@@ -199,6 +215,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-csscomb');
 	grunt.loadNpmTasks("grunt-markdown-pdf");
+	grunt.loadNpmTasks('grunt-svgstore');
 
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('wlint', [
@@ -224,6 +241,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('c', [
 		'csscomb'
 	]);
+	grunt.registerTask('svg', ['svgstore']);
 	grunt.registerTask('s', [
 		'sass'
 	]);
