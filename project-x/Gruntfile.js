@@ -166,7 +166,7 @@ module.exports = function(grunt) {
 			},
 			default : {
 			  files: {
-			    'modules/boilerplate/assets/templates/svg.php': ['modules/boilerplate/assets/images/svgs/*.svg'],
+			    'modules/boilerplate/assets/images/svgs.svg': ['modules/boilerplate/assets/images/svgs/*.svg'],
 			  },
 			},
 		},
