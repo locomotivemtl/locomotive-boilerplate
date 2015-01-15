@@ -97,7 +97,7 @@ module.exports = function(grunt) {
 		watch: {
 			css: {
 				files: ['modules/boilerplate/assets/styles/src/**/*.scss'],
-				tasks: ['sass', 'autoprefixer', 'notify:watch'],
+				tasks: ['sass', 'autoprefixer', 'notify:sass'],
 				options: {
 					spawn: false,
 					livereload: true
@@ -105,11 +105,11 @@ module.exports = function(grunt) {
 			},
 			concat: {
 				files: ['modules/boilerplate/assets/scripts/src/**/*.js'],
-				tasks: ['concat']
+				tasks: ['concat', 'notify:concat']
 			},
 			svgstore: {
 				files: ['modules/boilerplate/assets/images/svgs/*.svg'],
-				tasks: ['svgstore']
+				tasks: ['svgstore', 'notify:svg']
 			}
 		},
 
@@ -153,10 +153,29 @@ module.exports = function(grunt) {
 		notify: {
 			watch: {
 				options: {
-					title: 'SASS',
-					message: 'SASS compiled',
+					// title: '<%= pkg.title %>',
+					message: 'Keeping an eye out, Chief!'
+				}
+			},
+			sass: {
+				options: {
+					// title: '<%= pkg.title %>',
+					message: 'Sass compiled to CSS.'
+				}
+			},
+			concat: {
+				options: {
+					// title: '<%= pkg.title %>',
+					message: 'Javascript is now concatenated'
+				}
+			},
+			svg: {
+				options: {
+					// title: '<%= pkg.title %>',
+					message: 'SVG is now concatenated'
 				}
 			}
+
 		},
 
 		// svgstore: Merge svgs from a folder
@@ -217,7 +236,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-markdown-pdf");
 	grunt.loadNpmTasks('grunt-svgstore');
 
-	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('default', ['notify:watch', 'watch']);
 	grunt.registerTask('wlint', [
 		// Javasript
 		'jshint',
