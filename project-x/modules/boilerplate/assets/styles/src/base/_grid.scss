@@ -13,7 +13,7 @@
 .grid--full {
 	margin-left: 0;
 
-	.grid__item {
+	> .grid__item {
 		margin-bottom: 0;
 		padding-left: 0;
 	}
@@ -67,6 +67,18 @@
 
 	@media (min-width: $from-desktop) {
 		width: span(1/4);
+	}
+}
+
+.three-quarters {
+	@extend .grid__item;
+	
+	@media (min-width: $from-tablet) {
+		width: 50%;
+	}
+
+	@media (min-width: $from-desktop) {
+		width: span(3/4);
 	}
 }
 
