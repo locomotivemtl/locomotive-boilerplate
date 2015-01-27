@@ -8,8 +8,8 @@ module.exports = function(grunt) {
 		concat: {
 			global: {
 				src: [
-					 'modules/boilerplate/assets/scripts/src/global.js'
-					,'modules/boilerplate/assets/scripts/src/vendor/jquery-1.11.1.min.js'
+					 'modules/boilerplate/assets/scripts/src/vendor/jquery-1.11.1.min.js'
+					 ,'modules/boilerplate/assets/scripts/src/global.js'
 				],
       			dest: 'modules/boilerplate/assets/scripts/dist/main.js',
 			}/*,
