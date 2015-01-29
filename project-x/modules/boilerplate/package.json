@@ -17,7 +17,6 @@
     "grunt-contrib-watch": "*",
     "grunt-csscomb": "*",
     "grunt-jsonlint": "*",
-    "grunt-markdown-pdf": "*",
     "grunt-notify": "*",
     "grunt-phplint": "*",
     "grunt-sass": "*",

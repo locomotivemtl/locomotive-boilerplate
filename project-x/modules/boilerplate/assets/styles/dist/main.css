@@ -1,8 +1,6 @@
-/**
- * Project-x / Public Site
- * ==========================================================================
- *
- */
+/* ==========================================================================
+   Main
+   ========================================================================== */
 /* ==========================================================================
    Imports
    ========================================================================== */
@@ -20,6 +18,12 @@
 /* Screen widths
    ========================================================================== */
 /* Transitions
+   ========================================================================== */
+/* ==========================================================================
+   Functions
+   ========================================================================== */
+/* ==========================================================================
+   Mixins
    ========================================================================== */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
@@ -353,9 +357,6 @@ html {
   font-size: 16px;
   line-height: 1.4;
   box-sizing: border-box;
-  font-size: 16px;
-  font-family: sans-serif;
-  line-height: 1.4;
   color: #222222; }
 
 ::-moz-selection {
@@ -384,7 +385,12 @@ textarea {
 a {
   color: #1A0DAB; }
   a:hover {
-    color: #11097c; }
+    color: #13097c; }
+
+button {
+  outline: none;
+  border: none;
+  background-color: none; }
 
 .container {
   position: relative;
@@ -395,16 +401,18 @@ a {
    ========================================================================== */
 .grid {
   font-size: 0;
+  letter-spacing: normal;
   position: relative;
   margin-left: -20px; }
 
 .grid--full {
   margin-left: 0; }
-  .grid--full .grid__item, .grid--full .whole, .grid--full .half, .grid--full .third, .grid--full .two-thirds, .grid--full .quarter, .grid--full .fifth {
+  .grid--full > .grid__item, .grid--full > .whole, .grid--full > .half, .grid--full > .third, .grid--full > .two-thirds, .grid--full > .quarter, .grid--full > .three-quarters, .grid--full > .fifth {
     margin-bottom: 0;
     padding-left: 0; }
 
-.grid__item, .whole, .half, .third, .two-thirds, .quarter, .fifth {
+.grid__item, .whole, .half, .third, .two-thirds, .quarter, .three-quarters, .fifth {
+  font-size: 16px;
   display: inline-block;
   width: 100%;
   margin-bottom: 20px;
@@ -417,25 +425,32 @@ a {
 
 @media (min-width: 1024px) {
   .third {
-    width: span(0.33333); } }
+    width: 33.3333333333%; } }
 
 @media (min-width: 1024px) {
   .two-thirds {
-    width: span(0.66667); } }
+    width: 66.6666666667%; } }
 
 @media (min-width: 768px) {
   .quarter {
     width: 50%; } }
 @media (min-width: 1024px) {
   .quarter {
-    width: span(0.25); } }
+    width: 25%; } }
+
+@media (min-width: 768px) {
+  .three-quarters {
+    width: 50%; } }
+@media (min-width: 1024px) {
+  .three-quarters {
+    width: 75%; } }
 
 @media (min-width: 768px) {
   .fifth {
     width: 50%; } }
 @media (min-width: 1024px) {
   .fifth {
-    width: span(0.2); } }
+    width: 20%; } }
 
 /* ==========================================================================
    Headings
@@ -476,13 +491,13 @@ h6, .h6, .zeta {
 /* Input
    ========================================================================== */
 .input, .select__input, .checkbox__check {
-  background-color: #cccccc;
   display: block;
   width: 100%;
   color: #000000;
   border: none;
   border-radius: 0;
   outline: none;
+  background-color: #CCCCCC;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
@@ -490,21 +505,21 @@ h6, .h6, .zeta {
 /* Select
    ========================================================================== */
 .select {
-  display: block;
-  position: relative; }
+  position: relative;
+  display: block; }
   .select:after {
-    content: "";
     position: absolute;
     top: 0;
     right: 0;
+    display: block;
     width: 30px;
     height: 100%;
-    display: block;
-    background-color: #ccc;
-    background-image: url('../../images/select-arrow.svg');
+    content: "";
+    pointer-events: none;
+    background-color: #CCCCCC;
+    background-image: url("../../images/select-arrow.svg");
     background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none; }
+    background-position: center; }
 
 .select__input {
   padding-right: 30px; }
@@ -526,21 +541,15 @@ h6, .h6, .zeta {
   width: 25px;
   height: 25px; }
   .checkbox__check:after {
-    content: "";
     display: block;
-    background-image: url('../../images/check.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    visibility: hidden;
     width: 25px;
     height: 25px;
-    visibility: hidden; }
+    content: "";
+    background-image: url("../../images/check.svg");
+    background-repeat: no-repeat;
+    background-position: center; }
 
-/* ==========================================================================
-   Functions
-   ========================================================================== */
-/* ==========================================================================
-   Mixins
-   ========================================================================== */
 /* ==========================================================================
    Helpers
    ========================================================================== */
@@ -551,15 +560,15 @@ h6, .h6, .zeta {
 .clearfix:after {
   clear: both; }
 
-.center-vertically {
+.vertical-center {
   height: 100%;
   text-align: center; }
-  .center-vertically:before {
+  .vertical-center:before {
     display: inline-block;
     height: 100%;
     content: "";
     vertical-align: middle; }
-  .center-vertically > * {
+  .vertical-center > * {
     display: inline-block;
     vertical-align: middle; }
 
