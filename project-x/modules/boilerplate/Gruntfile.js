@@ -115,9 +115,12 @@ module.exports = function(grunt) {
 		// uglify: Minify (javascript)files with UglifyJS
 		uglify: {
 			target: {
-				files: {
-					'assets/scripts/dist/': ['assets/scripts/dist/*.js']
-				}
+				files: [{
+					expand: true,
+					cwd: 'assets/scripts/dist/',
+					src: '**/*.js',
+					dest: 'assets/scripts/dist/'
+				}]
 			}
 		},
 
@@ -211,7 +214,7 @@ module.exports = function(grunt) {
 				'charcoal/modules/**/code/**/*.php'
 			]
 		}
-		
+
 	});
 
 	// Load tasks
