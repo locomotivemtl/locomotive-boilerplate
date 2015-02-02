@@ -431,21 +431,21 @@ button {
   .two-thirds {
     width: 66.6666666667%; } }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .quarter {
     width: 50%; } }
 @media (min-width: 1024px) {
   .quarter {
     width: 25%; } }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .three-quarters {
     width: 50%; } }
 @media (min-width: 1024px) {
   .three-quarters {
     width: 75%; } }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .fifth {
     width: 50%; } }
 @media (min-width: 1024px) {
