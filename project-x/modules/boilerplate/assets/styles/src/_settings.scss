@@ -46,16 +46,16 @@ $z-index3: 250;
 
 /* Screen widths
    ========================================================================== */
-$from-xs: 414px;
-$to-xs: $from-xs - 1;
-$from-s: 768px;
-$to-s: $from-s - 1;
-$from-m: 1024px;
-$to-m: $from-m - 1;
-$from-l: 1280px;
-$to-l: $from-l - 1;
-$from-xl: 1680px;
-$to-xl: $from-xl - 1;
+$from-tiny: 414px;
+$to-tiny: $from-tiny - 1;
+$from-small: 768px;
+$to-small: $from-small - 1;
+$from-medium: 1024px;
+$to-medium: $from-medium - 1;
+$from-large: 1280px;
+$to-large: $from-large - 1;
+$from-huge: 1680px;
+$to-huge: $from-huge - 1;
 
 /* Transitions
    ========================================================================== */
