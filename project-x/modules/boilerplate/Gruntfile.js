@@ -4,32 +4,16 @@ module.exports = function(grunt) {
 
 		pkg: grunt.file.readJSON('package.json'),
 
-		// concat: Concatenate files.
-		concat: require('./assets/scripts/grunt-concat'),
+		
 
 		// sass: Compile Sass to CSS
-		sass: {
-			options: {
-	            sourceMap: false
-	        },
-			dist: {
-				files: {
-					'assets/styles/dist/main.css': 'assets/styles/src/main.scss'
-				}
-			}
-		},
+		sass: require('./grunt_tasks/sass'),
 
 		// svgstore: Merge svgs from a folder
-		svgstore: {
-			options: {
+		svgstore: require('./grunt_tasks/svgstore'),
 
-			},
-			default : {
-			  files: {
-			    'assets/images/svgs.svg': ['assets/images/svgs/*.svg'],
-			  },
-			},
-		},
+		// concat: Concatenate files.
+		concat: require('./grunt_tasks/concat'),
 
 		// autoprefixer: Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website
 		autoprefixer: {
@@ -54,12 +38,6 @@ module.exports = function(grunt) {
 				files: ['assets/scripts/src/**/*.js'],
 				tasks: ['concat', 'notify:concat']
 			},
-			concatconfig: {
-				files: ['assets/scripts/grunt-concat.js'],
-				options: {
-			      reload: true
-			    }
-			},
 			sass: {
 				files: ['assets/styles/src/**/*.scss'],
 				tasks: ['sass', 'autoprefixer', 'notify:sass'],
@@ -71,6 +49,12 @@ module.exports = function(grunt) {
 			svgstore: {
 				files: ['assets/images/svgs/*.svg'],
 				tasks: ['svgstore', 'notify:svg']
+			},
+			tasks: {
+				files: ['grunt_tasks/*.js'],
+				options: {
+			      reload: true
+			    }
 			}
 		},
 
@@ -132,6 +116,27 @@ module.exports = function(grunt) {
 		    }
 		  }
 		},
+
+		// svgmin: Minify SVG
+		svgmin: {
+	        options: {
+	            plugins: [
+	                { removeViewBox: false },
+	                { cleanupIDs: false },
+	                { convertPathData: false },
+	                { mergePaths: false },
+	                { convertShapeToPath: false },
+	                { cleanupNumericValues: false },
+	                { convertTransform: false },
+				    { removeUselessStrokeAndFill: false }
+	            ]
+	        },
+	        dist: {
+	            files: {
+	                'assets/images/dist/': 'assets/images/dist/*.svg'
+	            }
+	        }
+	    },
 
 		// imagemin: Minify PNG and JPEG images.
 		imagemin: {
@@ -227,6 +232,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-csscomb');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-svgmin');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-jsonlint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -242,6 +248,7 @@ module.exports = function(grunt) {
 		'autoprefixer',
 		'uglify',
 		'cssmin',
+		'svgmin',
 		'imagemin'
 	]);
 	grunt.registerTask('c', [

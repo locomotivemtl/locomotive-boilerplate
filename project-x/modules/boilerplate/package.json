@@ -10,16 +10,17 @@
     "grunt": "*",
     "grunt-autoprefixer": "*",
     "grunt-contrib-concat": "*",
+    "grunt-contrib-cssmin": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-cssmin": "*",
     "grunt-contrib-watch": "*",
     "grunt-csscomb": "*",
     "grunt-jsonlint": "*",
     "grunt-notify": "*",
     "grunt-phplint": "*",
     "grunt-sass": "*",
+    "grunt-svgmin": "*",
     "grunt-svgstore": "*"
   }
 }
