@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 				}
 			},
 			svgstore: {
-				files: ['assets/images/svgs/*.svg'],
+				files: ['assets/images/**/*.svg'],
 				tasks: ['svgstore', 'notify:svg']
 			},
 			tasks: {
