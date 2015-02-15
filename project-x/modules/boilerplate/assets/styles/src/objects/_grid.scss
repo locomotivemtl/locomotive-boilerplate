@@ -3,11 +3,12 @@
    ========================================================================== */
 .grid {
 	font-size: 0;
-	letter-spacing: normal;
 
 	position: relative;
 
-	margin-left: -$margin20;
+	margin-left: -$margin;
+
+	letter-spacing: normal;
 }
 
 .grid--full {
@@ -21,16 +22,18 @@
 
 .grid__item {
 	font-size: $font-size;
+
 	display: inline-block;
 
-	width: 100%;
-	margin-bottom: $margin20;
-	padding-left: $margin20;
+	margin-bottom: $margin;
+	padding-left: $margin;
 
 	vertical-align: top;
 }
 
 .whole {
+	width: 100%;
+
 	@extend .grid__item;
 }
 
@@ -72,7 +75,7 @@
 
 .three-quarters {
 	@extend .grid__item;
-	
+
 	@media (min-width: $from-small) and (max-width: $to-medium) {
 		width: 50%;
 	}

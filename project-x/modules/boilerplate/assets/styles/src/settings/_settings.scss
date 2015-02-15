@@ -4,11 +4,12 @@
 
 /* Typography
    ========================================================================== */
+// Base
 $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
 $color: #222222;
-//
+// Headings
 $heading1: 32px; // .alpha
 $heading2: 24px; // .beta
 $heading3: 19px; // .gamma
@@ -16,33 +17,30 @@ $heading4: 16px; // .delta
 $heading5: 13px; // .epsilon
 $heading6: 11px; // .zeta
 $heading-line-height: 1.2;
-//
-$milli-size: 10px !default;
-$micro-size: 8px !default;
+// Weights
+$light: 300;
+$normal: 400;
+$medium: 500;
+$bold: 700;
 
-
-/* Colour Palette
+/* Colors
    ========================================================================== */
+// Generic
 $black: #000000;
-$white: #FFFFFF;
-//
-$link: #1A0DAB;
-$link-hover: darken(#1A0DAB, 10%);
+$white: #ffffff;
+// Specific
+$selection: #3297fd;
+$link: #1a0dab;
+$link-hover: darken(#1a0dab, 10%);
 
+/* Container
+   ========================================================================== */
+$max-width: none;
+$padding: 0;
 
 /* Spacings
    ========================================================================== */
-$margin10: 10px;
-$margin20: 20px;
-$margin30: 30px;
-$margin40: 40px;
-
-
-/* Z-index
-   ========================================================================== */
-$z-index1: 50;
-$z-index2: 150;
-$z-index3: 250;
+$margin: 20px;
 
 /* Screen widths
    ========================================================================== */
@@ -60,3 +58,4 @@ $to-huge: $from-huge - 1;
 /* Transitions
    ========================================================================== */
 $speed: 0.3s;
+$easing: linear;

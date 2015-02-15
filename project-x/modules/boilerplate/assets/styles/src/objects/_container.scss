@@ -1,3 +1,11 @@
 /* ==========================================================================
-   Mixins
+   Container
    ========================================================================== */
+.container {
+	position: relative;
+
+	max-width: $max-width + ($padding * 2);
+	margin: 0 auto;
+	padding-right: $padding;
+	padding-left: $padding;
+}

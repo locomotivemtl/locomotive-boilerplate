@@ -88,6 +88,9 @@ module.exports = function(grunt) {
 
 		// csscomb: Sort CSS properties in specific order.
 		csscomb: {
+	        options: {
+                config: 'grunt_tasks/.csscomb.json'
+            },
 	        build: {
 	            expand: true,
 	            cwd: 'assets/styles/src/',
