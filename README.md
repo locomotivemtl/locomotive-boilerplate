@@ -13,8 +13,7 @@ Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomot
 * **Generic:** Low-specificity, far-reaching rulesets (e.g. resets).
 * **Base:** Unclassed HTML elements (e.g. `a {}`, `blockquote {}`, `address {}`).
 * **Objects:** Objects, abstractions, and design patterns (e.g. `.media {}`).
-* **Components:** Discrete, complete chunks of UI (e.g. `.carousel {}`). This is
-  the one layer that inuitcss doesn’t get involved with.
+* **Components:** Discrete, complete chunks of UI (e.g. `.carousel {}`).
 * **Trumps:** High-specificity, very explicit selectors. Overrides and helper
   classes (e.g. `.hidden {}`).
 
