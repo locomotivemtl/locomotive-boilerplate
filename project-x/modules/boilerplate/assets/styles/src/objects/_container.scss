@@ -1,6 +1,11 @@
 /* ==========================================================================
-   Main
+   Container
    ========================================================================== */
-$jacket: vanilla;
+.container {
+	position: relative;
 
-@import "_imports.scss";
+	max-width: $max-width + ($padding * 2);
+	margin: 0 auto;
+	padding-right: $padding;
+	padding-left: $padding;
+}

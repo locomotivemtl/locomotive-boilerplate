@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Grid
+   ========================================================================== */
+.grid {
+	font-size: 0;
+
+	position: relative;
+
+	margin-left: -$margin;
+
+	letter-spacing: normal;
+}
+
+.grid--full {
+	margin-left: 0;
+
+	> .grid__item {
+		margin-bottom: 0;
+		padding-left: 0;
+	}
+}
+
+.grid__item {
+	font-size: $font-size;
+
+	display: inline-block;
+
+	margin-bottom: $margin;
+	padding-left: $margin;
+
+	vertical-align: top;
+}
+
+.whole {
+	width: 100%;
+
+	@extend .grid__item;
+}
+
+.half {
+	@extend .grid__item;
+
+	@media (min-width: $from-medium) {
+		width: 50%;
+	}
+}
+
+.third {
+	@extend .grid__item;
+
+	@media (min-width: $from-medium) {
+		width: span(1/3);
+	}
+}
+
+.two-thirds {
+	@extend .grid__item;
+
+	@media (min-width: $from-medium) {
+		width: span(2/3);
+	}
+}
+
+.quarter {
+	@extend .grid__item;
+
+	@media (min-width: $from-small) and (max-width: $to-medium) {
+		width: 50%;
+	}
+
+	@media (min-width: $from-medium) {
+		width: span(1/4);
+	}
+}
+
+.three-quarters {
+	@extend .grid__item;
+
+	@media (min-width: $from-small) and (max-width: $to-medium) {
+		width: 50%;
+	}
+
+	@media (min-width: $from-medium) {
+		width: span(3/4);
+	}
+}
+
+.fifth {
+	@extend .grid__item;
+
+	@media (min-width: $from-small) and (max-width: $to-medium) {
+		width: 50%;
+	}
+
+	@media (min-width: $from-medium) {
+		width: span(1/5);
+	}
+}

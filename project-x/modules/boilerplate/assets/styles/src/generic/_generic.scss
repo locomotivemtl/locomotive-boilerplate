@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Generic Resets
+   ========================================================================== */
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+	vertical-align: middle;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+
+	border: 0;
+}
+
+textarea {
+	resize: vertical;
+}
+
+button {
+	border: none;
+	outline: none;
+	background-color: none;
+}

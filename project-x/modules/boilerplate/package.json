@@ -1,0 +1,26 @@
+{
+  "name": "projet-x",
+  "version": "1.0.0",
+  "author": "Locomotive <info@locomotive.ca>",
+  "contributors": [
+    "Stephen Bégay <stephen@locomotive.ca>",
+    "Antoine Boulanger <antoine@locomotive.ca>"
+  ],
+  "dependencies": {
+    "grunt": "*",
+    "grunt-autoprefixer": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-imagemin": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-csscomb": "*",
+    "grunt-jsonlint": "*",
+    "grunt-notify": "*",
+    "grunt-phplint": "*",
+    "grunt-sass": "*",
+    "grunt-svgmin": "*",
+    "grunt-svgstore": "*"
+  }
+}

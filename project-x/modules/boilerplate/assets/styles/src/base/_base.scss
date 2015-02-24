@@ -1,25 +1,16 @@
 /* ==========================================================================
    Base
    ========================================================================== */
-*, *:before, *:after {
-	box-sizing: inherit;
-}
-
 html {
 	font-family: $font-family;
-	font-family: $font-family;
-	font-size: $font-size;
 	font-size: $font-size;
 	line-height: $line-height;
-	line-height: $line-height;
-
-	box-sizing: border-box;
 
 	color: $color;
 }
 
 ::selection {
-	background: #B3D4FC;
+	background: $selection;
 	text-shadow: none;
 }
 
@@ -31,17 +22,11 @@ hr {
 	padding: 0;
 
 	border: 0;
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #cccccc;
 }
 
 img, svg {
 	max-width: 100%;
-
-	vertical-align: middle;
-}
-
-textarea {
-	resize: vertical;
 }
 
 a {
@@ -52,8 +37,4 @@ a {
 	}
 }
 
-.container {
-	position: relative;
 
-	margin: 0 auto;
-}

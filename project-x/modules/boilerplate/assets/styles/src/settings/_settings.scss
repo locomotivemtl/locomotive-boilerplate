@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Settings
+   ========================================================================== */
+
+/* Typography
+   ========================================================================== */
+// Base
+$font-size: 16px;
+$line-height: 1.4;
+$font-family: sans-serif;
+$color: #222222;
+// Headings
+$heading1: 32px; // .alpha
+$heading2: 24px; // .beta
+$heading3: 19px; // .gamma
+$heading4: 16px; // .delta
+$heading5: 13px; // .epsilon
+$heading6: 11px; // .zeta
+$heading-line-height: 1.2;
+// Weights
+$light: 300;
+$normal: 400;
+$medium: 500;
+$bold: 700;
+
+/* Colors
+   ========================================================================== */
+// Generic
+$black: #000000;
+$white: #ffffff;
+// Specific
+$selection: #3297fd;
+$link: #1a0dab;
+$link-hover: darken(#1a0dab, 10%);
+
+/* Container
+   ========================================================================== */
+$max-width: none;
+$padding: 0;
+
+/* Spacings
+   ========================================================================== */
+$margin: 20px;
+
+/* Screen widths
+   ========================================================================== */
+$from-tiny: 414px;
+$to-tiny: $from-tiny - 1;
+$from-small: 768px;
+$to-small: $from-small - 1;
+$from-medium: 1024px;
+$to-medium: $from-medium - 1;
+$from-large: 1280px;
+$to-large: $from-large - 1;
+$from-huge: 1680px;
+$to-huge: $from-huge - 1;
+
+/* Transitions
+   ========================================================================== */
+$speed: 0.3s;
+$easing: linear;
