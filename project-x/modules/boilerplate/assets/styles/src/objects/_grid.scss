@@ -1,23 +1,23 @@
 /* ==========================================================================
    Grid
    ========================================================================== */
-.grid {
+.grid, %grid {
 	font-size: 0;
 
 	margin-left: -$gutter;
 
 	letter-spacing: normal;
 
-	&.-full {
+	&.-full, &%-full {
 		margin-left: 0;
 
-		> .grid__item {
+		> %grid__item {
 			margin-bottom: 0;
 			padding-left: 0;
 		}
 	}
 
-	&.-list {
+	&.-list, &%-list {
 		margin-top: 0;
 		margin-bottom: 0;
 		padding-left: 0;
@@ -26,7 +26,7 @@
 	}
 }
 
-.grid__item {
+%grid__item {
 	font-size: $font-size;
 
 	display: inline-block;
@@ -38,112 +38,112 @@
 	vertical-align: top;
 }
 
-.whole {
+%whole {
 	width: 100%;
 
-	@extend .grid__item;
+	@extend %grid__item;
 }
 
-.half {
-	@extend .grid__item;
+%half {
+	@extend %grid__item;
 	@media (min-width: $from-small) {
 		width: span(1/2);
 	}
 }
 
-.third {
-	@extend .grid__item;
+%third {
+	@extend %grid__item;
 	@media (min-width: $from-medium) {
 		width: span(1/3);
 	}
 }
 
-.two-thirds {
-	@extend .grid__item;
+%two-thirds {
+	@extend %grid__item;
 	@media (min-width: $from-medium) {
 		width: span(2/3);
 	}
 }
 
-.quarter {
-	@extend .grid__item;
+%quarter {
+	@extend %grid__item;
 	@media (min-width: $from-medium) {
 		width: span(1/4);
 	}
 }
 
-.two-quarters {
-	@extend .grid__item;
+%two-quarters {
+	@extend %grid__item;
 	@media (min-width: $from-medium) {
 		width: span(2/4);
 	}
 }
 
-.three-quarters {
-	@extend .grid__item;
+%three-quarters {
+	@extend %grid__item;
 	@media (min-width: $from-medium) {
 		width: span(3/4);
 	}
 }
 
-.fifth {
-	@extend .grid__item;
+%fifth {
+	@extend %grid__item;
 	@media (min-width: $from-large) {
 		width: span(1/5);
 	}
 }
 
-.two-fifths {
-	@extend .grid__item;
+%two-fifths {
+	@extend %grid__item;
 	@media (min-width: $from-large) {
 		width: span(2/5);
 	}
 }
 
-.three-fifths {
-	@extend .grid__item;
+%three-fifths {
+	@extend %grid__item;
 	@media (min-width: $from-large) {
 		width: span(3/5);
 	}
 }
 
-.four-fifths {
-	@extend .grid__item;
+%four-fifths {
+	@extend %grid__item;
 	@media (min-width: $from-large) {
 		width: span(4/5);
 	}
 }
 
-.sixth {
-	@extend .grid__item;
+%sixth {
+	@extend %grid__item;
 	@media (min-width: $from-huge) {
 		width: span(1/6);
 	}
 }
 
-.two-sixths {
-	@extend .grid__item;
+%two-sixths {
+	@extend %grid__item;
 	@media (min-width: $from-huge) {
 		width: span(2/6);
 	}
 }
 
-.three-sixths {
-	@extend .grid__item;
+%three-sixths {
+	@extend %grid__item;
 	@media (min-width: $from-huge) {
 		width: span(3/6);
 	}
 }
 
-.four-sixths {
-	@extend .grid__item;
+%four-sixths {
+	@extend %grid__item;
 	@media (min-width: $from-huge) {
 		width: span(4/6);
 	}
 }
 
-.five-sixths {
-	@extend .grid__item;
+%five-sixths {
+	@extend %grid__item;
 	@media (min-width: $from-huge) {
 		width: span(5/6);
 	}
