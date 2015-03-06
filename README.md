@@ -4,6 +4,23 @@ Charcoal-Boilerplate
 Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomotive.
 
 
+## Getting started
+
+**Get the latest node modules**
+
+ We are using this module to get the latest version of every modules and update the package.json
+
+`npm install -g npm-check-updates`
+
+`npm-check-updates -u`
+
+`npm install`
+
+
+**Run grunt and start coding**
+
+`grunt`
+
 ## SCSS
 
 ### Import order
