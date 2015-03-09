@@ -344,7 +344,7 @@ td, th {
   padding: 0; }
 
 /* ==========================================================================
-   Generic
+   Generic Resets
    ========================================================================== */
 html {
   box-sizing: border-box; }
@@ -517,58 +517,15 @@ h6, .h6, .zeta {
    ========================================================================== */
 .grid {
   font-size: 0;
-  position: relative;
   margin-left: -20px;
   letter-spacing: normal; }
-
-.grid--full {
-  margin-left: 0; }
-  .grid--full > .grid__item, .grid--full > .whole, .grid--full > .half, .grid--full > .third, .grid--full > .two-thirds, .grid--full > .quarter, .grid--full > .three-quarters, .grid--full > .fifth {
+  .grid.-full {
+    margin-left: 0; }
+  .grid.-list {
+    margin-top: 0;
     margin-bottom: 0;
-    padding-left: 0; }
-
-.grid__item, .whole, .half, .third, .two-thirds, .quarter, .three-quarters, .fifth {
-  font-size: 16px;
-  display: inline-block;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  vertical-align: top; }
-
-.whole {
-  width: 100%; }
-
-@media (min-width: 1024px) {
-  .half {
-    width: 50%; } }
-
-@media (min-width: 1024px) {
-  .third {
-    width: 33.3333333333%; } }
-
-@media (min-width: 1024px) {
-  .two-thirds {
-    width: 66.6666666667%; } }
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .quarter {
-    width: 50%; } }
-@media (min-width: 1024px) {
-  .quarter {
-    width: 25%; } }
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .three-quarters {
-    width: 50%; } }
-@media (min-width: 1024px) {
-  .three-quarters {
-    width: 75%; } }
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .fifth {
-    width: 50%; } }
-@media (min-width: 1024px) {
-  .fifth {
-    width: 20%; } }
+    padding-left: 0;
+    list-style: none; }
 
 /* ==========================================================================
    Helpers
