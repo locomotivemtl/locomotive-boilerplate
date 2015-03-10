@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <base href="{{URL}}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#f2f2f2">
         <title>{{meta_title}}</title>
 
         <link rel="icon" type="image/png" href="{{#assets.images}}favicon-16.png{{/assets.images}}" sizes="16x16">
