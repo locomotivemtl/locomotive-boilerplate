@@ -1,51 +1,44 @@
 {
-	"project_name":"Boilerplate",
-
-	"databases":{
-		"local":{
-			"database":"boilerplate",
-			"username":"root",
-			"password":""
-		},
-		"lab":{
-			"database":"",
-			"username":"",
-			"password":""
-		},
-		"live":{
-			"database":"",
-			"username":"",
-			"password":""
-		}
-	},
-	"default_database":"local",
-
-	"languages":{
-		"fr":{
-			"active":true
-		},
-		"en":{
-			"active":true
-		}
-	},
-	"default_language":"fr",
-
-	"modules":{
-		"admin":{},
-		"cms":{},
-		"newsletter":{},
-		"boilerplate":{}
-	},
-
-	"objects":{
-
-	},
-
-	"apis":{
-	
-	},
-
-	"url_options":{
-		"use_rewrite":true
-	}
+    "project_name": "Boilerplate",
+    "databases": {
+        "local": {
+            "database": "gdfg",
+            "username": "root",
+            "password": ""
+        },
+        "lab": {
+            "database": "",
+            "username": "",
+            "password": ""
+        },
+        "live": {
+            "database": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "default_database": "local",
+    "languages": {
+        "fr": {
+            "active": true
+        },
+        "en": {
+            "active": true
+        }
+    },
+    "default_language": "fr",
+    "modules": {
+        "admin": [],
+        "cms": [],
+        "newsletter": [],
+        "boilerplate": []
+    },
+    "objects": [],
+    "apis": [],
+    "url_options": {
+        "use_rewrite": true
+    },
+    "debug":{
+    	"active":false
+    }
 }
