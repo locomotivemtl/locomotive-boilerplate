@@ -65,7 +65,7 @@ catch (PDOException $e) {
 // If here, DB is created. Setup config.json
 $climate->out('Setting up the database for the project...');
 
-$filename = 'project-x/config/config.json';
+$filename = 'www/config/config.json';
 if(!file_exists($filename) || !is_writable($filename)) {
 	$climate->red()->out('Could not open config.json or file not writeable');
 	die();
