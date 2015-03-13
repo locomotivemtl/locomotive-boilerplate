@@ -1,25 +1,38 @@
 Charcoal-Boilerplate
-======================
+====================
 
 Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomotive.
 
 
 ## Getting started
 
-**Get the latest node modules**
+### Setup project
 
- We are using this module to get the latest version of every modules and update the package.json
+1. **Clone the boilerplate module into your own module**
+  1. `sh clone.sh {{project-name}}` 
+    - where `{{project-name}}` is the name of the target project.
+    - Note: on windows, the `sh` command is usually ran from cygwin.
+2. **Create and setup the database**
+  1. Create an empty database (most people use phpmyadmin...)
+  2. Setup the database in `www/config/config.json`
+3. **Setup configuration**
+  1. Setup the proper `URL` in  in `www/config/config.php`
+  2. Setup languages and project name, if necessary, in `www/config/config.json`
+4. **Initialize Charcoal**
+  1. Make sure the Charcoal core is installed
+    - Using SVN, this is normally done with a `svn:externals` property in `www/`
+  2. Setup a local admin user
+    - Visit `http://{{project-url}}/admin` to start the admin user creation wizard.
 
-`npm install -g npm-check-updates`
+### Install the node modules / grunt
 
-`npm-check-updates -u`
+1. **Get the latest node modules**
+  1. `npm install -g npm-check-updates`
+  2. `npm-check-updates -u`
+  3. `npm install`
 
-`npm install`
-
-
-**Run grunt and start coding**
-
-`grunt`
+2. **Run grunt and start coding**
+  - `grunt`
 
 ## SCSS
 
