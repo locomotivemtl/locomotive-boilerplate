@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
 		pkg: grunt.file.readJSON('package.json'),
 
-		
+
 
 		// sass: Compile Sass to CSS
 		sass: require('./grunt_tasks/sass'),
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
 		// csscomb: Sort CSS properties in specific order.
 		csscomb: {
 	        options: {
-                config: 'grunt_tasks/.csscomb.json'
+                config: '.csscomb.json'
             },
 	        build: {
 	            expand: true,
