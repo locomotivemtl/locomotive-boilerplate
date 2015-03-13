@@ -1,3 +1,4 @@
 project-x/modules/boilerplate/node_modules/
 vendor
 composer.lock
+www/charcoal
