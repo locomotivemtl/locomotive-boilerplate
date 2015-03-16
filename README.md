@@ -7,7 +7,7 @@ Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomot
 ## Getting started
 
 ### Setup project
-
+...
 1. **Clone the boilerplate module into your own module**
   1. `sh clone.sh {{project-name}}` 
     - where `{{project-name}}` is the name of the target project.
