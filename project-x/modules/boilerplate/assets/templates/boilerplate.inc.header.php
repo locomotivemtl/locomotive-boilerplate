@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{lang}}">
+<!--[if lte IE 9]>     <html lang="{{lang}}" class="ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="{{lang}}"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <base href="{{URL}}">
