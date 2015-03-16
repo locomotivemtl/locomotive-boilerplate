@@ -65,10 +65,10 @@ class Boilerplate_Module extends Charcoal_Module
 
 		if($section_id) {
 			// By section
-			$section_loader = new Charcoal\Object_Loader('CMS_Section');
+			$section_loader = new Charcoal_Object_Loader('CMS_Section');
 
 			$section = $section_loader->{$section_id};
-			pre($section);
+
 			if($section->template) {
 				// What to do?
 			}
