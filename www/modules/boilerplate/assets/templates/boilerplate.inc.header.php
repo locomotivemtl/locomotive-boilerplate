@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{lang}}">
+<!--[if lte IE 9]>     <html lang="{{lang}}" class="ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="{{lang}}"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <base href="{{URL}}">
@@ -13,7 +14,7 @@
         <link rel="apple-touch-icon-precomposed" href="{{#assets.images}}favicon-152.png{{/assets.images}}">
         <!--[if IE]><link rel="shortcut icon" href="assets/images/favicon-32.ico"><![endif]-->
 
-        <link rel="stylesheet" href="modules/{{module}}/assets/styles/dist/main.css">
+        <link rel="stylesheet" href="{{#assets.styles}}dist/main.css{{/assets.styles}}">
 
         <meta name="description" content="{{meta_description}}">
         {{opengraph_tags}}

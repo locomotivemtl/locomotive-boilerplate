@@ -23,7 +23,7 @@
 * @link http://locomotive.ca
 * @since Version 2014-10-01
 */
-class Boilerplate_Template_Controller extends Charcoal\Template_Controller
+class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 {
 	/**
 	* Keep a copy of the current section
