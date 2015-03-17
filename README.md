@@ -7,9 +7,9 @@ Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomot
 ## Getting started
 
 ### Setup project
-...
+
 1. **Clone the boilerplate module into your own module**
-  1. `sh clone.sh {{project-name}}` 
+  1. `sh clone.sh {{project-name}}`
     - where `{{project-name}}` is the name of the target project.
     - Note: on windows, the `sh` command is usually ran from cygwin.
 2. **Create and setup the database**
@@ -55,10 +55,10 @@ We are using a simple inline-block grid system.
 
 **Usage**
 
-Insert a `%grid` block and add `%grid__item` elements inside it. 
+Insert a `%grid` block and add `%grid__item` elements inside it.
 No rows that contain floats, no twelve columns system; just the number of items you want, with fractions like names helpers *(ex: `%third`, `%two-thirds`)*, inside a single block.
 
-- Extend the placeholder selectors *(`%`)* for more semantic ones to your components. 
+- Extend the placeholder selectors *(`%`)* for more semantic ones to your components.
 - Create custom width grid items by extending the `%grid__item` and adding widths in a fraction format, with the `span()` function.
 - Add media queries, on the helpers selectors or on your custom components, with the `$from` and `$to` variables to change the grid items widths, for your content, on different screen sizes .
 
