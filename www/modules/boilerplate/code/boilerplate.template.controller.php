@@ -130,7 +130,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	*/
 	public function cfg()
 	{
-		return Config::get_latest();
+		return Boilerplate_Config::get_latest();
 	}
 
 	/**
