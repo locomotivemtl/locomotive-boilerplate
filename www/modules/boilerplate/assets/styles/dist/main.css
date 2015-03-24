@@ -516,16 +516,9 @@ h6, .h6, .zeta {
    Grid
    ========================================================================== */
 .grid {
-  font-size: 0;
   margin-left: -20px;
-  letter-spacing: normal; }
-  .grid.-full {
-    margin-left: 0; }
-  .grid.-list {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-    list-style: none; }
+  letter-spacing: normal;
+  font-size: 0; }
 
 /* ==========================================================================
    Helpers
