@@ -63,3 +63,9 @@ No rows that contain floats, no twelve columns system; just the number of items 
 - Add media queries, on the helpers mixins or on your custom components to change the grid items widths, for your content, on different screen sizes.
 
 *[Demo](http://codepen.io/AntoineBoulanger/pen/EaLNxe)*
+
+### Form
+
+We included some basic CSS styles and resets to the form elements so we can easily have custom style form elements that work on every browsers.
+
+*[Demo](http://codepen.io/AntoineBoulanger/pen/uBJmi)*
