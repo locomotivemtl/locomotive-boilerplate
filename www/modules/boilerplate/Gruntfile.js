@@ -114,9 +114,13 @@ module.exports = function(grunt) {
 		// cssmin: Compress CSS files
 		cssmin: {
 		  combine: {
-		    files: {
-		      'assets/styles/dist/': ['assets/scripts/dist/*.css']
-		    }
+			files: [{
+				expand: true,
+				cwd: 'assets/styles/dist/',
+				src: '*.css',
+				dest: 'assets/styles/dist/'
+			}]
+
 		  }
 		},
 
