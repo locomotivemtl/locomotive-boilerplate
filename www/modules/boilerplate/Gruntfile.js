@@ -138,11 +138,14 @@ module.exports = function(grunt) {
 				    { removeUselessStrokeAndFill: false }
 	            ]
 	        },
-	        dist: {
-	            files: {
-	                'assets/images/dist/': 'assets/images/dist/*.svg'
-	            }
-	        }
+		dist: {
+			expand: true,
+			cwd: 'assets/images/dist/',
+			src: '*.svg',
+			dest: 'assets/images/dist/',
+			ext: '.svg',
+			extDot: 'first'
+		}
 	    },
 
 		// imagemin: Minify PNG and JPEG images.
