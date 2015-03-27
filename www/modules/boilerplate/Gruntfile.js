@@ -135,7 +135,9 @@ module.exports = function(grunt) {
 	                { convertShapeToPath: false },
 	                { cleanupNumericValues: false },
 	                { convertTransform: false },
-				    { removeUselessStrokeAndFill: false }
+			{ removeUselessStrokeAndFill: false },
+			{ removeTitle: true },
+			{ removeDesc: true }
 	            ]
 	        },
 		dist: {
