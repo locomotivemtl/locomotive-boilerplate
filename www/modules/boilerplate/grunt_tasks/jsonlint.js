@@ -1,0 +1,20 @@
+module.exports = {
+	project:{
+		src:[
+			'*.json',
+			'../config/*.json',
+			'../config/**/*.json',
+			'config/*.json',
+			'config/**/*.json'
+		]
+	},
+	charcoal:{
+		src:[
+			'../charcoal/*.json',
+			'../charcoal/core/config/*.json',
+			'../charcoal/core/config/**/*.json',
+			'../charcoal/modules/**/config/*.json',
+			'../charcoal/modules/**/config/**/*.json'
+		]
+	}
+}
