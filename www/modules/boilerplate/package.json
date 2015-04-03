@@ -19,6 +19,8 @@
     "grunt-svgmin": "0.0.0",
     "grunt-svgstore": "0.0.0",
     "load-grunt-tasks" : "0.0.0",
+    "grunt-phplint": "0.0.0",
+    "grunt-jsonlint": "0.0.0",
     "glob": "0.0.0"
   }
 }
