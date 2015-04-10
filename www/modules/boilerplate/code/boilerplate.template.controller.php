@@ -86,7 +86,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* Read the documentation on `\Charcoal\Object_Loader` for more details.
 	* In short, it allows to call the objects with `->texts()->ident;` // `{{sections.ident}}` to return (and load on-the-fly, if required)
 	* the `CMS_Text` object with the `ident` "ident".
-	* 
+	*
 	* @return \Charcoal\Object_Loader
 	* @see CMS_Section
 	*/
@@ -109,7 +109,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* Read the documentation on `\Charcoal\Object_Loader` for more details.
 	* In short, it allows to call the objects with `->sections()->ident;` to return (and load on-the-fly, if required)
 	* the `CMS_Section` object with the `ident` "ident".
-	* 
+	*
 	* @return \Charcoal\Object_Loader
 	* @see CMS_Text
 	*/
@@ -187,7 +187,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* @see \Charcoal\Asset
 	*/
 	public function assets($asset_mode='url')
-	{	
+	{
 		$ret = [
 			'images' => function($txt) use ($asset_mode) {
 				return new \Charcoal\Asset('images', $txt, $asset_mode);
@@ -207,5 +207,30 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 		];
 
 		return $ret;
+	}
+
+	/**
+	* Get the proper name of the template, usable for css class.
+	*
+	* (Replace invalid characters, such as a dot.)
+	*
+	* @return string
+	*/
+	public function template_class()
+	{
+		$token = $this->section()->template;
+		$search = ["boilerplate_"];
+		$replace = [""];
+        $token = str_replace(".", "_", $token);
+
+	    if ( is_numeric($token) ) {
+	        $token = preg_replace('/\D+/', '', $token);
+	    }
+	    else {
+	        $token = str_replace($search, $replace,$token);
+	        $token = preg_replace('/[^\w-]/', '', strtolower($token));
+	    }
+
+	    return $token;
 	}
 }
