@@ -31,7 +31,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	private $_section;
 	/**
 	* Keep a copy of the Section Object loader
-	* @var \Charcoal\Object_Loader
+	* @var \Charcoal_Object_Loader
 	*/
 	private $_sections_loader;
 	/**
@@ -82,19 +82,19 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* - Use "ident" as a key, so it can be called with {{sections.ident}}
 	* - Cache the result, so this almost never touches the DB.
 	*
-	* ## The `\Charcoal\Object_Loader` object
-	* Read the documentation on `\Charcoal\Object_Loader` for more details.
+	* ## The `\Charcoal_Object_Loader` object
+	* Read the documentation on `\Charcoal_Object_Loader` for more details.
 	* In short, it allows to call the objects with `->texts()->ident;` // `{{sections.ident}}` to return (and load on-the-fly, if required)
 	* the `CMS_Text` object with the `ident` "ident".
 	*
-	* @return \Charcoal\Object_Loader
+	* @return \Charcoal_Object_Loader
 	* @see CMS_Section
 	*/
 	public function sections()
 	{
 		if(!$this->_sections_loader) {
 			// Load the object, if it was not.
-			$this->_sections_loader = new \Charcoal\Object_Loader('CMS_Section', 'ident', 'cache');
+			$this->_sections_loader = new \Charcoal_Object_Loader('CMS_Section', 'ident', 'cache');
 		}
 
 		return $this->_sections_loader;
@@ -105,19 +105,19 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* - Use "ident" as a key, so it can be called with {{sections.ident}}
 	* - Cache the result, so this almost never touches the DB.
 	*
-	* ## The `\Charcoal\Object_Loader` object
-	* Read the documentation on `\Charcoal\Object_Loader` for more details.
+	* ## The `\Charcoal_Object_Loader` object
+	* Read the documentation on `\Charcoal_Object_Loader` for more details.
 	* In short, it allows to call the objects with `->sections()->ident;` to return (and load on-the-fly, if required)
 	* the `CMS_Section` object with the `ident` "ident".
 	*
-	* @return \Charcoal\Object_Loader
+	* @return \Charcoal_Object_Loader
 	* @see CMS_Text
 	*/
 	public function texts()
 	{
 		if(!$this->_texts_loader) {
 			// Load the (text loader) object, if it was not.
-			$this->_texts_loader = new \Charcoal\Object_Loader('CMS_Text', 'ident', 'cache');
+			$this->_texts_loader = new \Charcoal_Object_Loader('CMS_Text', 'ident', 'cache');
 		}
 
 		return $this->_texts_loader;
