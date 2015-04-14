@@ -5,7 +5,7 @@ module.exports = {
 	build: {
 		expand: true,
 		cwd: 'assets/styles/src/',
-		src: ['**/*.scss'],
+		src: ['**/*.scss', '!base/_fonts.scss'],
 		dest: 'assets/styles/src/'
 	}
 }
