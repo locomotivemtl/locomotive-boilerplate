@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-	
+
 	function loadConfig(path) {
 		var glob = require('glob');
 		var object = {};
@@ -27,6 +27,7 @@ module.exports = function(grunt) {
 
 	// Register tasks
 	grunt.registerTask('default', ['watch', 'notify:watch']);
+	grunt.registerTask('sync', ['browserSync', 'watch', 'notify:watch']);
 	grunt.registerTask('build', [
 		'concat',
 		'sass',
