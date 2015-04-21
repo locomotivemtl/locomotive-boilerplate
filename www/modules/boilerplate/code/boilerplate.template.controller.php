@@ -86,7 +86,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* Read the documentation on `\Charcoal\Object_Loader` for more details.
 	* In short, it allows to call the objects with `->texts()->ident;` // `{{sections.ident}}` to return (and load on-the-fly, if required)
 	* the `CMS_Text` object with the `ident` "ident".
-	* 
+	*
 	* @return \Charcoal\Object_Loader
 	* @see CMS_Section
 	*/
@@ -109,7 +109,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* Read the documentation on `\Charcoal\Object_Loader` for more details.
 	* In short, it allows to call the objects with `->sections()->ident;` to return (and load on-the-fly, if required)
 	* the `CMS_Section` object with the `ident` "ident".
-	* 
+	*
 	* @return \Charcoal\Object_Loader
 	* @see CMS_Text
 	*/
@@ -142,6 +142,16 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	public function URL()
 	{
 		return \Charcoal::$config['URL'];
+	}
+
+	/**
+	* Return the current URL	*
+	*
+	* @return string
+	*/
+	public function current_url()
+	{
+		return Charcoal::$config['HTTP_MODE'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
 
 	/**
@@ -187,7 +197,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* @see \Charcoal\Asset
 	*/
 	public function assets($asset_mode='url')
-	{	
+	{
 		$ret = [
 			'images' => function($txt) use ($asset_mode) {
 				return new \Charcoal\Asset('images', $txt, $asset_mode);
