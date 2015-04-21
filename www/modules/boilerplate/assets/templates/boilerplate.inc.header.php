@@ -9,10 +9,8 @@
         <meta name="theme-color" content="#f2f2f2">
         <title>{{meta_title}}</title>
 
-        <link rel="icon" type="image/png" href="{{#assets.images}}favicon-16.png{{/assets.images}}" sizes="16x16">
-        <link rel="icon" type="image/png" href="{{#assets.images}}favicon-32.png{{/assets.images}}" sizes="32x32">
-        <link rel="apple-touch-icon-precomposed" href="{{#assets.images}}favicon-152.png{{/assets.images}}">
-        <!--[if IE]><link rel="shortcut icon" href="assets/images/favicon-32.ico"><![endif]-->
+        <link rel="apple-touch-icon" href="{{#assets.images}}apple-touch-icon.png{{/assets.images}}">
+        <link rel="icon" href="{{#assets.images}}favicon.png{{/assets.images}}">
 
         <link rel="stylesheet" href="{{#assets.styles}}dist/main.css{{/assets.styles}}">
 
