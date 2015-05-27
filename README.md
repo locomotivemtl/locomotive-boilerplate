@@ -34,6 +34,15 @@ Boilerplate for [`Charcoal`](#http://charcoal.locomotive.ca) projects by Locomot
 2. **Run grunt and start coding**
   - `grunt`
 
+
+## Grunt
+Each Grunt task has it's own file in the `grunt_tasks` folder.
+
+#### BrowserSync
+BrowserSync will automatically inject, refresh and sync all your browsers.
+
+Run `grunt sync`
+
 ## SCSS
 
 ### Import order
