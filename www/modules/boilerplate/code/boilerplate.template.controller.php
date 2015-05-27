@@ -145,7 +145,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	}
 
 	/**
-	* Return the current URL	*
+	* Return the current URL
 	*
 	* @return string
 	*/
