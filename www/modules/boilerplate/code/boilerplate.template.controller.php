@@ -87,7 +87,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* In short, it allows to call the objects with `->texts()->ident;` // `{{sections.ident}}` to return (and load on-the-fly, if required)
 	* the `CMS_Text` object with the `ident` "ident".
 	*
-	* @return \Charcoal_Object_Loader
+	* @return \Charcoal\Object_Loader
 	* @see CMS_Section
 	*/
 	public function sections()
@@ -110,7 +110,7 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	* In short, it allows to call the objects with `->sections()->ident;` to return (and load on-the-fly, if required)
 	* the `CMS_Section` object with the `ident` "ident".
 	*
-	* @return \Charcoal_Object_Loader
+	* @return \Charcoal\Object_Loader
 	* @see CMS_Text
 	*/
 	public function texts()
@@ -142,6 +142,16 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 	public function URL()
 	{
 		return \Charcoal::$config['URL'];
+	}
+
+	/**
+	* Return the current URL
+	*
+	* @return string
+	*/
+	public function current_url()
+	{
+		return Charcoal::$config['HTTP_MODE'] . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
 
 	/**
