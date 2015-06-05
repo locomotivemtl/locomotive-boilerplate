@@ -1,29 +1,3 @@
-/* ==========================================================================
-   Main
-   ========================================================================== */
-/* ==========================================================================
-   Imports
-   ========================================================================== */
-/* ==========================================================================
-   Settings
-   ========================================================================== */
-/* Typography
-   ========================================================================== */
-/* Colors
-   ========================================================================== */
-/* Container
-   ========================================================================== */
-/* Spacings
-   ========================================================================== */
-/* Screen widths
-   ========================================================================== */
-/* Transitions
-   ========================================================================== */
-/* ==========================================================================
-   Tools
-   ========================================================================== */
-/* Functions
-   ========================================================================== */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -52,14 +26,29 @@ body {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
   display: block; }
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-audio, canvas, progress, video {
+audio,
+canvas,
+progress,
+video {
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
@@ -77,7 +66,8 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-[hidden], template {
+[hidden],
+template {
   display: none; }
 
 /* Links
@@ -91,7 +81,8 @@ a {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-a:active, a:hover {
+a:active,
+a:hover {
   outline: 0; }
 
 /* Text-level semantics
@@ -105,7 +96,8 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
 /**
@@ -138,7 +130,8 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -188,7 +181,10 @@ pre {
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: monospace, monospace;
   font-size: 1em; }
 
@@ -204,7 +200,11 @@ code, kbd, pre, samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font: inherit;
   /* 2 */
   margin: 0;
@@ -224,7 +224,8 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-button, select {
+button,
+select {
   text-transform: none; }
 
 /**
@@ -234,7 +235,9 @@ button, select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+html input[type="button"], input[type="reset"],
+input[type="submit"] {
   cursor: pointer;
   /* 3 */
   -webkit-appearance: button;
@@ -243,13 +246,15 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
   cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   padding: 0;
   border: 0; }
 
@@ -267,7 +272,8 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -278,7 +284,8 @@ input[type="checkbox"], input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
 /**
@@ -297,7 +304,8 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /**
@@ -340,19 +348,22 @@ table {
   border-spacing: 0;
   border-collapse: collapse; }
 
-td, th {
+td,
+th {
   padding: 0; }
 
-/* ==========================================================================
-   Generic Resets
-   ========================================================================== */
 html {
   box-sizing: border-box; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
 
-audio, canvas, iframe, img, svg, video {
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
   vertical-align: middle; }
 
 button {
@@ -360,9 +371,6 @@ button {
   outline: none;
   background-color: none; }
 
-/* ==========================================================================
-   Form Resets
-   ========================================================================== */
 input, select, textarea {
   display: block;
   width: 100%;
@@ -381,12 +389,6 @@ fieldset {
   padding: 0;
   border: 0; }
 
-/* ==========================================================================
-   Fonts
-   ========================================================================== */
-/* ==========================================================================
-   Base
-   ========================================================================== */
 html {
   font-family: sans-serif;
   font-size: 16px;
@@ -417,9 +419,6 @@ a {
   a:hover {
     color: #13097c; }
 
-/* ==========================================================================
-   Headings
-   ========================================================================== */
 h1, .h1, .alpha {
   font-size: 32px;
   line-height: 1.2;
@@ -450,9 +449,6 @@ h6, .h6, .zeta {
   line-height: 1.2;
   margin-top: 0; }
 
-/* ==========================================================================
-   Container
-   ========================================================================== */
 .container {
   position: relative;
   max-width: none0;
@@ -460,25 +456,15 @@ h6, .h6, .zeta {
   padding-right: 0;
   padding-left: 0; }
 
-/* ==========================================================================
-   Grid
-   ========================================================================== */
 .grid {
   margin-left: -20px;
   letter-spacing: normal;
   font-size: 0; }
 
-/* ==========================================================================
-   Form Styles
-   ========================================================================== */
-/* Label
-   ========================================================================== */
 .label, .checkbox-label, .radio-label {
   display: block;
   margin-bottom: 0.25em; }
 
-/* Input
-   ========================================================================== */
 .input, .checkbox-label:before, .radio-label:before, .checkbox-label:after, .radio-label:after, .select, .textarea {
   padding: 10px;
   border-width: 1px;
@@ -496,8 +482,6 @@ h6, .h6, .zeta {
   .input::placeholder, .select::placeholder, .textarea::placeholder {
     color: gray; }
 
-/* Checkbox
-   ========================================================================== */
 .checkbox, .radio {
   position: absolute;
   width: auto;
@@ -531,16 +515,13 @@ h6, .h6, .zeta {
     background-repeat: no-repeat;
     opacity: 0; }
 
-/* Radio
-   ========================================================================== */
 .radio-label:before, .radio-label:after {
   border-radius: 50%; }
+
 .radio-label:after {
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20enable-background%3D%22new%200%200%2013%2013%22%20xml%3Aspace%3D%22preserve%22%3E%3Ccircle%20fill%3D%22%23424242%22%20cx%3D%226.5%22%20cy%3D%226.5%22%20r%3D%226.5%22%2F%3E%3C%2Fsvg%3E");
   background-size: 8px; }
 
-/* Select
-   ========================================================================== */
 .select {
   position: relative;
   z-index: 1;
@@ -566,15 +547,10 @@ h6, .h6, .zeta {
     content: "";
     pointer-events: none; }
 
-/* Textarea
-   ========================================================================== */
 .textarea {
   min-height: 100px;
   resize: vertical; }
 
-/* ==========================================================================
-   Helpers
-   ========================================================================== */
 .vertical-center {
   height: 100%;
   text-align: center; }
@@ -614,7 +590,8 @@ h6, .h6, .zeta {
  * to be focusable when navigated to via the keyboard:
  * https://www.drupal.org/node/897638
  */
-.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
   clip: auto;
   height: auto;
   margin: 0;
@@ -628,29 +605,14 @@ h6, .h6, .zeta {
 .invisible {
   visibility: hidden; }
 
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
+/**
+ * Contain Floats
  */
-.clearfix:before, .clearfix:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */ }
-
 .clearfix:after {
+  content: "";
+  display: table;
   clear: both; }
 
-/* ==========================================================================
-   Trumps
-   ========================================================================== */
 .left {
   float: left !important; }
 
@@ -666,8 +628,6 @@ h6, .h6, .zeta {
 .align-center {
   text-align: center !important; }
 
-/* States
-   ========================================================================== */
 .is-visible {
   visibility: visible !important;
   opacity: 1 !important; }

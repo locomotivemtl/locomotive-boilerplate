@@ -2,3 +2,4 @@ node_modules/
 vendor
 composer.lock
 www/charcoal
+www/modules/boilerplate/npm-debug.log

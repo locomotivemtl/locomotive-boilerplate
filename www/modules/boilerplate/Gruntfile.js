@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 		'concat',
 		'sass',
 		'svgstore',
-		'autoprefixer',
+		'postcss',
 		'uglify',
 		'cssmin',
 		'svgmin',

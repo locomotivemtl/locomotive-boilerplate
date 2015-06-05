@@ -1,7 +1,11 @@
 module.exports = {
-	build: {
-		options: {
-			browsers: ['last 2 versions', '> 1%', 'ie >= 8']
+	postcss: {
+    	options: {
+	    	processors: [
+				require('autoprefixer-core')({
+					browsers: ['last 2 versions', '> 1%', 'ie >= 9']
+				}),
+			]
 		},
 		files: [
 			{

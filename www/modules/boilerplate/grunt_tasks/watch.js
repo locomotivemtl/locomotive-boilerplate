@@ -5,7 +5,7 @@ module.exports = {
 	},
 	sass: {
 		files: ['assets/styles/src/**/*.scss'],
-		tasks: ['sass', 'autoprefixer', 'notify:sass'],
+		tasks: ['sass', 'postcss', 'notify:sass'],
 		options: {
 			spawn: false,
 			livereload: true
