@@ -55,6 +55,23 @@ class Boilerplate_Template_Controller extends Charcoal_Template_Controller
 		return 'boilerplate';
 	}
 
+
+	/**
+	* Sets the section to something when there is
+	* no "s" get parameter and we still wanna use this
+	*
+	* @see Cocqsac_module::init()
+	* @param $section CMS_Section Object
+	* @return this (chainable)
+	*/
+	public function set_section( $section )
+	{
+		$this->_section = $section;
+
+		return $this;
+	}
+
+
 	/**
 	* Get the current
 	* (Previously, this would have been `Charcoal::$vars['section']`)

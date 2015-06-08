@@ -73,7 +73,11 @@ class Boilerplate_Module extends Charcoal_Module
 				// What to do?
 			}
 
-			echo Charcoal_Template::get($section->template)->render();
+			$tpl = Charcoal_Template::get($section->template);
+
+			// Section is already loaded, let's tell the controller about it.
+			$tpl->controller()->set_section( $section );
+			echo $tpl->render();
 		}
 		else if($action) {
 			// By action
