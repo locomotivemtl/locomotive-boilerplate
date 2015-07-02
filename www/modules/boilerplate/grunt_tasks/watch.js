@@ -1,7 +1,7 @@
 module.exports = {
 	javascript: {
 		files: ['assets/scripts/src/**/*.js'],
-		tasks: ['concat', 'notify:concat']
+		tasks: ['jshint', 'concat', 'notify:concat']
 	},
 	sass: {
 		files: ['assets/styles/src/**/*.scss'],

@@ -11,7 +11,6 @@ app.templates.generic = {
     init:function(){
 
         // Template specific code
-
     }
 
 };
