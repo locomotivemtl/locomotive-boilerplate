@@ -41,11 +41,13 @@ module.exports = function(grunt) {
 	grunt.registerTask('c', [
 		'csscomb'
 	]);
+	grunt.registerTask('j', [
+		'jshint'
+	]);
 	grunt.registerTask('wlint', [
 		// PHP
 		'phplint',
 		'jsonlint',
-
 		// Utilities
 		'watch'
 	]);
