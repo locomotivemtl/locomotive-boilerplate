@@ -29,3 +29,20 @@
 		clear   : both;
 	}
 }
+
+@mixin vertical-center {
+    font-size: 0;
+
+    &:before {
+        display: inline-block;
+        height: 100%;
+        content: "";
+        vertical-align: middle;
+    }
+
+    > * {
+        font-size: 1rem;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
