@@ -2,24 +2,7 @@
 // Helpers
 // ==========================================================================
 .vertical-center {
-	height: 100%;
-
-	text-align: center;
-
-	&:before {
-		display: inline-block;
-
-		height: 100%;
-
-		content: "";
-		vertical-align: middle;
-	}
-
-	> * {
-		display: inline-block;
-
-		vertical-align: middle;
-	}
+	@include vertical-center;
 }
 
 /*
