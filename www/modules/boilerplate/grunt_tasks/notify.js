@@ -11,6 +11,12 @@ module.exports = {
 			message: 'Sass compiled to CSS.'
 		}
 	},
+	jshint: {
+		options: {
+			// title: '<%= pkg.title %>',
+			message: 'Sass compiled to CSS.'
+		}
+	},
 	concat: {
 		options: {
 			// title: '<%= pkg.title %>',
