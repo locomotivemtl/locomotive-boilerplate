@@ -31,6 +31,8 @@
         "boilerplate": []
     },
     "objects": [],
+    "default_template_controller": "Boilerplate_Template_Controller",
+    "default_template": "404",
     "apis": [],
     "assets": {
         "directories": {
