@@ -91,13 +91,9 @@ class Boilerplate_Module extends Charcoal_Module
 			}
 		}
 
-		// Set up the language and the required CSV file
-		$l = Charcoal_L10n::get();
-		$l->set_lang($language);
-		$l->add_resource_csv('boilerplate', $language);
+		self::set_language( $language );
 
 		if ( $section_id ) {
-			// By section
 			$section_loader = new Charcoal_Object_Loader('CMS_Section');
 
 			$section = $section_loader->{$section_id};
@@ -120,5 +116,32 @@ class Boilerplate_Module extends Charcoal_Module
 			// By nothing (404 page not found). This should never happen
 			die('404');
 		}
+	}
+
+	/**
+	 * Apply the provided language and set locale
+	 *
+	 * @param string $lang The desired language
+	 */
+
+	protected static function set_language( $lang )
+	{
+		$languages = &Charcoal::$config['languages'];
+
+		$project_name = ( Charcoal::$config['project_name'] ?: 'boilerplate' );
+
+		// Set up the language and the required CSV file
+		$l = Charcoal_L10n::get();
+		$l->set_lang($lang);
+		$l->add_resource_csv($project_name, $lang);
+
+		if ( isset( $languages[ $lang ]['locale'] ) ) {
+			$locale = str_replace( '-', '_', $languages[ $lang ]['locale'] );
+		}
+		else {
+			$locale = $lang;
+		}
+
+		setlocale( LC_ALL, $locale );
 	}
 }
