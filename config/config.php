@@ -9,10 +9,10 @@
 error_reporting(E_ALL & ~E_STRICT);
 
 /**
- * Import Charcoal
+ * Register the Composer auto loader
  */
 
-include dirname(__DIR__) . '/www/charcoal/charcoal.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
  * Configure Application

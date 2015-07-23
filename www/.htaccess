@@ -19,7 +19,7 @@
 <IfModule !mod_filter.c>
   # Legacy versions of Apache
   AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript 
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
   AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
 </IfModule>
 
@@ -36,14 +36,14 @@
   ExpiresDefault                          "access plus 1 month"
   ExpiresByType text/cache-manifest       "access plus 0 seconds"
   ExpiresByType text/html                 "access plus 0 seconds"
-  
+
   ExpiresByType text/xml                  "access plus 0 seconds"
   ExpiresByType application/xml           "access plus 0 seconds"
   ExpiresByType application/json          "access plus 1 day"
 
   ExpiresByType application/rss+xml       "access plus 1 hour"
 
-  ExpiresByType image/x-icon              "access plus 1 week" 
+  ExpiresByType image/x-icon              "access plus 1 week"
 
   ExpiresByType image/gif                 "access plus 1 month"
   ExpiresByType image/png                 "access plus 1 month"
@@ -56,21 +56,21 @@
   ExpiresByType audio/webm                "access plus 1 month"
 
   ExpiresByType text/x-component          "access plus 1 month"
-  
+
   ExpiresByType font/truetype             "access plus 1 month"
   ExpiresByType font/opentype             "access plus 1 month"
   ExpiresByType application/x-font-woff   "access plus 1 month"
   ExpiresByType image/svg+xml             "access plus 1 month"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
-    
+
   ExpiresByType text/css                  "access plus 1 year"
   ExpiresByType application/javascript    "access plus 1 year"
   ExpiresByType text/javascript           "access plus 1 year"
-  
+
   <IfModule mod_headers.c>
     Header append Cache-Control "public"
   </IfModule>
-  
+
 </IfModule>
 
 
@@ -80,14 +80,7 @@
 
 FileETag None
 
-<IfModule mod_rewrite.c>
-RewriteRule get-asset-(\w*) admin/assets?t=$1&%{QUERY_STRING} [L,NC]
-  Options +FollowSymlinks
-  RewriteEngine On
-</IfModule>
-
-
-Options -MultiViews 
+Options -MultiViews -Indexes +FollowSymlinks
 
 ErrorDocument 400 /400.php
 ErrorDocument 401 /401.php
@@ -98,18 +91,17 @@ ErrorDocument 404 /404.php
 AddDefaultCharset utf-8
 AddCharset utf-8 .html .css .js .xml .json .rss
 
-Options -Indexes
-
 <IfModule mod_rewrite.c>
-	RewriteRule "(^|/)\." - [F]
+  RewriteEngine On
+  RewriteRule get-asset-(\w*) admin/assets?t=$1 [L,NC,QSA]
 
-	# Sections
-	RewriteRule ^.*-([a-zA-Z]{2})-([0-9]+)    index.php?%{query_string}&s=$2&lang=$1
-	
-	# Charcoal
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(.*)$ charcoal.php?action=$1&%{QUERY_STRING} [PT,L]
+  RewriteRule "(^|/)\." - [F]
 
+  # Sections
+  RewriteRule ^.*-([a-zA-Z]{2})-([0-9]+)    index.php?&s=$2&lang=$1 [QSA]
+
+  # Charcoal
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?action=$1 [L,PT,QSA]
 </IfModule>
-
