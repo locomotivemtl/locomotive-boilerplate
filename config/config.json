@@ -1,11 +1,6 @@
 {
-    "project_name": "Boilerplate",
+    "project_name": "boilerplate",
     "databases": {
-        "local": {
-            "database": "gdfg",
-            "username": "root",
-            "password": ""
-        },
         "lab": {
             "database": "",
             "username": "",
@@ -17,13 +12,15 @@
             "password": ""
         }
     },
-    "default_database": "local",
+    "default_database": "live",
     "languages": {
         "fr": {
-            "active": true
+            "active": true,
+            "priority": 1
         },
         "en": {
-            "active": true
+            "active": true,
+            "priority": 2
         }
     },
     "default_language": "fr",
@@ -35,10 +32,18 @@
     },
     "objects": [],
     "apis": [],
+    "assets": {
+        "directories": {
+            "bower": "bower_components/"
+        }
+    },
     "url_options": {
         "use_rewrite": true
     },
-    "debug":{
-    	"active":false
+    "cache": {
+        "active": false
+    },
+    "debug": {
+        "active": false
     }
 }
