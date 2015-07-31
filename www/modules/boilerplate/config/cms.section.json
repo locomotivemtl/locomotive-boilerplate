@@ -1,5 +1,8 @@
 {
 	"url_options":{
-		"use_rewrite":true
+		"rewrite_pattern":{
+			"fr":"fr/{{:id}}/{{title:url}}",
+			"en":"en/{{:id}}/{{title:url}}"
+		}
 	}
 }

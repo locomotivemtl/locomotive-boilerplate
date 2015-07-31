@@ -36,9 +36,12 @@
     "objects": [],
     "apis": [],
     "default_template_controller":"Boilerplate_Template_Controller",
-    "url_options": {
-        "use_rewrite": true
-    },
+	"url_options":{
+		"use_rewrite":true,
+		"lowercase":true,
+		"use_dash":true,
+		"remove_punctuation":true
+	},
     "debug":{
     	"active":false
     }
