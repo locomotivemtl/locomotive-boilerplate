@@ -35,6 +35,7 @@
     },
     "objects": [],
     "apis": [],
+    "default_template_controller":"Boilerplate_Template_Controller",
     "url_options": {
         "use_rewrite": true
     },
