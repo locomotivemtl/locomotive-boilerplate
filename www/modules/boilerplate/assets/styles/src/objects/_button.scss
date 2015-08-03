@@ -1,0 +1,20 @@
+// ==========================================================================
+// Button objects
+// ==========================================================================
+
+.button {
+	padding: 10px;
+	background-color: lightgray;
+
+	&:focus {
+		background-color: darkgray;
+	}
+
+	&:hover {
+		background-color: gray;
+	}
+
+	&:active {
+		background-color: dimgray;
+	}
+}
