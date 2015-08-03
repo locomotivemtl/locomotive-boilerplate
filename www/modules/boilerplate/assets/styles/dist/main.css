@@ -404,6 +404,31 @@ textarea {
   overflow: auto;
   resize: vertical; }
 
+button,
+.button {
+  display: inline-block;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  button:hover,
+  .button:hover {
+    text-decoration: none; }
+
 html {
   font-family: sans-serif;
   font-size: 16px;
@@ -560,6 +585,16 @@ h6, .h6, .zeta {
 
 .textarea {
   min-height: 100px; }
+
+.button {
+  padding: 10px;
+  background-color: lightgray; }
+  .button:focus {
+    background-color: darkgray; }
+  .button:hover {
+    background-color: gray; }
+  .button:active {
+    background-color: dimgray; }
 
 .vertical-center {
   font-size: 0; }
