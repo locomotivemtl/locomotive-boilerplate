@@ -5,30 +5,25 @@
   </IfModule>
 </FilesMatch>
 
-
-
 <IfModule mod_deflate.c>
-
-<IfModule mod_setenvif.c>
-  <IfModule mod_headers.c>
-    SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
-    RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
   </IfModule>
-</IfModule>
 
-<IfModule !mod_filter.c>
-  # Legacy versions of Apache
-  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
-  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
-</IfModule>
+  <IfModule !mod_filter.c>
+    # Legacy versions of Apache
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+  </IfModule>
 
   <FilesMatch "\.(ttf|otf|eot|svg|woff)$" >
     SetOutputFilter DEFLATE
   </FilesMatch>
 </IfModule>
-
-
 
 <IfModule mod_expires.c>
   ExpiresActive on
@@ -70,9 +65,7 @@
   <IfModule mod_headers.c>
     Header append Cache-Control "public"
   </IfModule>
-
 </IfModule>
-
 
 <IfModule mod_headers.c>
   Header unset ETag
@@ -93,12 +86,13 @@ AddCharset utf-8 .html .css .js .xml .json .rss
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
   RewriteRule get-asset-(\w*) admin/assets?t=$1 [L,NC,QSA]
 
   RewriteRule "(^|/)\." - [F]
 
-  # Sections
-  RewriteRule ^.*-([a-zA-Z]{2})-([0-9]+)    index.php?&s=$2&lang=$1 [QSA]
+	# Sections
+	RewriteRule ^([a-zA-Z]{2})/([0-9]+)/([^/]+) index.php?s=$2&lang=$1&slug=$3 [QSA]
 
   # Charcoal
   RewriteCond %{REQUEST_FILENAME} !-f

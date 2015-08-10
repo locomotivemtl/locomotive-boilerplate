@@ -1,6 +1,6 @@
 {
-    "default_database": "local",
-    "debug": {
-        "active": true
-    }
+	"default_database": "local",
+	"debug": {
+		"active": true
+	}
 }
