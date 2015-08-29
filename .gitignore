@@ -1,5 +1,24 @@
-node_modules/
-vendor
+# Package Managers
+
 composer.lock
-www/charcoal
-www/modules/boilerplate/npm-debug.log
+composer.phar
+vendor/
+node_modules/
+bower_components/
+
+# Logging
+
+*.log
+logs/
+
+# Caches
+
+mustache_cache/
+tmp/
+
+# Charcoal
+
+/www/charcoal/
+/www/uploads/*
+/config/config.local.json
+!assets/**/vendor/

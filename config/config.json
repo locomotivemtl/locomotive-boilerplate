@@ -1,0 +1,54 @@
+{
+	"project_name": "boilerplate",
+	"databases": {
+		"lab": {
+			"database": "",
+			"username": "",
+			"password": ""
+		},
+		"live": {
+			"database": "",
+			"username": "",
+			"password": ""
+		}
+	},
+	"default_database": "live",
+	"languages": {
+		"fr": {
+			"active": true,
+			"priority": 1
+		},
+		"en": {
+			"active": true,
+			"priority": 2
+		}
+	},
+	"default_language": "fr",
+	"modules": {
+		"admin": [],
+		"cms": [],
+		"newsletter": [],
+		"boilerplate": []
+	},
+	"objects": [],
+	"default_template_controller": "Boilerplate_Template_Controller",
+	"default_template": "404",
+	"apis": [],
+	"assets": {
+		"directories": {
+			"bower": "bower_components/"
+		}
+	},
+	"url_options": {
+		"use_rewrite": true,
+		"lowercase": true,
+		"use_dash": true,
+		"remove_punctuation": true
+	},
+	"cache": {
+		"active": false
+	},
+	"debug": {
+		"active": false
+	}
+}

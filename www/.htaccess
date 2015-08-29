@@ -5,30 +5,25 @@
   </IfModule>
 </FilesMatch>
 
-
-
 <IfModule mod_deflate.c>
-
-<IfModule mod_setenvif.c>
-  <IfModule mod_headers.c>
-    SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
-    RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
   </IfModule>
-</IfModule>
 
-<IfModule !mod_filter.c>
-  # Legacy versions of Apache
-  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
-  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
-</IfModule>
+  <IfModule !mod_filter.c>
+    # Legacy versions of Apache
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+  </IfModule>
 
   <FilesMatch "\.(ttf|otf|eot|svg|woff)$" >
     SetOutputFilter DEFLATE
   </FilesMatch>
 </IfModule>
-
-
 
 <IfModule mod_expires.c>
   ExpiresActive on
@@ -70,9 +65,7 @@
   <IfModule mod_headers.c>
     Header append Cache-Control "public"
   </IfModule>
-
 </IfModule>
-
 
 <IfModule mod_headers.c>
   Header unset ETag
@@ -80,14 +73,7 @@
 
 FileETag None
 
-<IfModule mod_rewrite.c>
-RewriteRule get-asset-(\w*) admin/assets?t=$1&%{QUERY_STRING} [L,NC]
-  Options +FollowSymlinks
-  RewriteEngine On
-</IfModule>
-
-
-Options -MultiViews
+Options -MultiViews -Indexes +FollowSymlinks
 
 ErrorDocument 400 /400.php
 ErrorDocument 401 /401.php
@@ -98,18 +84,18 @@ ErrorDocument 404 /404.php
 AddDefaultCharset utf-8
 AddCharset utf-8 .html .css .js .xml .json .rss
 
-Options -Indexes
-
 <IfModule mod_rewrite.c>
-	RewriteRule "(^|/)\." - [F]
+  RewriteEngine On
+
+  RewriteRule get-asset-(\w*) admin/assets?t=$1 [L,NC,QSA]
+
+  RewriteRule "(^|/)\." - [F]
 
 	# Sections
-	RewriteRule ^([a-zA-Z]{2})/([0-9]+)/([^/]+)    index.php?%{query_string}&s=$2&lang=$1&slug=$3
+	RewriteRule ^([a-zA-Z]{2})/([0-9]+)/([^/]+) index.php?s=$2&lang=$1&slug=$3 [QSA]
 
-	# Charcoal
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(.*)$ charcoal.php?action=$1&%{QUERY_STRING} [PT,L]
-
+  # Charcoal
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?action=$1 [L,PT,QSA]
 </IfModule>
-
