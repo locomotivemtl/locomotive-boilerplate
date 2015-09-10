@@ -15,9 +15,9 @@ module.exports = {
 	},
 	dist: {
 		expand: true,
-		cwd: 'assets/images/dist/',
+		cwd: 'www/modules/boilerplate/assets/images/dist/',
 		src: '*.svg',
-		dest: 'assets/images/dist/',
+		dest: 'www/modules/boilerplate/assets/images/dist/',
 		ext: '.svg',
 		extDot: 'first'
 	}
