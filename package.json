@@ -7,7 +7,7 @@
     "Antoine Boulanger <antoine@locomotive.ca>"
   ],
   "devDependencies": {
-    "autoprefixer-core": "0.0.0",
+    "autoprefixer": "0.0.0",
     "glob": "0.0.0",
     "grunt": "0.0.0",
     "grunt-browser-sync": "0.0.0",
