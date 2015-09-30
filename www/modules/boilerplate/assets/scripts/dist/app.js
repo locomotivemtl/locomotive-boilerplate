@@ -69,8 +69,8 @@ app.init = function() {
 
 	// Globals
 	// ==========================================================================
-	if (typeof self.Globals === 'object') {
-		self.Globals.init();
+	if (typeof self.globals === 'object') {
+		self.globals.init();
 	}
 
 	// Modules

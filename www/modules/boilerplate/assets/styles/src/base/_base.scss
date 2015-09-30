@@ -5,22 +5,20 @@ html {
 	font-family: $font-family;
 	font-size: $font-size;
 	line-height: $line-height;
-
 	color: $color;
 }
 
 ::selection {
 	background: $selection;
+	color: $selection-text;
 	text-shadow: none;
 }
 
 hr {
 	display: block;
-
 	height: 1px;
 	margin: 1em 0;
 	padding: 0;
-
 	border: 0;
 	border-top: 1px solid #cccccc;
 }

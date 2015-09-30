@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "Locomotive <info@locomotive.ca>",
   "contributors": [
-    "Stephen Bégay <stephen@locomotive.ca>",
     "Antoine Boulanger <antoine@locomotive.ca>"
   ],
   "devDependencies": {

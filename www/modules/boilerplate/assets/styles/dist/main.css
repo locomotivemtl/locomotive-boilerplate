@@ -236,7 +236,8 @@ select {
  *    `input` and others.
  */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   cursor: pointer;
   /* 3 */
@@ -432,10 +433,12 @@ html {
 
 ::-moz-selection {
   background: #3297fd;
+  color: #ffffff;
   text-shadow: none; }
 
 ::selection {
   background: #3297fd;
+  color: #ffffff;
   text-shadow: none; }
 
 hr {
@@ -454,35 +457,27 @@ a {
   a:hover {
     color: #13097c; }
 
-h1, .h1, .alpha {
-  font-size: 32px;
+.h, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 1.2;
   margin-top: 0; }
 
-h2, .h2, .beta {
-  font-size: 24px;
-  line-height: 1.2;
-  margin-top: 0; }
+h1, .h1 {
+  font-size: 32px; }
 
-h3, .h3, .gamma {
-  font-size: 19px;
-  line-height: 1.2;
-  margin-top: 0; }
+h2, .h2 {
+  font-size: 24px; }
 
-h4, .h4, .delta {
-  font-size: 16px;
-  line-height: 1.2;
-  margin-top: 0; }
+h3, .h3 {
+  font-size: 19px; }
 
-h5, .h5, .epsilon {
-  font-size: 13px;
-  line-height: 1.2;
-  margin-top: 0; }
+h4, .h4 {
+  font-size: 16px; }
 
-h6, .h6, .zeta {
-  font-size: 11px;
-  line-height: 1.2;
-  margin-top: 0; }
+h5, .h5 {
+  font-size: 13px; }
+
+h6, .h6 {
+  font-size: 11px; }
 
 .container {
   position: relative;
@@ -492,9 +487,16 @@ h6, .h6, .zeta {
   padding-left: 0; }
 
 .grid {
-  margin-left: -20px;
+  margin-left: 0;
   letter-spacing: normal;
   font-size: 0; }
+
+.grid_item {
+  display: inline-block;
+  padding-left: 0;
+  width: 100%;
+  vertical-align: top;
+  font-size: 1rem; }
 
 .label, .checkbox-label, .radio-label {
   display: block;
@@ -603,6 +605,11 @@ h6, .h6, .zeta {
     display: inline-block;
     vertical-align: middle; }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 /*
  * Hide visually and from screen readers:
  * http://juicystudio.com/article/screen-readers-display-none.php
@@ -644,14 +651,6 @@ h6, .h6, .zeta {
  */
 .invisible {
   visibility: hidden; }
-
-/**
- * Contain Floats
- */
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both; }
 
 .left {
   float: left !important; }

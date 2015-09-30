@@ -5,6 +5,10 @@
 	@include vertical-center;
 }
 
+.clearfix {
+	@include clearfix;
+}
+
 /*
  * Hide visually and from screen readers:
  * http://juicystudio.com/article/screen-readers-display-none.php
@@ -53,15 +57,4 @@
 
 .invisible {
 	visibility: hidden;
-}
-
-/**
- * Contain Floats
- */
-%clearfix {
-	@include clearfix;
-}
-
-.clearfix {
-	@extend %clearfix;
 }
