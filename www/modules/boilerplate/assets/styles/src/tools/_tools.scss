@@ -35,6 +35,9 @@
     }
 }
 
+// Micro clearfix, as per {@link css-101.org/articles/clearfix/latest-new-clearfix-so-far.php CSS Mojo}
+//
+// @see inuitcss/generic.clearfix
 @mixin clearfix {
 	&:after {
 		content : "";
