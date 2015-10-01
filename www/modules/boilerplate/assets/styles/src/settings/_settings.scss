@@ -2,38 +2,37 @@
 // Settings
 // ==========================================================================
 
+// Colors
+// ==========================================================================
+// Generic
+$black: #000000;
+$white: #ffffff;
+// Specific
+$selection: #3297fd;
+$selection-text: $white;
+$link: #1a0dab;
+$link-hover: darken(#1a0dab, 10%);
+
 // Typography
 // ==========================================================================
-
 // Base
 $font-size: 16px;
 $line-height: 1.4;
 $font-family: sans-serif;
 $color: #222222;
 // Headings
-$heading1: 32px; // .alpha
-$heading2: 24px; // .beta
-$heading3: 19px; // .gamma
-$heading4: 16px; // .delta
-$heading5: 13px; // .epsilon
-$heading6: 11px; // .zeta
+$heading1: 32px;
+$heading2: 24px;
+$heading3: 19px;
+$heading4: 16px;
+$heading5: 13px;
+$heading6: 11px;
 $heading-line-height: 1.2;
 // Weights
 $light: 300;
 $normal: 400;
 $medium: 500;
 $bold: 700;
-
-// Colors
-// ==========================================================================
-
-// Generic
-$black: #000000;
-$white: #ffffff;
-// Specific
-$selection: #3297fd;
-$link: #1a0dab;
-$link-hover: darken(#1a0dab, 10%);
 
 // Container
 // ==========================================================================
@@ -42,8 +41,7 @@ $padding: 0;
 
 // Spacings
 // ==========================================================================
-$gutter: 20px;
-$margin: 40px;
+$unit: 60px;
 
 // Screen widths
 // ==========================================================================
