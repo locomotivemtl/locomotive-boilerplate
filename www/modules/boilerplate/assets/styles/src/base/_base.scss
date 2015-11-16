@@ -2,10 +2,10 @@
 // Base
 // ==========================================================================
 html {
-	font-family: $font-family;
-	font-size: $font-size;
-	line-height: $line-height;
 	color: $color;
+	font-size: $font-size;
+	font-family: $font-family;
+	line-height: $line-height;
 }
 
 ::selection {
@@ -16,9 +16,9 @@ html {
 
 hr {
 	display: block;
-	height: 1px;
 	margin: 1em 0;
 	padding: 0;
+	height: 1px;
 	border: 0;
 	border-top: 1px solid #cccccc;
 }

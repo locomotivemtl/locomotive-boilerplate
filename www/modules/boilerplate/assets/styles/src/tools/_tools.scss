@@ -19,20 +19,20 @@
 // Mixins
 // ==========================================================================
 @mixin vertical-center {
-    font-size: 0;
+	font-size: 0;
 
-    &:before {
-        display: inline-block;
-        height: 100%;
-        content: "";
-        vertical-align: middle;
-    }
+	&:before {
+		display: inline-block;
+		height: 100%;
+		content: "";
+		vertical-align: middle;
+	}
 
-    > * {
-        font-size: 1rem;
-        display: inline-block;
-        vertical-align: middle;
-    }
+	> * {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 1rem;
+	}
 }
 
 // Micro clearfix, as per {@link css-101.org/articles/clearfix/latest-new-clearfix-so-far.php CSS Mojo}
@@ -40,16 +40,16 @@
 // @see inuitcss/generic.clearfix
 @mixin clearfix {
 	&:after {
-		content : "";
-		display : table;
-		clear   : both;
+		display: table;
+		clear: both;
+		content: "";
 	}
 }
 
 @mixin list-reset {
-	list-style: none;
-	padding: 0;
 	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 @mixin tap-highlight-color {
