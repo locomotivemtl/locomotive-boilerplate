@@ -1,11 +1,11 @@
 // ==========================================================================
 // Helpers
 // ==========================================================================
-.vertical-center {
+.u-vertical-center {
 	@include vertical-center;
 }
 
-.clearfix {
+.u-clearfix {
 	@include clearfix;
 }
 
@@ -14,7 +14,7 @@
  * http://juicystudio.com/article/screen-readers-display-none.php
  */
 
-.hidden {
+.u-hidden {
 	display: none !important;
 	visibility: hidden;
 }
@@ -24,15 +24,15 @@
  * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
  */
 
-.visuallyhidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
+.u-visuallyhidden {
 	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	margin: -1px;
+	padding: 0;
 	width: 1px;
+	height: 1px;
+	border: 0;
 }
 
 /*
@@ -41,20 +41,20 @@
  * https://www.drupal.org/node/897638
  */
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-	clip: auto;
-	height: auto;
-	margin: 0;
-	overflow: visible;
+.u-visuallyhidden.focusable:active,
+.u-visuallyhidden.focusable:focus {
 	position: static;
+	overflow: visible;
+	clip: auto;
+	margin: 0;
 	width: auto;
+	height: auto;
 }
 
 /*
  * Hide visually and from screen readers, but maintain layout
  */
 
-.invisible {
+.u-invisible {
 	visibility: hidden;
 }

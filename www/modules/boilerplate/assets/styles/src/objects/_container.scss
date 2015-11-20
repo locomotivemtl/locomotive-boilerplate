@@ -1,10 +1,10 @@
 // ==========================================================================
 // Container
 // ==========================================================================
-.container {
+.o-container {
 	position: relative;
-	max-width: $max-width + ($padding * 2);
 	margin: 0 auto;
-	padding-right: $padding;
-	padding-left: $padding;
+	padding-right: rem($padding);
+	padding-left: rem($padding);
+	max-width: rem($max-width) + rem($padding * 2);
 }

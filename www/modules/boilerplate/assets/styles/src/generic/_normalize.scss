@@ -8,7 +8,6 @@
 
 html {
 	font-family: sans-serif; /* 1 */
-
 	    -ms-text-size-adjust: 100%; /* 2 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -57,7 +56,6 @@ canvas,
 progress,
 video {
 	display: inline-block; /* 1 */
-
 	vertical-align: baseline; /* 2 */
 }
 
@@ -68,7 +66,6 @@ video {
 
 audio:not([controls]) {
 	display: none;
-
 	height: 0;
 }
 
@@ -136,9 +133,8 @@ dfn {
  */
 
 h1 {
-	font-size: 2em;
-
 	margin: 0.67em 0;
+	font-size: 2em;
 }
 
 /**
@@ -146,8 +142,8 @@ h1 {
  */
 
 mark {
-	color: #000000;
 	background: #ffff00;
+	color: #000000;
 }
 
 /**
@@ -164,12 +160,10 @@ small {
 
 sub,
 sup {
+	position: relative;
+	vertical-align: baseline;
 	font-size: 75%;
 	line-height: 0;
-
-	position: relative;
-
-	vertical-align: baseline;
 }
 
 sup {
@@ -236,8 +230,8 @@ code,
 kbd,
 pre,
 samp {
-	font-family: monospace, monospace;
 	font-size: 1em;
+	font-family: monospace, monospace;
 }
 
 /* Forms
@@ -260,11 +254,9 @@ input,
 optgroup,
 select,
 textarea {
-	font: inherit; /* 2 */
-
 	margin: 0; /* 3 */
-
 	color: inherit; /* 1 */
+	font: inherit; /* 2 */
 }
 
 /**
@@ -300,7 +292,6 @@ html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
 	cursor: pointer; /* 3 */
-
 	-webkit-appearance: button; /* 2 */
 }
 
@@ -320,7 +311,6 @@ html input[disabled] {
 button::-moz-focus-inner,
 input::-moz-focus-inner {
 	padding: 0;
-
 	border: 0;
 }
 
@@ -368,7 +358,6 @@ input[type="search"] {
 	-webkit-box-sizing: content-box; /* 2 */
 	   -moz-box-sizing: content-box;
 	        box-sizing: content-box;
-
 	-webkit-appearance: textfield; /* 1 */
 }
 
@@ -390,7 +379,6 @@ input[type="search"]::-webkit-search-decoration {
 fieldset {
 	margin: 0 2px;
 	padding: 0.35em 0.625em 0.75em;
-
 	border: 1px solid #c0c0c0;
 }
 
@@ -401,7 +389,6 @@ fieldset {
 
 legend {
 	padding: 0; /* 2 */
-
 	border: 0; /* 1 */
 }
 
