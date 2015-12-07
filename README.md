@@ -57,7 +57,7 @@ Insert a `o-grid` block and add `o-grid_item` elements inside it.
 No rows that contain floats, no twelve columns system; just the number of items you want, with the classes names you want, inside a single block.
 
 - Include the grid mixins in your components classes.
-- Create custom width grid items by including the `o-grid_item` mixin and adding the widths you need or just include the helpers mixins with fractions like names.
+- Create custom width grid items by including the `grid_item` mixin and adding the widths you need or just include the helpers mixins with fractions like names.
 - Add media queries, on the helpers mixins or on your custom components to change the grid items widths, for your content, on different screen sizes.
 
 *[Demo](http://codepen.io/AntoineBoulanger/pen/EaLNxe)*
