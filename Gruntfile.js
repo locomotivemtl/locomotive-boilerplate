@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-
 	function loadConfig(path) {
 		var glob = require('glob');
 		var object = {};
@@ -16,14 +15,14 @@ module.exports = function(grunt) {
 
 	var config = {
 		pkg: grunt.file.readJSON('package.json')
-	}
+	};
+
 	grunt.loadTasks('grunt_tasks');
 	grunt.util._.extend(config, loadConfig('./grunt_tasks/'));
 	grunt.initConfig(config);
 
 	// Load tasks
 	require('load-grunt-tasks')(grunt);
-
 
 	// Register tasks
 	grunt.registerTask('default', ['watch', 'notify:watch']);
@@ -44,12 +43,4 @@ module.exports = function(grunt) {
 	grunt.registerTask('j', [
 		'jshint'
 	]);
-	grunt.registerTask('wlint', [
-		// PHP
-		'phplint',
-		'jsonlint',
-		// Utilities
-		'watch'
-	]);
-
 };

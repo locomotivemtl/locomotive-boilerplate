@@ -1,10 +1,10 @@
 module.exports = {
 	javascript: {
-		files: ['www/modules/boilerplate/assets/scripts/src/**/*.js'],
+		files: ['www/assets/scripts/src/**/*.js'],
 		tasks: ['concat', 'notify:concat']
 	},
 	sass: {
-		files: ['www/modules/boilerplate/assets/styles/src/**/*.scss'],
+		files: ['www/assets/styles/src/**/*.scss'],
 		tasks: ['sass', 'postcss', 'notify:sass'],
 		options: {
 			spawn: false,
@@ -12,7 +12,7 @@ module.exports = {
 		}
 	},
 	svg: {
-		files: ['www/modules/boilerplate/assets/images/**/*.svg'],
+		files: ['www/assets/images/**/*.svg'],
 		tasks: ['svgstore', 'notify:svg']
 	},
 	tasks: {

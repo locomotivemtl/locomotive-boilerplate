@@ -1,17 +1,16 @@
 module.exports = {
 	dev: {
 		bsFiles: {
-			src : [
-				 'www/modules/boilerplate/assets/styles/dist/*.css'
-				,'www/modules/boilerplate/assets/scripts/dist/*.js'
-				,'www/modules/boilerplate/assets/templates/*.php'
+			src: [
+				'www/assets/styles/dist/*.css',
+				'www/assets/scripts/dist/*.js'
 			]
 		},
 		options: {
-			proxy: "localhost",
+			proxy: 'localhost',
 			port: 3000,
 			watchTask: true,
 			notify: false
 		}
 	}
-}
+};
