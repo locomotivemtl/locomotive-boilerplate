@@ -1,18 +1,17 @@
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+/* jshint esnext: true */
 // ==========================================================================
 // Globals
 // ==========================================================================
 var app = window.app || {};
 
-app.globals = {
-
-    init : function() {
-
-        // Global modules
-        // ==========================================================================
-        // app.parallax.init();
-
-    }
-
+app.globals = function () {
+	// Global app modules
+	// ==========================================================================
+	// this.parallax.init();
 };
 
 // ==========================================================================
@@ -23,9 +22,7 @@ app.templates = app.templates || {};
 
 app.templates.generic = {
 
-    init : function() {
-
-    }
+	init: function init() {}
 
 };
 
@@ -37,79 +34,70 @@ app.widgets = app.widgets || {};
 
 app.widgets.generic = {
 
-    init : function() {
-
-    }
+	init: function init() {}
 
 };
 
+/* jshint esnext: true */
 // ==========================================================================
 // App
 // ==========================================================================
 var app = window.app || {};
 
-app.init = function() {
+app.init = function () {
 
-	'use strict';
-
-	var self = this;
-
-	self.params = {
-
+	this.elements = {
+		html: document.documentElement,
+		body: document.body
 	};
 
-	self.elements = {
-		html : document.documentElement,
-		body : document.body
+	this.params = {
+		current_modules: [],
+		current_template: this.elements.html.getAttribute('data-template'),
+		current_widgets: []
 	};
 
-	self.templates = self.templates || {};
-
-	self.widgets = self.widgets || {};
+	this.templates = this.templates || {};
+	this.widgets = this.widgets || {};
 
 	// Globals
 	// ==========================================================================
-	if (typeof self.globals === 'object') {
-		self.globals.init();
+	if (typeof this.globals === 'function') {
+		this.globals();
 	}
 
 	// Modules
 	// ==========================================================================
-	self.params.current_modules = [];
-
 	var modules = document.querySelectorAll('[data-app]');
-    for (var m = 0; m < modules.length; m++) {
-        var dataApp = modules[m].getAttribute('data-app');
-        if (typeof self[dataApp] === 'object' && self.params.current_modules.indexOf(dataApp) === -1) {
-            self[dataApp].init();
-            self.params.current_modules.push(dataApp);
-        }
-    }
+	for (var i = 0, len = modules.length; i < len; i++) {
+		var ident = modules[i].getAttribute('data-app');
+		if (_typeof(this[ident]) === 'object' && this.params.current_modules.indexOf(ident) === -1) {
+			this[ident].init();
+			this.params.current_modules.push(ident);
+		}
+	}
 
 	// Template
 	// ==========================================================================
-	self.params.current_template = self.elements.body.getAttribute('data-template');
-
-	if (typeof self.templates[ self.params.current_template ] === 'object') {
-		self.templates[ self.params.current_template ].init();
+	if (_typeof(this.templates[this.params.current_template]) === 'object') {
+		this.templates[this.params.current_template].init();
 	}
 
 	// Widgets
 	// ==========================================================================
-	self.params.current_widgets = [];
-
 	var widgets = document.querySelectorAll('[data-widget]');
-	for (var w = 0; w < widgets.length; w++) {
-        var dataWidget = widgets[w].getAttribute('data-widget');
-        if (typeof self.widgets[dataWidget] === 'object' && self.params.current_widgets.indexOf(dataWidget) === -1) {
-            self.widgets[dataWidget].init();
-            self.params.current_widgets.push(dataWidget);
-        }
-    }
+	for (var i = 0, len = widgets.length; i < len; i++) {
+		var ident = widgets[i].getAttribute('data-widget');
+		if (_typeof(this.widgets[ident]) === 'object' && this.params.current_widgets.indexOf(ident) === -1) {
+			this.widgets[ident].init();
+			this.params.current_widgets.push(ident);
+		}
+	}
 };
 
 // Init
 // ==========================================================================
-$(function() {
+$(function () {
 	app.init();
 });
+//# sourceMappingURL=app.js.map

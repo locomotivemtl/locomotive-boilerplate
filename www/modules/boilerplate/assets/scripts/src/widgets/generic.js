@@ -6,7 +6,7 @@ app.widgets = app.widgets || {};
 
 app.widgets.generic = {
 
-    init : function() {
+    init: function() {
 
     }
 

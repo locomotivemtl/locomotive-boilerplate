@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 		'sass',
 		'svgstore',
 		'postcss',
+		'babel',
 		'uglify',
 		'cssmin',
 		'svgmin',

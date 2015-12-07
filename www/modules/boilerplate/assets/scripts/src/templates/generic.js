@@ -6,7 +6,7 @@ app.templates = app.templates || {};
 
 app.templates.generic = {
 
-    init : function() {
+    init: function() {
 
     }
 
