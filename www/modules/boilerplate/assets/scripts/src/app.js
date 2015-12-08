@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 // ==========================================================================
-import * as widgets from './widgets'
+import * as modules from './modules'
 import * as templates from './templates'
 
 class App {
@@ -13,47 +13,40 @@ class App {
 
 		this.params = {
 			current_modules: [],
-			current_template: this.elements.html.getAttribute('data-template'),
-			current_widgets: []
+			current_template: this.elements.html.getAttribute('data-template')
 		};
 
-		this.widgets = widgets;
+		this.modules = modules;
 		this.templates = templates;
 
 		/**
-		 * @todo Discuss naming conventions and difference between modules and widgets
+		 * @todo  [1]  Discuss storing instanciated objects
+		 * @todo  [2]  Discuss singleton concept (one off functions/declarations)
 		 */
 		// Modules
 		// ==========================================================================
-		//var modules = document.querySelectorAll('[data-app]');
-		//for (let i = 0, len = modules.length; i < len; i++) {
-		//	let ident = modules[i].getAttribute('data-app');
-		//	if (typeof this[ident] === 'object' && this.params.current_modules.indexOf(ident) === -1) {
-		//		this[ident].init();
-		//		this.params.current_modules.push(ident);
-		//	}
-		//}
+		var moduleEls = document.querySelectorAll('[data-module]');
+		for (let i = 0, len = moduleEls.length; i < len; i++) {
+			let attr = moduleEls[i].getAttribute('data-module');
+
+			// Uppercasing for class usage
+			let ident = attr.charAt(0).toUpperCase() + attr.slice(1) + 'Module';
+
+			if (typeof this.modules[ident] === 'function' && this.params.current_modules.indexOf(ident) === -1) {
+				// [1,2]
+				let widget = new this.modules[ident];
+				// [2]
+				this.params.current_modules.push(widget);
+			}
+		}
 
 		// Template
 		// ==========================================================================
-		var templateIdent = this.params.current_template + 'Template';
+		var templateIdent = this.params.current_template.charAt(0).toUpperCase() + this.params.current_template.slice(1) + 'Template';
 		if (typeof this.templates[templateIdent] === 'function') {
 			var template = new this.templates[templateIdent];
 		}
 
-		// Widgets
-		// ==========================================================================
-		var widgetEls = document.querySelectorAll('[data-widget]');
-		for (let i = 0, len = widgetEls.length; i < len; i++) {
-			let ident = widgetEls[i].getAttribute('data-widget') + 'Widget';
-			if (typeof this.widgets[ident] === 'function' && this.params.current_widgets.indexOf(ident) === -1) {
-				/**
-				 * @todo Discuss storing instanciated objects
-				 */
-				let widget = new this.widgets[ident];
-				this.params.current_widgets.push(widget);
-			}
-		}
 	}
 };
 

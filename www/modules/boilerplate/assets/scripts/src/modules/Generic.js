@@ -1,10 +1,12 @@
 // ==========================================================================
-// Generic widget
+// Generic module
 // ==========================================================================
 
-export default class genericWidget {
+class GenericModule {
 	constructor (options) {
-		console.log('Generic widget');
+		console.log('Generic module');
 		this.options = options;
 	}
 }
+
+export default GenericModule;

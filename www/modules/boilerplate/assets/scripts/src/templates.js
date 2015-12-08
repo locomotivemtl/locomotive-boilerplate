@@ -1,1 +1,1 @@
-export {default as genericTemplate} from './templates/generic';
+export {default as GenericTemplate} from './templates/Generic';
