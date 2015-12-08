@@ -42,9 +42,11 @@ class App {
 
 		// Template
 		// ==========================================================================
-		var templateIdent = this.params.current_template.charAt(0).toUpperCase() + this.params.current_template.slice(1) + 'Template';
-		if (typeof this.templates[templateIdent] === 'function') {
-			var template = new this.templates[templateIdent];
+		if (typeof(this.params.current_template) === 'string' && this.params.current_template.length !== 0) {
+			var templateIdent = this.params.current_template.charAt(0).toUpperCase() + this.params.current_template.slice(1) + 'Template';
+			if (typeof this.templates[templateIdent] === 'function') {
+				var template = new this.templates[templateIdent];
+			}
 		}
 
 	}
