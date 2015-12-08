@@ -1,56 +1,58 @@
 /* jshint esnext: true */
 // ==========================================================================
-// App
-// ==========================================================================
-var app = window.app || {};
+import * as widgets from './widgets'
+import * as templates from './templates'
 
-app.init = function () {
+class App {
+	constructor (options) {
 
-	this.elements = {
-		html: document.documentElement,
-		body: document.body
-	};
+		this.elements = {
+			html: document.documentElement,
+			body: document.body
+		};
 
-	this.params = {
-		current_modules: [],
-		current_template: this.elements.html.getAttribute('data-template'),
-		current_widgets: []
-	};
+		this.params = {
+			current_modules: [],
+			current_template: this.elements.html.getAttribute('data-template'),
+			current_widgets: []
+		};
 
-	this.templates = this.templates || {};
-	this.widgets = this.widgets || {};
+		this.widgets = widgets;
+		this.templates = templates;
 
-	// Globals
-	// ==========================================================================
-	if (typeof this.globals === 'function') {
-		this.globals();
-	}
+		/**
+		 * @todo Discuss naming conventions and difference between modules and widgets
+		 */
+		// Modules
+		// ==========================================================================
+		//var modules = document.querySelectorAll('[data-app]');
+		//for (let i = 0, len = modules.length; i < len; i++) {
+		//	let ident = modules[i].getAttribute('data-app');
+		//	if (typeof this[ident] === 'object' && this.params.current_modules.indexOf(ident) === -1) {
+		//		this[ident].init();
+		//		this.params.current_modules.push(ident);
+		//	}
+		//}
 
-	// Modules
-	// ==========================================================================
-	var modules = document.querySelectorAll('[data-app]');
-	for (let i = 0, len = modules.length; i < len; i++) {
-		let ident = modules[i].getAttribute('data-app');
-		if (typeof this[ident] === 'object' && this.params.current_modules.indexOf(ident) === -1) {
-			this[ident].init();
-			this.params.current_modules.push(ident);
+		// Template
+		// ==========================================================================
+		var templateIdent = this.params.current_template + 'Template';
+		if (typeof this.templates[templateIdent] === 'function') {
+			var template = new this.templates[templateIdent];
 		}
-	}
 
-	// Template
-	// ==========================================================================
-	if (typeof this.templates[this.params.current_template] === 'object') {
-		this.templates[this.params.current_template].init();
-	}
-
-	// Widgets
-	// ==========================================================================
-	var widgets = document.querySelectorAll('[data-widget]');
-	for (let i = 0, len = widgets.length; i < len; i++) {
-		let ident = widgets[i].getAttribute('data-widget');
-		if (typeof this.widgets[ident] === 'object' && this.params.current_widgets.indexOf(ident) === -1) {
-			this.widgets[ident].init();
-			this.params.current_widgets.push(ident);
+		// Widgets
+		// ==========================================================================
+		var widgetEls = document.querySelectorAll('[data-widget]');
+		for (let i = 0, len = widgetEls.length; i < len; i++) {
+			let ident = widgetEls[i].getAttribute('data-widget') + 'Widget';
+			if (typeof this.widgets[ident] === 'function' && this.params.current_widgets.indexOf(ident) === -1) {
+				/**
+				 * @todo Discuss storing instanciated objects
+				 */
+				let widget = new this.widgets[ident];
+				this.params.current_widgets.push(widget);
+			}
 		}
 	}
 };
@@ -58,5 +60,5 @@ app.init = function () {
 // Init
 // ==========================================================================
 $(function() {
-	app.init();
+	window.app = new App();
 });

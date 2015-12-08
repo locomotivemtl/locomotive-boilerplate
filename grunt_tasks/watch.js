@@ -1,7 +1,7 @@
 module.exports = {
 	javascript: {
 		files: ['www/modules/boilerplate/assets/scripts/src/**/*.js'],
-		tasks: ['concat', 'babel', 'notify:concat']
+		tasks: ['browserify:dev', 'eslint', 'notify:javascript']
 	},
 	sass: {
 		files: ['www/modules/boilerplate/assets/styles/src/**/*.scss'],

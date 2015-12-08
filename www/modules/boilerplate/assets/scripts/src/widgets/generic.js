@@ -1,13 +1,10 @@
 // ==========================================================================
 // Generic widget
 // ==========================================================================
-var app = window.app || {};
-app.widgets = app.widgets || {};
 
-app.widgets.generic = {
-
-    init: function() {
-
-    }
-
-};
+export default class genericWidget {
+	constructor (options) {
+		console.log('Generic widget');
+		this.options = options;
+	}
+}
