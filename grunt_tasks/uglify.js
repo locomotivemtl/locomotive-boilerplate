@@ -2,9 +2,9 @@ module.exports = {
 	target: {
 		files: [{
 			expand: true,
-			cwd: 'www/modules/boilerplate/assets/scripts/dist/',
+			cwd: 'www/assets/scripts/dist/',
 			src: '**/*.js',
-			dest: 'www/modules/boilerplate/assets/scripts/dist/'
+			dest: 'www/assets/scripts/dist/'
 		}]
 	}
 }

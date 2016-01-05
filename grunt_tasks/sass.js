@@ -4,7 +4,7 @@ module.exports = {
 	},
 	dist: {
 		files: {
-			'www/modules/boilerplate/assets/styles/dist/main.css': 'www/modules/boilerplate/assets/styles/src/main.scss'
+			'www/assets/styles/dist/main.css': 'www/assets/styles/src/main.scss'
 		}
 	}
 }
