@@ -4,7 +4,7 @@ module.exports = {
 	},
 	default : {
 		files: {
-			'www/modules/boilerplate/assets/images/dist/svgs.svg': ['www/modules/boilerplate/assets/images/svgs/*.svg'],
+			'www/assets/images/dist/svgs.svg': ['www/assets/images/svgs/*.svg'],
 		}
 	}
 }

@@ -10,8 +10,8 @@ module.exports = {
 	project: [
 		'code/*.php',
 		'code/**/*.php',
-		'www/modules/boilerplate/assets/templates/*.php',
-		'www/modules/boilerplate/assets/templates/**/*.php'
+		'www/assets/templates/*.php',
+		'www/assets/templates/**/*.php'
 	],
 	charcoal: [
 		'../charcoal/core/code/*.php',

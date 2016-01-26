@@ -9,8 +9,8 @@ module.exports = {
 		},
 		files: [
 			{
-				src : ['www/modules/boilerplate/assets/styles/dist/*.css'],
-				dest : 'www/modules/boilerplate/assets/styles/dist/',
+				src : ['www/assets/styles/dist/*.css'],
+				dest : 'www/assets/styles/dist/',
 				expand : true,
 				flatten : true
 			}

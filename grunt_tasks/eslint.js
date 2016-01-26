@@ -3,5 +3,8 @@ module.exports = {
 		format: require('eslint-tap'),
 		configFile: '.eslintrc'
 	},
-	target: 'www/modules/boilerplate/assets/scripts/src/**/*.js'
+	target: [
+        'www/assets/scripts/src/**/*.js',
+        '!www/assets/scripts/src/vendors/*.js'
+    ],
 };

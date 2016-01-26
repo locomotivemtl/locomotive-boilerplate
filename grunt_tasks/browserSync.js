@@ -2,9 +2,9 @@ module.exports = {
 	dev: {
 		bsFiles: {
 			src : [
-				 'www/modules/boilerplate/assets/styles/dist/*.css'
-				,'www/modules/boilerplate/assets/scripts/dist/*.js'
-				,'www/modules/boilerplate/assets/templates/*.php'
+				 'www/assets/styles/dist/*.css'
+				,'www/assets/scripts/dist/*.js'
+				,'www/assets/templates/*.php'
 			]
 		},
 		options: {

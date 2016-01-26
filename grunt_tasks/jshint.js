@@ -13,7 +13,7 @@ module.exports = {
 		}
 	},
 	src: [
-		'www/modules/boilerplate/assets/scripts/src/**/*.js',
-		'!www/modules/boilerplate/assets/scripts/src/vendors/**/*.js'
+		'www/assets/scripts/src/**/*.js',
+		'!www/assets/scripts/src/vendors/**/*.js'
 	],
 }

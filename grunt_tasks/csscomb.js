@@ -4,8 +4,8 @@ module.exports = {
 	},
 	build: {
 		expand: true,
-		cwd: 'www/modules/boilerplate/assets/styles/src/',
+		cwd: 'www/assets/styles/src/',
 		src: ['**/*.scss', '!base/_fonts.scss'],
-		dest: 'www/modules/boilerplate/assets/styles/src/'
+		dest: 'www/assets/styles/src/'
 	}
 }

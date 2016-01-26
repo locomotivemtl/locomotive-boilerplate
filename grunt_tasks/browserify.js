@@ -6,7 +6,10 @@ module.exports = {
 			exclude: ''
 		},
 		files: {
-			'www/modules/boilerplate/assets/scripts/dist/app.js': ['www/modules/boilerplate/assets/scripts/src/**/*.js']
+			'www/assets/scripts/dist/app.js': [
+                'www/assets/scripts/src/**/*.js',
+                '!www/assets/scripts/src/vendors/*.js'
+            ]
 		}
 	},
 	prod: {
@@ -16,7 +19,10 @@ module.exports = {
 			exclude: ''
 		},
 		files: {
-			'www/modules/boilerplate/assets/scripts/dist/app.js': ['www/modules/boilerplate/assets/scripts/src/**/*.js']
+            'www/assets/scripts/dist/app.js': [
+                'www/assets/scripts/src/**/*.js',
+                '!www/assets/scripts/src/vendors/*.js'
+            ]
 		}
 	}
 };
