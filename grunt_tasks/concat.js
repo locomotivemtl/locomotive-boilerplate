@@ -1,5 +1,4 @@
 module.exports = {
-
 	app: {
 		src: [
 			'www/assets/scripts/src/app/*.js',
@@ -15,5 +14,4 @@ module.exports = {
 		],
 		dest: 'www/assets/scripts/dist/vendors.js'
 	}
-
 };

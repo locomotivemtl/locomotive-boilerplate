@@ -8,4 +8,4 @@ module.exports = {
 		src: ['**/*.scss', '!base/_fonts.scss'],
 		dest: 'www/assets/styles/src/'
 	}
-}
+};
