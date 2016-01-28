@@ -1,13 +1,13 @@
 // ==========================================================================
-// Generic module
+// Title module
 // ==========================================================================
 
-class GenericModule {
+class TitleModule {
 	constructor (options) {
         this.$el = options.$el;
-		console.log('Generic module');
+		console.log('Title module');
 		console.log(this.$el);
 	}
 }
 
-export default GenericModule;
+export default TitleModule;

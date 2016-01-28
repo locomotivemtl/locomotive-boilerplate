@@ -26,17 +26,27 @@ class App {
 		// Modules
 		// ==========================================================================
 		var moduleEls = document.querySelectorAll('[data-module]');
-		for (let i = 0, len = moduleEls.length; i < len; i++) {
+		for (let i = 0, elsLen = moduleEls.length; i < elsLen; i++) {
+
 			let attr = moduleEls[i].getAttribute('data-module');
 
-			// Uppercasing for class usage
-			let ident = attr.charAt(0).toUpperCase() + attr.slice(1) + 'Module';
+			// Splitting modules found in the data-attribute
+			let moduleAttrs = attr.replace(/\s/g, '').split(',');
 
-			if (typeof this.modules[ident] === 'function' && this.params.current_modules.indexOf(ident) === -1) {
-				// [1,2]
-				let widget = new this.modules[ident];
-				// [2]
-				this.params.current_modules.push(widget);
+			for (let j = 0, modLen = moduleAttrs.length; j < modLen; j++) {
+				let moduleAttr = moduleAttrs[j];
+
+				// Uppercasing for class usage
+				let ident = moduleAttr.charAt(0).toUpperCase() + moduleAttr.slice(1) + 'Module';
+
+				if (typeof this.modules[ident] === 'function' && this.params.current_modules.indexOf(ident) === -1) {
+					// [1,2]
+					let module = new this.modules[ident]({
+						$el: $(moduleEls[i])
+					});
+					// [2]
+					this.params.current_modules.push(module);
+				}
 			}
 		}
 
