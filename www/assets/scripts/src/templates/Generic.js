@@ -1,13 +1,12 @@
 // ==========================================================================
 // Generic template
 // ==========================================================================
-var app = window.app || {};
-app.templates = app.templates || {};
 
-app.templates.generic = {
+class GenericTemplate {
+	constructor (options) {
+		console.log('Generic template');
+		this.options = options;
+	}
+}
 
-    init : function() {
-
-    }
-
-};
+export default GenericTemplate;

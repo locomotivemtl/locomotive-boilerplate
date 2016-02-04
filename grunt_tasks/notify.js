@@ -17,10 +17,10 @@ module.exports = {
 			message: 'Sass compiled to CSS.'
 		}
 	},
-	concat: {
+	javascript: {
 		options: {
 			// title: '<%= pkg.title %>',
-			message: 'JavaScript is now concatenated'
+			message: 'JavaScript is ready.'
 		}
 	},
 	svg: {

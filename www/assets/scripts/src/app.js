@@ -1,70 +1,70 @@
+/* jshint esnext: true */
 // ==========================================================================
-// App
-// ==========================================================================
-var app = window.app || {};
+import * as modules from './modules'
+import * as templates from './templates'
 
-app.init = function() {
+class App {
+	constructor (options) {
 
-	'use strict';
+		this.elements = {
+			html: document.documentElement,
+			body: document.body
+		};
 
-	var self = this;
+		this.params = {
+			current_modules: [],
+			current_template: this.elements.html.getAttribute('data-template')
+		};
 
-	self.params = {
+		this.modules = modules;
+		this.templates = templates;
 
-	};
+		/**
+		 * @todo  [1]  Discuss storing instanciated objects
+		 * @todo  [2]  Discuss singleton concept (one off functions/declarations)
+		 */
+		// Modules
+		// ==========================================================================
+		var moduleEls = document.querySelectorAll('[data-module]');
+		for (let i = 0, elsLen = moduleEls.length; i < elsLen; i++) {
 
-	self.elements = {
-		html : document.documentElement,
-		body : document.body
-	};
+			let attr = moduleEls[i].getAttribute('data-module');
 
-	self.templates = self.templates || {};
+			// Splitting modules found in the data-attribute
+			let moduleAttrs = attr.replace(/\s/g, '').split(',');
 
-	self.widgets = self.widgets || {};
+			for (let j = 0, modLen = moduleAttrs.length; j < modLen; j++) {
+				let moduleAttr = moduleAttrs[j];
 
-	// Globals
-	// ==========================================================================
-	if (typeof self.globals === 'object') {
-		self.globals.init();
+				// Uppercasing for class usage
+				let ident = moduleAttr.charAt(0).toUpperCase() + moduleAttr.slice(1) + 'Module';
+
+				if (typeof this.modules[ident] === 'function' && this.params.current_modules.indexOf(ident) === -1) {
+					// [1,2]
+					let module = new this.modules[ident]({
+						$el: $(moduleEls[i])
+					});
+					// [2]
+					this.params.current_modules.push(module);
+				}
+			}
+		}
+
+		// Template
+		// ==========================================================================
+		if (typeof(this.params.current_template) === 'string' && this.params.current_template.length !== 0) {
+			var templateIdent = this.params.current_template.charAt(0).toUpperCase() + this.params.current_template.slice(1) + 'Template';
+
+			if (typeof this.templates[templateIdent] === 'function') {
+				var template = new this.templates[templateIdent];
+			}
+		}
+
 	}
-
-	// Modules
-	// ==========================================================================
-	self.params.current_modules = [];
-
-	var modules = document.querySelectorAll('[data-app]');
-    for (var m = 0; m < modules.length; m++) {
-        var dataApp = modules[m].getAttribute('data-app');
-        if (typeof self[dataApp] === 'object' && self.params.current_modules.indexOf(dataApp) === -1) {
-            self[dataApp].init();
-            self.params.current_modules.push(dataApp);
-        }
-    }
-
-	// Template
-	// ==========================================================================
-	self.params.current_template = self.elements.body.getAttribute('data-template');
-
-	if (typeof self.templates[ self.params.current_template ] === 'object') {
-		self.templates[ self.params.current_template ].init();
-	}
-
-	// Widgets
-	// ==========================================================================
-	self.params.current_widgets = [];
-
-	var widgets = document.querySelectorAll('[data-widget]');
-	for (var w = 0; w < widgets.length; w++) {
-        var dataWidget = widgets[w].getAttribute('data-widget');
-        if (typeof self.widgets[dataWidget] === 'object' && self.params.current_widgets.indexOf(dataWidget) === -1) {
-            self.widgets[dataWidget].init();
-            self.params.current_widgets.push(dataWidget);
-        }
-    }
 };
 
 // Init
 // ==========================================================================
 $(function() {
-	app.init();
+	window.app = new App();
 });
