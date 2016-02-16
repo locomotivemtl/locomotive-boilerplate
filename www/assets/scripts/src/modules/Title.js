@@ -2,7 +2,7 @@
 // Title module
 // ==========================================================================
 
-class TitleModule {
+class Title {
 	constructor (options) {
         this.$el = options.$el;
 		console.log('Title module');
@@ -10,4 +10,4 @@ class TitleModule {
 	}
 }
 
-export default TitleModule;
+export default Title;

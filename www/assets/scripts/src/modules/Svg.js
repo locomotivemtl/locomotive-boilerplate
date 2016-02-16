@@ -1,12 +1,12 @@
 // ==========================================================================
-// Generic template
+// Svg
 // ==========================================================================
 
-class GenericTemplate {
-	constructor (options) {
-		console.log('Generic template');
-		this.options = options;
+class Svg {
+	constructor () {
+		svg4everybody();
 	}
 }
 
-export default GenericTemplate;
+export default Svg;
+ 

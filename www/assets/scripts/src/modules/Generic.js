@@ -2,7 +2,7 @@
 // Generic module
 // ==========================================================================
 
-class GenericModule {
+class Generic {
 	constructor (options) {
         this.$el = options.$el;
 		console.log('Generic module');
@@ -10,4 +10,5 @@ class GenericModule {
 	}
 }
 
-export default GenericModule;
+export default Generic;
+ 
