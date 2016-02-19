@@ -4,7 +4,8 @@ module.exports = {
 			src : [
 				 'www/assets/styles/dist/*.css'
 				,'www/assets/scripts/dist/*.js'
-				,'www/assets/templates/*.php'
+				,'www/assets/images/dist/*.svg'
+				,'www/**/*.php'
 			]
 		},
 		options: {

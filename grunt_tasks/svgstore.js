@@ -4,7 +4,7 @@ module.exports = {
 	},
 	default : {
 		files: {
-			'www/assets/images/dist/svgs.svg': ['www/assets/images/svgs/*.svg'],
+			'www/assets/images/dist/sprite.svg': ['www/assets/images/svgs/*.svg'],
 		}
 	}
 }
