@@ -1,12 +1,13 @@
 // ==========================================================================
-// Globals module
+// Module
 // ==========================================================================
-import Svg from './Svg';
 
-class Globals {
+class Module {
 	constructor() {
-		new Svg();
+		this.$window = $(window);
+		this.$html = $(document.documentElement);
+		this.$body = $(document.body);
 	}
 }
 
-export default Globals;
+export default Module;

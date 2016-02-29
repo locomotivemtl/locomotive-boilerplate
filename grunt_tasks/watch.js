@@ -4,7 +4,7 @@ module.exports = {
 			'www/assets/scripts/src/**/*.js',
 			'!www/assets/scripts/src/vendors/*.js'
 		],
-		tasks: ['browserify:dev', 'eslint', 'notify:javascript']
+		tasks: ['browserify:dev', 'notify:javascript']
 	},
 	javascript_vendors: {
 		files: [
