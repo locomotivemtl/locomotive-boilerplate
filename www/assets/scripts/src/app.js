@@ -2,10 +2,8 @@
 // ==========================================================================
 import * as modules from './modules'
 
-class App
-{
-	constructor(options)
-	{
+class App {
+	constructor(options) {
 		this.modules = modules;
 		this.globals;
 		this.currentModules = [];
@@ -13,8 +11,7 @@ class App
 
 	// Init globals
 	// ==========================================================================
-	initGlobals()
-	{
+	initGlobals() {
 		this.globals = new this.modules['Globals'];
 	}
 
@@ -28,8 +25,7 @@ class App
 	 * @todo  [2]  Discuss singleton concept (one off functions/declarations)
 	 * @return {thigArg}
 	 */
-	initModules()
-	{
+	initModules() {
 		// Elements with module
 		const moduleEls = document.querySelectorAll('[data-module]');
 
@@ -74,8 +70,7 @@ class App
 
 	// Init
 	// ==========================================================================
-	init()
-	{
+	init() {
 		this.initGlobals();
 		this.initModules();
 	}
@@ -90,8 +85,7 @@ class App
 	 * @param {DOMElement} el
 	 * @return {Array} data
 	 */
-	getElemData(el)
-	{
+	getElemData(el) {
 		// All attributes
 		let attributes = el.attributes;
 
