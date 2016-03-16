@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 // ==========================================================================
-import * as modules from './modules'
+import * as modules from './modules';
 
 class App {
 	constructor(options) {

@@ -1,7 +1,7 @@
 // ==========================================================================
 // Title module
 // ==========================================================================
-import Module from './Module'
+import Module from './Module';
 
 class Title extends Module {
 	constructor(options) {

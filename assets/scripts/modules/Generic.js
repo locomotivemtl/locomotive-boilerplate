@@ -1,7 +1,7 @@
 // ==========================================================================
 // Generic module
 // ==========================================================================
-import Module from './Module'
+import Module from './Module';
 
 class Generic extends Module {
 	constructor(options) {
