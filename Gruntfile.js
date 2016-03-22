@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-
 	function loadConfig(path) {
 		var glob = require('glob');
 		var object = {};
@@ -18,15 +17,15 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json')
 	}
 
-	grunt.loadTasks('grunt_tasks');
-	grunt.util._.extend(config, loadConfig('./grunt_tasks/'));
+	grunt.loadTasks('build/grunt');
+	grunt.util._.extend(config, loadConfig('./build/grunt/'));
 	grunt.initConfig(config);
 
 	// Load tasks
 	require('load-grunt-tasks')(grunt);
 
 	// Register tasks
-	grunt.registerTask('default', ['watch', 'notify:watch']);
+	grunt.registerTask('default', ['build']);
 	grunt.registerTask('sync', ['browserSync', 'watch', 'notify:watch']);
 	grunt.registerTask('build', [
 		// CSS
@@ -35,24 +34,22 @@ module.exports = function(grunt) {
 		'cssmin',
 		// JS
 		'browserify:prod',
-		'eslint',
 		'uglify',
 		// SVG
 		'svgstore',
-		'svgmin'
+		'svgmin',
+		// Notify
+		'notify:build'
 	]);
+	grunt.registerTask('w', ['watch', 'notify:watch']);
 	grunt.registerTask('c', [
 		'csscomb'
 	]);
 	grunt.registerTask('j', [
-		'jshint'
+		'eslint'
 	]);
-	grunt.registerTask('wlint', [
-		// PHP
-		'phplint',
-		'jsonlint',
-		// Utilities
-		'watch'
+	grunt.registerTask('p', [
+		'phplint'
 	]);
 
 };

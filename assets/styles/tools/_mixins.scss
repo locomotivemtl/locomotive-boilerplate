@@ -1,0 +1,44 @@
+// ==========================================================================
+// Mixins
+// ==========================================================================
+@mixin vertical-center {
+	font-size: 0;
+
+	&:before {
+		display: inline-block;
+		height: 100%;
+		content: "";
+		vertical-align: middle;
+	}
+
+	> * {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 1rem;
+	}
+}
+
+// Micro clearfix, as per {@link css-101.org/articles/clearfix/latest-new-clearfix-so-far.php CSS Mojo}
+//
+// @see inuitcss/generic.clearfix
+@mixin clearfix {
+	&:after {
+		display: table;
+		clear: both;
+		content: "";
+	}
+}
+
+@mixin list-reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@mixin tap-highlight-color {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@mixin overflow-scrolling {
+	-webkit-overflow-scrolling: touch;
+}
