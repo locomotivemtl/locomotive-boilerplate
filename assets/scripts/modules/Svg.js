@@ -9,12 +9,6 @@ class Svg extends Module {
 
 		svg4everybody();
 	}
-
-	// Destroy
-	// ==========================================================================
-	destroy() {
-		this.$el.off();
-	}
 }
 
 export default Svg;

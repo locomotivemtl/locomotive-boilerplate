@@ -1,36 +1,33 @@
 /* jshint esnext: true */
-// ==========================================================================
 import * as modules from './modules';
 
 class App {
 	constructor(options) {
 		this.modules = modules;
-		this.globals;
 		this.currentModules = [];
 	}
 
-	// Init globals
-	// ==========================================================================
+	/**
+	 * Execute global functions and settings
+	 * @return {Object}
+	 */
 	initGlobals() {
-		this.globals = new this.modules['Globals'];
+		this.globals = new this.modules.Globals();
+		return this;
 	}
 
-	// Init modules
-	// ==========================================================================
 	/**
-	 * Module init
-	 *
-	 * @todo  [1]  Discuss storing instanciated objects
-	 * @todo  [2]  Discuss singleton concept (one off functions/declarations)
-	 * @return {thigArg}
+	 * Find modules and initialize them
+	 * @return  {Object}  this  Allows chaining
 	 */
 	initModules() {
 		// Elements with module
 		const moduleEls = document.querySelectorAll('[data-module]');
 
 		// Loop through elements
-		let i = 0,
-			elsLen = moduleEls.length;
+		var i = 0;
+		var elsLen = moduleEls.length;
+
 		for (; i < elsLen; i++) {
 
 			// Current element
@@ -39,7 +36,7 @@ class App {
 			// All data- attributes considered as options
 			let options = this.getElemData(el);
 
-			// Add current element AND jQuery element
+			// Add current DOM element and jQuery element
 			options.el = el;
 			options.$el = $(el);
 
@@ -47,18 +44,17 @@ class App {
 			let attr = options.module;
 
 			// Splitting modules found in the data-attribute
-			let moduleAttrs = attr.replace(/\s/g, '').split(',');
+			let moduleIdents = attr.replace(/\s/g, '').split(',');
 
 			// Loop modules
-			let j = 0,
-				modLen = moduleAttrs.length
-			for (; j < modLen; j++) {
-				let moduleAttr = moduleAttrs[j];
+			let j = 0;
+			let modulesLen = moduleIdents.length;
 
-				if (typeof this.modules[moduleAttr] === 'function' && this.currentModules.indexOf(moduleAttr) === -1) {
-					// [1,2]
+			for (; j < modulesLen; j++) {
+				let moduleAttr = moduleIdents[j];
+
+				if (typeof this.modules[moduleAttr] === 'function') {
 					let module = new this.modules[moduleAttr](options);
-					// [2]
 					this.currentModules.push(module);
 				}
 			}
@@ -67,32 +63,20 @@ class App {
 		return this;
 	}
 
-	// Init
-	// ==========================================================================
-	init() {
-		this.initGlobals();
-		this.initModules();
-	}
-
-
-	// Utils
-	// ==========================================================================
-	//
 	/**
-	 * Get element datas
-	 *
+	 * Get element data attributes
 	 * @param {DOMElement} el
 	 * @return {Array} data
 	 */
 	getElemData(el) {
 		// All attributes
-		let attributes = el.attributes;
+		var attributes = el.attributes;
 
 		// Regex Pattern
-		let pattern = /^data\-(.+)$/;
+		var pattern = /^data\-(.+)$/;
 
 		// Output
-		let data = {};
+		var data = {};
 
 		for (let i in attributes) {
 			// Attributes name (ex: data-module)
@@ -109,16 +93,23 @@ class App {
 			}
 
 			// If this throws an error, you have some
-			// serious problem in your HTML.
-			data[ match[1] ] = el.getAttribute(name);
+			// serious problems in your HTML.
+			data[match[1]] = el.getAttribute(name);
 		}
 
 		return data;
 	}
-};
+
+	/**
+	 * Initialize app after document ready
+	 */
+	init() {
+		this.initGlobals().initModules();
+	}
+}
 
 // Document ready
-// ==========================================================================
+// =========================================================================
 $(function() {
 	window.app = new App();
 	window.app.init();
