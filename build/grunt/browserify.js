@@ -2,8 +2,10 @@ module.exports = {
 	dev: {
 		options: {
 			transform: [['babelify', { presets: ['es2015'] }]],
-			browserifyOptions: { debug: true },
-			exclude: ''
+            watch : true, // use watchify for incremental builds!
+            browserifyOptions : {
+              debug : true // source mapping
+            }
 		},
 		files: {
 			'www/assets/scripts/app.js': [

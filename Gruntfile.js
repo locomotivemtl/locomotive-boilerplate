@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
 	// Register tasks
 	grunt.registerTask('default', ['build']);
-	grunt.registerTask('sync', ['browserSync', 'watch', 'notify:watch']);
+	grunt.registerTask('sync', ['browserSync', 'browserify:dev', 'watch', 'notify:watch']);
 	grunt.registerTask('build', [
 		// CSS
 		'sass',
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 		// Notify
 		'notify:build'
 	]);
-	grunt.registerTask('w', ['watch', 'notify:watch']);
+	grunt.registerTask('w', ['browserify:dev', 'watch', 'notify:watch']);
 	grunt.registerTask('c', [
 		'csscomb'
 	]);
