@@ -17,8 +17,7 @@
 		"browserify:prod",
 		"concat:prod",
 		"uglify",
-		"svgstore",
-		"svgmin",
+		"svg_sprite",
 		"notify:build"
 	],
 

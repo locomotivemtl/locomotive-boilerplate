@@ -13,7 +13,7 @@ module.exports = {
 	},
 	svg: {
 		files: [ '<%= paths.img.src %>/**/*.svg' ],
-		tasks: [ 'svgstore', 'notify:svg' ]
+		tasks: [ 'svg_sprite', 'notify:svg' ]
 	},
 	tasks: {
 		options: {
