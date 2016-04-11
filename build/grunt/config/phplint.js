@@ -1,14 +1,12 @@
 module.exports = {
 	options: {
-		swapPath: '/tmp',
-		phpArgs : {
+		swapPath : '/tmp',
+		phpArgs  : {
 			// add -f for fatal errors
 			'-lf': null
 		}
 	},
-
-	project: [
+	dev: [
 		'**/*.php'
 	]
-}
-;
+};

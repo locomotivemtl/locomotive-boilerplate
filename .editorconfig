@@ -10,9 +10,6 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.json,.bowerrc]
-insert_final_newline = false
-
-[{.htaccess,.bowerrc,bower.json,package.json,component.json}]
+[{*.md,.*rc,.*.json,*.yml,.editorconfig,.env,.env.*,.git*,.htaccess,.jshintignore,bower.json,composer.json,package.json}]
 indent_style = space
 indent_size = 2

@@ -14,11 +14,9 @@ module.exports = {
 		]
 	},
 	dist: {
-		expand: true,
-		cwd: 'www/assets/images/',
-		src: '*.svg',
-		dest: 'www/assets/images/',
-		ext: '.svg',
-		extDot: 'first'
+		expand : true,
+		cwd    : '<%= paths.img.dist %>',
+		src    : '*.svg',
+		dest   : '<%= paths.img.dist %>'
 	}
 };
