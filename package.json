@@ -1,5 +1,7 @@
 {
-  "name": "boilerplate",
+  "private": true,
+  "name": "@locomotivemtl/boilerplate",
+  "title": "Locomotive Boilerplate",
   "version": "1.0.0",
   "author": "Locomotive <info@locomotive.ca>",
   "devDependencies": {
@@ -12,7 +14,7 @@
     "grunt-browser-sync": "2.2.0",
     "grunt-browserify": "4.0.1",
     "grunt-contrib-concat": "1.0.0",
-    "grunt-contrib-cssmin": "1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-uglify": "1.0.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-csscomb": "3.1.0",
@@ -23,6 +25,7 @@
     "grunt-sass": "1.1.0",
     "grunt-svgmin": "3.1.2",
     "grunt-svgstore": "1.0.0",
-    "load-grunt-tasks": "3.4.1"
+    "load-grunt-config": "^0.19.1",
+    "postcss-banner": "^1.2.0"
   }
 }

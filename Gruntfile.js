@@ -1,55 +1,35 @@
-module.exports = function(grunt) {
+/**
+ * Grunt Task Wrangler
+ *
+ * @copyright Copyright © 2016 Locomotive
+ * @license   Licensed under the MIT license.
+ */
 
-	function loadConfig(path) {
-		var glob = require('glob');
-		var object = {};
-		var key;
+'use strict';
 
-		glob.sync('*', {cwd: path}).forEach(function(option) {
-			key = option.replace(/\.js$/,'');
-			object[key] = require(path + option);
-		});
+module.exports = function (grunt)
+{
+	var path = require('path');
 
-		return object;
-	}
-
-	var config = {
-		pkg: grunt.file.readJSON('package.json')
-	}
-
-	grunt.loadTasks('build/grunt');
-	grunt.util._.extend(config, loadConfig('./build/grunt/'));
-	grunt.initConfig(config);
-
-	// Load tasks
-	require('load-grunt-tasks')(grunt);
-
-	// Register tasks
-	grunt.registerTask('default', ['build']);
-	grunt.registerTask('sync', ['browserSync', 'browserify:dev', 'watch', 'notify:watch']);
-	grunt.registerTask('build', [
-		// CSS
-		'sass',
-		'postcss',
-		'cssmin',
-		// JS
-		'browserify:prod',
-		'uglify',
-		// SVG
-		'svgstore',
-		'svgmin',
-		// Notify
-		'notify:build'
-	]);
-	grunt.registerTask('w', ['browserify:dev', 'watch', 'notify:watch']);
-	grunt.registerTask('c', [
-		'csscomb'
-	]);
-	grunt.registerTask('j', [
-		'eslint'
-	]);
-	grunt.registerTask('p', [
-		'phplint'
-	]);
+	require('load-grunt-config')(grunt, {
+		configPath: path.join(process.cwd(), 'build/grunt/config'),
+		data: {
+			paths: {
+				grunt: 'build/grunt',
+				js: {
+					src: 'assets/scripts',
+					dist: 'www/assets/scripts'
+				},
+				css: {
+					src: 'assets/styles',
+					dist: 'www/assets/styles'
+				},
+				img: {
+					src: 'assets/images',
+					dist: 'www/assets/images'
+				}
+			}
+		}
+	});
 
 };

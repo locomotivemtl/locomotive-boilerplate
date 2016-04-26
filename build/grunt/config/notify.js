@@ -1,31 +1,35 @@
 module.exports = {
+	notify_hooks: {
+		options: {
+			enabled  : true,
+			success  : true,
+			duration : 3,
+			title    : '<%= package.name %>',
+			max_jshint_notifications : 5
+		}
+	},
 	watch: {
 		options: {
-			// title: '<%= pkg.title %>',
 			message: 'Keeping an eye out, Chief!'
 		}
 	},
 	build: {
 		options: {
-			// title: '<%= pkg.title %>',
 			message: 'Everything is ready to go!'
 		}
 	},
 	sass: {
 		options: {
-			// title: '<%= pkg.title %>',
 			message: 'CSS is compiled'
 		}
 	},
 	javascript: {
 		options: {
-			// title: '<%= pkg.title %>',
 			message: 'JavaScript is compiled'
 		}
 	},
 	svg: {
 		options: {
-			// title: '<%= pkg.title %>',
 			message: 'SVG is concatenated'
 		}
 	}
