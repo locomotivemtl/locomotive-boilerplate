@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { registerDocumentHiddenCallback, registerDocumentVisibleCallback } from '../utils/visibility';
+import { visibilityApi } from '../utils/visibility';
 import AbstractModule from './AbstractModule';
 
 export default class extends AbstractModule {
@@ -8,12 +8,22 @@ export default class extends AbstractModule {
 
 		this.$label = this.$el.find('.js-label');
 
-		this.$document.on('title.changeLabel', (event, value) => {
+		this.$document.on('Title.changeLabel', (event, value) => {
 			this.changeLabel(value);
+			this.destroy();
 		});
 
-		registerDocumentHiddenCallback(this.logHidden);
-		registerDocumentVisibleCallback(this.logVisible);
+		this.hiddenCallbackIdent = visibilityApi({
+			action: 'addCallback',
+			state: 'hidden',
+			callback: this.logHidden
+		});
+
+		this.visibleCallbackIdent = visibilityApi({
+			action: 'addCallback',
+			state: 'visible',
+			callback: this.logVisible
+		});
 	}
 
 	logHidden() {
@@ -29,7 +39,20 @@ export default class extends AbstractModule {
 	}
 
 	destroy() {
-		this.$document.off('title.changeLabel');
+		this.$document.off('Title.changeLabel');
+
+		visibilityApi({
+			action: 'removeCallback',
+			state: 'hidden',
+			ident: this.hiddenCallbackIdent
+		});
+
+		visibilityApi({
+			action: 'removeCallback',
+			state: 'visible',
+			ident: this.visibleCallbackIdent
+		});
+
 		this.$el.off('.Title');
 	}
 }

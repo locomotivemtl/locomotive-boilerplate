@@ -5,8 +5,8 @@ export default class extends AbstractModule {
 	constructor(options) {
 		super(options);
 
-		this.$el.on('click', (event) => {
-			this.$document.trigger('title.changeLabel', [$(event.currentTarget).val()]);
+		this.$el.on('click.Button', (event) => {
+			this.$document.trigger('Title.changeLabel', [$(event.currentTarget).val()]);
 		});
 	}
 
