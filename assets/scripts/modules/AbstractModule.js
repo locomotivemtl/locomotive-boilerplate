@@ -1,10 +1,11 @@
+/* jshint esnext: true */
 import { $document, $window, $html, $body } from '../utils/environment';
 
 /**
  * Abstract module
  * Gives access to generic jQuery nodes
  */
-class AbstractModule {
+export default class {
 	constructor(options) {
 		this.$document = $document;
 		this.$window = $window;
@@ -13,5 +14,3 @@ class AbstractModule {
 		this.$el = options.$el;
 	}
 }
-
-export default AbstractModule;
