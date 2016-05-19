@@ -1,10 +1,10 @@
 /* jshint esnext: true */
-import Module from './Module';
+import AbstractModule from './AbstractModule';
 
-class Title extends Module {
+export default class extends AbstractModule {
 	constructor(options) {
-		super();
-		this.$el = options.$el;
+		super(options);
+
 		this.$label = this.$el.find('.js-label');
 
 		this.$document.on('title.changeLabel', (event, value) => {
@@ -16,12 +16,8 @@ class Title extends Module {
 		this.$label.text(value);
 	}
 
-	// Destroy
-	// ==========================================================================
 	destroy() {
 		this.$document.off('title.changeLabel');
-		this.$el.off();
+		this.$el.off('.Title');
 	}
 }
-
-export default Title;

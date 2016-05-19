@@ -1,21 +1,16 @@
 /* jshint esnext: true */
-import Module from './Module';
+import AbstractModule from './AbstractModule';
 
-class Generic extends Module {
+export default class extends AbstractModule {
 	constructor(options) {
-		super();
-		this.$el = options.$el;
+		super(options);
 
 		this.$el.on('click', (event) => {
 			this.$document.trigger('title.changeLabel', [$(event.currentTarget).val()]);
 		});
 	}
 
-	// Destroy
-	// ==========================================================================
 	destroy() {
-		this.$el.off();
+		this.$el.off('.Button');
 	}
 }
-
-export default Generic;

@@ -1,8 +1,9 @@
 /* jshint esnext: true */
+import globals from './utils/globals';
 import * as modules from './modules';
 
 class App {
-	constructor(options) {
+	constructor() {
 		this.modules = modules;
 		this.currentModules = [];
 	}
@@ -12,7 +13,7 @@ class App {
 	 * @return {Object}
 	 */
 	initGlobals() {
-		this.globals = new this.modules.Globals();
+		globals();
 		return this;
 	}
 
@@ -22,7 +23,7 @@ class App {
 	 */
 	initModules() {
 		// Elements with module
-		const moduleEls = document.querySelectorAll('[data-module]');
+		var moduleEls = document.querySelectorAll('[data-module]');
 
 		// Loop through elements
 		var i = 0;
@@ -65,8 +66,8 @@ class App {
 
 	/**
 	 * Get element data attributes
-	 * @param {DOMElement} el
-	 * @return {Array} data
+	 * @param   {DOMElement}  el
+	 * @return  {Array}       data
 	 */
 	getElemData(el) {
 		// All attributes
@@ -108,8 +109,6 @@ class App {
 	}
 }
 
-// Document ready
-// =========================================================================
 $(function() {
 	window.app = new App();
 	window.app.init();
