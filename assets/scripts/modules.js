@@ -1,3 +1,3 @@
-export {default as Globals} from './modules/Globals';
-export {default as Generic} from './modules/Generic';
+/* jshint esnext: true */
+export {default as Button} from './modules/Button';
 export {default as Title} from './modules/Title';
