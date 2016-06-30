@@ -16,6 +16,7 @@ module.exports = function (grunt)
 		data: {
 			paths: {
 				grunt: 'build/grunt',
+				npm: 'node_modules',
 				js: {
 					src: 'assets/scripts',
 					dist: 'www/assets/scripts'
