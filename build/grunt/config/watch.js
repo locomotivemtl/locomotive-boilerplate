@@ -4,8 +4,8 @@ module.exports = {
 		livereload: false
 	},
 	javascript_vendors: {
-		files: [ '<%= paths.js.src %>/vendors/**/*.js' ],
-		tasks: [ 'concat:vendors', 'notify:javascript' ]
+		files: [ '<%= paths.js.src %>/vendors/**/*.js', '<%= paths.grunt %>/config/concat.js' ],
+		tasks: [ 'concat', 'notify:javascript' ]
 	},
 	sass: {
 		files: [ '<%= paths.css.src %>/**/*.scss' ],

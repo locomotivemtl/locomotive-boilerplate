@@ -15,6 +15,7 @@
 		"postcss",
 		"cssmin",
 		"browserify:prod",
+		"concat:prod",
 		"uglify",
 		"svgstore",
 		"svgmin",
