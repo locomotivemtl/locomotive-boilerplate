@@ -5,7 +5,12 @@ module.exports = {
 		},
 		exclude: "",
 		transform: [
-			[ 'babelify', { presets: [ 'es2015' ] } ]
+			['babelify', {
+				presets: ['es2015'],
+				plugins: [
+					['transform-es2015-classes', {loose: true}]
+				]
+			}]
 		]
 	},
 	dev: {

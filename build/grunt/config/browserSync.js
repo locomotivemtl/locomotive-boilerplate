@@ -1,5 +1,6 @@
 module.exports = {
 	options: {
+		open      : false,
 		proxy     : 'localhost',
 		port      : 3000,
 		watchTask : true,
