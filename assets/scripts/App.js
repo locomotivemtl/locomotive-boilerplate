@@ -80,6 +80,10 @@ class App {
 		var data = {};
 
 		for (let i in attributes) {
+			if (!attributes[i]) {
+				continue;
+			}
+
 			// Attributes name (ex: data-module)
 			let name = attributes[i].name;
 
