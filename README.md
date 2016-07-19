@@ -69,6 +69,6 @@ We included some basic CSS styles and resets to the form elements so we can easi
 *[Demo](http://codepen.io/AntoineBoulanger/pen/uBJmi)*
 
 ## JavaScript
-- We use HTML data attributes to init our JavaScript modules: `data-app`, `data-widget` and `data-template`
+- We use HTML data attributes to init our JavaScript modules: `data-module`
 - All DOM related JavaScript is hooked to `js-` prefixed HTML classes
 - [jQuery](https://jquery.com/) is globally included
