@@ -1,19 +1,50 @@
 /* jshint esnext: true */
+import { $document } from './utils/environment';
+import { getNodeData } from './utils/html';
+
+// Global functions and tools
 import globals from './utils/globals';
+
+// Basic modules
 import * as modules from './modules';
 
 class App {
 	constructor() {
 		this.modules = modules;
 		this.currentModules = [];
+
+		$document.on('initModules.App', (event) => {
+			this.initGlobals(event.firstBlood)
+				.deleteModules()
+				.initModules();
+		});
+	}
+
+	/**
+	 * Destroy all existing modules
+	 * @return  {Object}  this  Allows chaining
+	 */
+	deleteModules() {
+		// Loop modules
+		var i = this.currentModules.length;
+
+		// Destroy all modules
+		while (i--) {
+			this.currentModules[i].destroy();
+			this.currentModules.splice(i);
+		}
+
+		return this;
 	}
 
 	/**
 	 * Execute global functions and settings
-	 * @return {Object}
+	 * Allows you to initialize global modules only once if you need
+	 * (ex.: when using Barba.js or SmoothState.js)
+	 * @return  {Object}  this  Allows chaining
 	 */
-	initGlobals() {
-		globals();
+	initGlobals(firstBlood) {
+		globals(firstBlood);
 		return this;
 	}
 
@@ -22,98 +53,55 @@ class App {
 	 * @return  {Object}  this  Allows chaining
 	 */
 	initModules() {
-		// Elements with module
-		var moduleEls = document.querySelectorAll('[data-module]');
+        // Elements with module
+        var moduleEls = document.querySelectorAll('[data-module]');
 
-		// Loop through elements
-		var i = 0;
-		var elsLen = moduleEls.length;
+        // Loop through elements
+        var i = 0;
+        var elsLen = moduleEls.length;
 
-		for (; i < elsLen; i++) {
+        for (; i < elsLen; i++) {
 
-			// Current element
-			let el = moduleEls[i];
+            // Current element
+            let el = moduleEls[i];
 
-			// All data- attributes considered as options
-			let options = this.getElemData(el);
+            // All data- attributes considered as options
+            let options = getNodeData(el);
 
-			// Add current DOM element and jQuery element
-			options.el = el;
-			options.$el = $(el);
+            // Add current DOM element and jQuery element
+            options.el = el;
+            options.$el = $(el);
 
-			// Module does exist at this point
-			let attr = options.module;
+            // Module does exist at this point
+            let attr = options.module;
 
-			// Splitting modules found in the data-attribute
-			let moduleIdents = attr.replace(/\s/g, '').split(',');
+            // Splitting modules found in the data-attribute
+            let moduleIdents = attr.replace(/\s/g, '').split(',');
 
-			// Loop modules
-			let j = 0;
-			let modulesLen = moduleIdents.length;
+            // Loop modules
+            let j = 0;
+            let modulesLen = moduleIdents.length;
 
-			for (; j < modulesLen; j++) {
-				let moduleAttr = moduleIdents[j];
+            for (; j < modulesLen; j++) {
+                let moduleAttr = moduleIdents[j];
 
-				if (typeof this.modules[moduleAttr] === 'function') {
-					let module = new this.modules[moduleAttr](options);
-					this.currentModules.push(module);
-				}
-			}
-		}
+                if (typeof this.modules[moduleAttr] === 'function') {
+                    let module = new this.modules[moduleAttr](options);
+                    this.currentModules.push(module);
+                }
+            }
+        }
 
-		return this;
-	}
-
-	/**
-	 * Get element data attributes
-	 * @param   {DOMElement}  el
-	 * @return  {Array}       data
-	 */
-	getElemData(el) {
-		// All attributes
-		var attributes = el.attributes;
-
-		// Regex Pattern
-		var pattern = /^data\-(.+)$/;
-
-		// Output
-		var data = {};
-
-		for (let i in attributes) {
-			if (!attributes[i]) {
-				continue;
-			}
-
-			// Attributes name (ex: data-module)
-			let name = attributes[i].name;
-
-			// This happens.
-			if (!name) {
-				continue;
-			}
-
-			let match = name.match(pattern);
-			if (!match) {
-				continue;
-			}
-
-			// If this throws an error, you have some
-			// serious problems in your HTML.
-			data[match[1]] = el.getAttribute(name);
-		}
-
-		return data;
-	}
-
-	/**
-	 * Initialize app after document ready
-	 */
-	init() {
-		this.initGlobals().initModules();
-	}
+        return this;
+    }
 }
 
-$(function() {
-	window.app = new App();
-	window.app.init();
-});
+// IIFE for loading the application
+// ==========================================================================
+(function() {
+    window.App = new App();
+    $document.trigger({
+        type: 'initModules.App',
+        firstBlood: true
+    });
+})();

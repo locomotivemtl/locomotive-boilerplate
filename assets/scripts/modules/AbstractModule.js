@@ -12,5 +12,6 @@ export default class {
 		this.$html = $html;
 		this.$body = $body;
 		this.$el = options.$el;
+		this.el = options.el;
 	}
 }
