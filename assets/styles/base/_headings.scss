@@ -2,45 +2,45 @@
 // Headings
 // ==========================================================================
 @mixin h {
-	margin-top: 0;
-	line-height: $heading-line-height;
+    margin-top: 0;
+    line-height: $heading-line-height;
 }
 .o-h {
-	@include h;
+    @include h;
 }
 
 h1, .o-h1 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading1);
+    font-size: rem($heading1);
 }
 
 h2, .o-h2 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading2);
+    font-size: rem($heading2);
 }
 
 h3, .o-h3 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading3);
+    font-size: rem($heading3);
 }
 
 h4, .o-h4 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading4);
+    font-size: rem($heading4);
 }
 
 h5, .o-h5 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading5);
+    font-size: rem($heading5);
 }
 
 h6, .o-h6 {
-	@extend .o-h;
+    @extend .o-h;
 
-	font-size: rem($heading6);
+    font-size: rem($heading6);
 }
