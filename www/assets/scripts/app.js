@@ -27,39 +27,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var App = function () {
-				function App() {
-								var _this = this;
+                function App() {
+                                var _this = this;
 
-								_classCallCheck(this, App);
+                                _classCallCheck(this, App);
 
-								this.modules = modules;
-								this.currentModules = [];
+                                this.modules = modules;
+                                this.currentModules = [];
 
-								_environment.$document.on('initModules.App', function (event) {
-												_this.initGlobals(event.firstBlood).deleteModules().initModules();
-								});
-				}
+                                _environment.$document.on('initModules.App', function (event) {
+                                                _this.initGlobals(event.firstBlood).deleteModules().initModules();
+                                });
+                }
 
-				/**
+                /**
      * Destroy all existing modules
      * @return  {Object}  this  Allows chaining
      */
 
 
-				App.prototype.deleteModules = function deleteModules() {
-								// Loop modules
-								var i = this.currentModules.length;
+                App.prototype.deleteModules = function deleteModules() {
+                                // Loop modules
+                                var i = this.currentModules.length;
 
-								// Destroy all modules
-								while (i--) {
-												this.currentModules[i].destroy();
-												this.currentModules.splice(i);
-								}
+                                // Destroy all modules
+                                while (i--) {
+                                                this.currentModules[i].destroy();
+                                                this.currentModules.splice(i);
+                                }
 
-								return this;
-				};
+                                return this;
+                };
 
-				/**
+                /**
      * Execute global functions and settings
      * Allows you to initialize global modules only once if you need
      * (ex.: when using Barba.js or SmoothState.js)
@@ -67,61 +67,61 @@ var App = function () {
      */
 
 
-				App.prototype.initGlobals = function initGlobals(firstBlood) {
-								(0, _globals2.default)(firstBlood);
-								return this;
-				};
+                App.prototype.initGlobals = function initGlobals(firstBlood) {
+                                (0, _globals2.default)(firstBlood);
+                                return this;
+                };
 
-				/**
+                /**
      * Find modules and initialize them
      * @return  {Object}  this  Allows chaining
      */
 
 
-				App.prototype.initModules = function initModules() {
-								// Elements with module
-								var moduleEls = document.querySelectorAll('[data-module]');
+                App.prototype.initModules = function initModules() {
+                                // Elements with module
+                                var moduleEls = document.querySelectorAll('[data-module]');
 
-								// Loop through elements
-								var i = 0;
-								var elsLen = moduleEls.length;
+                                // Loop through elements
+                                var i = 0;
+                                var elsLen = moduleEls.length;
 
-								for (; i < elsLen; i++) {
+                                for (; i < elsLen; i++) {
 
-												// Current element
-												var el = moduleEls[i];
+                                                // Current element
+                                                var el = moduleEls[i];
 
-												// All data- attributes considered as options
-												var options = (0, _html.getNodeData)(el);
+                                                // All data- attributes considered as options
+                                                var options = (0, _html.getNodeData)(el);
 
-												// Add current DOM element and jQuery element
-												options.el = el;
-												options.$el = $(el);
+                                                // Add current DOM element and jQuery element
+                                                options.el = el;
+                                                options.$el = $(el);
 
-												// Module does exist at this point
-												var attr = options.module;
+                                                // Module does exist at this point
+                                                var attr = options.module;
 
-												// Splitting modules found in the data-attribute
-												var moduleIdents = attr.replace(/\s/g, '').split(',');
+                                                // Splitting modules found in the data-attribute
+                                                var moduleIdents = attr.replace(/\s/g, '').split(',');
 
-												// Loop modules
-												var j = 0;
-												var modulesLen = moduleIdents.length;
+                                                // Loop modules
+                                                var j = 0;
+                                                var modulesLen = moduleIdents.length;
 
-												for (; j < modulesLen; j++) {
-																var moduleAttr = moduleIdents[j];
+                                                for (; j < modulesLen; j++) {
+                                                                var moduleAttr = moduleIdents[j];
 
-																if (typeof this.modules[moduleAttr] === 'function') {
-																				var module = new this.modules[moduleAttr](options);
-																				this.currentModules.push(module);
-																}
-												}
-								}
+                                                                if (typeof this.modules[moduleAttr] === 'function') {
+                                                                                var module = new this.modules[moduleAttr](options);
+                                                                                this.currentModules.push(module);
+                                                                }
+                                                }
+                                }
 
-								return this;
-				};
+                                return this;
+                };
 
-				return App;
+                return App;
 }();
 
 // IIFE for loading the application
@@ -129,11 +129,11 @@ var App = function () {
 
 
 (function () {
-				window.App = new App();
-				_environment.$document.trigger({
-								type: 'initModules.App',
-								firstBlood: true
-				});
+                window.App = new App();
+                _environment.$document.trigger({
+                                type: 'initModules.App',
+                                firstBlood: true
+                });
 })();
 
 },{"./modules":3,"./utils/environment":8,"./utils/globals":9,"./utils/html":10}],2:[function(require,module,exports){
@@ -228,7 +228,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _environment = require('../utils/environment');
@@ -242,14 +242,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var _class = function _class(options) {
-	_classCallCheck(this, _class);
+    _classCallCheck(this, _class);
 
-	this.$document = _environment.$document;
-	this.$window = _environment.$window;
-	this.$html = _environment.$html;
-	this.$body = _environment.$body;
-	this.$el = options.$el;
-	this.el = options.el;
+    this.$document = _environment.$document;
+    this.$window = _environment.$window;
+    this.$html = _environment.$html;
+    this.$body = _environment.$body;
+    this.$el = options.$el;
+    this.el = options.el;
 };
 
 exports.default = _class;
@@ -258,7 +258,7 @@ exports.default = _class;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _AbstractModule2 = require('./AbstractModule');
@@ -275,24 +275,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_AbstractModule) {
-	_inherits(_class, _AbstractModule);
+    _inherits(_class, _AbstractModule);
 
-	function _class(options) {
-		_classCallCheck(this, _class);
+    function _class(options) {
+        _classCallCheck(this, _class);
 
-		var _this = _possibleConstructorReturn(this, _AbstractModule.call(this, options));
+        var _this = _possibleConstructorReturn(this, _AbstractModule.call(this, options));
 
-		_this.$el.on('click.Button', function (event) {
-			_this.$document.trigger('Title.changeLabel', [$(event.currentTarget).val()]);
-		});
-		return _this;
-	}
+        _this.$el.on('click.Button', function (event) {
+            _this.$document.trigger('Title.changeLabel', [$(event.currentTarget).val()]);
+        });
+        return _this;
+    }
 
-	_class.prototype.destroy = function destroy() {
-		this.$el.off('.Button');
-	};
+    _class.prototype.destroy = function destroy() {
+        this.$el.off('.Button');
+    };
 
-	return _class;
+    return _class;
 }(_AbstractModule3.default);
 
 exports.default = _class;
@@ -301,7 +301,7 @@ exports.default = _class;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _visibility = require('../utils/visibility');
@@ -320,65 +320,65 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_AbstractModule) {
-	_inherits(_class, _AbstractModule);
+    _inherits(_class, _AbstractModule);
 
-	function _class(options) {
-		_classCallCheck(this, _class);
+    function _class(options) {
+        _classCallCheck(this, _class);
 
-		var _this = _possibleConstructorReturn(this, _AbstractModule.call(this, options));
+        var _this = _possibleConstructorReturn(this, _AbstractModule.call(this, options));
 
-		_this.$label = _this.$el.find('.js-label');
+        _this.$label = _this.$el.find('.js-label');
 
-		_this.$document.on('Title.changeLabel', function (event, value) {
-			_this.changeLabel(value);
-			_this.destroy();
-		});
+        _this.$document.on('Title.changeLabel', function (event, value) {
+            _this.changeLabel(value);
+            _this.destroy();
+        });
 
-		_this.hiddenCallbackIdent = (0, _visibility.visibilityApi)({
-			action: 'addCallback',
-			state: 'hidden',
-			callback: _this.logHidden
-		});
+        _this.hiddenCallbackIdent = (0, _visibility.visibilityApi)({
+            action: 'addCallback',
+            state: 'hidden',
+            callback: _this.logHidden
+        });
 
-		_this.visibleCallbackIdent = (0, _visibility.visibilityApi)({
-			action: 'addCallback',
-			state: 'visible',
-			callback: _this.logVisible
-		});
-		return _this;
-	}
+        _this.visibleCallbackIdent = (0, _visibility.visibilityApi)({
+            action: 'addCallback',
+            state: 'visible',
+            callback: _this.logVisible
+        });
+        return _this;
+    }
 
-	_class.prototype.logHidden = function logHidden() {
-		console.log('Title is hidden');
-	};
+    _class.prototype.logHidden = function logHidden() {
+        console.log('Title is hidden');
+    };
 
-	_class.prototype.logVisible = function logVisible() {
-		console.log('Title is visible');
-	};
+    _class.prototype.logVisible = function logVisible() {
+        console.log('Title is visible');
+    };
 
-	_class.prototype.changeLabel = function changeLabel(value) {
-		this.$label.text(value);
-	};
+    _class.prototype.changeLabel = function changeLabel(value) {
+        this.$label.text(value);
+    };
 
-	_class.prototype.destroy = function destroy() {
-		this.$document.off('Title.changeLabel');
+    _class.prototype.destroy = function destroy() {
+        this.$document.off('Title.changeLabel');
 
-		(0, _visibility.visibilityApi)({
-			action: 'removeCallback',
-			state: 'hidden',
-			ident: this.hiddenCallbackIdent
-		});
+        (0, _visibility.visibilityApi)({
+            action: 'removeCallback',
+            state: 'hidden',
+            ident: this.hiddenCallbackIdent
+        });
 
-		(0, _visibility.visibilityApi)({
-			action: 'removeCallback',
-			state: 'visible',
-			ident: this.visibleCallbackIdent
-		});
+        (0, _visibility.visibilityApi)({
+            action: 'removeCallback',
+            state: 'visible',
+            ident: this.visibleCallbackIdent
+        });
 
-		this.$el.off('.Title');
-	};
+        this.$el.off('.Title');
+    };
 
-	return _class;
+    return _class;
 }(_AbstractModule3.default);
 
 exports.default = _class;
@@ -387,7 +387,7 @@ exports.default = _class;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 exports.addToArray = addToArray;
 exports.arrayContains = arrayContains;
@@ -401,86 +401,86 @@ exports.findByKeyValue = findByKeyValue;
 var _is = require('./is');
 
 function addToArray(array, value) {
-	var index = array.indexOf(value);
+    var index = array.indexOf(value);
 
-	if (index === -1) {
-		array.push(value);
-	}
+    if (index === -1) {
+        array.push(value);
+    }
 }
 
 function arrayContains(array, value) {
-	for (var i = 0, c = array.length; i < c; i++) {
-		if (array[i] == value) {
-			return true;
-		}
-	}
+    for (var i = 0, c = array.length; i < c; i++) {
+        if (array[i] == value) {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 function arrayContentsMatch(a, b) {
-	var i;
+    var i;
 
-	if (!(0, _is.isArray)(a) || !(0, _is.isArray)(b)) {
-		return false;
-	}
+    if (!(0, _is.isArray)(a) || !(0, _is.isArray)(b)) {
+        return false;
+    }
 
-	if (a.length !== b.length) {
-		return false;
-	}
+    if (a.length !== b.length) {
+        return false;
+    }
 
-	i = a.length;
-	while (i--) {
-		if (a[i] !== b[i]) {
-			return false;
-		}
-	}
+    i = a.length;
+    while (i--) {
+        if (a[i] !== b[i]) {
+            return false;
+        }
+    }
 
-	return true;
+    return true;
 }
 
 function ensureArray(x) {
-	if (typeof x === 'string') {
-		return [x];
-	}
+    if (typeof x === 'string') {
+        return [x];
+    }
 
-	if (x === undefined) {
-		return [];
-	}
+    if (x === undefined) {
+        return [];
+    }
 
-	return x;
+    return x;
 }
 
 function lastItem(array) {
-	return array[array.length - 1];
+    return array[array.length - 1];
 }
 
 function removeFromArray(array, member) {
-	if (!array) {
-		return;
-	}
+    if (!array) {
+        return;
+    }
 
-	var index = array.indexOf(member);
+    var index = array.indexOf(member);
 
-	if (index !== -1) {
-		array.splice(index, 1);
-	}
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
 }
 
 function toArray(arrayLike) {
-	var array = [],
-	    i = arrayLike.length;
-	while (i--) {
-		array[i] = arrayLike[i];
-	}
+    var array = [],
+        i = arrayLike.length;
+    while (i--) {
+        array[i] = arrayLike[i];
+    }
 
-	return array;
+    return array;
 }
 
 function findByKeyValue(array, key, value) {
-	return array.filter(function (obj) {
-		return obj[key] === value;
-	});
+    return array.filter(function (obj) {
+        return obj[key] === value;
+    });
 }
 
 },{"./is":11}],8:[function(require,module,exports){
@@ -503,11 +503,11 @@ exports.$body = $body;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 exports.default = function () {
-	svg4everybody();
+    svg4everybody();
 };
 
 },{}],10:[function(require,module,exports){
@@ -580,7 +580,7 @@ function getNodeData(node) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -596,44 +596,44 @@ var toString = Object.prototype.toString,
 
 // thanks, http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
 function isArray(thing) {
-	return toString.call(thing) === '[object Array]';
+    return toString.call(thing) === '[object Array]';
 }
 
 function isArrayLike(obj) {
-	return arrayLikePattern.test(toString.call(obj));
+    return arrayLikePattern.test(toString.call(obj));
 }
 
 function isEqual(a, b) {
-	if (a === null && b === null) {
-		return true;
-	}
+    if (a === null && b === null) {
+        return true;
+    }
 
-	if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object' || (typeof b === 'undefined' ? 'undefined' : _typeof(b)) === 'object') {
-		return false;
-	}
+    if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object' || (typeof b === 'undefined' ? 'undefined' : _typeof(b)) === 'object') {
+        return false;
+    }
 
-	return a === b;
+    return a === b;
 }
 
 // http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
 function isNumeric(thing) {
-	return !isNaN(parseFloat(thing)) && isFinite(thing);
+    return !isNaN(parseFloat(thing)) && isFinite(thing);
 }
 
 function isObject(thing) {
-	return thing && toString.call(thing) === '[object Object]';
+    return thing && toString.call(thing) === '[object Object]';
 }
 
 function isFunction(thing) {
-	var getType = {};
-	return thing && getType.toString.call(thing) === '[object Function]';
+    var getType = {};
+    return thing && getType.toString.call(thing) === '[object Function]';
 }
 
 },{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 exports.visibilityApi = undefined;
 
@@ -644,8 +644,8 @@ var _array = require('./array');
 var _environment = require('./environment');
 
 var CALLBACKS = {
-	hidden: [],
-	visible: []
+    hidden: [],
+    visible: []
 }; /* jshint esnext: true */
 
 
@@ -659,11 +659,11 @@ var UUID = 0;
 
 // Main event
 _environment.$document.on('visibilitychange', function (event) {
-	if (document.hidden) {
-		onDocumentChange('hidden');
-	} else {
-		onDocumentChange('visible');
-	}
+    if (document.hidden) {
+        onDocumentChange('hidden');
+    } else {
+        onDocumentChange('visible');
+    }
 });
 
 /**
@@ -673,21 +673,21 @@ _environment.$document.on('visibilitychange', function (event) {
  * @return {string}  ident
  */
 function addCallback(state, options) {
-	var callback = options.callback || '';
+    var callback = options.callback || '';
 
-	if (!(0, _is.isFunction)(callback)) {
-		console.warn('Callback is not a function');
-		return false;
-	}
+    if (!(0, _is.isFunction)(callback)) {
+        console.warn('Callback is not a function');
+        return false;
+    }
 
-	var ident = PREFIX + UUID++;
+    var ident = PREFIX + UUID++;
 
-	CALLBACKS[state].push({
-		ident: ident,
-		callback: callback
-	});
+    CALLBACKS[state].push({
+        ident: ident,
+        callback: callback
+    });
 
-	return ident;
+    return ident;
 }
 
 /**
@@ -697,25 +697,25 @@ function addCallback(state, options) {
  * @return {boolean}         If operation was a success
  */
 function removeCallback(state, options) {
-	var ident = options.ident || '';
+    var ident = options.ident || '';
 
-	if (typeof ident === 'undefined' || ident === '') {
-		console.warn('Need ident to remove callback');
-		return false;
-	}
+    if (typeof ident === 'undefined' || ident === '') {
+        console.warn('Need ident to remove callback');
+        return false;
+    }
 
-	var index = (0, _array.findByKeyValue)(CALLBACKS[state], 'ident', ident)[0];
+    var index = (0, _array.findByKeyValue)(CALLBACKS[state], 'ident', ident)[0];
 
-	// console.log(ident)
-	// console.log(CALLBACKS[state])
+    // console.log(ident)
+    // console.log(CALLBACKS[state])
 
-	if (typeof index !== 'undefined') {
-		(0, _array.removeFromArray)(CALLBACKS[state], index);
-		return true;
-	} else {
-		console.warn('Callback could not be found');
-		return false;
-	}
+    if (typeof index !== 'undefined') {
+        (0, _array.removeFromArray)(CALLBACKS[state], index);
+        return true;
+    } else {
+        console.warn('Callback could not be found');
+        return false;
+    }
 }
 
 /**
@@ -723,13 +723,13 @@ function removeCallback(state, options) {
  * @param  {string}  state  Visible or hidden
  */
 function onDocumentChange(state) {
-	var callbackArray = CALLBACKS[state];
-	var i = 0;
-	var len = callbackArray.length;
+    var callbackArray = CALLBACKS[state];
+    var i = 0;
+    var len = callbackArray.length;
 
-	for (; i < len; i++) {
-		callbackArray[i].callback();
-	}
+    for (; i < len; i++) {
+        callbackArray[i].callback();
+    }
 }
 
 /**
@@ -738,28 +738,28 @@ function onDocumentChange(state) {
  * @return  {boolean|integer}           Unique identifier for the callback or boolean indicating success or failure
  */
 function visibilityApi(options) {
-	var action = options.action || '';
-	var state = options.state || '';
-	var ret = void 0;
+    var action = options.action || '';
+    var state = options.state || '';
+    var ret = void 0;
 
-	// Type and value checking
-	if (!(0, _array.arrayContains)(ACTIONS, action)) {
-		console.warn('Action does not exist');
-		return false;
-	}
-	if (!(0, _array.arrayContains)(STATES, state)) {
-		console.warn('State does not exist');
-		return false;
-	}
+    // Type and value checking
+    if (!(0, _array.arrayContains)(ACTIONS, action)) {
+        console.warn('Action does not exist');
+        return false;
+    }
+    if (!(0, _array.arrayContains)(STATES, state)) {
+        console.warn('State does not exist');
+        return false;
+    }
 
-	// @todo Magic call function pls
-	if (action === 'addCallback') {
-		ret = addCallback(state, options);
-	} else if (action === 'removeCallback') {
-		ret = removeCallback(state, options);
-	}
+    // @todo Magic call function pls
+    if (action === 'addCallback') {
+        ret = addCallback(state, options);
+    } else if (action === 'removeCallback') {
+        ret = removeCallback(state, options);
+    }
 
-	return ret;
+    return ret;
 }
 
 exports.visibilityApi = visibilityApi;

@@ -2,18 +2,18 @@
 // Button objects
 // ==========================================================================
 .o-button {
-	padding: rem(10px);
-	background-color: lightgray;
+    padding: rem(10px);
+    background-color: lightgray;
 
-	&:focus {
-		background-color: darkgray;
-	}
+    &:focus {
+        background-color: darkgray;
+    }
 
-	&:hover {
-		background-color: gray;
-	}
+    &:hover {
+        background-color: gray;
+    }
 
-	&:active {
-		background-color: dimgray;
-	}
+    &:active {
+        background-color: dimgray;
+    }
 }

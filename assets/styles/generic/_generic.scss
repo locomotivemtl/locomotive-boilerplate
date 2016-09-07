@@ -2,11 +2,11 @@
 // Generic resets
 // ==========================================================================
 html {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *, *:before, *:after {
-	box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 audio,
@@ -15,5 +15,5 @@ iframe,
 img,
 svg,
 video {
-	vertical-align: middle;
+    vertical-align: middle;
 }

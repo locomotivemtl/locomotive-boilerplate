@@ -9,50 +9,50 @@ import globals from './utils/globals';
 import * as modules from './modules';
 
 class App {
-	constructor() {
-		this.modules = modules;
-		this.currentModules = [];
+    constructor() {
+        this.modules = modules;
+        this.currentModules = [];
 
-		$document.on('initModules.App', (event) => {
-			this.initGlobals(event.firstBlood)
-				.deleteModules()
-				.initModules();
-		});
-	}
+        $document.on('initModules.App', (event) => {
+            this.initGlobals(event.firstBlood)
+                .deleteModules()
+                .initModules();
+        });
+    }
 
-	/**
-	 * Destroy all existing modules
-	 * @return  {Object}  this  Allows chaining
-	 */
-	deleteModules() {
-		// Loop modules
-		var i = this.currentModules.length;
+    /**
+     * Destroy all existing modules
+     * @return  {Object}  this  Allows chaining
+     */
+    deleteModules() {
+        // Loop modules
+        var i = this.currentModules.length;
 
-		// Destroy all modules
-		while (i--) {
-			this.currentModules[i].destroy();
-			this.currentModules.splice(i);
-		}
+        // Destroy all modules
+        while (i--) {
+            this.currentModules[i].destroy();
+            this.currentModules.splice(i);
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	/**
-	 * Execute global functions and settings
-	 * Allows you to initialize global modules only once if you need
-	 * (ex.: when using Barba.js or SmoothState.js)
-	 * @return  {Object}  this  Allows chaining
-	 */
-	initGlobals(firstBlood) {
-		globals(firstBlood);
-		return this;
-	}
+    /**
+     * Execute global functions and settings
+     * Allows you to initialize global modules only once if you need
+     * (ex.: when using Barba.js or SmoothState.js)
+     * @return  {Object}  this  Allows chaining
+     */
+    initGlobals(firstBlood) {
+        globals(firstBlood);
+        return this;
+    }
 
-	/**
-	 * Find modules and initialize them
-	 * @return  {Object}  this  Allows chaining
-	 */
-	initModules() {
+    /**
+     * Find modules and initialize them
+     * @return  {Object}  this  Allows chaining
+     */
+    initModules() {
         // Elements with module
         var moduleEls = document.querySelectorAll('[data-module]');
 
