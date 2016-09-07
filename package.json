@@ -24,8 +24,7 @@
     "grunt-phplint": "0.0.0",
     "grunt-postcss": "0.0.0",
     "grunt-sass": "0.0.0",
-    "grunt-svgmin": "0.0.0",
-    "grunt-svgstore": "0.0.0",
+    "grunt-svg-sprite": "0.0.0",
     "load-grunt-config": "0.0.0",
     "postcss-banner": "0.0.0",
     "svg4everybody": "0.0.0"
