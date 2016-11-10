@@ -12,7 +12,7 @@ module.exports = {
         tasks: [ 'sass', 'postcss', 'notify:sass' ]
     },
     svg: {
-        files: [ '<%= paths.img.dist %>/**/*.svg' ],
+        files: [ '<%= paths.img.src %>/**/*.svg' ],
         tasks: [ 'svg_sprite', 'notify:svg' ]
     },
     tasks: {
