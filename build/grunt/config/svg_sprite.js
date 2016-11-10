@@ -11,7 +11,7 @@ module.exports = {
     },
     prod: {
         expand  : true,
-        cwd     : '<%= paths.img.dist %>',
+        cwd     : '<%= paths.img.src %>',
         src     : [ '**/*.svg', '!sprite.svg' ],
         dest    : '<%= paths.img.dist %>',
         options : {
