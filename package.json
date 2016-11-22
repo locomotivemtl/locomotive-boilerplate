@@ -8,6 +8,7 @@
         "autoprefixer": "0.0.0",
         "babel-preset-es2015": "0.0.0",
         "babel-plugin-transform-es2015-classes": "0.0.0",
+        "babel-plugin-transform-export-extensions": "0.0.0",
         "babelify": "0.0.0",
         "eslint-tap": "0.0.0",
         "glob": "0.0.0",
