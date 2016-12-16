@@ -55,7 +55,41 @@ export function getNodeData(node) {
 
         // If this throws an error, you have some
         // serious problems in your HTML.
-        data[match[1]] = node.getAttribute(name);
+        data[match[1]] = getData(node.getAttribute(name));
+    }
+
+    return data;
+}
+
+var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
+
+/**
+ * Parse value to data type.
+ *
+ * @link   https://github.com/jquery/jquery/blob/3.1.1/src/data.js
+ * @param  {string} data - A value to convert.
+ * @return {mixed}  Returns the value in its natural data type.
+ */
+export function getData(data) {
+    if (data === 'true') {
+        return true;
+    }
+
+    if (data === 'false') {
+        return false;
+    }
+
+    if (data === 'null') {
+        return null;
+    }
+
+    // Only convert to a number if it doesn't change the string
+    if (data === +data+'') {
+        return +data;
+    }
+
+    if (rbrace.test( data )) {
+        return JSON.parse( data );
     }
 
     return data;
