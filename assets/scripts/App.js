@@ -76,7 +76,7 @@ class App {
             let attr = options.module;
 
             // Splitting modules found in the data-attribute
-            let moduleIdents = attr.replace(/\s/g, '').split(',');
+            let moduleIdents = attr.split(/,\s*|\s+/g);
 
             // Loop modules
             let j = 0;
