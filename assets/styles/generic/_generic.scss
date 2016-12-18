@@ -1,19 +1,91 @@
-// ==========================================================================
-// Generic resets
-// ==========================================================================
+/**
+ * Generic
+ * =============================================================================
+ */
+
 html {
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
+/**
+ * Add the correct display in IE 10-.
+ * 1. Add the correct display in IE.
+ */
+template, /* [1] */
+[hidden] {
+    display: none;
+}
+
+*,
+:before,
+:after {
     box-sizing: inherit;
 }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-    vertical-align: middle;
+address {
+    font-style: inherit;
+}
+
+dfn,
+cite,
+em,
+i {
+    font-style: italic;
+}
+
+b,
+strong {
+    font-weight: $bold;
+}
+
+a {
+    text-decoration: none;
+
+    @include u-hocus {
+        text-decoration: underline;
+    }
+
+    svg {
+        pointer-events: none;
+    }
+}
+
+/**
+ * 1. Single taps should be dispatched immediately on clickable elements
+ */
+a, area, button, input, label, select, textarea, [tabindex] {
+    -ms-touch-action: manipulation; /* [1] */
+    touch-action: manipulation;
+}
+
+[hreflang] > abbr[title] {
+    text-decoration: none;
+}
+
+mark {
+    background-color: $highlighted-background-color;
+    text-decoration:  none;
+}
+
+del {
+    background-color: $deleted-background-color;
+    text-decoration:  none;
+}
+
+ins {
+    background-color: $inserted-background-color;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+hr {
+    display:    block;
+    margin:     1em 0;
+    padding:    0;
+    height:     1px;
+    border:     0;
+    border-top: 1px solid $gray;
 }

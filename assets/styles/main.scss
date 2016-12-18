@@ -1,7 +1,67 @@
 /**
- * Front-end Styles
- *
- * @package Boilerplate
+ * Boilerplate Front-end Styles
+ * =============================================================================
  */
 
-@import "_imports.scss";
+// Settings ====================================================================
+
+@import "settings/config.colors";
+@import "settings/config";
+@import "settings/core.animations";
+@import "settings/core";
+@import "settings/config.aliases";
+
+// Tools =======================================================================
+
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/fonts";
+@import "tools/layout";
+// @import "tools/ratio";
+// @import "tools/widths";
+
+// Generic =====================================================================
+
+@import "generic/normalize";
+@import "generic/generic";
+@import "generic/media";
+@import "generic/form";
+@import "generic/button";
+
+// Base ========================================================================
+
+@import "base/fonts";
+@import "base/page";
+@import "base/headings";
+
+// Objects =====================================================================
+
+@import "objects/container";
+// @import "objects/crop";
+// @import "objects/ratio";
+// @import "objects/table";
+@import "objects/layout";
+@import "objects/form";
+@import "objects/button";
+
+// Vendors =====================================================================
+
+// @import "vendors/foobar";
+
+// Components ==================================================================
+
+// @import "components/bazqux";
+
+// Templates ===================================================================
+
+// @import "templates/xyzzy";
+
+// Utilities ===================================================================
+
+// @import "utilities/align";
+@import "utilities/helpers";
+// @import "utilities/states";
+// @import "utilities/headings";
+// @import "utilities/spacing";
+// @import "utilities/widths";
+// @import "utilities/print";

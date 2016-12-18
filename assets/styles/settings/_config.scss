@@ -1,0 +1,76 @@
+///
+/// Settings / Config
+/// ============================================================================
+///
+
+// Typefaces
+// =============================================================================
+
+$font-foobar:        Foobar;
+$font-bazqux:        Bazqux;
+
+$font-foobar-stack:  $font-foobar, Arial, Helvetica, sans-serif;
+$font-bazqux-stack:  $font-bazqux, "Times New Roman", serif;
+
+
+
+// Typography
+// =============================================================================
+
+$global-font-color:   #222222;
+$global-font-family:  sans-serif;
+$global-font-size:    16px;
+$global-line-height:  24px;
+
+
+
+// Animations
+// =============================================================================
+
+$global-transition:  all 300ms ease-in-out;
+
+$speed:   0.3s;
+$easing:  linear;
+$bounce:  cubic-bezier(0.17, 0.67, 0.6, 1.38);
+
+
+
+// Breakpoints
+// =============================================================================
+
+$from-tiny:   500px             !default;
+$to-tiny:     $from-tiny - 1    !default;
+$from-small:  700px             !default;
+$to-small:    $from-small - 1   !default;
+$from-medium: 1000px            !default;
+$to-medium:   $from-medium - 1  !default;
+$from-large:  1200px            !default;
+$to-large:    $from-large - 1   !default;
+$from-big:    1440px            !default;
+$to-big:      $from-big - 1     !default;
+$from-huge:   1600px            !default;
+$to-huge:     $from-huge - 1    !default;
+
+// Alternatively: mobile, tablet, laptop, desktop, wide
+
+$mq-breakpoints: (
+    tiny:    $from-tiny,
+    small:   $from-small,
+    medium:  $from-medium,
+    large:   $from-large,
+    big:     $from-big,
+    huge:    $from-huge
+) !default;
+
+
+
+// Content
+// =============================================================================
+
+$wysiwyg-editor-class:   '.mce-content-body' !default;
+$wysiwyg-display-class:  '.s-content-body' !default;
+
+// From TinyMCE, paths are relative to the public root
+// @if ( is_editor() ) {
+//     $assets-path: 'assets/boilerplate/';
+// }

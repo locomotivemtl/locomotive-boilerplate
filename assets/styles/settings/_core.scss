@@ -1,0 +1,90 @@
+///
+/// Settings / Core
+/// ============================================================================
+///
+
+// Context
+// =============================================================================
+
+// The current stylesheet context. Available values: frontend, editor.
+$context: frontend  !default;
+
+// Path is relative to the stylesheets directory.
+$assets-path: '../'  !default;
+
+
+
+// Private / Framework
+// =============================================================================
+
+///
+/// Do not alter anything below.
+///
+/// @link https://github.com/inuitcss/inuitcss/tree/0d35f60/settings
+///
+
+
+// Base typographical styles and baseline grid. You need to define these values
+// in pixels: inuitcss will convert them to more appropriate units.
+
+@if (variable-exists(global-font-size) == false) {
+    @error "Undefined variable: `$global-font-size`.";
+}
+
+@if (variable-exists(global-line-height) == false) {
+    @error "Undefined variable: `$global-line-height`.";
+}
+
+
+// Spacing values are determined based on your project’s global line height (i.e
+// your baseline grid). It is not recommended that you modify these following
+// variables (it can break your vertical rhythm), but if you need to, you can.
+
+$global-spacing-unit: round($global-line-height) !default;
+
+
+// How many times larger/smaller than the default should our spacing unit
+// variants be?
+
+$global-spacing-unit-factor-tiny:   0.25 !default;
+$global-spacing-unit-factor-small:  0.5  !default;
+$global-spacing-unit-factor-large:  2    !default;
+$global-spacing-unit-factor-huge:   4    !default;
+
+
+// Check that the chosen font rules are pixel numbers.
+
+@each $_font-globals in
+            $global-font-size
+            $global-line-height {
+    @if (type-of($_font-globals) == number) {
+        @if (unit($_font-globals) != "px") {
+            @error "`#{$_font-globals}` needs to be a pixel value.";
+        }
+    } @else {
+        @error "`#{$_font-globals}` needs to be a number.";
+    }
+}
+
+
+// Check that the chosen size factors are unitless numbers.
+
+@each $_spacing-unit in
+            $global-spacing-unit-factor-tiny
+            $global-spacing-unit-factor-small
+            $global-spacing-unit-factor-large
+            $global-spacing-unit-factor-huge {
+    @if (type-of($_spacing-unit) == number) {
+        @if (unitless($_spacing-unit) == false) {
+            @error "`#{$_spacing-unit}` needs to be unitless.";
+        }
+    } @else {
+        @error "`#{$_spacing-unit}` needs to be a number.";
+    }
+}
+
+
+$global-spacing-unit-tiny:  round($global-spacing-unit * $global-spacing-unit-factor-tiny);
+$global-spacing-unit-small: round($global-spacing-unit * $global-spacing-unit-factor-small);
+$global-spacing-unit-large: round($global-spacing-unit * $global-spacing-unit-factor-large);
+$global-spacing-unit-huge:  round($global-spacing-unit * $global-spacing-unit-factor-huge);
