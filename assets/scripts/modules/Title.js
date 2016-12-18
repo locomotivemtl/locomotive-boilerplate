@@ -1,58 +1,76 @@
 /* jshint esnext: true */
-import { visibilityApi } from '../utils/visibility';
 import AbstractModule from './AbstractModule';
+import { visibilityApi } from '../utils/visibility';
+import { $document, APP_NAME, DATA_API_KEY } from '../utils/environment';
 
-export default class extends AbstractModule {
-    constructor(options) {
+const DATA_KEY  = `${APP_NAME}.Title`;
+const EVENT_KEY = `.${DATA_KEY}`;
+
+const Event = {
+    CHANGE_LABEL : `changeLabel${EVENT_KEY}`
+};
+
+const Selector = {
+    LABEL : '.js-label'
+}
+
+export default class extends AbstractModule
+{
+    constructor(options)
+    {
         super(options);
 
-        this.$label = this.$el.find('.js-label');
+        this.$label = this.$el.find(Selector.LABEL);
 
-        this.$document.on('Title.changeLabel', (event, value) => {
+        $document.on(Event.CHANGE_LABEL, (event, value) => {
             this.changeLabel(value);
             this.destroy();
         });
 
         this.hiddenCallbackIdent = visibilityApi({
-            action: 'addCallback',
-            state: 'hidden',
+            action:   'addCallback',
+            state:    'hidden',
             callback: this.logHidden
         });
 
         this.visibleCallbackIdent = visibilityApi({
-            action: 'addCallback',
-            state: 'visible',
+            action:   'addCallback',
+            state:    'visible',
             callback: this.logVisible
         });
     }
 
-    logHidden() {
+    logHidden()
+    {
         console.log('Title is hidden');
     }
 
-    logVisible() {
+    logVisible()
+    {
         console.log('Title is visible');
     }
 
-    changeLabel(value) {
+    changeLabel(value)
+    {
         this.$label.text(value);
     }
 
-    destroy() {
-        this.$document.off('Title.changeLabel');
+    destroy()
+    {
+        $document.off(EVENT_KEY);
+
+        this.$el.off(EVENT_KEY);
 
         visibilityApi({
             action: 'removeCallback',
-            state: 'hidden',
-            ident: this.hiddenCallbackIdent
+            state:  'hidden',
+            ident:   this.hiddenCallbackIdent
         });
 
         visibilityApi({
             action: 'removeCallback',
-            state: 'visible',
-            ident: this.visibleCallbackIdent
+            state:  'visible',
+            ident:   this.visibleCallbackIdent
         });
-
-        this.$el.off('.Title');
     }
 }
