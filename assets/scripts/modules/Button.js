@@ -1,16 +1,30 @@
 /* jshint esnext: true */
 import AbstractModule from './AbstractModule';
+import { $document, APP_NAME, DATA_API_KEY } from '../utils/environment';
 
-export default class extends AbstractModule {
-    constructor(options) {
+const DATA_KEY  = `${APP_NAME}.button`;
+const EVENT_KEY = `.${DATA_KEY}`;
+
+const Event = {
+    CLICK : `click${EVENT_KEY}`
+};
+
+/**
+ * Button
+ */
+export default class extends AbstractModule
+{
+    constructor(options)
+    {
         super(options);
 
-        this.$el.on('click.Button', (event) => {
-            this.$document.trigger('Title.changeLabel', [$(event.currentTarget).val()]);
+        this.$el.on(Event.CLICK, (event) => {
+            $document.trigger(`changeLabel.Title.${APP_NAME}`, [ $(event.currentTarget).val() ]);
         });
     }
 
-    destroy() {
-        this.$el.off('.Button');
+    destroy()
+    {
+        this.$el.off(EVENT_KEY);
     }
 }

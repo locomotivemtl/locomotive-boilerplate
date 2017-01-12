@@ -69,7 +69,7 @@ class App {
             let options = getNodeData(el);
 
             // Add current DOM element and jQuery element
-            options.el = el;
+            options.el  = el;
             options.$el = $(el);
 
             // Module does exist at this point
