@@ -1,11 +1,10 @@
-/**
- * Objects / Ratio
- * =============================================================================
- */
+// ==========================================================================
+// Objects / Ratio
+// ==========================================================================
 
-///
-/// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.ratio.scss
-///
+//
+// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.ratio.scss
+//
 
 // A list of aspect ratios that get generated as modifier classes.
 
@@ -53,13 +52,13 @@ $aspect-ratios: (
 
 /* stylelint-disable */
 
-///
-/// Generate a series of ratio classes to be used like so:
-///
-/// @example
-///   <div class="o-ratio -16:9">
-///
-///
+//
+// Generate a series of ratio classes to be used like so:
+//
+// @example
+//   <div class="o-ratio -16:9">
+//
+//
 .o-ratio {
     @each $ratio in $aspect-ratios {
         @each $antecedent, $consequent in $ratio {

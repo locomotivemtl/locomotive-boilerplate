@@ -1,7 +1,6 @@
-/**
- * Utilities / Spacing
- * =============================================================================
- */
+// ==========================================================================
+// Utilities / Spacing
+// ==========================================================================
 
 ////
 /// Utility classes to put specific spacing values onto elements. The below loop
@@ -37,11 +36,8 @@ $spacing-properties: (
 ) !default;
 
 $spacing-sizes: (
-    null:     $global-spacing-unit,
-    '-tiny':  $global-spacing-unit-tiny,
-    '-small': $global-spacing-unit-small,
-    '-large': $global-spacing-unit-large,
-    '-huge':  $global-spacing-unit-huge,
+    null:     $unit,
+    '-small': $unit-small,
     '-none':  0
 ) !default;
 

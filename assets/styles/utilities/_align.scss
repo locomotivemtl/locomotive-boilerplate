@@ -1,26 +1,19 @@
-/**
- * Utilities / Alignment
- * =============================================================================
- */
+// ==========================================================================
+// Utilities / Alignment
+// ==========================================================================
 
-/**
- * Floats
- */
-
-.u-pull-left {
+// Floats
+// ==========================================================================
+.u-float-left {
     float: left !important;
 }
 
-.u-pull-right {
+.u-float-right {
     float: right !important;
 }
 
-
-
-/**
- * Horizontal Text Alignment
- */
-
+// Horizontal Text
+// ==========================================================================
 .u-text-center {
     text-align: center !important;
 }
@@ -33,12 +26,8 @@
     text-align: right !important;
 }
 
-
-
-/**
- * Vertical Text Alignment
- */
-
+// Vertical Text
+// ==========================================================================
 .u-align-baseline {
     vertical-align: baseline !important;
 }

@@ -1,16 +1,15 @@
-/**
- * Generic
- * =============================================================================
- */
+// ==========================================================================
+// Generic
+// ==========================================================================
 
 html {
     box-sizing: border-box;
 }
 
-/**
- * Add the correct display in IE 10-.
- * 1. Add the correct display in IE.
- */
+//
+// Add the correct display in IE 10-.
+// 1. Add the correct display in IE.
+//
 template, /* [1] */
 [hidden] {
     display: none;
@@ -41,10 +40,6 @@ strong {
 a {
     text-decoration: none;
 
-    @include u-hocus {
-        text-decoration: underline;
-    }
-
     svg {
         pointer-events: none;
     }
@@ -62,20 +57,6 @@ a, area, button, input, label, select, textarea, [tabindex] {
     text-decoration: none;
 }
 
-mark {
-    background-color: $highlighted-background-color;
-    text-decoration:  none;
-}
-
-del {
-    background-color: $deleted-background-color;
-    text-decoration:  none;
-}
-
-ins {
-    background-color: $inserted-background-color;
-}
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -87,5 +68,5 @@ hr {
     padding:    0;
     height:     1px;
     border:     0;
-    border-top: 1px solid $gray;
+    border-top: 1px solid #cccccc;
 }

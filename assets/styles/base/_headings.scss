@@ -1,42 +1,32 @@
-/**
- * Base / Headings
- * =============================================================================
- */
-
-$font-size-h1:  36px  !default;
-$font-size-h2:  28px  !default;
-$font-size-h3:  24px  !default;
-$font-size-h4:  20px  !default;
-$font-size-h5:  18px  !default;
-$font-size-h6:  16px  !default;
-
-$headings: 1 2 3 4 5 6  !default;
+// ==========================================================================
+// Base / Headings
+// ==========================================================================
 
 @mixin h {
     margin-top:  0;
-    line-height: $global-line-height;
+    line-height: $line-height-h;
 }
 
-/**
- * Provide a generic class to apply common heading styles.
- *
- * @example
- *   <p class="u-h"></p>
- *
- */
+//
+// Provide a generic class to apply common heading styles.
+//
+// @example
+//   <p class="u-h"></p>
+//
+//
 .o-h {
     @include h;
 }
 
-/**
- * Styles for headings 1 through 6 with classes to provide
- * a double stranded heading hierarchy, e.g. we semantically
- * need an H2, but we want it to be sized like an H1:
- *
- * @example
- *   <h2 class="o-h1"></h2>
- *
- */
+//
+// Styles for headings 1 through 6 with classes to provide
+// a double stranded heading hierarchy, e.g. we semantically
+// need an H2, but we want it to be sized like an H1:
+//
+// @example
+//   <h2 class="o-h1"></h2>
+//
+//
 h1, .o-h1 {
     @extend .o-h;
 

@@ -1,18 +1,15 @@
-/**
- * Boilerplate Front-end Styles
- * =============================================================================
- */
+// ==========================================================================
+// Main
+// ==========================================================================
 
-// Settings ====================================================================
-
+// Settings
+// ==========================================================================
 @import "settings/config.colors";
 @import "settings/config";
-@import "settings/core.animations";
-@import "settings/core";
-@import "settings/config.aliases";
 
-// Tools =======================================================================
-
+// ==========================================================================
+// Tools
+// ==========================================================================
 @import "tools/functions";
 @import "tools/mixins";
 @import "tools/fonts";
@@ -20,22 +17,22 @@
 // @import "tools/ratio";
 // @import "tools/widths";
 
-// Generic =====================================================================
-
+// Generic
+// ==========================================================================
 @import "generic/normalize";
 @import "generic/generic";
 @import "generic/media";
 @import "generic/form";
 @import "generic/button";
 
-// Base ========================================================================
-
+// Base
+// ==========================================================================
 @import "base/fonts";
 @import "base/page";
 @import "base/headings";
 
-// Objects =====================================================================
-
+// Objects
+// ==========================================================================
 @import "objects/container";
 // @import "objects/crop";
 // @import "objects/ratio";
@@ -44,22 +41,22 @@
 @import "objects/form";
 @import "objects/button";
 
-// Vendors =====================================================================
+// Vendors
+// ==========================================================================
+// @import "vendors/vendor";
 
-// @import "vendors/foobar";
+// Components
+// ==========================================================================
+// @import "components/component";
 
-// Components ==================================================================
+// Templates
+// ==========================================================================
+// @import "templates/template";
 
-// @import "components/bazqux";
-
-// Templates ===================================================================
-
-// @import "templates/xyzzy";
-
-// Utilities ===================================================================
-
+// Utilities
+// ==========================================================================
 // @import "utilities/align";
-@import "utilities/helpers";
+// @import "utilities/helpers";
 // @import "utilities/states";
 // @import "utilities/headings";
 // @import "utilities/spacing";

@@ -1,19 +1,16 @@
-/**
- * Objects / Container
- * =============================================================================
- */
+// ==========================================================================
+// Objects / Container
+// ==========================================================================
 
-/**
- * Page-level constraining and wrapping elements.
- *
- * > In programming languages the word *container* is generally used for structures
- * that can contain more than one element.
- * > A *wrapper* instead is something that wraps around a single object to provide
- * more functionalities and interfaces to it.
- * @link http://stackoverflow.com/a/13202141/140357
- */
-
-$container-width: 2000px !default;
+//
+// Page-level constraining and wrapping elements.
+//
+// > In programming languages the word *container* is generally used for structures
+// that can contain more than one element.
+// > A *wrapper* instead is something that wraps around a single object to provide
+// more functionalities and interfaces to it.
+// @link http://stackoverflow.com/a/13202141/140357
+//
 
 /* stylelint-disable */
 @if (type-of($container-width) != number) {
@@ -22,37 +19,9 @@ $container-width: 2000px !default;
 /* stylelint-enable */
 
 .o-container {
-    padding-right: $global-spacing-unit;
-    padding-left:  $global-spacing-unit;
+    padding-right: $padding;
+    padding-left:  $padding;
     margin-right:  auto;
     margin-left:   auto;
     max-width:     $container-width;
-
-/* Size variants.
-   ========================================================================== */
-
-    &.-gutter {
-        padding-right: $global-spacing-unit;
-        padding-left:  $global-spacing-unit;
-    }
-
-    &.-tiny {
-        padding-right: $global-spacing-unit-tiny;
-        padding-left:  $global-spacing-unit-tiny;
-    }
-
-    &.-small {
-        padding-right: $global-spacing-unit-small;
-        padding-left:  $global-spacing-unit-small;
-    }
-
-    &.-large {
-        padding-right: $global-spacing-unit-large;
-        padding-left:  $global-spacing-unit-large;
-    }
-
-    &.-huge {
-        padding-right: $global-spacing-unit-huge;
-        padding-left:  $global-spacing-unit-huge;
-    }
 }

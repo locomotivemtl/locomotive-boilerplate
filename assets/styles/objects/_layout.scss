@@ -1,121 +1,80 @@
-/**
- * Objects / Layout
- * =============================================================================
- */
+// ==========================================================================
+// Objects / Layout
+// ==========================================================================
 
-///
-/// Grid-like layout system.
-///
-/// The layout object provides us with a column-style layout system. This file
-/// contains the basic structural elements, but classes should be complemented
-/// with width utilities, for example:
-///
-/// @example
-///   <div class="o-layout">
-///     <div class="o-layout_item  u-1/1  u-1/3@medium">
-///     </div>
-///     <div class="o-layout_item  u-1/2  u-1/3@medium">
-///     </div>
-///     <div class="o-layout_item  u-1/2  u-1/3@medium">
-///     </div>
-///   </div>
-///
-/// We can also manipulate entire layout systems by adding a series of modifiers
-/// to the `.o-layout` block. For example:
-///
-/// @example
-///   <div class="o-layout  -reverse">
-///
-/// This will reverse the displayed order of the system so that it runs in the
-/// opposite order to our source, effectively flipping the system over.
-///
-/// @example
-///   <div class="o-layout  -[right|center]">
-///
-/// This will cause the system to fill up from either the centre or the right
-/// hand side. Default behaviour is to fill up the layout system from the left.
-///
-/// @requires tools/layout
-/// @link https://github.com/inuitcss/inuitcss/blob/0420ba8/objects/_objects.layout.scss
-///
-
-.o-layout_item {
-    @include o-layout_item;
-}
+//
+// Grid-like layout system.
+//
+// The layout object provides us with a column-style layout system. This file
+// contains the basic structural elements, but classes should be complemented
+// with width utilities, for example:
+//
+// @example
+//   <div class="o-layout">
+//     <div class="o-layout_item  u-1/1  u-1/3@medium">
+//     </div>
+//     <div class="o-layout_item  u-1/2  u-1/3@medium">
+//     </div>
+//     <div class="o-layout_item  u-1/2  u-1/3@medium">
+//     </div>
+//   </div>
+//
+// We can also manipulate entire layout systems by adding a series of modifiers
+// to the `.o-layout` block. For example:
+//
+// @example
+//   <div class="o-layout  -reverse">
+//
+// This will reverse the displayed order of the system so that it runs in the
+// opposite order to our source, effectively flipping the system over.
+//
+// @example
+//   <div class="o-layout  -[right|center]">
+//
+// This will cause the system to fill up from either the centre or the right
+// hand side. Default behaviour is to fill up the layout system from the left.
+//
+// @requires tools/layout
+// @link https://github.com/inuitcss/inuitcss/blob/0420ba8/objects/_objects.layout.scss
+//
 
 .o-layout {
     @include o-layout;
 
+    // Gutter modifiers
+    // ==========================================================================
     &.-gutter {
-        margin-left: -$global-spacing-unit;
+        margin-left: rem(-$unit);
 
         > .o-layout_item {
-            padding-left: $global-spacing-unit;
+            padding-left:rem($unit);
         }
     }
 
-/* Gutter size modifiers.
-   ========================================================================== */
-
-    &.-tiny {
-        margin-left: -$global-spacing-unit-tiny;
+    &.-gutter-small {
+        margin-left: -$unit-small;
 
         > .o-layout_item {
-            padding-left: $global-spacing-unit-tiny;
+            padding-left: $unit-small;
         }
     }
 
-    &.-small {
-        margin-left: -$global-spacing-unit-small;
-
-        > .o-layout_item {
-            padding-left: $global-spacing-unit-small;
-        }
-    }
-
-    &.-large {
-        margin-left: -$global-spacing-unit-large;
-
-        > .o-layout_item {
-            padding-left: $global-spacing-unit-large;
-        }
-    }
-
-    &.-huge {
-        margin-left: -$global-spacing-unit-huge;
-
-        > .o-layout_item {
-            padding-left: $global-spacing-unit-huge;
-        }
-    }
-
-/* Vertical alignment modifiers.
-   ========================================================================== */
-
-    /**
-     * Align all grid items to the middles of each other.
-     */
+    // Vertical alignment modifiers
+    // ==========================================================================
     &.-middle {
         > .o-layout_item {
             vertical-align: middle;
         }
     }
 
-    /**
-     * Align all grid items to the bottoms of each other.
-     */
     &.-bottom {
         > .o-layout_item {
             vertical-align: bottom;
         }
     }
 
-/* Fill order modifiers.
-   ========================================================================== */
-
-    /**
-     * Fill up the layout system from the centre.
-     */
+    // Horizontal aligment modifiers
+    // ==========================================================================
     &.-center {
         text-align: center;
 
@@ -124,9 +83,6 @@
         }
     }
 
-    /**
-     * Fill up the layout system from the right-hand side.
-     */
     &.-right {
         text-align: right;
 
@@ -135,9 +91,6 @@
         }
     }
 
-    /**
-     * Reverse the rendered order of the grid system.
-     */
     &.-reverse {
         direction: rtl;
 
@@ -146,4 +99,8 @@
             text-align: left;
         }
     }
+}
+
+.o-layout_item {
+    @include o-layout_item;
 }

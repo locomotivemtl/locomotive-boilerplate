@@ -1,52 +1,51 @@
-///
-/// Tools / Widths
-/// ============================================================================
-///
+// ==========================================================================
+// Tools / Widths
+// ==========================================================================
 
-/// Optionally, the boilerplate can generate classes to offset items by a
-/// certain width. Would you like to generate these types of class as well? E.g.:
-///
-/// @example css
-///   .u-push-1/3
-///   .u-pull-2/4
-///   .u-pull-1/5
-///   .u-push-2/3
+// Optionally, the boilerplate can generate classes to offset items by a
+// certain width. Would you like to generate these types of class as well? E.g.:
+//
+// @example css
+//   .u-push-1/3
+//   .u-pull-2/4
+//   .u-pull-1/5
+//   .u-push-2/3
 $widths-offsets: false !default;
 
-/// By default, the boilerplate uses fractions-like classes like `<div class="u-1/4">`.
-/// You can change the `/` to whatever you fancy with this variable.
+// By default, the boilerplate uses fractions-like classes like `<div class="u-1/4">`.
+// You can change the `/` to whatever you fancy with this variable.
 $fractions-delimiter: \/ !default;
 
-/// When using Sass-MQ, this defines the separator for the breakpoints suffix
-/// in the class name. By default, we are generating the responsive suffixes
-/// for the classes with a `@` symbol so you get classes like:
-/// <div class="u-3/12@mobile">
+// When using Sass-MQ, this defines the separator for the breakpoints suffix
+// in the class name. By default, we are generating the responsive suffixes
+// for the classes with a `@` symbol so you get classes like:
+// <div class="u-3/12@mobile">
 $breakpoint-delimiter: \@ !default;
 
-///
-/// Generate a series of width helper classes
-///
-/// @example scss
-///     @include widths(12);
-///
-/// @example html
-///    <div class="u-7/12">
-///
-/// @example scss
-///     @include widths(3 4, -mobile);
-///
-/// @example html
-///    <div class="u-2/3-mobile">
-///
-/// @link     https://github.com/inuitcss/inuitcss/commit/6eb574f/utilities/_utilities.widths.scss
-/// @requires {Function} important
-/// @requires {Function} $widths-offsets
-/// @requires {Function} $fractions-delimiter
-/// @requires {Function} $breakpoint-delimiter
-/// @param    {List}     $colums     - The columns we want the widths to have.
-/// @param    {String}   $breakpoint - Optional suffix for responsive widths.
-/// @output   `width`, `position`, `right`, `left`
-///
+//
+// Generate a series of width helper classes
+//
+// @example scss
+//     @include widths(12);
+//
+// @example html
+//    <div class="u-7/12">
+//
+// @example scss
+//     @include widths(3 4, -mobile);
+//
+// @example html
+//    <div class="u-2/3-mobile">
+//
+// @link     https://github.com/inuitcss/inuitcss/commit/6eb574f/utilities/_utilities.widths.scss
+// @requires {Function} important
+// @requires {Function} $widths-offsets
+// @requires {Function} $fractions-delimiter
+// @requires {Function} $breakpoint-delimiter
+// @param    {List}     $colums     - The columns we want the widths to have.
+// @param    {String}   $breakpoint - Optional suffix for responsive widths.
+// @output   `width`, `position`, `right`, `left`
+//
 @mixin widths($columns, $breakpoint: null, $important: true)
 {
     $important: important($important);

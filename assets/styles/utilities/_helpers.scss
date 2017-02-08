@@ -1,39 +1,21 @@
-/**
- * Utilities / Helpers
- * =============================================================================
- */
+// ==========================================================================
+// Utilities / Helpers
+// ==========================================================================
 
-/**
- * Layout
- */
-
+// Layout
+// ==========================================================================
 .u-clearfix {
     @include u-clearfix;
 }
 
-
-
 // Decorative
 // =============================================================================
+.u-truncate {
+    @include u-truncate;
+}
 
-// .u-truncate {
-//     @include u-truncate;
-// }
-
-// .icon-property-fill {
-//     stroke: none !important;
-// }
-
-// .icon-property-stroke {
-//     fill: none !important;
-// }
-
-
-
-/**
- * Visibility / Display
- */
-
+//  Visibility / Display
+// ==========================================================================
 [hidden][aria-hidden="false"] {
     clip:     rect(0, 0, 0, 0);
     display:  inherit;

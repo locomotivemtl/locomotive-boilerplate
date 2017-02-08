@@ -1,10 +1,5 @@
 /*
- * ! Locomotive Boilerplate - 2016-12-18 
- */
-@charset "UTF-8";
-/**
- * Boilerplate Front-end Styles
- * =============================================================================
+ * ! Locomotive Boilerplate - 2017-02-08 
  */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -454,18 +449,10 @@ template {
   display: none;
 }
 
-/**
- * Generic
- * =============================================================================
- */
 html {
   box-sizing: border-box;
 }
 
-/**
- * Add the correct display in IE 10-.
- * 1. Add the correct display in IE.
- */
 template,
 [hidden] {
   display: none;
@@ -497,10 +484,6 @@ a {
   text-decoration: none;
 }
 
-a:focus, a:hover {
-  text-decoration: underline;
-}
-
 a svg {
   pointer-events: none;
 }
@@ -518,20 +501,6 @@ a, area, button, input, label, select, textarea, [tabindex] {
   text-decoration: none;
 }
 
-mark {
-  background-color: #FFF9C0;
-  text-decoration: none;
-}
-
-del {
-  background-color: #FDD;
-  text-decoration: none;
-}
-
-ins {
-  background-color: #9F9;
-}
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -543,18 +512,9 @@ hr {
   padding: 0;
   height: 1px;
   border: 0;
-  border-top: 1px solid #CCCCCC;
+  border-top: 1px solid #cccccc;
 }
 
-/**
- * Generic / Media
- * =============================================================================
- */
-/**
- * 1. Setting `vertical-align` removes the whitespace that appears under `img`
- *    elements when they are dropped into a page as-is. Safer alternative to
- *    using `display: block;`.
- */
 audio,
 canvas,
 iframe,
@@ -565,26 +525,16 @@ video {
   /* [1] */
 }
 
-/**
- * Add the correct display in iOS 4-7.
- */
 audio:not([controls]) {
   display: none;
   height: 0;
 }
 
-/**
- * 2. Fluid media for responsive purposes.
- */
 img,
 svg {
   height: auto;
   max-width: 100%;
   /* [2] */
-  /**
-     * 4. If a `width` and/or `height` attribute have been explicitly defined, let’s
-     *    not make the image fluid.
-     */
 }
 
 img[width], img[height],
@@ -594,26 +544,16 @@ svg[height] {
   max-width: none;
 }
 
-/**
- * 4. Offset `alt` text from surrounding copy.
- */
 img {
   font-style: italic;
   /* [4] */
 }
 
-/**
- * 5. SVG elements should fallback to their surrounding text color.
- */
 svg {
   fill: currentColor;
   /* [5] */
 }
 
-/**
- * Generic / Forms
- * =============================================================================
- */
 input,
 select,
 textarea {
@@ -635,10 +575,6 @@ textarea {
 
 select {
   text-transform: none;
-  /*&:-moz-focusring {
-        color: transparent;
-        text-shadow: 0 0 0 #000000; // Text :focus color
-    }*/
 }
 
 select::-ms-expand {
@@ -655,20 +591,8 @@ textarea {
   resize: vertical;
 }
 
-/**
- * Generic / Buttons
- * =============================================================================
- */
-/**
- * 1. Allow us to style box model properties.
- * 2. Fixes odd inner spacing in IE7.
- * 3. Reset/normalize some styles.
- * 4. Line different sized buttons up a little nicer.
- * 5. Make buttons inherit font styles (often necessary when styling `input`s as buttons).
- * 6. Force all button-styled elements to appear clickable.
- */
 button,
-.o-btn {
+.o-button {
   display: inline-block;
   /* [1] */
   overflow: visible;
@@ -698,30 +622,11 @@ button,
 }
 
 button:focus, button:hover,
-.o-btn:focus,
-.o-btn:hover {
+.o-button:focus,
+.o-button:hover {
   text-decoration: none;
 }
 
-/**
- * Base / Fonts
- * =============================================================================
- */
-/**
- * Base / Page
- * =============================================================================
- */
-/**
- * Simple page-level setup.
- *
- * 1. Set the default `font-size` and `line-height` for the entire project,
- *    sourced from our default variables. The `font-size` is calculated to exist
- *    in ems, the `line-height` is calculated to exist unitlessly.
- * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
- *    navigating between pages that do/do not have enough content to produce
- *    scrollbars naturally.
- * 3. Ensure the page always fills at least the entire height of the viewport.
- */
 html {
   color: #222222;
   font-size: 1em;
@@ -736,42 +641,30 @@ html {
 }
 
 ::-moz-selection {
-  background-color: #FF877E;
-  color: #242424;
+  background-color: #FFFFFF;
+  color: #3297fd;
   text-shadow: none;
 }
 
 ::selection {
-  background-color: #FF877E;
-  color: #242424;
+  background-color: #FFFFFF;
+  color: #3297fd;
   text-shadow: none;
 }
 
-/**
- * Base / Headings
- * =============================================================================
- */
-/**
- * Provide a generic class to apply common heading styles.
- *
- * @example
- *   <p class="u-h"></p>
- *
- */
-.o-h, h1, .o-h1, h2, .o-h2, h3, .o-h3, h4, .o-h4, h5, .o-h5, h6, .o-h6 {
-  margin-top: 0;
-  line-height: 24px;
+a {
+  color: #1A0DAB;
 }
 
-/**
- * Styles for headings 1 through 6 with classes to provide
- * a double stranded heading hierarchy, e.g. we semantically
- * need an H2, but we want it to be sized like an H1:
- *
- * @example
- *   <h2 class="o-h1"></h2>
- *
- */
+a:focus, a:hover {
+  color: #13097c;
+}
+
+.o-h, h1, .o-h1, h2, .o-h2, h3, .o-h3, h4, .o-h4, h5, .o-h5, h6, .o-h6 {
+  margin-top: 0;
+  line-height: 1.5;
+}
+
 h1, .o-h1 {
   font-size: 2.25rem;
 }
@@ -796,60 +689,14 @@ h6, .o-h6 {
   font-size: 1rem;
 }
 
-/**
- * Objects / Wrapper
- * =============================================================================
- */
-/**
- * Page-level constraining and wrapping elements.
- */
 /* stylelint-disable */
 /* stylelint-enable */
-.o-wrapper {
-  padding-right: 24px;
-  padding-left: 24px;
+.o-container {
+  padding-right: 60px;
+  padding-left: 60px;
   margin-right: auto;
   margin-left: auto;
   max-width: 2000px;
-  /* Size variants.
-   ========================================================================== */
-}
-
-.o-wrapper.-gutter {
-  padding-right: 24px;
-  padding-left: 24px;
-}
-
-.o-wrapper.-tiny {
-  padding-right: 6px;
-  padding-left: 6px;
-}
-
-.o-wrapper.-small {
-  padding-right: 12px;
-  padding-left: 12px;
-}
-
-.o-wrapper.-large {
-  padding-right: 48px;
-  padding-left: 48px;
-}
-
-.o-wrapper.-huge {
-  padding-right: 96px;
-  padding-left: 96px;
-}
-
-/**
- * Objects / Layout
- * =============================================================================
- */
-.o-layout_item {
-  box-sizing: border-box;
-  display: inline-block;
-  vertical-align: top;
-  width: 100%;
-  font-size: 1rem;
 }
 
 .o-layout {
@@ -857,67 +704,23 @@ h6, .o-h6 {
   padding: 0;
   list-style: none;
   font-size: 0;
-  /* Gutter size modifiers.
-   ========================================================================== */
-  /* Vertical alignment modifiers.
-   ========================================================================== */
-  /**
-     * Align all grid items to the middles of each other.
-     */
-  /**
-     * Align all grid items to the bottoms of each other.
-     */
-  /* Fill order modifiers.
-   ========================================================================== */
-  /**
-     * Fill up the layout system from the centre.
-     */
-  /**
-     * Fill up the layout system from the right-hand side.
-     */
-  /**
-     * Reverse the rendered order of the grid system.
-     */
+  margin-left: 0;
 }
 
 .o-layout.-gutter {
-  margin-left: -24px;
+  margin-left: -3.75rem;
 }
 
 .o-layout.-gutter > .o-layout_item {
-  padding-left: 24px;
+  padding-left: 3.75rem;
 }
 
-.o-layout.-tiny {
-  margin-left: -6px;
+.o-layout.-gutter-small {
+  margin-left: -30px;
 }
 
-.o-layout.-tiny > .o-layout_item {
-  padding-left: 6px;
-}
-
-.o-layout.-small {
-  margin-left: -12px;
-}
-
-.o-layout.-small > .o-layout_item {
-  padding-left: 12px;
-}
-
-.o-layout.-large {
-  margin-left: -48px;
-}
-
-.o-layout.-large > .o-layout_item {
-  padding-left: 48px;
-}
-
-.o-layout.-huge {
-  margin-left: -96px;
-}
-
-.o-layout.-huge > .o-layout_item {
-  padding-left: 96px;
+.o-layout.-gutter-small > .o-layout_item {
+  padding-left: 30px;
 }
 
 .o-layout.-middle > .o-layout_item {
@@ -953,10 +756,14 @@ h6, .o-h6 {
   text-align: left;
 }
 
-/**
- * Objects / Buttons
- * =============================================================================
- */
+.o-layout_item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  font-size: 1rem;
+  padding-left: 0;
+}
+
 .o-label, .o-checkbox-label, .o-radio-label {
   display: block;
   margin-bottom: 0.9375rem;
@@ -1071,93 +878,11 @@ h6, .o-h6 {
   min-height: 6.25rem;
 }
 
-/**
- * Objects / Buttons
- * =============================================================================
- */
 .o-button {
   padding: 0.625rem;
   background-color: lightgray;
 }
 
-.o-button:focus {
-  background-color: darkgray;
-}
-
-.o-button:hover {
+.o-button:focus, .o-button:hover {
   background-color: gray;
-}
-
-.o-button:active {
-  background-color: dimgray;
-}
-
-/**
- * Utilities / Helpers
- * =============================================================================
- */
-/**
- * Layout
- */
-.u-clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-/**
- * Visibility / Display
- */
-[hidden][aria-hidden="false"] {
-  clip: rect(0, 0, 0, 0);
-  display: inherit;
-  position: absolute;
-}
-
-[hidden][aria-hidden="false"]:focus {
-  clip: auto;
-}
-
-.u-hidden {
-  display: none !important;
-}
-
-/**
- * Completely remove from the flow but leave available to screen readers.
- */
-.u-screen-reader-text {
-  position: absolute !important;
-  overflow: hidden;
-  height: 1px;
-  width: 1px;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-}
-
-@media not print {
-  .u-screen-reader-text\@screen {
-    position: absolute !important;
-    overflow: hidden;
-    height: 1px;
-    width: 1px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    clip: rect(0 0 0 0);
-  }
-}
-
-/*
- * Extends the `.screen-reader-text` class to allow the element
- * to be focusable when navigated to via the keyboard.
- *
- * @link https://www.drupal.org/node/897638
- * @todo Define styles when focused.
- */
-.u-screen-reader-text.-focusable:focus, .u-screen-reader-text.-focusable:active {
-  height: auto;
-  width: auto;
-  clip: auto;
 }

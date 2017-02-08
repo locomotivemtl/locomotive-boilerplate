@@ -1,46 +1,25 @@
-///
-/// Settings / Config / Colors
-/// ============================================================================
-///
+// ==========================================================================
+// Settings / Config / Colors
+// ==========================================================================
 
 // Palette
 // =============================================================================
-
 $white:            #FFFFFF;
-$light-gray:       #F5F5F5;
-$gray:             #CCCCCC;
-$gray-letter:      #9C9C9C;
-$dark-gray:        #242424;
 $black:            #000000;
-
-
-
-// Brand Colors
-// =============================================================================
-
-$facebook-color:   #3B5998;
-$instagram-color:  #E0386D;
-$youtube-color:    #CC181E;
-$twitter-color:    #55ACEE;
-
-
 
 // Specific
 // =============================================================================
+// Link
+$link-color:        #1A0DAB;
+$link-focus-color:  #1A0DAB;
+$link-hover-color:  darken(#1A0DAB, 10%);
+// Selection
+$selection-text-color: #3297fd;
+$selection-background-color: #FFFFFF;
 
-$text-selection-text-color:        $dark-gray          !default;
-$text-selection-background-color:  #FF877E             !default;
-
-$highlighted-text-color:           $dark-gray          !default;
-$highlighted-background-color:     #FFF9C0             !default;
-
-$deleted-text-color:               $dark-gray          !default;
-$deleted-background-color:         #FDD                !default;
-
-$inserted-text-color:              $dark-gray          !default;
-$inserted-background-color:        #9F9                !default;
-
-$link-idle-color:                  #0645AD             !default;
-$link-visited-color:               #0B0080             !default;
-$link-enter-color:                 $link-idle-color    !default;
-$link-active-color:                #FAA700             !default;
+// Social Colors
+// =============================================================================
+$facebook-color:   #3B5998;
+$instagram-color:  #E1306C;
+$youtube-color:    #CD201F;
+$twitter-color:    #1DA1F2;

@@ -1,11 +1,10 @@
-/**
- * Objects / Crop
- * =============================================================================
- */
+// ==========================================================================
+// Objects / Crop
+// ==========================================================================
 
-///
-/// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.crop.scss
-///
+//
+// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.crop.scss
+//
 
 // A list of cropping ratios that get generated as modifier classes.
 $crop-ratios: (
@@ -61,13 +60,13 @@ $crop-ratios: (
 
 /* stylelint-disable */
 
-///
-/// Generate a series of crop classes to be used like so:
-///
-/// @example
-///   <div class="o-crop -16:9">
-///
-///
+//
+// Generate a series of crop classes to be used like so:
+//
+// @example
+//   <div class="o-crop -16:9">
+//
+//
 .o-crop {
     @each $crop in $crop-ratios {
         @each $antecedent, $consequent in $crop {
