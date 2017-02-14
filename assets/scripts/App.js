@@ -94,6 +94,23 @@ class App {
 
         return this;
     }
+
+    /**
+     * Init recaptcha dynamically.
+     * Use after page transition to make sure recaptcha is loaded.
+     * @return {thisArg} Current app instance.
+     */
+    initRecaptcha() {
+        if ($('.g-recaptcha').length) {
+            try {
+                // Make sure no JS error occur
+                grecaptcha.render($('.g-recaptcha').get(0), { sitekey : $('.g-recaptcha').data('sitekey') });
+            } catch (e) {
+            }
+        }
+
+        return this;
+    }
 }
 
 // IIFE for loading the application
