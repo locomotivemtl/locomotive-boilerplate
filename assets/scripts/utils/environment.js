@@ -6,4 +6,6 @@ const $window      = $(window);
 const $html        = $(document.documentElement);
 const $body        = $(document.body);
 
-export { $document, $window, $html, $body, APP_NAME, DATA_API_KEY };
+const isDebug      = !!$html.data('debug');
+
+export { APP_NAME, DATA_API_KEY, $document, $window, $html, $body, isDebug };

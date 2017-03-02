@@ -3,7 +3,7 @@ import { $document } from './utils/environment';
 import { getNodeData } from './utils/html';
 
 // Global functions and tools
-import globals from './utils/globals';
+import globals from './globals';
 import { isFunction } from './utils/is';
 
 // Basic modules
@@ -17,7 +17,7 @@ class App {
         $document.on('initModules.App', (event) => {
             this.initGlobals(event.firstBlood)
                 .deleteModules()
-                .initModules();
+                .initModules(event);
         });
 
         $document.on('initScopedModules.App', (event) => {
@@ -55,10 +55,10 @@ class App {
 
     /**
      * Find modules and initialize them
-     * @param  {object} event The event being triggered.
-     * @return {object}       Self (allows chaining)
+     * @param  {Object} event The event being triggered.
+     * @return {Object}       Self (allows chaining)
      */
-    initModules() {
+    initModules(event) {
         // Elements with module
         let moduleEls;
 
@@ -116,8 +116,8 @@ class App {
 // IIFE for loading the application
 // ==========================================================================
 (function() {
-    window.App = new App();
-    $document.trigger({
+    new App();
+    $document.triggerHandler({
         type: 'initModules.App',
         firstBlood: true
     });
