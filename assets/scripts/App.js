@@ -1,9 +1,11 @@
 /* jshint esnext: true */
 import { $document } from './utils/environment';
-import { getNodeData } from './utils/html';
 
-// Global functions and tools
-import globals from './utils/globals';
+import globals from './globals';
+
+import { arrayContains, removeFromArray } from './utils/array';
+import { getNodeData } from './utils/html';
+import { isFunction } from './utils/is';
 
 // Basic modules
 import * as modules from './modules';
@@ -15,23 +17,52 @@ class App {
 
         $document.on('initModules.App', (event) => {
             this.initGlobals(event.firstBlood)
-                .deleteModules()
-                .initModules();
+                .deleteModules(event)
+                .initModules(event);
+        });
+
+        $document.on('initScopedModules.App', (event) => {
+            this.initModules(event);
+        });
+
+        $document.on('deleteScopedModules.App', (event) => {
+            this.deleteModules(event);
         });
     }
 
     /**
-     * Destroy all existing modules
-     * @return  {Object}  this  Allows chaining
+     * Destroy all existing modules or a specific scope of modules
+     * @param  {Object} event The event being triggered.
+     * @return {Object}       Self (allows chaining)
      */
-    deleteModules() {
-        // Loop modules
-        var i = this.currentModules.length;
+    deleteModules(event) {
+        let destroyAll = true;
+        let moduleIds = [];
 
-        // Destroy all modules
+        // Check for scope first
+        if (event.$scope instanceof jQuery && event.$scope.length > 0) {
+            // Modules within scope
+            const $modules = event.$scope.find('[data-module]');
+
+            // Determine their uids
+            moduleIds = $.makeArray($modules.map(function(index) {
+                return $modules.eq(index).data('uid');
+            }));
+
+            if (moduleIds.length > 0) {
+                destroyAll = false;
+            }
+        }
+
+        // Loop modules and destroying all of them, or specific ones
+        let i = this.currentModules.length;
+
         while (i--) {
-            this.currentModules[i].destroy();
-            this.currentModules.splice(i);
+            if (destroyAll || arrayContains(moduleIds, this.currentModules[i].uid)) {
+                removeFromArray(moduleIds, this.currentModules[i].uid);
+                this.currentModules[i].destroy();
+                this.currentModules.splice(i);
+            }
         }
 
         return this;
@@ -41,7 +72,7 @@ class App {
      * Execute global functions and settings
      * Allows you to initialize global modules only once if you need
      * (ex.: when using Barba.js or SmoothState.js)
-     * @return  {Object}  this  Allows chaining
+     * @return {Object} Self (allows chaining)
      */
     initGlobals(firstBlood) {
         globals(firstBlood);
@@ -50,27 +81,39 @@ class App {
 
     /**
      * Find modules and initialize them
-     * @return  {Object}  this  Allows chaining
+     * @param  {Object} event The event being triggered.
+     * @return {Object}       Self (allows chaining)
      */
-    initModules() {
+    initModules(event) {
         // Elements with module
-        var moduleEls = document.querySelectorAll('[data-module]');
+        let $moduleEls = [];
+
+        // If first blood, load all modules in the DOM
+        // If scoped, render elements with modules
+        // If Barba, load modules contained in Barba container
+        if (event.firstBlood) {
+            $moduleEls = $document.find('[data-module]');
+        } else if (event.$scope instanceof jQuery && event.$scope.length > 0) {
+            $moduleEls = event.$scope.find('[data-module]');
+        } else if (event.isBarba) {
+            $moduleEls = $('#js-barba-wrapper').find('[data-module]');
+        }
 
         // Loop through elements
-        var i = 0;
-        var elsLen = moduleEls.length;
+        let i = 0;
+        const elsLen = $moduleEls.length;
 
         for (; i < elsLen; i++) {
 
             // Current element
-            let el = moduleEls[i];
+            let el = $moduleEls[i];
 
             // All data- attributes considered as options
             let options = getNodeData(el);
 
             // Add current DOM element and jQuery element
             options.el = el;
-            options.$el = $(el);
+            options.$el = $moduleEls.eq(i);
 
             // Module does exist at this point
             let attr = options.module;
@@ -88,6 +131,7 @@ class App {
                 if (typeof this.modules[moduleAttr] === 'function') {
                     let module = new this.modules[moduleAttr](options);
                     this.currentModules.push(module);
+                    module.init();
                 }
             }
         }
@@ -99,8 +143,8 @@ class App {
 // IIFE for loading the application
 // ==========================================================================
 (function() {
-    window.App = new App();
-    $document.trigger({
+    new App();
+    $document.triggerHandler({
         type: 'initModules.App',
         firstBlood: true
     });

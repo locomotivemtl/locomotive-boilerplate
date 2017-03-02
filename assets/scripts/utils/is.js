@@ -1,5 +1,5 @@
-var toString = Object.prototype.toString,
-    arrayLikePattern = /^\[object (?:Array|FileList)\]$/;
+const toString = Object.prototype.toString;
+const arrayLikePattern = /^\[object (?:Array|FileList)\]$/;
 
 // thanks, http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
 export function isArray ( thing ) {
@@ -32,6 +32,6 @@ export function isObject ( thing ) {
 }
 
 export function isFunction( thing ) {
-    var getType = {};
+    const getType = {};
     return thing && getType.toString.call(thing) === '[object Function]';
 }

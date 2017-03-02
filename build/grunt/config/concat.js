@@ -5,7 +5,8 @@ module.exports = {
         },
         src  : [
             '<%= paths.js.src %>/vendors/**/*.js',
-            '<%= paths.npm %>/svg4everybody/dist/svg4everybody.min.js'
+            '<%= paths.npm %>/barba.js/dist/barba.js',
+            '<%= paths.npm %>/svg4everybody/dist/svg4everybody.js'
         ],
         dest : '<%= paths.js.dist %>/vendors.js'
     }

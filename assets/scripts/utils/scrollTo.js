@@ -1,7 +1,9 @@
 /* jshint esnext: true */
-var isAnimating = false;
+import { isNumeric } from './is'
 
-var defaults = {
+let isAnimating = false;
+
+const defaults = {
     easing: 'swing',
     headerOffset: 60,
     speed: 300
@@ -14,7 +16,7 @@ var defaults = {
  * @param   {object}  options
  */
 export function scrollTo($element, options) {
-    var deferred = $.Deferred();
+    const deferred = $.Deferred();
 
     // Drop everything if this ain't a jQuery object
     if ($element instanceof jQuery && $element.length > 0) {
@@ -27,21 +29,30 @@ export function scrollTo($element, options) {
             isAnimating = true;
 
             // Default container that we'll be scrolling
-            var $container = $('html, body');
-            var elementOffset = 0;
+            let $container = $('html, body');
+            let elementOffset = 0;
 
             // Testing container in options for jQuery-ness
             // If we're not using a custom container, we take the top document offset
             // If we are, we use the elements position relative to the container
             if (typeof options.$container !== 'undefined' && options.$container instanceof jQuery && options.$container.length > 0) {
                 $container = options.$container;
-                elementOffset = $element.position().top
+
+                if (typeof options.scrollTop !== 'undefined' && isNumeric(options.scrollTop) && options.scrollTop !== 0) {
+                    scrollTop = options.scrollTop;
+                } else {
+                    scrollTop = $element.position().top - options.headerOffset;
+                }
             } else {
-                elementOffset = $element.offset().top
+                if (typeof options.scrollTop !== 'undefined' && isNumeric(options.scrollTop) && options.scrollTop !== 0) {
+                    scrollTop = options.scrollTop;
+                } else {
+                    scrollTop = $element.offset().top - options.headerOffset;
+                }
             }
 
             $container.animate({
-                scrollTop: elementOffset - options.headerOffset
+                scrollTop: scrollTop
             }, options.speed, options.easing, function() {
                 isAnimating = false;
                 deferred.resolve();
