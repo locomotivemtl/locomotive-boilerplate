@@ -13,7 +13,11 @@ export default class
 
         // Generate a unique module identifier
         this.uid = 'm-' + uid++;
+        // Use jQuery's data API to "store it in the DOM"
+        this.$el.data('uid', this.uid);
     }
+
+    init() {}
 
     destroy()
     {

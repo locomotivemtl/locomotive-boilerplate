@@ -32,7 +32,7 @@ function DefaultTransition(options) {
 
             $document.triggerHandler({
                 type: 'initModules.App',
-                firstBlood: false
+                isBarba: true
             });
 
             $html
