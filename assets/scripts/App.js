@@ -4,6 +4,7 @@ import { getNodeData } from './utils/html';
 
 // Global functions and tools
 import globals from './utils/globals';
+import { isFunction } from './utils/is';
 
 // Basic modules
 import * as modules from './modules';
@@ -17,6 +18,10 @@ class App {
             this.initGlobals(event.firstBlood)
                 .deleteModules()
                 .initModules();
+        });
+
+        $document.on('initScopedModules.App', (event) => {
+            this.initModules(event);
         });
     }
 
@@ -50,15 +55,27 @@ class App {
 
     /**
      * Find modules and initialize them
-     * @return  {Object}  this  Allows chaining
+     * @param  {object} event The event being triggered.
+     * @return {object}       Self (allows chaining)
      */
     initModules() {
         // Elements with module
-        var moduleEls = document.querySelectorAll('[data-module]');
+        let moduleEls;
+
+        // If first blood, load all modules in the DOM
+        // If scoped, render elements with modules
+        // If not, load modules contained in Barba container
+        if (event.firstBlood) {
+            moduleEls = document.querySelectorAll('[data-module]');
+        } else if (typeof event.scope !== 'undefined' && isFunction(event.scope.querySelectorAll)) {
+            moduleEls = event.scope.querySelectorAll('[data-module]');
+        } else {
+            moduleEls = document.getElementById('js-barba-wrapper').querySelectorAll('[data-module]');
+        }
 
         // Loop through elements
-        var i = 0;
-        var elsLen = moduleEls.length;
+        let i = 0;
+        const elsLen = moduleEls.length;
 
         for (; i < elsLen; i++) {
 
@@ -69,14 +86,14 @@ class App {
             let options = getNodeData(el);
 
             // Add current DOM element and jQuery element
-            options.el  = el;
+            options.el = el;
             options.$el = $(el);
 
             // Module does exist at this point
             let attr = options.module;
 
             // Splitting modules found in the data-attribute
-            let moduleIdents = attr.split(/,\s*|\s+/g);
+            let moduleIdents = attr.replace(/\s/g, '').split(',');
 
             // Loop modules
             let j = 0;
