@@ -1,20 +1,22 @@
 // ==========================================================================
-// Form resets
+// Generic / Forms
 // ==========================================================================
+
 input,
 select,
 textarea {
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    outline: 0;
-    border: 0;
+    display:       block;
+    margin:        0;
+    padding:       0;
+    width:         100%;
+    outline:       0;
+    border:        0;
     border-radius: 0;
-    color: inherit;
-    font: inherit;
-    line-height: normal;
-    appearance: none;
+    color:         inherit;
+    font:          inherit;
+    line-height:   normal;
+    appearance:    none;
+    background:    none transparent;
 }
 
 select {
@@ -30,10 +32,10 @@ select {
     }
 
     // Remove Firefox :focus dotted outline, breaks color inherit
-    /*&:-moz-focusring {
-        color: transparent;
-        text-shadow: 0 0 0 #000000; // Text :focus color
-    }*/
+    // &:-moz-focusring {
+    //     color: transparent;
+    //     text-shadow: 0 0 0 #000000; // Text :focus color
+    // }
 }
 
 textarea {

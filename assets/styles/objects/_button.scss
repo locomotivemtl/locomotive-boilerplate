@@ -1,19 +1,11 @@
 // ==========================================================================
-// Button objects
+// Objects / Buttons
 // ==========================================================================
 .o-button {
     padding: rem(10px);
     background-color: lightgray;
 
-    &:focus {
-        background-color: darkgray;
-    }
-
-    &:hover {
+    @include u-hocus {
         background-color: gray;
-    }
-
-    &:active {
-        background-color: dimgray;
     }
 }

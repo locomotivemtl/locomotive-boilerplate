@@ -1,0 +1,80 @@
+// ==========================================================================
+// Objects / Ratio
+// ==========================================================================
+
+//
+// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.ratio.scss
+//
+
+// A list of aspect ratios that get generated as modifier classes.
+
+$aspect-ratios: (
+    (2:1),
+    (4:3),
+    (16:9),
+) !default;
+
+
+
+/**
+ * Create ratio-bound content blocks, to keep media (e.g. images, videos) in
+ * their correct aspect ratios.
+ *
+ * http://alistapart.com/article/creating-intrinsic-ratios-for-video
+ *
+ * 1. Default cropping is a 1:1 ratio (i.e. a perfect square).
+ */
+.o-ratio {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-bottom: 100%; /* [1] */
+    }
+
+}
+
+    .o-ratio_content,
+    .o-ratio > iframe,
+    .o-ratio > embed,
+    .o-ratio > object {
+        position: absolute;
+        top:    0;
+        bottom: 0;
+        left:   0;
+        height: 100%;
+        width:  100%;
+    }
+
+/* stylelint-disable */
+
+//
+// Generate a series of ratio classes to be used like so:
+//
+// @example
+//   <div class="o-ratio -16:9">
+//
+//
+.o-ratio {
+    @each $ratio in $aspect-ratios {
+        @each $antecedent, $consequent in $ratio {
+            @if (type-of($antecedent) != number) {
+                @error "`#{$antecedent}` needs to be a number."
+            }
+
+            @if (type-of($consequent) != number) {
+                @error "`#{$consequent}` needs to be a number."
+            }
+
+            &.-#{$antecedent}\:#{$consequent}::before {
+                padding-bottom: ($consequent/$antecedent) * 100%;
+            }
+        }
+    }
+}
+
+/* stylelint-enable */
