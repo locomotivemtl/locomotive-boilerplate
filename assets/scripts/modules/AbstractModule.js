@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { $document, $window, $html, $body } from '../utils/environment';
+let uid = 0;
 
 /**
  * Abstract Module
@@ -10,6 +10,9 @@ export default class
     {
         this.$el = options.$el || null;
         this.el  = options.el  || null;
+
+        // Generate a unique module identifier
+        this.uid = 'm-' + uid++;
     }
 
     destroy()
