@@ -32,6 +32,6 @@ export function isObject ( thing ) {
 }
 
 export function isFunction( thing ) {
-    var getType = {};
+    const getType = {};
     return thing && getType.toString.call(thing) === '[object Function]';
 }

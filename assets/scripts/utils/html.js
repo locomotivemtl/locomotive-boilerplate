@@ -27,13 +27,13 @@ export function unescapeHtml(str) {
  */
 export function getNodeData(node) {
     // All attributes
-    var attributes = node.attributes;
+    const attributes = node.attributes;
 
     // Regex Pattern
-    var pattern = /^data\-(.+)$/;
+    const pattern = /^data\-(.+)$/;
 
     // Output
-    var data = {};
+    const data = {};
 
     for (let i in attributes) {
         if (!attributes[i]) {
@@ -61,7 +61,7 @@ export function getNodeData(node) {
     return data;
 }
 
-var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
+const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
 
 /**
  * Parse value to data type.

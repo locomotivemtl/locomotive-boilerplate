@@ -31,7 +31,7 @@ class App {
      */
     deleteModules() {
         // Loop modules
-        var i = this.currentModules.length;
+        let i = this.currentModules.length;
 
         // Destroy all modules
         while (i--) {
@@ -93,7 +93,7 @@ class App {
             let attr = options.module;
 
             // Splitting modules found in the data-attribute
-            let moduleIdents = attr.replace(/\s/g, '').split(',');
+            let moduleIdents = attr.split(/,\s*|\s+/g);
 
             // Loop modules
             let j = 0;

@@ -44,10 +44,8 @@ export default class {
         });
 
         Barba.Dispatcher.on('newPageReady', (currentStatus, prevStatus, container, currentHTML) => {
-            var scripts, s;
-
             // Fetch any inline script elements.
-            scripts = container.querySelectorAll('script.js-inline');
+            const scripts = container.querySelectorAll('script.js-inline');
 
             if (scripts instanceof window.NodeList) {
                 let i = 0;
