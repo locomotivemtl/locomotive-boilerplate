@@ -49,8 +49,8 @@ $data-ratio-crops: 'top' 'bottom' 'both' !default;
     @each $ratio in $data-ratios {
         $ratio-1: nth($ratio, 1);
         $ratio-2: nth($ratio, 2);
-        &[data-ratio="#{$data-1}"]::before,
-        &[data-ratio="#{$data-2}"]::before {
+        &[data-ratio="#{$ratio-1}"]::before,
+        &[data-ratio="#{$ratio-2}"]::before {
             padding-top: nth($ratio, 3);
         }
     }

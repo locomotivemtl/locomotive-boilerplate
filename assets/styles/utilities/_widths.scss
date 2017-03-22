@@ -17,4 +17,4 @@
 ///   .u-2/3
 $widths-fractions: 1 2 3 4 5 !default;
 
-@include widths($width-fractions);
+@include widths($widths-fractions);
