@@ -22,7 +22,7 @@ export default class
     destroy()
     {
         if (this.$el) {
-            this.$el.off();
+            this.$el.removeData('uid')
         }
     }
 }
