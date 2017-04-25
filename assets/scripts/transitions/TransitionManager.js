@@ -10,7 +10,7 @@ export default class {
 
         // jQuery ondomready
         $(() => {
-            this.load()
+            this.load();
         });
 
         $document.on('goTo.PageTransitionManager', (event) => {
@@ -58,17 +58,28 @@ export default class {
             /**
              * Execute any third party features.
              */
+        });
 
-            // Google Analytics
-            if (window.ga && !isDebug) {
-                ga('send', 'pageview');
-            }
+        Barba.Dispatcher.on('transitionCompleted', (currentStatus, prevStatus) => {
+            //Update google analytics viewing page with changeUrlTracker (autotrack)
+            ga('send', 'pageview');
         });
 
         Barba.Pjax.Dom.containerClass = 'js-barba-container';
         Barba.Pjax.Dom.wrapperId = 'js-barba-wrapper';
 
         Barba.Pjax.start();
+    }
+
+    /**
+     * Init Google Analytics and init plugin(s) of autotrack
+     *
+     * @return {void}
+     */
+    initAutotrack(){
+       ga('create', 'UA-XXXXXXXX-X', 'auto');
+       ga('require', 'urlChangeTracker');
+       ga('send', 'pageview');
     }
 
     /**
@@ -81,6 +92,9 @@ export default class {
         $html.removeClass('dom-is-loading');
         setTimeout(() => {
             $html.addClass('dom-is-animated');
-        }, 1000)
+        }, 1000);
+
+        //Init autotrack - google analytics
+        this.initAutotrack();
     }
 }
