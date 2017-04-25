@@ -39,8 +39,8 @@ export default class {
             return TransitionObject;
         }
 
-        Barba.Dispatcher.on('linkClicked', (currentStatus, oldStatus, container) => {
-            clickedLink = currentStatus;
+        Barba.Dispatcher.on('linkClicked', (HTMLElement) => {
+            clickedLink = HTMLElement;
         });
 
         Barba.Dispatcher.on('newPageReady', (currentStatus, prevStatus, container, currentHTML) => {
