@@ -42,65 +42,48 @@
     @include o-layout;
 
     // Gutter modifiers
-    // ==========================================================================
     &.-gutter {
         margin-left: rem(-$unit);
-
-        > .o-layout_item {
-            padding-left:rem($unit);
-        }
     }
 
     &.-gutter-small {
-        margin-left: -$unit-small;
-
-        > .o-layout_item {
-            padding-left: $unit-small;
-        }
-    }
-
-    // Vertical alignment modifiers
-    // ==========================================================================
-    &.-middle {
-        > .o-layout_item {
-            vertical-align: middle;
-        }
-    }
-
-    &.-bottom {
-        > .o-layout_item {
-            vertical-align: bottom;
-        }
+        margin-left: rem(-$unit/2);
     }
 
     // Horizontal aligment modifiers
-    // ==========================================================================
     &.-center {
         text-align: center;
-
-        > .o-layout_item {
-            text-align: left;
-        }
     }
 
     &.-right {
         text-align: right;
-
-        > .o-layout_item {
-            text-align: left;
-        }
-    }
-
-    &.-reverse {
-        direction: rtl;
-
-        > .o-layout_item {
-            direction: ltr;
-            text-align: left;
-        }
     }
 }
 
 .o-layout_item {
     @include o-layout_item;
+
+    // Gutter modifiers
+    .o-layout.-gutter > & {
+        padding-left: rem($unit);
+    }
+
+    .o-layout.-gutter-small > & {
+        padding-left: rem($unit/2);
+    }
+
+    // Vertical alignment modifiers
+    .o-layout.-middle > & {
+        vertical-align: middle;
+    }
+
+    .o-layout.-bottom > & {
+        vertical-align: bottom;
+    }
+
+    // Horizontal aligment modifiers
+    .o-layout.-center > &,
+    .o-layout.-right > & {
+        text-align: left;
+    }
 }
