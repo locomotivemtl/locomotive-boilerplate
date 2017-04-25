@@ -58,6 +58,10 @@
     &.-right {
         text-align: right;
     }
+
+    &.-reverse {
+        direction: rtl;
+    }
 }
 
 .o-layout_item {
@@ -83,7 +87,12 @@
 
     // Horizontal aligment modifiers
     .o-layout.-center > &,
-    .o-layout.-right > & {
+    .o-layout.-right > &,
+    .o-layout.-reverse > & {
         text-align: left;
+    }
+
+    .o-layout.-reverse > & {
+        direction: ltr;
     }
 }
