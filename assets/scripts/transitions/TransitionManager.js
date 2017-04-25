@@ -62,7 +62,9 @@ export default class {
 
         Barba.Dispatcher.on('transitionCompleted', (currentStatus, prevStatus) => {
             //Update google analytics viewing page with changeUrlTracker (autotrack)
-            ga('send', 'pageview');
+            if(!isDebug){
+                ga('send', 'pageview');
+            }
         });
 
         Barba.Pjax.Dom.containerClass = 'js-barba-container';
@@ -94,7 +96,9 @@ export default class {
             $html.addClass('dom-is-animated');
         }, 1000);
 
-        //Init autotrack - google analytics
-        this.initAutotrack();
+        if(!isDebug){
+            //Init autotrack - google analytics
+            this.initAutotrack();
+        }
     }
 }
