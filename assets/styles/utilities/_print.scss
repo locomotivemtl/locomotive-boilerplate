@@ -11,7 +11,6 @@
 ////
 
 @media print {
-
     /**
      * 1. Black prints faster: http://www.sanbeiji.com/archives/953
      */
@@ -21,8 +20,8 @@
     *:first-letter,
     *:first-line {
         background: transparent !important;
-        color: #000 !important; /* [1] */
         box-shadow: none !important;
+        color: #000000 !important; /* [1] */
         text-shadow: none !important;
     }
 
@@ -50,7 +49,7 @@
 
     pre,
     blockquote {
-        border: 1px solid #999;
+        border: 1px solid #999999;
         page-break-inside: avoid;
     }
 

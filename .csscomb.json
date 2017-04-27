@@ -1,8 +1,10 @@
 {
+    "remove-empty-rulesets": true,
     "always-semicolon": true,
-    "color-case": "lower",
-    "block-indent": "\t",
+    "color-case": "upper",
+    "block-indent": "    ",
     "color-shorthand": false,
+    "element-case": "lower",
     "eof-newline": true,
     "leading-zero": true,
     "quotes": "double",
@@ -16,8 +18,7 @@
     "space-before-selector-delimiter": "",
     "space-before-closing-brace": "\n",
     "strip-spaces": true,
-    "unitless-zero": true,
-    "vendor-prefix-align": true,
+    "tab-size": true,
     "sort-order": [
         [
             "$include"

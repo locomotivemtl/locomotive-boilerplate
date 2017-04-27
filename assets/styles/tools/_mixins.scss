@@ -35,9 +35,9 @@
 //
 @mixin u-clearfix($supports...) {
     &::after {
-        content: if(list-contains($supports, opera), " ", "");
         display: if(list-contains($supports, table), table, block);
-        clear:   both;
+        clear: both;
+        content: if(list-contains($supports, opera), " ", "");
     }
 }
 
@@ -51,18 +51,17 @@
 // @output `font-size`, `line-height`
 //
 @mixin font-size($font-size, $line-height: auto, $important: false) {
+    font-size: rem($font-size) $important;
     $important: important($important);
 
-    font-size: rem($font-size) $important;
-
-    @if ($line-height == 'auto') {
+    @if ($line-height == "auto") {
         line-height: ceil($font-size / $line-height) * ($line-height / $font-size) $important;
     }
     @else {
-        @if (type-of($line-height) == number or $line-height == 'inherit' or $line-height == 'normal') {
+        @if (type-of($line-height) == number or $line-height == "inherit" or $line-height == "normal") {
             line-height: $line-height $important;
         }
-        @elseif ($line-height != 'none' and $line-height != false) {
+        @elseif ($line-height != "none" and $line-height != false) {
             @error "D’oh! `#{$line-height}` is not a valid value for `$line-height`."
         }
     }
@@ -81,16 +80,16 @@
     font-size: 0;
 
     &::before {
-        display:        inline-block;
-        height:         100%;
-        content:        "";
+        display: inline-block;
+        height: 100%;
+        content: "";
         vertical-align: middle;
     }
 
     > * {
-        display:        inline-block;
-        font-size:      1rem;
+        display: inline-block;
         vertical-align: middle;
+        font-size: 1rem;
     }
 }
 
@@ -128,8 +127,8 @@
 // @output `list-style`, `margin`, `padding`
 //
 @mixin u-list-reset {
-    margin:     0;
-    padding:    0;
+    margin: 0;
+    padding: 0;
     list-style: none;
 }
 
@@ -145,13 +144,13 @@
 // @output `max-width`, `word-wrap`, `white-space`, `overflow`, `text-overflow`
 //
 @mixin u-truncate($width: 100%) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;  // [2]
     @if $width {
         max-width: $width; // [1]
     }
-    word-wrap:     normal;  // [2]
-    white-space:   nowrap;
-    overflow:      hidden;
-    text-overflow: ellipsis;
 }
 
 //
@@ -161,16 +160,15 @@
 // @output Properties for removing the element from the document flow.
 //
 @mixin u-accessibly-hidden($important: true) {
-    $important: important($important);
-
     position: absolute $important;
     overflow: hidden;
-    height:   1px;
-    width:    1px;
-    padding:  0;
-    margin:   0;
-    border:   0;
-    clip:     rect(0 0 0 0);
+    clip: rect(0 0 0 0);
+    margin: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+    $important: important($important);
 }
 
 //
@@ -181,9 +179,9 @@
 //
 @mixin u-accessibly-focusable {
     @include u-actus {
+        clip: auto;
+        width: auto;
         height: auto;
-        width:  auto;
-        clip:   auto;
 
         @content;
     }
@@ -199,10 +197,9 @@
 // @output `display`, `visibility`
 //
 @mixin u-hidden($important: true) {
+    display: none   $important;
+    visibility: hidden $important;
     $important: important($important);
-
-    display    : none   $important;
-    visibility : hidden $important;
 }
 
 //
@@ -214,10 +211,8 @@
 // @param  {Boolean} $important [true]  - Whether the visibility is important.
 // @output `display`, `visibility`
 //
-@mixin u-shown($display: block, $important: true)
-{
+@mixin u-shown($display: block, $important: true) {
+    display: $display $important;
+    visibility: visible  $important;
     $important: important($important);
-
-    display    : $display $important;
-    visibility : visible  $important;
 }

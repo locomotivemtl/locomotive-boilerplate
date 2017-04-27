@@ -14,24 +14,24 @@
 // 3. Ensure the page always fills at least the entire height of the viewport.
 //
 html {
-    color:       $color;
-    font-size:   em($font-size, 16px); /* [1] */
+    overflow-y: scroll; /* [2] */
+    min-height: 100%; /* [3] */
+    color: $color;
+    font-size: em($font-size, 16px); /* [1] */
     font-family: $font-family;
     line-height: $line-height; /* [1] */
-    overflow-y:  scroll; /* [2] */
-    min-height:  100%; /* [3] */
 }
 
 ::selection {
     background-color: $selection-background-color;
-    color:            $selection-text-color;
-    text-shadow:      none;
+    color: $selection-text-color;
+    text-shadow: none;
 }
 
 a {
-    color: $link-color;
-
     @include u-hocus {
         color: $link-hover-color;
     }
+
+    color: $link-color;
 }

@@ -8,7 +8,7 @@
 $context: frontend  !default;
 
 // Path is relative to the stylesheets directory.
-$assets-path: '../'  !default;
+$assets-path: "../"  !default;
 
 // Typefaces
 // =============================================================================
@@ -17,10 +17,10 @@ $font-sans-serif: sans-serif;
 // Typography
 // =============================================================================
 // Base
-$font-size: 16px;
+$font-size:   16px;
 $line-height: 24px / $font-size;
 $font-family: $font-sans-serif;
-$color: #222222;
+$color:       #222222;
 // Headings
 $font-size-h1:  36px  !default;
 $font-size-h2:  28px  !default;
@@ -30,25 +30,25 @@ $font-size-h5:  18px  !default;
 $font-size-h6:  16px  !default;
 $line-height-h: $line-height;
 // Weights
-$light: 300;
+$light:  300;
 $normal: 400;
 $medium: 500;
-$bold: 700;
+$bold:   700;
 
 // Transitions
 // =============================================================================
-$speed: 0.3s;
+$speed:  0.3s;
 $easing: linear;
 
 // Spacing Units
 // =============================================================================
-$unit: 60px;
+$unit:       60px;
 $unit-small: 30px;
 
 // Container
 // ==========================================================================
 $container-width: 2000px;
-$padding: $unit;
+$padding:         $unit;
 
 // Breakpoints
 // =============================================================================

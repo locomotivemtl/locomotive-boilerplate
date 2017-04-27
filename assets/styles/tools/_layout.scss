@@ -45,9 +45,9 @@
 //    http://csswizardry.com/2011/08/building-better-grid-systems/
 //
 @mixin o-layout_item($gutter: 0, $fix-whitespace: true) {
-    display:        inline-block; // [2]
+    display: inline-block; // [2]
+    width: 100%; // [4]
     vertical-align: top; // [3]
-    width:          100%; // [4]
 
     @if ($fix-whitespace) {
         font-size: 1rem;

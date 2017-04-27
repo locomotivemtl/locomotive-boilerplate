@@ -12,24 +12,24 @@
 //
 button,
 .o-button {
-    display:         inline-block; /* [1] */
-    overflow:        visible; /* [2] */
-    margin:          0; /* [3] */
-    padding:         0;
-    outline:         0;
-    border:          0;
-    background:      none transparent;
-    color:           inherit;
-    vertical-align:  middle; /* [4] */
-    text-align:      center; /* [3] */
-    text-decoration: none;
-    text-transform:  none;
-    font:            inherit; /* [5] */
-    line-height:     normal;
-    cursor:          pointer; /* [6] */
-    user-select:     none;
-
     @include u-hocus {
         text-decoration: none;
     }
+
+    display: inline-block; /* [1] */
+    overflow: visible; /* [2] */
+    margin: 0; /* [3] */
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background: none transparent;
+    color: inherit;
+    vertical-align: middle; /* [4] */
+    text-align: center; /* [3] */
+    text-decoration: none;
+    text-transform: none;
+    font: inherit; /* [5] */
+    line-height: normal;
+    cursor: pointer; /* [6] */
+    user-select: none;
 }

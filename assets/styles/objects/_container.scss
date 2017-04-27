@@ -19,9 +19,9 @@
 /* stylelint-enable */
 
 .o-container {
+    margin-right: auto;
+    margin-left: auto;
     padding-right: $padding;
-    padding-left:  $padding;
-    margin-right:  auto;
-    margin-left:   auto;
-    max-width:     $container-width;
+    padding-left: $padding;
+    max-width: $container-width;
 }

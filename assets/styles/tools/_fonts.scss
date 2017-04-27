@@ -25,7 +25,6 @@ $global-font-file-formats: "woff", "ttf" !default;
     $file-formats
 ) {
     $src: ();
-
     $formats-map: (
         eot:   "#{$file-path}.eot?#iefix" format("embedded-opentype"),
         woff2: "#{$file-path}.woff2" format("woff2"),
@@ -36,9 +35,8 @@ $global-font-file-formats: "woff", "ttf" !default;
 
     @each $key, $values in $formats-map {
         @if list-contains($file-formats, $key) {
-            $file-path:   nth($values, 1);
+            $file-path: nth($values, 1);
             $font-format: nth($values, 2);
-
             $src: append($src, url("#{$assets-path}#{$file-path}") $font-format, comma);
         }
     }
