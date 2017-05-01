@@ -144,7 +144,7 @@ var App = function () {
             var attr = options.module;
 
             // Splitting modules found in the data-attribute
-            var moduleIdents = attr.split(/,\s*|\s+/g);
+            var moduleIdents = attr.split(/[,\s]+/g);
 
             // Loop modules
             var j = 0;
