@@ -10,7 +10,7 @@ export default class {
 
         // jQuery ondomready
         $(() => {
-            this.load()
+            this.load();
         });
 
         $document.on('goTo.PageTransitionManager', (event) => {
@@ -39,8 +39,8 @@ export default class {
             return TransitionObject;
         }
 
-        Barba.Dispatcher.on('linkClicked', (currentStatus, oldStatus, container) => {
-            clickedLink = currentStatus;
+        Barba.Dispatcher.on('linkClicked', (HTMLElement) => {
+            clickedLink = HTMLElement;
         });
 
         Barba.Dispatcher.on('newPageReady', (currentStatus, prevStatus, container, currentHTML) => {
@@ -58,9 +58,11 @@ export default class {
             /**
              * Execute any third party features.
              */
+        });
 
-            // Google Analytics
-            if (window.ga && !isDebug) {
+        Barba.Dispatcher.on('transitionCompleted', (currentStatus, prevStatus) => {
+            //Update google analytics viewing page with changeUrlTracker (autotrack)
+            if(!isDebug){
                 ga('send', 'pageview');
             }
         });
@@ -69,6 +71,17 @@ export default class {
         Barba.Pjax.Dom.wrapperId = 'js-barba-wrapper';
 
         Barba.Pjax.start();
+    }
+
+    /**
+     * Init Google Analytics and init plugin(s) of autotrack
+     *
+     * @return {void}
+     */
+    initAutotrack(){
+       ga('create', 'UA-XXXXXXXX-X', 'auto');
+       ga('require', 'urlChangeTracker');
+       ga('send', 'pageview');
     }
 
     /**
@@ -81,6 +94,11 @@ export default class {
         $html.removeClass('dom-is-loading');
         setTimeout(() => {
             $html.addClass('dom-is-animated');
-        }, 1000)
+        }, 1000);
+
+        if(!isDebug){
+            //Init autotrack - google analytics
+            this.initAutotrack();
+        }
     }
 }

@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
+        "autotrack": "0.0.0",
         "barba.js": "0.0.0",
         "svg4everybody": "0.0.0"
     },
