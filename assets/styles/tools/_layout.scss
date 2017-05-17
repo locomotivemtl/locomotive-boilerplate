@@ -54,6 +54,6 @@
     }
 
     @if (type-of($gutter) == number) {
-        padding-left: -$gutter; // [5]
+        padding-left: $gutter; // [5]
     }
 }
