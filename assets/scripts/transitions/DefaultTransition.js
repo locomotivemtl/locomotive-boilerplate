@@ -1,5 +1,6 @@
 /* jshint esnext: true */
-import { $document, $html } from '../utils/environment';
+import { APP_NAME, $document, $html } from '../utils/environment';
+import { EVENT as APP_EVENT } from '../App';
 
 function DefaultTransition(options) {
     options = options || {};
@@ -31,7 +32,7 @@ function DefaultTransition(options) {
             $html.attr('data-template', $el.data('template'));
 
             $document.triggerHandler({
-                type: 'initModules.App',
+                type: APP_EVENT.INIT_MODULES,
                 isBarba: true
             });
 
