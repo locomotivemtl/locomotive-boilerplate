@@ -22,6 +22,6 @@ export default class extends AbstractModule {
 
     destroy() {
         super.destroy();
-        this.$el.off(EVENT_NAMESPACE);
+        this.$el.off(`.${EVENT_NAMESPACE}`);
     }
 }
