@@ -1,7 +1,14 @@
 /* jshint esnext: true */
-import { $document, $html, isDebug } from '../utils/environment';
+import { APP_NAME, $document, $html, isDebug } from '../utils/environment';
 
 import DefaultTransition from './DefaultTransition';
+
+const MODULE_NAME = 'TransitionManager';
+const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
+
+const EVENT = {
+    GOTO: `goto.${EVENT_NAMESPACE}`
+};
 
 export default class {
     constructor() {
@@ -13,7 +20,7 @@ export default class {
             this.load()
         });
 
-        $document.on('goTo.PageTransitionManager', (event) => {
+        $document.on(EVENT.GOTO, (event) => {
             if (!window.history.pushState) {
                 window.location = event.options.location;
             } else {

@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { $document } from './utils/environment';
+import { APP_NAME, $document } from './utils/environment';
 
 import globals from './globals';
 
@@ -10,22 +10,31 @@ import { isFunction } from './utils/is';
 // Basic modules
 import * as modules from './modules';
 
+const MODULE_NAME = 'App';
+const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
+
+export const EVENT = {
+    INIT_MODULES: `initModules.${EVENT_NAMESPACE}`,
+    INIT_SCOPED_MODULES: `initScopedModules.${EVENT_NAMESPACE}`,
+    DELETE_SCOPED_MODULES: `deleteScopedModules.${EVENT_NAMESPACE}`
+};
+
 class App {
     constructor() {
         this.modules = modules;
         this.currentModules = [];
 
-        $document.on('initModules.App', (event) => {
+        $document.on(EVENT.INIT_MODULES, (event) => {
             this.initGlobals(event.firstBlood)
                 .deleteModules(event)
                 .initModules(event);
         });
 
-        $document.on('initScopedModules.App', (event) => {
+        $document.on(EVENT.INIT_SCOPED_MODULES, (event) => {
             this.initModules(event);
         });
 
-        $document.on('deleteScopedModules.App', (event) => {
+        $document.on(EVENT.DELETE_SCOPED_MODULES, (event) => {
             this.deleteModules(event);
         });
     }
@@ -145,7 +154,7 @@ class App {
 (function() {
     new App();
     $document.triggerHandler({
-        type: 'initModules.App',
+        type: EVENT.INIT_MODULES,
         firstBlood: true
     });
 })();

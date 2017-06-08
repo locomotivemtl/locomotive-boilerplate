@@ -4,10 +4,8 @@ let uid = 0;
 /**
  * Abstract Module
  */
-export default class
-{
-    constructor(options)
-    {
+export default class {
+    constructor(options) {
         this.$el = options.$el || null;
         this.el  = options.el  || null;
 
@@ -19,8 +17,7 @@ export default class
 
     init() {}
 
-    destroy()
-    {
+    destroy() {
         if (this.$el) {
             this.$el.removeData('uid')
         }
