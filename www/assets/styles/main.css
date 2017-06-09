@@ -1,5 +1,5 @@
 /*
- * ! Locomotive Boilerplate - 2017-05-17 
+ * ! Locomotive Boilerplate - 2017-06-09 
  */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -78,7 +78,8 @@ figure {
 hr {
   overflow: visible;
   /* 2 */
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   /* 1 */
   height: 0;
   /* 1 */
@@ -326,7 +327,8 @@ fieldset {
 legend {
   display: table;
   /* 1 */
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 3 */
@@ -362,7 +364,8 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */
@@ -450,7 +453,8 @@ template {
 }
 
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 template,
@@ -461,7 +465,8 @@ template,
 *,
 :before,
 :after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 address {
