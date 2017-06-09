@@ -21,6 +21,9 @@
     "tab-size": true,
     "sort-order": [
         [
+            "$variable"
+        ],
+        [
             "$include"
         ],
         [
