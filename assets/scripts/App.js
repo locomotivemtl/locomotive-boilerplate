@@ -60,6 +60,8 @@ class App {
 
             if (moduleIds.length > 0) {
                 destroyAll = false;
+            } else {
+                return this;
             }
         }
 
