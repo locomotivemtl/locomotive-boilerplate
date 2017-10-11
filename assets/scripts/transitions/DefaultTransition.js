@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { APP_NAME, $document, $html } from '../utils/environment';
+import { APP_NAME, $document, $html, $barba } from '../utils/environment';
 import { EVENT as APP_EVENT } from '../App';
 
 function DefaultTransition(options) {
@@ -24,6 +24,11 @@ function DefaultTransition(options) {
             }, 1000);
         },
         finish: function() {
+            $document.triggerHandler({
+                type:   APP_EVENT.DELETE_SCOPED_MODULES,
+                $scope: $barba
+            });
+
             this.done();
 
             const $el = $(this.newContainer);

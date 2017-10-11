@@ -5,6 +5,7 @@ const $document    = $(document);
 const $window      = $(window);
 const $html        = $(document.documentElement).removeClass('has-no-js').addClass('has-js');
 const $body        = $(document.body);
+const $barba       = $('#js-barba-wrapper');
 
 const isDebug      = !!$html.data('debug');
 
