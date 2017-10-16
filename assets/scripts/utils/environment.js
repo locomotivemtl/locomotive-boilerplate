@@ -9,4 +9,4 @@ const $barba       = $('#js-barba-wrapper');
 
 const isDebug      = !!$html.data('debug');
 
-export { APP_NAME, DATA_API_KEY, $document, $window, $html, $body, isDebug };
+export { APP_NAME, DATA_API_KEY, $document, $window, $html, $body, isDebug, $barba };
