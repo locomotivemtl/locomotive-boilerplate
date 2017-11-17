@@ -37,7 +37,7 @@ function DefaultTransition(options) {
             $html.attr('data-template', $el.data('template'));
 
             $document.triggerHandler({
-                type: APP_EVENT.INIT_MODULES,
+                type: APP_EVENT.INIT_SCOPED_MODULES,
                 isBarba: true
             });
 
