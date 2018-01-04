@@ -82,3 +82,7 @@ export function findByKeyValue( array, key, value ) {
         return obj[key] === value;
     });
 }
+
+export function cloneArray( array ) {
+    return JSON.parse(JSON.stringify(array));
+}
