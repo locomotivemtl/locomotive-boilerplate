@@ -12,8 +12,8 @@
     "devDependencies": {
         "autoprefixer": "0.0.0",
         "babel-core": "0.0.0",
-        "babel-preset-es2015": "0.0.0",
-        "babel-plugin-transform-es2015-classes": "0.0.0",
+        "babel-preset-env": "0.0.0",
+        "babel-plugin-transform-class-properties": "0.0.0",
         "babel-plugin-transform-export-extensions": "0.0.0",
         "babelify": "0.0.0",
         "eslint-tap": "0.0.0",
