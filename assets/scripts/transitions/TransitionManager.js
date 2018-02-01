@@ -11,10 +11,14 @@ const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 
 /*
+
 @todo : 
+
 - get data-transition on clicked link -> launch() and add switch(){}
 - add goto listener
 - add newPageReady functon with google analytics send
+- add overrideClass system for all transitions
+- add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
 
 */
 
@@ -59,6 +63,7 @@ export default class {
 
         //by default, but need to be manage by data-transiton on currentTarget
         this.transition = new DefaultTransition(this.wrapper);
+
         this.transition.launch();
     }
 
