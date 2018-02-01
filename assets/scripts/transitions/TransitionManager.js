@@ -3,12 +3,14 @@ import { APP_NAME, $document, $html, isDebug, $pjaxWrapper } from '../utils/envi
 import { EVENT as APP_EVENT } from '../App';
 
 //List here all of your transitions
-import DefaultTransition from './DefaultTransition';
-
+import * as transitions from './transitions';
 
 const MODULE_NAME = 'TransitionManager';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
+const EVENT = {
+    CLICK: `click.${EVENT_NAMESPACE}`
+};
 
 /*
 
@@ -22,10 +24,6 @@ const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 */
 
-const EVENT = {
-    GOTO: `goto.${EVENT_NAMESPACE}`
-};
-
 export default class {
     constructor() {
         
@@ -37,7 +35,10 @@ export default class {
 
         this.transition;
 
-        
+        /*
+        ===== PJAX CONFIGURATION =====
+        */
+
         this.containerClass = '.js-pjax-container';
         this.wrapperId = 'js-pjax-wrapper';
         this.noPjaxRequestClass = 'no-transition';
@@ -49,20 +50,29 @@ export default class {
             selectors: ['title',`${this.containerClass}`],
             switches: {}
         };
-
         this.options.switches[this.containerClass] = (oldEl, newEl, options) => this.switch(oldEl, newEl, options)
-
         this.pjax = new Pjax(this.options);
 
-        document.addEventListener('pjax:send',(e) => this.send(e));
+        // temporary solution to get currentTarget clicked (to get data-transition)
+        let a = document.querySelectorAll(`a:not(.${this.noPjaxRequestClass})`);
+        for (var i = a.length - 1; i >= 0; i--) {
+            a[i].addEventListener('click',(e) => this.click(e));
+        }
+
         document.addEventListener('pjax:success',(e) => this.success(e));
+
     }
 
-    send(e) {
+    click(e) {
         console.log("---- Launch request 🙌 -----");
 
-        //by default, but need to be manage by data-transiton on currentTarget
-        this.transition = new DefaultTransition(this.wrapper);
+        let el = e.target;
+        let transition = el.getAttribute('data-transition') ? el.getAttribute('data-transition') : 'BaseTransition'
+
+        // options available : wrapper, overrideClass
+        this.transition = new transitions[transition]({
+            wrapper: this.wrapper
+        });
 
         this.transition.launch();
     }
@@ -88,6 +98,7 @@ export default class {
 
     success(e) {
         this.transition.destroy();
+        this.transition = null;
     }
 
     /**
