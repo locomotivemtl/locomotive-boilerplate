@@ -1,1714 +1,788 @@
-/*! Dependencies for Locomotive Boilerplate - 2017-03-02 */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define("Barba", [], factory);
-	else if(typeof exports === 'object')
-		exports["Barba"] = factory();
-	else
-		root["Barba"] = factory();
-})(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-/******/
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:8080/dist";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/*! Dependencies for Locomotive Boilerplate - 2018-01-31 */
+!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Pjax=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+var clone = _dereq_('./lib/clone.js')
+var executeScripts = _dereq_('./lib/execute-scripts.js')
 
-	//Promise polyfill https://github.com/taylorhakes/promise-polyfill
-	
-	if (typeof Promise !== 'function') {
-	 window.Promise = __webpack_require__(1);
-	}
-	
-	var Barba = {
-	  version: '1.0.0',
-	  BaseTransition: __webpack_require__(4),
-	  BaseView: __webpack_require__(6),
-	  BaseCache: __webpack_require__(8),
-	  Dispatcher: __webpack_require__(7),
-	  HistoryManager: __webpack_require__(9),
-	  Pjax: __webpack_require__(10),
-	  Prefetch: __webpack_require__(13),
-	  Utils: __webpack_require__(5)
-	};
-	
-	module.exports = Barba;
+var forEachEls = _dereq_("./lib/foreach-els.js")
+
+var newUid = _dereq_("./lib/uniqueid.js")
+
+var on = _dereq_("./lib/events/on.js")
+// var off = require("./lib/events/on.js")
+var trigger = _dereq_("./lib/events/trigger.js")
 
 
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
+var Pjax = function(options) {
+    this.firstrun = true
 
-	/* WEBPACK VAR INJECTION */(function(setImmediate) {(function (root) {
-	
-	  // Store setTimeout reference so promise-polyfill will be unaffected by
-	  // other code modifying setTimeout (like sinon.useFakeTimers())
-	  var setTimeoutFunc = setTimeout;
-	
-	  function noop() {
-	  }
-	
-	  // Use polyfill for setImmediate for performance gains
-	  var asap = (typeof setImmediate === 'function' && setImmediate) ||
-	    function (fn) {
-	      setTimeoutFunc(fn, 0);
-	    };
-	
-	  var onUnhandledRejection = function onUnhandledRejection(err) {
-	    if (typeof console !== 'undefined' && console) {
-	      console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
-	    }
-	  };
-	
-	  // Polyfill for Function.prototype.bind
-	  function bind(fn, thisArg) {
-	    return function () {
-	      fn.apply(thisArg, arguments);
-	    };
-	  }
-	
-	  function Promise(fn) {
-	    if (typeof this !== 'object') throw new TypeError('Promises must be constructed via new');
-	    if (typeof fn !== 'function') throw new TypeError('not a function');
-	    this._state = 0;
-	    this._handled = false;
-	    this._value = undefined;
-	    this._deferreds = [];
-	
-	    doResolve(fn, this);
-	  }
-	
-	  function handle(self, deferred) {
-	    while (self._state === 3) {
-	      self = self._value;
-	    }
-	    if (self._state === 0) {
-	      self._deferreds.push(deferred);
-	      return;
-	    }
-	    self._handled = true;
-	    asap(function () {
-	      var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
-	      if (cb === null) {
-	        (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
-	        return;
-	      }
-	      var ret;
-	      try {
-	        ret = cb(self._value);
-	      } catch (e) {
-	        reject(deferred.promise, e);
-	        return;
-	      }
-	      resolve(deferred.promise, ret);
-	    });
-	  }
-	
-	  function resolve(self, newValue) {
-	    try {
-	      // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-	      if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
-	      if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
-	        var then = newValue.then;
-	        if (newValue instanceof Promise) {
-	          self._state = 3;
-	          self._value = newValue;
-	          finale(self);
-	          return;
-	        } else if (typeof then === 'function') {
-	          doResolve(bind(then, newValue), self);
-	          return;
-	        }
-	      }
-	      self._state = 1;
-	      self._value = newValue;
-	      finale(self);
-	    } catch (e) {
-	      reject(self, e);
-	    }
-	  }
-	
-	  function reject(self, newValue) {
-	    self._state = 2;
-	    self._value = newValue;
-	    finale(self);
-	  }
-	
-	  function finale(self) {
-	    if (self._state === 2 && self._deferreds.length === 0) {
-	      asap(function() {
-	        if (!self._handled) {
-	          onUnhandledRejection(self._value);
-	        }
-	      });
-	    }
-	
-	    for (var i = 0, len = self._deferreds.length; i < len; i++) {
-	      handle(self, self._deferreds[i]);
-	    }
-	    self._deferreds = null;
-	  }
-	
-	  function Handler(onFulfilled, onRejected, promise) {
-	    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-	    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
-	    this.promise = promise;
-	  }
-	
-	  /**
-	   * Take a potentially misbehaving resolver function and make sure
-	   * onFulfilled and onRejected are only called once.
-	   *
-	   * Makes no guarantees about asynchrony.
-	   */
-	  function doResolve(fn, self) {
-	    var done = false;
-	    try {
-	      fn(function (value) {
-	        if (done) return;
-	        done = true;
-	        resolve(self, value);
-	      }, function (reason) {
-	        if (done) return;
-	        done = true;
-	        reject(self, reason);
-	      });
-	    } catch (ex) {
-	      if (done) return;
-	      done = true;
-	      reject(self, ex);
-	    }
-	  }
-	
-	  Promise.prototype['catch'] = function (onRejected) {
-	    return this.then(null, onRejected);
-	  };
-	
-	  Promise.prototype.then = function (onFulfilled, onRejected) {
-	    var prom = new (this.constructor)(noop);
-	
-	    handle(this, new Handler(onFulfilled, onRejected, prom));
-	    return prom;
-	  };
-	
-	  Promise.all = function (arr) {
-	    var args = Array.prototype.slice.call(arr);
-	
-	    return new Promise(function (resolve, reject) {
-	      if (args.length === 0) return resolve([]);
-	      var remaining = args.length;
-	
-	      function res(i, val) {
-	        try {
-	          if (val && (typeof val === 'object' || typeof val === 'function')) {
-	            var then = val.then;
-	            if (typeof then === 'function') {
-	              then.call(val, function (val) {
-	                res(i, val);
-	              }, reject);
-	              return;
-	            }
-	          }
-	          args[i] = val;
-	          if (--remaining === 0) {
-	            resolve(args);
-	          }
-	        } catch (ex) {
-	          reject(ex);
-	        }
-	      }
-	
-	      for (var i = 0; i < args.length; i++) {
-	        res(i, args[i]);
-	      }
-	    });
-	  };
-	
-	  Promise.resolve = function (value) {
-	    if (value && typeof value === 'object' && value.constructor === Promise) {
-	      return value;
-	    }
-	
-	    return new Promise(function (resolve) {
-	      resolve(value);
-	    });
-	  };
-	
-	  Promise.reject = function (value) {
-	    return new Promise(function (resolve, reject) {
-	      reject(value);
-	    });
-	  };
-	
-	  Promise.race = function (values) {
-	    return new Promise(function (resolve, reject) {
-	      for (var i = 0, len = values.length; i < len; i++) {
-	        values[i].then(resolve, reject);
-	      }
-	    });
-	  };
-	
-	  /**
-	   * Set the immediate function to execute callbacks
-	   * @param fn {function} Function to execute
-	   * @private
-	   */
-	  Promise._setImmediateFn = function _setImmediateFn(fn) {
-	    asap = fn;
-	  };
-	
-	  Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
-	    onUnhandledRejection = fn;
-	  };
-	
-	  if (typeof module !== 'undefined' && module.exports) {
-	    module.exports = Promise;
-	  } else if (!root.Promise) {
-	    root.Promise = Promise;
-	  }
-	
-	})(this);
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).setImmediate))
+    var parseOptions = _dereq_("./lib/proto/parse-options.js");
+    parseOptions.apply(this,[options])
+    this.log("Pjax options", this.options)
 
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
+    this.maxUid = this.lastUid = newUid()
 
-	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(3).nextTick;
-	var apply = Function.prototype.apply;
-	var slice = Array.prototype.slice;
-	var immediateIds = {};
-	var nextImmediateId = 0;
-	
-	// DOM APIs, for completeness
-	
-	exports.setTimeout = function() {
-	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-	};
-	exports.setInterval = function() {
-	  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-	};
-	exports.clearTimeout =
-	exports.clearInterval = function(timeout) { timeout.close(); };
-	
-	function Timeout(id, clearFn) {
-	  this._id = id;
-	  this._clearFn = clearFn;
-	}
-	Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-	Timeout.prototype.close = function() {
-	  this._clearFn.call(window, this._id);
-	};
-	
-	// Does not start the time, just sets up the members needed.
-	exports.enroll = function(item, msecs) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = msecs;
-	};
-	
-	exports.unenroll = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = -1;
-	};
-	
-	exports._unrefActive = exports.active = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-	
-	  var msecs = item._idleTimeout;
-	  if (msecs >= 0) {
-	    item._idleTimeoutId = setTimeout(function onTimeout() {
-	      if (item._onTimeout)
-	        item._onTimeout();
-	    }, msecs);
-	  }
-	};
-	
-	// That's not how node.js implements it but the exposed api is the same.
-	exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
-	  var id = nextImmediateId++;
-	  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
-	
-	  immediateIds[id] = true;
-	
-	  nextTick(function onNextTick() {
-	    if (immediateIds[id]) {
-	      // fn.call() is faster so we optimize for the common use-case
-	      // @see http://jsperf.com/call-apply-segu
-	      if (args) {
-	        fn.apply(null, args);
-	      } else {
-	        fn.call(null);
-	      }
-	      // Prevent ids from leaking
-	      exports.clearImmediate(id);
-	    }
-	  });
-	
-	  return id;
-	};
-	
-	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
-	  delete immediateIds[id];
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).setImmediate, __webpack_require__(2).clearImmediate))
+    this.parseDOM(document)
 
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
+    on(window, "popstate", function(st) {
+      if (st.state) {
+        var opt = clone(this.options)
+        opt.url = st.state.url
+        opt.title = st.state.title
+        opt.history = false
 
-	// shim for using process in browser
-	
-	var process = module.exports = {};
-	
-	// cached from whatever global is present so that test runners that stub it
-	// don't break things.  But we need to wrap it in a try catch in case it is
-	// wrapped in strict mode code which doesn't define any globals.  It's inside a
-	// function because try/catches deoptimize in certain engines.
-	
-	var cachedSetTimeout;
-	var cachedClearTimeout;
-	
-	(function () {
-	  try {
-	    cachedSetTimeout = setTimeout;
-	  } catch (e) {
-	    cachedSetTimeout = function () {
-	      throw new Error('setTimeout is not defined');
-	    }
-	  }
-	  try {
-	    cachedClearTimeout = clearTimeout;
-	  } catch (e) {
-	    cachedClearTimeout = function () {
-	      throw new Error('clearTimeout is not defined');
-	    }
-	  }
-	} ())
-	var queue = [];
-	var draining = false;
-	var currentQueue;
-	var queueIndex = -1;
-	
-	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
-	}
-	
-	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = cachedSetTimeout(cleanUpNextTick);
-	    draining = true;
-	
-	    var len = queue.length;
-	    while(len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    cachedClearTimeout(timeout);
-	}
-	
-	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        cachedSetTimeout(drainQueue, 0);
-	    }
-	};
-	
-	// v8 likes predictible objects
-	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
-	}
-	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
-	};
-	process.title = 'browser';
-	process.browser = true;
-	process.env = {};
-	process.argv = [];
-	process.version = ''; // empty string to avoid regexp issues
-	process.versions = {};
-	
-	function noop() {}
-	
-	process.on = noop;
-	process.addListener = noop;
-	process.once = noop;
-	process.off = noop;
-	process.removeListener = noop;
-	process.removeAllListeners = noop;
-	process.emit = noop;
-	
-	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
-	};
-	
-	process.cwd = function () { return '/' };
-	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
-	};
-	process.umask = function() { return 0; };
+        if (st.state.uid < this.lastUid) {
+          opt.backward = true
+        }
+        else {
+          opt.forward = true
+        }
+        this.lastUid = st.state.uid
 
+        // @todo implement history cache here, based on uid
+        this.loadUrl(st.state.url, opt)
+      }
+    }.bind(this))
+  }
 
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
+Pjax.prototype = {
+  log: _dereq_("./lib/proto/log.js"),
 
-	var Utils = __webpack_require__(5);
-	
-	/**
-	 * BaseTransition to extend
-	 *
-	 * @namespace Barba.BaseTransition
-	 * @type {Object}
-	 */
-	var BaseTransition = {
-	  /**
-	   * @memberOf Barba.BaseTransition
-	   * @type {HTMLElement}
-	   */
-	  oldContainer: undefined,
-	
-	  /**
-	   * @memberOf Barba.BaseTransition
-	   * @type {HTMLElement}
-	   */
-	  newContainer: undefined,
-	
-	  /**
-	   * @memberOf Barba.BaseTransition
-	   * @type {Promise}
-	   */
-	  newContainerLoading: undefined,
-	
-	  /**
-	   * Helper to extend the object
-	   *
-	   * @memberOf Barba.BaseTransition
-	   * @param  {Object} newObject
-	   * @return {Object} newInheritObject
-	   */
-	  extend: function(obj){
-	    return Utils.extend(this, obj);
-	  },
-	
-	  /**
-	   * This function is called from Pjax module to initialize
-	   * the transition.
-	   *
-	   * @memberOf Barba.BaseTransition
-	   * @private
-	   * @param  {HTMLElement} oldContainer
-	   * @param  {Promise} newContainer
-	   * @return {Promise}
-	   */
-	  init: function(oldContainer, newContainer) {
-	    var _this = this;
-	
-	    this.oldContainer = oldContainer;
-	    this._newContainerPromise = newContainer;
-	
-	    this.deferred = Utils.deferred();
-	    this.newContainerReady = Utils.deferred();
-	    this.newContainerLoading = this.newContainerReady.promise;
-	
-	    this.start();
-	
-	    this._newContainerPromise.then(function(newContainer) {
-	      _this.newContainer = newContainer;
-	      _this.newContainerReady.resolve();
-	    });
-	
-	    return this.deferred.promise;
-	  },
-	
-	  /**
-	   * This function needs to be called as soon the Transition is finished
-	   *
-	   * @memberOf Barba.BaseTransition
-	   */
-	  done: function() {
-	    this.oldContainer.parentNode.removeChild(this.oldContainer);
-	    this.newContainer.style.visibility = 'visible';
-	    this.deferred.resolve();
-	  },
-	
-	  /**
-	   * Constructor for your Transition
-	   *
-	   * @memberOf Barba.BaseTransition
-	   * @abstract
-	   */
-	  start: function() {},
-	};
-	
-	module.exports = BaseTransition;
+  getElements: _dereq_("./lib/proto/get-elements.js"),
 
+  parseDOM: _dereq_("./lib/proto/parse-dom.js"),
 
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
+  refresh: _dereq_("./lib/proto/refresh.js"),
 
-	/**
-	 * Just an object with some helpful functions
-	 *
-	 * @type {Object}
-	 * @namespace Barba.Utils
-	 */
-	var Utils = {
-	  /**
-	   * Return the current url
-	   *
-	   * @memberOf Barba.Utils
-	   * @return {String} currentUrl
-	   */
-	  getCurrentUrl: function() {
-	    return window.location.protocol + '//' +
-	           window.location.host +
-	           window.location.pathname +
-	           window.location.search;
-	  },
-	
-	  /**
-	   * Given an url, return it without the hash
-	   *
-	   * @memberOf Barba.Utils
-	   * @private
-	   * @param  {String} url
-	   * @return {String} newCleanUrl
-	   */
-	  cleanLink: function(url) {
-	    return url.replace(/#.*/, '');
-	  },
-	
-	  /**
-	   * Time in millisecond after the xhr request goes in timeout
-	   *
-	   * @memberOf Barba.Utils
-	   * @type {Number}
-	   * @default
-	   */
-	  xhrTimeout: 5000,
-	
-	  /**
-	   * Start an XMLHttpRequest() and return a Promise
-	   *
-	   * @memberOf Barba.Utils
-	   * @param  {String} url
-	   * @return {Promise}
-	   */
-	  xhr: function(url) {
-	    var deferred = this.deferred();
-	    var req = new XMLHttpRequest();
-	
-	    req.onreadystatechange = function() {
-	      if (req.readyState === 4) {
-	        if (req.status === 200) {
-	          return deferred.resolve(req.responseText);
-	        } else {
-	          return deferred.reject(new Error('xhr: HTTP code is not 200'));
-	        }
-	      }
-	    };
-	
-	    req.ontimeout = function() {
-	      return deferred.reject(new Error('xhr: Timeout exceeded'));
-	    };
-	
-	    req.open('GET', url);
-	    req.timeout = this.xhrTimeout;
-	    req.setRequestHeader('x-barba', 'yes');
-	    req.send();
-	
-	    return deferred.promise;
-	  },
-	
-	  /**
-	   * Get obj and props and return a new object with the property merged
-	   *
-	   * @memberOf Barba.Utils
-	   * @param  {object} obj
-	   * @param  {object} props
-	   * @return {object}
-	   */
-	  extend: function(obj, props) {
-	    var newObj = Object.create(obj);
-	
-	    for(var prop in props) {
-	      if(props.hasOwnProperty(prop)) {
-	        newObj[prop] = props[prop];
-	      }
-	    }
-	
-	    return newObj;
-	  },
-	
-	  /**
-	   * Return a new "Deferred" object
-	   * https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Deferred
-	   *
-	   * @memberOf Barba.Utils
-	   * @return {Deferred}
-	   */
-	  deferred: function() {
-	    return new function() {
-	      this.resolve = null;
-	      this.reject = null;
-	
-	      this.promise = new Promise(function(resolve, reject) {
-	        this.resolve = resolve;
-	        this.reject = reject;
-	      }.bind(this));
-	    };
-	  },
-	
-	  /**
-	   * Return the port number normalized, eventually you can pass a string to be normalized.
-	   *
-	   * @memberOf Barba.Utils
-	   * @private
-	   * @param  {String} p
-	   * @return {Int} port
-	   */
-	  getPort: function(p) {
-	    var port = typeof p !== 'undefined' ? p : window.location.port;
-	    var protocol = window.location.protocol;
-	
-	    if (port != '')
-	      return parseInt(port);
-	
-	    if (protocol === 'http:')
-	      return 80;
-	
-	    if (protocol === 'https:')
-	      return 443;
-	  }
-	};
-	
-	module.exports = Utils;
+  reload: _dereq_("./lib/reload.js"),
+
+  attachLink: _dereq_("./lib/proto/attach-link.js"),
+
+  forEachSelectors: function(cb, context, DOMcontext) {
+    return _dereq_("./lib/foreach-selectors.js").bind(this)(this.options.selectors, cb, context, DOMcontext)
+  },
+
+  switchSelectors: function(selectors, fromEl, toEl, options) {
+    return _dereq_("./lib/switches-selectors.js").bind(this)(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
+  },
+
+  // too much problem with the code below
+  // + it’s too dangerous
+//   switchFallback: function(fromEl, toEl) {
+//     this.switchSelectors(["head", "body"], fromEl, toEl)
+//     // execute script when DOM is like it should be
+//     Pjax.executeScripts(document.querySelector("head"))
+//     Pjax.executeScripts(document.querySelector("body"))
+//   }
+
+  latestChance: function(href) {
+    window.location = href
+  },
+
+  onSwitch: function() {
+    trigger(window, "resize scroll")
+  },
+
+  loadContent: function(html, options) {
+    var tmpEl = document.implementation.createHTMLDocument()
+
+    // parse HTML attributes to copy them
+    // since we are forced to use documentElement.innerHTML (outerHTML can't be used for <html>)
+    var htmlRegex = /<html[^>]+>/gi
+    var htmlAttribsRegex = /\s?[a-z:]+(?:\=(?:\'|\")[^\'\">]+(?:\'|\"))*/gi
+    var matches = html.match(htmlRegex)
+    if (matches && matches.length) {
+      matches = matches[0].match(htmlAttribsRegex)
+      if (matches.length) {
+        matches.shift()
+        matches.forEach(function(htmlAttrib) {
+          var attr = htmlAttrib.trim().split("=")
+          if (attr.length === 1) {
+            tmpEl.documentElement.setAttribute(attr[0], true)
+          }
+          else {
+            tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
+          }
+        })
+      }
+    }
+
+    tmpEl.documentElement.innerHTML = html
+    this.log("load content", tmpEl.documentElement.attributes, tmpEl.documentElement.innerHTML.length)
+
+    // Clear out any focused controls before inserting new page contents.
+    // we clear focus on non form elements
+    if (document.activeElement && !document.activeElement.value) {
+      try {
+        document.activeElement.blur()
+      } catch (e) { }
+    }
+
+    // try {
+    this.switchSelectors(this.options.selectors, tmpEl, document, options)
+
+    // FF bug: Won’t autofocus fields that are inserted via JS.
+    // This behavior is incorrect. So if theres no current focus, autofocus
+    // the last field.
+    //
+    // http://www.w3.org/html/wg/drafts/html/master/forms.html
+    var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
+    if (autofocusEl && document.activeElement !== autofocusEl) {
+      autofocusEl.focus();
+    }
+
+    // execute scripts when DOM have been completely updated
+    this.options.selectors.forEach(function(selector) {
+      forEachEls(document.querySelectorAll(selector), function(el) {
+        executeScripts(el)
+      })
+    })
+    // }
+    // catch(e) {
+    //   if (this.options.debug) {
+    //     this.log("Pjax switch fail: ", e)
+    //   }
+    //   this.switchFallback(tmpEl, document)
+    // }
+  },
+
+  doRequest: _dereq_("./lib/request.js"),
+
+  loadUrl: function(href, options) {
+    this.log("load href", href, options)
+
+    trigger(document, "pjax:send", options);
+
+    // Do the request
+    this.doRequest(href, function(html) {
+      // Fail if unable to load HTML via AJAX
+      if (html === false) {
+        trigger(document,"pjax:complete pjax:error", options)
+
+        return
+      }
+
+      // Clear out any focused controls before inserting new page contents.
+      document.activeElement.blur()
+
+      try {
+        this.loadContent(html, options)
+      }
+      catch (e) {
+        if (!this.options.debug) {
+          if (console && console.error) {
+            console.error("Pjax switch fail: ", e)
+          }
+          this.latestChance(href)
+          return
+        }
+        else {
+          throw e
+        }
+      }
+
+      if (options.history) {
+        if (this.firstrun) {
+          this.lastUid = this.maxUid = newUid()
+          this.firstrun = false
+          window.history.replaceState({
+            url: window.location.href,
+            title: document.title,
+            uid: this.maxUid
+          },
+          document.title)
+        }
+
+        // Update browser history
+        this.lastUid = this.maxUid = newUid()
+        window.history.pushState({
+          url: href,
+          title: options.title,
+          uid: this.maxUid
+        },
+          options.title,
+          href)
+      }
+
+      this.forEachSelectors(function(el) {
+        this.parseDOM(el)
+      }, this)
+
+      // Fire Events
+      trigger(document,"pjax:complete pjax:success", options)
+
+      options.analytics()
+
+      // Scroll page to top on new page load
+      if (options.scrollTo !== false) {
+        if (options.scrollTo.length > 1) {
+          window.scrollTo(options.scrollTo[0], options.scrollTo[1])
+        }
+        else {
+          window.scrollTo(0, options.scrollTo)
+        }
+      }
+    }.bind(this))
+  }
+}
+
+Pjax.isSupported = _dereq_("./lib/is-supported.js");
+
+//arguably could do `if( require("./lib/is-supported.js")()) {` but that might be a little to simple
+if (Pjax.isSupported()) {
+  module.exports = Pjax
+}
+// if there isn’t required browser functions, returning stupid api
+else {
+  var stupidPjax = function() {}
+  for (var key in Pjax.prototype) {
+    if (Pjax.prototype.hasOwnProperty(key) && typeof Pjax.prototype[key] === "function") {
+      stupidPjax[key] = stupidPjax
+    }
+  }
+
+  module.exports = stupidPjax
+}
+
+},{"./lib/clone.js":2,"./lib/events/on.js":4,"./lib/events/trigger.js":5,"./lib/execute-scripts.js":6,"./lib/foreach-els.js":7,"./lib/foreach-selectors.js":8,"./lib/is-supported.js":9,"./lib/proto/attach-link.js":11,"./lib/proto/get-elements.js":12,"./lib/proto/log.js":13,"./lib/proto/parse-dom.js":14,"./lib/proto/parse-options.js":16,"./lib/proto/refresh.js":17,"./lib/reload.js":18,"./lib/request.js":19,"./lib/switches-selectors.js":20,"./lib/uniqueid.js":22}],2:[function(_dereq_,module,exports){
+module.exports = function(obj) {
+  if (null === obj || "object" != typeof obj) {
+    return obj
+  }
+  var copy = obj.constructor()
+  for (var attr in obj) {
+    if (obj.hasOwnProperty(attr)) {
+      copy[attr] = obj[attr]
+    }
+  }
+  return copy
+}
+
+},{}],3:[function(_dereq_,module,exports){
+module.exports = function(el) {
+  // console.log("going to execute script", el)
+
+  var code = (el.text || el.textContent || el.innerHTML || "")
+  var head = document.querySelector("head") || document.documentElement
+  var script = document.createElement("script")
+
+  if (code.match("document.write")) {
+    if (console && console.log) {
+      console.log("Script contains document.write. Can’t be executed correctly. Code skipped ", el)
+    }
+    return false
+  }
+
+  script.type = "text/javascript"
+  try {
+    script.appendChild(document.createTextNode(code))
+  }
+  catch (e) {
+    // old IEs have funky script nodes
+    script.text = code
+  }
+
+  // execute
+  head.insertBefore(script, head.firstChild)
+  head.removeChild(script) // avoid pollution
+
+  return true
+}
+
+},{}],4:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("../foreach-els")
+
+module.exports = function(els, events, listener, useCapture) {
+  events = (typeof events === "string" ? events.split(" ") : events)
+
+  events.forEach(function(e) {
+    forEachEls(els, function(el) {
+      el.addEventListener(e, listener, useCapture)
+    })
+  })
+}
+
+},{"../foreach-els":7}],5:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("../foreach-els")
+
+module.exports = function(els, events, opts) {
+  events = (typeof events === "string" ? events.split(" ") : events)
+
+  events.forEach(function(e) {
+    var event // = new CustomEvent(e) // doesn't everywhere yet
+    event = document.createEvent("HTMLEvents")
+    event.initEvent(e, true, true)
+    event.eventName = e
+    if (opts) {
+      Object.keys(opts).forEach(function(key) {
+        event[key] = opts[key]
+      })
+    }
+
+    forEachEls(els, function(el) {
+      var domFix = false
+      if (!el.parentNode && el !== document && el !== window) {
+        // THANKS YOU IE (9/10//11 concerned)
+        // dispatchEvent doesn't work if element is not in the dom
+        domFix = true
+        document.body.appendChild(el)
+      }
+      el.dispatchEvent(event)
+      if (domFix) {
+        el.parentNode.removeChild(el)
+      }
+    })
+  })
+}
+
+},{"../foreach-els":7}],6:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("./foreach-els")
+var evalScript = _dereq_("./eval-script")
+// Finds and executes scripts (used for newly added elements)
+// Needed since innerHTML does not run scripts
+module.exports = function(el) {
+  // console.log("going to execute scripts for ", el)
+  forEachEls(el.querySelectorAll("script"), function(script) {
+    if (!script.type || script.type.toLowerCase() === "text/javascript") {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script)
+      }
+      evalScript(script)
+    }
+  })
+}
+
+},{"./eval-script":3,"./foreach-els":7}],7:[function(_dereq_,module,exports){
+/* global HTMLCollection: true */
+
+module.exports = function(els, fn, context) {
+  if (els instanceof HTMLCollection || els instanceof NodeList || els instanceof Array) {
+    return Array.prototype.forEach.call(els, fn, context)
+  }
+  // assume simple dom element
+  return fn.call(context, els)
+}
+
+},{}],8:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("./foreach-els")
+
+module.exports = function(selectors, cb, context, DOMcontext) {
+  DOMcontext = DOMcontext || document
+  selectors.forEach(function(selector) {
+    forEachEls(DOMcontext.querySelectorAll(selector), cb, context)
+  })
+}
+
+},{"./foreach-els":7}],9:[function(_dereq_,module,exports){
+module.exports = function() {
+  // Borrowed wholesale from https://github.com/defunkt/jquery-pjax
+  return window.history &&
+    window.history.pushState &&
+    window.history.replaceState &&
+    // pushState isn’t reliable on iOS until 5.
+    !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]\D|WebApps\/.+CFNetwork)/)
+}
+
+},{}],10:[function(_dereq_,module,exports){
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(oThis) {
+    if (typeof this !== "function") {
+      // closest thing possible to the ECMAScript 5 internal IsCallable function
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")
+    }
+
+    var aArgs = Array.prototype.slice.call(arguments, 1)
+    var that = this
+    var Fnoop = function() {}
+    var fBound = function() {
+      return that.apply(this instanceof Fnoop && oThis ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)))
+    }
+
+    Fnoop.prototype = this.prototype
+    fBound.prototype = new Fnoop()
+
+    return fBound
+  }
+}
+
+},{}],11:[function(_dereq_,module,exports){
+_dereq_("../polyfills/Function.prototype.bind")
+
+var on = _dereq_("../events/on")
+var clone = _dereq_("../clone")
+
+var attrClick = "data-pjax-click-state"
+var attrKey = "data-pjax-keyup-state"
+
+var linkAction = function(el, event) {
+  // Don’t break browser special behavior on links (like page in new window)
+  if (event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    el.setAttribute(attrClick, "modifier")
+    return
+  }
+
+  // we do test on href now to prevent unexpected behavior if for some reason
+  // user have href that can be dynamically updated
+
+  // Ignore external links.
+  if (el.protocol !== window.location.protocol || el.host !== window.location.host) {
+    el.setAttribute(attrClick, "external")
+    return
+  }
+
+  // Ignore click if we are on an anchor on the same page
+  if (el.pathname === window.location.pathname && el.hash.length > 0) {
+    el.setAttribute(attrClick, "anchor-present")
+    return
+  }
+
+  // Ignore anchors on the same page (keep native behavior)
+  if (el.hash && el.href.replace(el.hash, "") === window.location.href.replace(location.hash, "")) {
+    el.setAttribute(attrClick, "anchor")
+    return
+  }
+
+  // Ignore empty anchor "foo.html#"
+  if (el.href === window.location.href.split("#")[0] + "#") {
+    el.setAttribute(attrClick, "anchor-empty")
+    return
+  }
+
+  event.preventDefault()
+
+  // don’t do "nothing" if user try to reload the page by clicking the same link twice
+  if (
+    this.options.currentUrlFullReload &&
+    el.href === window.location.href.split("#")[0]
+  ) {
+    el.setAttribute(attrClick, "reload")
+    this.reload()
+    return
+  }
+
+  el.setAttribute(attrClick, "load")
+  this.loadUrl(el.href, clone(this.options))
+}
+
+var isDefaultPrevented = function(event) {
+  return event.defaultPrevented || event.returnValue === false;
+}
+
+module.exports = function(el) {
+  var that = this
+
+  on(el, "click", function(event) {
+    if (isDefaultPrevented(event)) {
+      return
+    }
+
+    linkAction.call(that, el, event)
+  })
+
+  on(el, "keyup", function(event) {
+    if (isDefaultPrevented(event)) {
+      return
+    }
+
+    // Don’t break browser special behavior on links (like page in new window)
+    if (event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      el.setAttribute(attrKey, "modifier")
+      return
+    }
+
+    if (event.keyCode == 13) {
+      linkAction.call(that, el, event)
+    }
+  }.bind(this))
+}
+
+},{"../clone":2,"../events/on":4,"../polyfills/Function.prototype.bind":10}],12:[function(_dereq_,module,exports){
+module.exports = function(el) {
+  return el.querySelectorAll(this.options.elements)
+}
+
+},{}],13:[function(_dereq_,module,exports){
+module.exports = function() {
+  if (this.options.debug && console) {
+    if (typeof console.log === "function") {
+      console.log.apply(console, arguments);
+    }
+    // ie is weird
+    else if (console.log) {
+      console.log(arguments);
+    }
+  }
+}
+
+},{}],14:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("../foreach-els")
+
+var parseElement = _dereq_("./parse-element")
+
+module.exports = function(el) {
+  forEachEls(this.getElements(el), parseElement, this)
+}
+
+},{"../foreach-els":7,"./parse-element":15}],15:[function(_dereq_,module,exports){
+module.exports = function(el) {
+  switch (el.tagName.toLowerCase()) {
+  case "a":
+    // only attach link if el does not already have link attached
+    if (!el.hasAttribute('data-pjax-click-state')) {
+      this.attachLink(el)
+    }
+    break
+
+  case "form":
+    throw "Pjax doesnt support <form> yet."
+    break
+
+  default:
+    throw "Pjax can only be applied on <a> or <form> submit"
+  }
+}
+
+},{}],16:[function(_dereq_,module,exports){
+/* global _gaq: true, ga: true */
+
+module.exports = function(options){
+  this.options = options
+  this.options.elements = this.options.elements || "a[href], form[action]"
+  this.options.selectors = this.options.selectors || ["title", ".js-Pjax"]
+  this.options.switches = this.options.switches || {}
+  this.options.switchesOptions = this.options.switchesOptions || {}
+  this.options.history = this.options.history || true
+  this.options.analytics = this.options.analytics || function() {
+    // options.backward or options.foward can be true or undefined
+    // by default, we do track back/foward hit
+    // https://productforums.google.com/forum/#!topic/analytics/WVwMDjLhXYk
+    if (window._gaq) {
+      _gaq.push(["_trackPageview"])
+    }
+    if (window.ga) {
+      ga("send", "pageview", {page: location.pathname, title: document.title})
+    }
+  }
+  this.options.scrollTo = (typeof this.options.scrollTo === 'undefined') ? 0 : this.options.scrollTo;
+  this.options.cacheBust = (typeof this.options.cacheBust === 'undefined') ? true : this.options.cacheBust
+  this.options.debug = this.options.debug || false
+
+  // we can’t replace body.outerHTML or head.outerHTML
+  // it create a bug where new body or new head are created in the dom
+  // if you set head.outerHTML, a new body tag is appended, so the dom get 2 body
+  // & it break the switchFallback which replace head & body
+  if (!this.options.switches.head) {
+    this.options.switches.head = this.switchElementsAlt
+  }
+  if (!this.options.switches.body) {
+    this.options.switches.body = this.switchElementsAlt
+  }
+  if (typeof options.analytics !== "function") {
+    options.analytics = function() {}
+  }
+}
+},{}],17:[function(_dereq_,module,exports){
+module.exports = function(el) {
+  this.parseDOM(el || document)
+}
+
+},{}],18:[function(_dereq_,module,exports){
+module.exports = function() {
+  window.location.reload()
+}
+
+},{}],19:[function(_dereq_,module,exports){
+module.exports = function(location, callback) {
+  var request = new XMLHttpRequest()
+
+  request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+      if (request.status === 200) {
+        callback(request.responseText, request)
+      }
+      else {
+        callback(null, request)
+      }
+    }
+  }
+
+  // Add a timestamp as part of the query string if cache busting is enabled
+  if (this.options.cacheBust) {
+    location += (!/[?&]/.test(location) ? "?" : "&") + new Date().getTime()
+  }
+
+  request.open("GET", location, true)
+  request.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+  request.send(null)
+  return request
+}
+
+},{}],20:[function(_dereq_,module,exports){
+var forEachEls = _dereq_("./foreach-els")
+
+var defaultSwitches = _dereq_("./switches")
+
+module.exports = function(switches, switchesOptions, selectors, fromEl, toEl, options) {
+  selectors.forEach(function(selector) {
+    var newEls = fromEl.querySelectorAll(selector)
+    var oldEls = toEl.querySelectorAll(selector)
+    if (this.log) {
+      this.log("Pjax switch", selector, newEls, oldEls)
+    }
+    if (newEls.length !== oldEls.length) {
+      // forEachEls(newEls, function(el) {
+      //   this.log("newEl", el, el.outerHTML)
+      // }, this)
+      // forEachEls(oldEls, function(el) {
+      //   this.log("oldEl", el, el.outerHTML)
+      // }, this)
+      throw "DOM doesn’t look the same on new loaded page: ’" + selector + "’ - new " + newEls.length + ", old " + oldEls.length
+    }
+
+    forEachEls(newEls, function(newEl, i) {
+      var oldEl = oldEls[i]
+      if (this.log) {
+        this.log("newEl", newEl, "oldEl", oldEl)
+      }
+      if (switches[selector]) {
+        switches[selector].bind(this)(oldEl, newEl, options, switchesOptions[selector])
+      }
+      else {
+        defaultSwitches.outerHTML.bind(this)(oldEl, newEl, options)
+      }
+    }, this)
+  }, this)
+}
+
+},{"./foreach-els":7,"./switches":21}],21:[function(_dereq_,module,exports){
+var on = _dereq_("./events/on.js")
+// var off = require("./lib/events/on.js")
+// var trigger = require("./lib/events/trigger.js")
 
 
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
+module.exports = {
+  outerHTML: function(oldEl, newEl) {
+    oldEl.outerHTML = newEl.outerHTML
+    this.onSwitch()
+  },
 
-	var Dispatcher = __webpack_require__(7);
-	var Utils = __webpack_require__(5);
-	
-	/**
-	 * BaseView to be extended
-	 *
-	 * @namespace Barba.BaseView
-	 * @type {Object}
-	 */
-	var BaseView  = {
-	  /**
-	   * Namespace of the view.
-	   * (need to be associated with the data-namespace of the container)
-	   *
-	   * @memberOf Barba.BaseView
-	   * @type {String}
-	   */
-	  namespace: null,
-	
-	  /**
-	   * Helper to extend the object
-	   *
-	   * @memberOf Barba.BaseView
-	   * @param  {Object} newObject
-	   * @return {Object} newInheritObject
-	   */
-	  extend: function(obj){
-	    return Utils.extend(this, obj);
-	  },
-	
-	  /**
-	   * Init the view.
-	   * P.S. Is suggested to init the view before starting Barba.Pjax.start(),
-	   * in this way .onEnter() and .onEnterCompleted() will be fired for the current
-	   * container when the page is loaded.
-	   *
-	   * @memberOf Barba.BaseView
-	   */
-	  init: function() {
-	    var _this = this;
-	
-	    Dispatcher.on('initStateChange',
-	      function(newStatus, oldStatus) {
-	        if (oldStatus && oldStatus.namespace === _this.namespace)
-	          _this.onLeave();
-	      }
-	    );
-	
-	    Dispatcher.on('newPageReady',
-	      function(newStatus, oldStatus, container) {
-	        _this.container = container;
-	
-	        if (newStatus.namespace === _this.namespace)
-	          _this.onEnter();
-	      }
-	    );
-	
-	    Dispatcher.on('transitionCompleted',
-	      function(newStatus, oldStatus) {
-	        if (newStatus.namespace === _this.namespace)
-	          _this.onEnterCompleted();
-	
-	        if (oldStatus && oldStatus.namespace === _this.namespace)
-	          _this.onLeaveCompleted();
-	      }
-	    );
-	  },
-	
-	 /**
-	  * This function will be fired when the container
-	  * is ready and attached to the DOM.
-	  *
-	  * @memberOf Barba.BaseView
-	  * @abstract
-	  */
-	  onEnter: function() {},
-	
-	  /**
-	   * This function will be fired when the transition
-	   * to this container has just finished.
-	   *
-	   * @memberOf Barba.BaseView
-	   * @abstract
-	   */
-	  onEnterCompleted: function() {},
-	
-	  /**
-	   * This function will be fired when the transition
-	   * to a new container has just started.
-	   *
-	   * @memberOf Barba.BaseView
-	   * @abstract
-	   */
-	  onLeave: function() {},
-	
-	  /**
-	   * This function will be fired when the container
-	   * has just been removed from the DOM.
-	   *
-	   * @memberOf Barba.BaseView
-	   * @abstract
-	   */
-	  onLeaveCompleted: function() {}
-	}
-	
-	module.exports = BaseView;
+  innerHTML: function(oldEl, newEl) {
+    oldEl.innerHTML = newEl.innerHTML
+    oldEl.className = newEl.className
+    this.onSwitch()
+  },
 
+  sideBySide: function(oldEl, newEl, options, switchOptions) {
+    var forEach = Array.prototype.forEach
+    var elsToRemove = []
+    var elsToAdd = []
+    var fragToAppend = document.createDocumentFragment()
+    // height transition are shitty on safari
+    // so commented for now (until I found something ?)
+    // var relevantHeight = 0
+    var animationEventNames = "animationend webkitAnimationEnd MSAnimationEnd oanimationend"
+    var animatedElsNumber = 0
+    var sexyAnimationEnd = function(e) {
+          if (e.target != e.currentTarget) {
+            // end triggered by an animation on a child
+            return
+          }
 
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
+          animatedElsNumber--
+          if (animatedElsNumber <= 0 && elsToRemove) {
+            elsToRemove.forEach(function(el) {
+              // browsing quickly can make the el
+              // already removed by last page update ?
+              if (el.parentNode) {
+                el.parentNode.removeChild(el)
+              }
+            })
 
-	/**
-	 * Little Dispatcher inspired by MicroEvent.js
-	 *
-	 * @namespace Barba.Dispatcher
-	 * @type {Object}
-	 */
-	var Dispatcher = {
-	  /**
-	   * Object that keeps all the events
-	   *
-	   * @memberOf Barba.Dispatcher
-	   * @readOnly
-	   * @type {Object}
-	   */
-	  events: {},
-	
-	  /**
-	   * Bind a callback to an event
-	   *
-	   * @memberOf Barba.Dispatcher
-	   * @param  {String} eventName
-	   * @param  {Function} function
-	   */
-	  on: function(e, f) {
-	    this.events[e] = this.events[e] || [];
-	    this.events[e].push(f);
-	  },
-	
-	  /**
-	   * Unbind event
-	   *
-	   * @memberOf Barba.Dispatcher
-	   * @param  {String} eventName
-	   * @param  {Function} function
-	   */
-	  off: function(e, f) {
-	    if(e in this.events === false)
-	      return;
-	
-	    this.events[e].splice(this.events[e].indexOf(f), 1);
-	  },
-	
-	  /**
-	   * Fire the event running all the event associated to it
-	   *
-	   * @memberOf Barba.Dispatcher
-	   * @param  {String} eventName
-	   * @param  {...*} args
-	   */
-	  trigger: function(e) {//e, ...args
-	    if (e in this.events === false)
-	      return;
-	
-	    for(var i = 0; i < this.events[e].length; i++){
-	      this.events[e][i].apply(this, Array.prototype.slice.call(arguments, 1));
-	    }
-	  }
-	};
-	
-	module.exports = Dispatcher;
+            elsToAdd.forEach(function(el) {
+              el.className = el.className.replace(el.getAttribute("data-pjax-classes"), "")
+              el.removeAttribute("data-pjax-classes")
+              // Pjax.off(el, animationEventNames, sexyAnimationEnd, true)
+            })
 
+            elsToAdd = null // free memory
+            elsToRemove = null // free memory
 
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
+            // assume the height is now useless (avoid bug since there is overflow hidden on the parent)
+            // oldEl.style.height = "auto"
 
-	var Utils = __webpack_require__(5);
-	
-	/**
-	 * BaseCache it's a simple static cache
-	 *
-	 * @namespace Barba.BaseCache
-	 * @type {Object}
-	 */
-	var BaseCache = {
-	  /**
-	   * The Object that keeps all the key value information
-	   *
-	   * @memberOf Barba.BaseCache
-	   * @type {Object}
-	   */
-	  data: {},
-	
-	  /**
-	   * Helper to extend this object
-	   *
-	   * @memberOf Barba.BaseCache
-	   * @private
-	   * @param  {Object} newObject
-	   * @return {Object} newInheritObject
-	   */
-	  extend: function(obj) {
-	    return Utils.extend(this, obj);
-	  },
-	
-	  /**
-	   * Set a key and value data, mainly Barba is going to save promises
-	   *
-	   * @memberOf Barba.BaseCache
-	   * @param {String} key
-	   * @param {*} value
-	   */
-	  set: function(key, val) {
-	    this.data[key] = val;
-	  },
-	
-	  /**
-	   * Retrieve the data using the key
-	   *
-	   * @memberOf Barba.BaseCache
-	   * @param  {String} key
-	   * @return {*}
-	   */
-	  get: function(key) {
-	    return this.data[key];
-	  },
-	
-	  /**
-	   * Flush the cache
-	   *
-	   * @memberOf Barba.BaseCache
-	   */
-	  reset: function() {
-	    this.data = {};
-	  }
-	};
-	
-	module.exports = BaseCache;
+            // this is to trigger some repaint (example: picturefill)
+            this.onSwitch()
+            // Pjax.trigger(window, "scroll")
+          }
+        }.bind(this)
 
+    // Force height to be able to trigger css animation
+    // here we get the relevant height
+    // oldEl.parentNode.appendChild(newEl)
+    // relevantHeight = newEl.getBoundingClientRect().height
+    // oldEl.parentNode.removeChild(newEl)
+    // oldEl.style.height = oldEl.getBoundingClientRect().height + "px"
 
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
+    switchOptions = switchOptions || {}
 
-	/**
-	 * HistoryManager helps to keep track of the navigation
-	 *
-	 * @namespace Barba.HistoryManager
-	 * @type {Object}
-	 */
-	var HistoryManager = {
-	  /**
-	   * Keep track of the status in historic order
-	   *
-	   * @memberOf Barba.HistoryManager
-	   * @readOnly
-	   * @type {Array}
-	   */
-	  history: [],
-	
-	  /**
-	   * Add a new set of url and namespace
-	   *
-	   * @memberOf Barba.HistoryManager
-	   * @param {String} url
-	   * @param {String} namespace
-	   * @private
-	   */
-	  add: function(url, namespace) {
-	    if (!namespace)
-	      namespace = undefined;
-	
-	    this.history.push({
-	      url: url,
-	      namespace: namespace
-	    });
-	  },
-	
-	  /**
-	   * Return information about the current status
-	   *
-	   * @memberOf Barba.HistoryManager
-	   * @return {Object}
-	   */
-	  currentStatus: function() {
-	    return this.history[this.history.length - 1];
-	  },
-	
-	  /**
-	   * Return information about the previous status
-	   *
-	   * @memberOf Barba.HistoryManager
-	   * @return {Object}
-	   */
-	  prevStatus: function() {
-	    var history = this.history;
-	
-	    if (history.length < 2)
-	      return null;
-	
-	    return history[history.length - 2];
-	  }
-	};
-	
-	module.exports = HistoryManager;
+    forEach.call(oldEl.childNodes, function(el) {
+      elsToRemove.push(el)
+      if (el.classList && !el.classList.contains("js-Pjax-remove")) {
+        // for fast switch, clean element that just have been added, & not cleaned yet.
+        if (el.hasAttribute("data-pjax-classes")) {
+          el.className = el.className.replace(el.getAttribute("data-pjax-classes"), "")
+          el.removeAttribute("data-pjax-classes")
+        }
+        el.classList.add("js-Pjax-remove")
+        if (switchOptions.callbacks && switchOptions.callbacks.removeElement) {
+          switchOptions.callbacks.removeElement(el)
+        }
+        if (switchOptions.classNames) {
+          el.className += " " + switchOptions.classNames.remove + " " + (options.backward ? switchOptions.classNames.backward : switchOptions.classNames.forward)
+        }
+        animatedElsNumber++
+        on(el, animationEventNames, sexyAnimationEnd, true)
+      }
+    })
 
+    forEach.call(newEl.childNodes, function(el) {
+      if (el.classList) {
+        var addClasses = ""
+        if (switchOptions.classNames) {
+          addClasses = " js-Pjax-add " + switchOptions.classNames.add + " " + (options.backward ? switchOptions.classNames.forward : switchOptions.classNames.backward)
+        }
+        if (switchOptions.callbacks && switchOptions.callbacks.addElement) {
+          switchOptions.callbacks.addElement(el)
+        }
+        el.className += addClasses
+        el.setAttribute("data-pjax-classes", addClasses)
+        elsToAdd.push(el)
+        fragToAppend.appendChild(el)
+        animatedElsNumber++
+        on(el, animationEventNames, sexyAnimationEnd, true)
+      }
+    })
 
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
+    // pass all className of the parent
+    oldEl.className = newEl.className
+    oldEl.appendChild(fragToAppend)
 
-	var Utils = __webpack_require__(5);
-	var Dispatcher = __webpack_require__(7);
-	var HideShowTransition = __webpack_require__(11);
-	var BaseCache = __webpack_require__(8);
-	
-	var HistoryManager = __webpack_require__(9);
-	var Dom = __webpack_require__(12);
-	
-	/**
-	 * Pjax is a static object with main function
-	 *
-	 * @namespace Barba.Pjax
-	 * @borrows Dom as Dom
-	 * @type {Object}
-	 */
-	var Pjax = {
-	  Dom: Dom,
-	  History: HistoryManager,
-	  Cache: BaseCache,
-	
-	  /**
-	   * Indicate wether or not use the cache
-	   *
-	   * @memberOf Barba.Pjax
-	   * @type {Boolean}
-	   * @default
-	   */
-	  cacheEnabled: true,
-	
-	  /**
-	   * Indicate if there is an animation in progress
-	   *
-	   * @memberOf Barba.Pjax
-	   * @readOnly
-	   * @type {Boolean}
-	   */
-	  transitionProgress: false,
-	
-	  /**
-	   * Class name used to ignore links
-	   *
-	   * @memberOf Barba.Pjax
-	   * @type {String}
-	   * @default
-	   */
-	  ignoreClassLink: 'no-barba',
-	
-	  /**
-	   * Function to be called to start Pjax
-	   *
-	   * @memberOf Barba.Pjax
-	   */
-	  start: function() {
-	    this.init();
-	  },
-	
-	  /**
-	   * Init the events
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   */
-	  init: function() {
-	    var container = this.Dom.getContainer();
-	    var wrapper = this.Dom.getWrapper();
-	
-	    wrapper.setAttribute('aria-live', 'polite');
-	
-	    this.History.add(
-	      this.getCurrentUrl(),
-	      this.Dom.getNamespace(container)
-	    );
-	
-	    //Fire for the current view.
-	    Dispatcher.trigger('initStateChange', this.History.currentStatus());
-	    Dispatcher.trigger('newPageReady',
-	      this.History.currentStatus(),
-	      {},
-	      container,
-	      this.Dom.currentHTML
-	    );
-	    Dispatcher.trigger('transitionCompleted', this.History.currentStatus());
-	
-	    this.bindEvents();
-	  },
-	
-	  /**
-	   * Attach the eventlisteners
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   */
-	  bindEvents: function() {
-	    document.addEventListener('click',
-	      this.onLinkClick.bind(this)
-	    );
-	
-	    window.addEventListener('popstate',
-	      this.onStateChange.bind(this)
-	    );
-	  },
-	
-	  /**
-	   * Return the currentURL cleaned
-	   *
-	   * @memberOf Barba.Pjax
-	   * @return {String} currentUrl
-	   */
-	  getCurrentUrl: function() {
-	    return Utils.cleanLink(
-	      Utils.getCurrentUrl()
-	    );
-	  },
-	
-	  /**
-	   * Change the URL with pushstate and trigger the state change
-	   *
-	   * @memberOf Barba.Pjax
-	   * @param {String} newUrl
-	   */
-	  goTo: function(url) {
-	    window.history.pushState(null, null, url);
-	    this.onStateChange();
-	  },
-	
-	  /**
-	   * Force the browser to go to a certain url
-	   *
-	   * @memberOf Barba.Pjax
-	   * @param {String} url
-	   * @private
-	   */
-	  forceGoTo: function(url) {
-	    window.location = url;
-	  },
-	
-	  /**
-	   * Load an url, will start an xhr request or load from the cache
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   * @param  {String} url
-	   * @return {Promise}
-	   */
-	  load: function(url) {
-	    var deferred = Utils.deferred();
-	    var _this = this;
-	    var xhr;
-	
-	    xhr = this.Cache.get(url);
-	
-	    if (!xhr) {
-	      xhr = Utils.xhr(url);
-	      this.Cache.set(url, xhr);
-	    }
-	
-	    xhr.then(
-	      function(data) {
-	        var container = _this.Dom.parseResponse(data);
-	
-	        _this.Dom.putContainer(container);
-	
-	        if (!_this.cacheEnabled)
-	          _this.Cache.reset();
-	
-	        deferred.resolve(container);
-	      },
-	      function() {
-	        //Something went wrong (timeout, 404, 505...)
-	        _this.forceGoTo(url);
-	
-	        deferred.reject();
-	      }
-	    );
-	
-	    return deferred.promise;
-	  },
-	
-	  /**
-	   * Get the .href parameter out of an element
-	   * and handle special cases (like xlink:href)
-	   *
-	   * @private
-	   * @memberOf Barba.Pjax
-	   * @param  {HTMLElement} el
-	   * @return {String} href
-	   */
-	  getHref: function(el) {
-	    if (!el) {
-	      return undefined;
-	    }
-	
-	    if (el.getAttribute && typeof el.getAttribute('xlink:href') === 'string') {
-	      return el.getAttribute('xlink:href');
-	    }
-	
-	    if (typeof el.href === 'string') {
-	      return el.href;
-	    }
-	
-	    return undefined;
-	  },
-	
-	  /**
-	   * Callback called from click event
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   * @param {MouseEvent} evt
-	   */
-	  onLinkClick: function(evt) {
-	    var el = evt.target;
-	
-	    //Go up in the nodelist until we
-	    //find something with an href
-	    while (el && !this.getHref(el)) {
-	      el = el.parentNode;
-	    }
-	
-	    if (this.preventCheck(evt, el)) {
-	      evt.stopPropagation();
-	      evt.preventDefault();
-	
-	      Dispatcher.trigger('linkClicked', el, evt);
-	
-	      var href = this.getHref(el);
-	      this.goTo(href);
-	    }
-	  },
-	
-	  /**
-	   * Determine if the link should be followed
-	   *
-	   * @memberOf Barba.Pjax
-	   * @param  {MouseEvent} evt
-	   * @param  {HTMLElement} element
-	   * @return {Boolean}
-	   */
-	  preventCheck: function(evt, element) {
-	    if (!window.history.pushState)
-	      return false;
-	
-	    var href = this.getHref(element);
-	
-	    //User
-	    if (!element || !href)
-	      return false;
-	
-	    //Middle click, cmd click, and ctrl click
-	    if (evt.which > 1 || evt.metaKey || evt.ctrlKey || evt.shiftKey || evt.altKey)
-	      return false;
-	
-	    //Ignore target with _blank target
-	    if (element.target && element.target === '_blank')
-	      return false;
-	
-	    //Check if it's the same domain
-	    if (window.location.protocol !== element.protocol || window.location.hostname !== element.hostname)
-	      return false;
-	
-	    //Check if the port is the same
-	    if (Utils.getPort() !== Utils.getPort(element.port))
-	      return false;
-	
-	    //Ignore case when a hash is being tacked on the current URL
-	    if (href.indexOf('#') > -1)
-	      return false;
-	
-	    //Ignore case where there is download attribute
-	    if (element.getAttribute && typeof element.getAttribute('download') === 'string')
-	      return false;
-	
-	    //In case you're trying to load the same page
-	    if (Utils.cleanLink(href) == Utils.cleanLink(location.href))
-	      return false;
-	
-	    if (element.classList.contains(this.ignoreClassLink))
-	      return false;
-	
-	    return true;
-	  },
-	
-	  /**
-	   * Return a transition object
-	   *
-	   * @memberOf Barba.Pjax
-	   * @return {Barba.Transition} Transition object
-	   */
-	  getTransition: function() {
-	    //User customizable
-	    return HideShowTransition;
-	  },
-	
-	  /**
-	   * Method called after a 'popstate' or from .goTo()
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   */
-	  onStateChange: function() {
-	    var newUrl = this.getCurrentUrl();
-	
-	    if (this.transitionProgress)
-	      this.forceGoTo(newUrl);
-	
-	    if (this.History.currentStatus().url === newUrl)
-	      return false;
-	
-	    this.History.add(newUrl);
-	
-	    var newContainer = this.load(newUrl);
-	    var transition = Object.create(this.getTransition());
-	
-	    this.transitionProgress = true;
-	
-	    Dispatcher.trigger('initStateChange',
-	      this.History.currentStatus(),
-	      this.History.prevStatus()
-	    );
-	
-	    var transitionInstance = transition.init(
-	      this.Dom.getContainer(),
-	      newContainer
-	    );
-	
-	    newContainer.then(
-	      this.onNewContainerLoaded.bind(this)
-	    );
-	
-	    transitionInstance.then(
-	      this.onTransitionEnd.bind(this)
-	    );
-	  },
-	
-	  /**
-	   * Function called as soon the new container is ready
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   * @param {HTMLElement} container
-	   */
-	  onNewContainerLoaded: function(container) {
-	    var currentStatus = this.History.currentStatus();
-	    currentStatus.namespace = this.Dom.getNamespace(container);
-	
-	    Dispatcher.trigger('newPageReady',
-	      this.History.currentStatus(),
-	      this.History.prevStatus(),
-	      container,
-	      this.Dom.currentHTML
-	    );
-	  },
-	
-	  /**
-	   * Function called as soon the transition is finished
-	   *
-	   * @memberOf Barba.Pjax
-	   * @private
-	   */
-	  onTransitionEnd: function() {
-	    this.transitionProgress = false;
-	
-	    Dispatcher.trigger('transitionCompleted',
-	      this.History.currentStatus(),
-	      this.History.prevStatus()
-	    );
-	  }
-	};
-	
-	module.exports = Pjax;
+    // oldEl.style.height = relevantHeight + "px"
+  }
+}
 
+},{"./events/on.js":4}],22:[function(_dereq_,module,exports){
+module.exports = (function() {
+  var counter = 0
+  return function() {
+    var id = ("pjax" + (new Date().getTime())) + "_" + counter
+    counter++
+    return id
+  }
+})()
 
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var BaseTransition = __webpack_require__(4);
-	
-	/**
-	 * Basic Transition object, wait for the new Container to be ready,
-	 * scroll top, and finish the transition (removing the old container and displaying the new one)
-	 *
-	 * @private
-	 * @namespace Barba.HideShowTransition
-	 * @augments Barba.BaseTransition
-	 */
-	var HideShowTransition = BaseTransition.extend({
-	  start: function() {
-	    this.newContainerLoading.then(this.finish.bind(this));
-	  },
-	
-	  finish: function() {
-	    document.body.scrollTop = 0;
-	    this.done();
-	  }
-	});
-	
-	module.exports = HideShowTransition;
-
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	/**
-	 * Object that is going to deal with DOM parsing/manipulation
-	 *
-	 * @namespace Barba.Pjax.Dom
-	 * @type {Object}
-	 */
-	var Dom = {
-	  /**
-	   * The name of the data attribute on the container
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @type {String}
-	   * @default
-	   */
-	  dataNamespace: 'namespace',
-	
-	  /**
-	   * Id of the main wrapper
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @type {String}
-	   * @default
-	   */
-	  wrapperId: 'barba-wrapper',
-	
-	  /**
-	   * Class name used to identify the containers
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @type {String}
-	   * @default
-	   */
-	  containerClass: 'barba-container',
-	
-	  /**
-	   * Full HTML String of the current page.
-	   * By default is the innerHTML of the initial loaded page.
-	   *
-	   * Each time a new page is loaded, the value is the response of the xhr call.
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @type {String}
-	   */
-	  currentHTML: document.documentElement.innerHTML,
-	
-	  /**
-	   * Parse the responseText obtained from the xhr call
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @private
-	   * @param  {String} responseText
-	   * @return {HTMLElement}
-	   */
-	  parseResponse: function(responseText) {
-	    this.currentHTML = responseText;
-	
-	    var wrapper = document.createElement('div');
-	    wrapper.innerHTML = responseText;
-	
-	    var titleEl = wrapper.querySelector('title');
-	
-	    if (titleEl)
-	      document.title = titleEl.textContent;
-	
-	    return this.getContainer(wrapper);
-	  },
-	
-	  /**
-	   * Get the main barba wrapper by the ID `wrapperId`
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @return {HTMLElement} element
-	   */
-	  getWrapper: function() {
-	    var wrapper = document.getElementById(this.wrapperId);
-	
-	    if (!wrapper)
-	      throw new Error('Barba.js: wrapper not found!');
-	
-	    return wrapper;
-	  },
-	
-	  /**
-	   * Get the container on the current DOM,
-	   * or from an HTMLElement passed via argument
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @private
-	   * @param  {HTMLElement} element
-	   * @return {HTMLElement}
-	   */
-	  getContainer: function(element) {
-	    if (!element)
-	      element = document.body;
-	
-	    if (!element)
-	      throw new Error('Barba.js: DOM not ready!');
-	
-	    var container = this.parseContainer(element);
-	
-	    if (container && container.jquery)
-	      container = container[0];
-	
-	    if (!container)
-	      throw new Error('Barba.js: no container found');
-	
-	    return container;
-	  },
-	
-	  /**
-	   * Get the namespace of the container
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @private
-	   * @param  {HTMLElement} element
-	   * @return {String}
-	   */
-	  getNamespace: function(element) {
-	    if (element && element.dataset) {
-	      return element.dataset[this.dataNamespace];
-	    } else if (element) {
-	      return element.getAttribute('data-' + this.dataNamespace);
-	    }
-	
-	    return null;
-	  },
-	
-	  /**
-	   * Put the container on the page
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @private
-	   * @param  {HTMLElement} element
-	   */
-	  putContainer: function(element) {
-	    element.style.visibility = 'hidden';
-	
-	    var wrapper = this.getWrapper();
-	    wrapper.appendChild(element);
-	  },
-	
-	  /**
-	   * Get container selector
-	   *
-	   * @memberOf Barba.Pjax.Dom
-	   * @private
-	   * @param  {HTMLElement} element
-	   * @return {HTMLElement} element
-	   */
-	  parseContainer: function(element) {
-	    return element.querySelector('.' + this.containerClass);
-	  }
-	};
-	
-	module.exports = Dom;
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Utils = __webpack_require__(5);
-	var Pjax = __webpack_require__(10);
-	
-	/**
-	 * Prefetch
-	 *
-	 * @namespace Barba.Prefetch
-	 * @type {Object}
-	 */
-	var Prefetch = {
-	  /**
-	   * Class name used to ignore prefetch on links
-	   *
-	   * @memberOf Barba.Prefetch
-	   * @type {String}
-	   * @default
-	   */
-	  ignoreClassLink: 'no-barba-prefetch',
-	
-	  /**
-	   * Init the event listener on mouseover and touchstart
-	   * for the prefetch
-	   *
-	   * @memberOf Barba.Prefetch
-	   */
-	  init: function() {
-	    if (!window.history.pushState) {
-	      return false;
-	    }
-	
-	    document.body.addEventListener('mouseover', this.onLinkEnter.bind(this));
-	    document.body.addEventListener('touchstart', this.onLinkEnter.bind(this));
-	  },
-	
-	  /**
-	   * Callback for the mousehover/touchstart
-	   *
-	   * @memberOf Barba.Prefetch
-	   * @private
-	   * @param  {Object} evt
-	   */
-	  onLinkEnter: function(evt) {
-	    var el = evt.target;
-	
-	    while (el && !Pjax.getHref(el)) {
-	      el = el.parentNode;
-	    }
-	
-	    if (!el || el.classList.contains(this.ignoreClassLink)) {
-	      return;
-	    }
-	
-	    var url = Pjax.getHref(el);
-	
-	    //Check if the link is elegible for Pjax
-	    if (Pjax.preventCheck(evt, el) && !Pjax.Cache.get(url)) {
-	      var xhr = Utils.xhr(url);
-	      Pjax.Cache.set(url, xhr);
-	    }
-	  }
-	};
-	
-	module.exports = Prefetch;
-
-
-/***/ }
-/******/ ])
+},{}]},{},[1])
+(1)
 });
-;
-//# sourceMappingURL=barba.js.map
 !function(root, factory) {
     "function" == typeof define && define.amd ? // AMD. Register as an anonymous module unless amdModuleId is set
     define([], function() {
@@ -1718,7 +792,7 @@ return /******/ (function(modules) { // webpackBootstrap
     // like Node.
     module.exports = factory() : root.svg4everybody = factory();
 }(this, function() {
-    /*! svg4everybody v2.1.6 | github.com/jonathantneal/svg4everybody */
+    /*! svg4everybody v2.1.9 | github.com/jonathantneal/svg4everybody */
     function embed(parent, svg, target) {
         // if the target exists
         if (target) {
@@ -1763,9 +837,9 @@ return /******/ (function(modules) { // webpackBootstrap
             for (// get the cached <use> index
             var index = 0; index < uses.length; ) {
                 // get the current <use>
-                var use = uses[index], parent = use.parentNode, svg = getSVGAncestor(parent);
-                if (svg) {
-                    var src = use.getAttribute("xlink:href") || use.getAttribute("href");
+                var use = uses[index], parent = use.parentNode, svg = getSVGAncestor(parent), src = use.getAttribute("xlink:href") || use.getAttribute("href");
+                if (!src && opts.attributeName && (src = use.getAttribute(opts.attributeName)), 
+                svg && src) {
                     if (polyfill) {
                         if (!opts.validate || opts.validate(src, svg, use)) {
                             // remove the <use> element
@@ -1787,7 +861,7 @@ return /******/ (function(modules) { // webpackBootstrap
                                 loadreadystatechange(xhr);
                             } else {
                                 // embed the local id into the svg
-                                embed(parent, document.getElementById(id));
+                                embed(parent, svg, document.getElementById(id));
                             }
                         } else {
                             // increase the index when the previous value was not "valid"
