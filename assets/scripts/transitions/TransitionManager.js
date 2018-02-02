@@ -5,7 +5,7 @@ import { EVENT as APP_EVENT } from '../App';
 //List here all of your transitions
 import * as transitions from './transitions';
 
-const MODULE_NAME = 'TransitionManager';
+const MODULE_NAME = 'Transition';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 const EVENT = {
@@ -16,11 +16,11 @@ const EVENT = {
 
 @todo : 
 
-- get data-transition on clicked link -> launch() and add switch(){}
-- add goto listener
-- add newPageReady functon with google analytics send
-- add overrideClass system for all transitions
-- add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
+- ✅ get data-transition on clicked link -> launch() and add switch(){}
+- ✅ add goto listener
+- ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
+- ✅ add overrideClass system for all transitions
+- ✅ add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
 
 */
 

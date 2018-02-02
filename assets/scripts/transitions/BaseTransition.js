@@ -25,12 +25,14 @@ export default class {
     }
 
     displayView(view) {
-        setTimeout(() => {
-            
-            console.log('----- ✅ [VIEW]:display :', view.getAttribute('data-template'));
-            this.wrapper.innerHTML = view.outerHTML;
 
-            $html.attr('data-template', view.getAttribute('data-template'));
+        console.log('----- ✅ [VIEW]:display :', view.getAttribute('data-template'));
+        this.wrapper.innerHTML = view.outerHTML;
+
+        $html.attr('data-template', view.getAttribute('data-template'));
+
+        // if you want a delay
+        setTimeout(() => {
 
             $html
                 .addClass('dom-is-loaded')
