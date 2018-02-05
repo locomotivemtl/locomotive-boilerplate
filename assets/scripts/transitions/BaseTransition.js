@@ -1,4 +1,13 @@
-import { APP_NAME, $document, $html, isDebug, $pjaxWrapper } from '../utils/environment';
+import { APP_NAME, $document, $html, $body,  isDebug, $pjaxWrapper } from '../utils/environment';
+
+const MODULE_NAME = 'Transition';
+const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
+
+const EVENT = {
+    CLICK: `click.${EVENT_NAMESPACE}`,
+    READYTOREMOVE: `readyToRemove.${EVENT_NAMESPACE}`,
+    READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`
+};
 
 export default class {
     constructor(options) {
@@ -6,34 +15,49 @@ export default class {
         this.options = options;
         this.wrapper = options.wrapper;
         this.overrideClass = options.overrideClass ? options.overrideClass : '';
+        this.clickedLink = options.clickedLink;
 
     }
 
     launch() {
-        console.log("---- Launch transition 👊 -----");
+        if(isDebug) {
+            console.log("---- Launch transition 👊 -----");
+        }
+
+        $body.removeClass('has-logo-big');
 
         $html
-            .removeClass('dom-is-loaded dom-is-animated')
+            .removeClass('dom-is-loaded dom-is-animated has-nav-open')
             .addClass(`dom-is-loading ${this.overrideClass}`);
 
     }
 
-    hideView(view) {
-        console.log('----- ❌ [VIEW]:remove - ', view.getAttribute('data-template'));
-        view.remove();
+    hideView(oldView, newView) {
+        if(isDebug) {
+            console.log('----- ❌ [VIEW]:hide - ', oldView.getAttribute('data-template'));
+        }
+
+        // launch it at the end (animations...)
+        $document.triggerHandler({
+            type:EVENT.READYTOREMOVE,
+            oldView: oldView,
+            newView: newView
+        });
 
     }
 
+
     displayView(view) {
 
-        console.log('----- ✅ [VIEW]:display :', view.getAttribute('data-template'));
-        this.wrapper.innerHTML = view.outerHTML;
+        if(isDebug) {
+            console.log('----- ✅ [VIEW]:display :', view.getAttribute('data-template'));
+        }
 
         $html.attr('data-template', view.getAttribute('data-template'));
+        $html.attr('data-theme', view.getAttribute('data-theme'));
 
-        // if you want a delay
         setTimeout(() => {
-
+                
             $html
                 .addClass('dom-is-loaded')
                 .removeClass('dom-is-loading');
@@ -44,11 +68,18 @@ export default class {
                     .addClass('dom-is-animated');
             }, 1000);
 
+            // launch it at the end (animations...)
+            $document.triggerHandler({
+                type:EVENT.READYTODESTROY
+            });
+
         },1000);
     }
 
     
     destroy() {
-        console.log("---- ❌ [transition]:destroy -----");
+        if(isDebug) {
+            console.log("---- ❌ [transition]:destroy -----");
+        }
     }
 }
