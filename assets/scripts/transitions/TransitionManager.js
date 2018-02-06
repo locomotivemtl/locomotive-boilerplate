@@ -19,7 +19,7 @@ const EVENT = {
 @todo : 
 
 - ✅ get data-transition on clicked link -> launch() and add switch(){}
-- ✅ add goto listener
+- ❌ add goto listener
 - ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
 - ✅ add overrideClass system for all transitions
 - ✅ add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
@@ -153,8 +153,6 @@ export default class {
 
         oldView.remove();
 
-        this.wrapper.innerHTML = view.outerHTML;
-
         this.display(newView);
     }
 
@@ -164,6 +162,7 @@ export default class {
      * @return void
      */
     display(view) {
+        this.wrapper.innerHTML = view.outerHTML;
 
         this.transition.displayView(view);
 

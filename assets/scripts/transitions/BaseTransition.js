@@ -24,10 +24,8 @@ export default class {
             console.log("---- Launch transition 👊 -----");
         }
 
-        $body.removeClass('has-logo-big');
-
         $html
-            .removeClass('dom-is-loaded dom-is-animated has-nav-open')
+            .removeClass('dom-is-loaded dom-is-animated ')
             .addClass(`dom-is-loading ${this.overrideClass}`);
 
     }
@@ -54,7 +52,6 @@ export default class {
         }
 
         $html.attr('data-template', view.getAttribute('data-template'));
-        $html.attr('data-theme', view.getAttribute('data-theme'));
 
         setTimeout(() => {
                 
