@@ -1,81 +1,199 @@
 /* jshint esnext: true */
-import { APP_NAME, $document, $html, isDebug } from '../utils/environment';
+import { APP_NAME, $document, $html, isDebug, $pjaxWrapper } from '../utils/environment';
+import { EVENT as APP_EVENT } from '../App';
 
-import DefaultTransition from './DefaultTransition';
+//List here all of your transitions
+import * as transitions from './transitions';
 
-const MODULE_NAME = 'TransitionManager';
+const MODULE_NAME = 'Transition';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 const EVENT = {
-    GOTO: `goto.${EVENT_NAMESPACE}`
+    CLICK: `click.${EVENT_NAMESPACE}`,
+    READYTOREMOVE: `readyToRemove.${EVENT_NAMESPACE}`,
+    READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`
 };
+
+/*
+
+@todo : 
+
+- ✅ get data-transition on clicked link -> launch() and add switch(){}
+- ❌ add goto listener
+- ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
+- ✅ add overrideClass system for all transitions
+- ✅ add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
+
+
+
+======= SCHEMA =======
+
+[] : listener
+* : trigger event
+
+[pjax:send] -> (transition) launch()
+
+[pjax:switch] (= new view is loaded) -> (transition) hideView()-> hide animations & *readyToRemove
+
+[readyToRemove] -> remove() -> delete modules
+                            -> remove oldView from the DOM, and innerHTMl newView
+                            -> display()
+
+display() -> (transition) displayView() -> display animations & *readyToRemove
+          -> init new modules
+
+[readyToRemove] -> reinit()
+
+*/
 
 export default class {
     constructor() {
-        let clickedLink = undefined;
-        let transition = '';
+        
 
         // jQuery ondomready
         $(() => {
-            this.load()
+            this.load();
         });
 
-        $document.on(EVENT.GOTO, (event) => {
-            if (!window.history.pushState) {
-                window.location = event.options.location;
-            } else {
-                transition = event.options.transition;
-                Barba.Pjax.goTo(event.options.location);
-            }
+        this.transition = new transitions['BaseTransition']({
+            wrapper: this.wrapper
         });
 
-        // Define different page transitions
-        Barba.Pjax.getTransition = function() {
-            transition = (clickedLink instanceof Node) ? clickedLink.getAttribute('data-transition') : (typeof transition === 'string' ? transition : '');
+        /*
+        ===== PJAX CONFIGURATION =====
+        */
 
-            let TransitionObject;
+        this.containerClass = '.js-pjax-container';
+        this.wrapperId = 'js-pjax-wrapper';
+        this.noPjaxRequestClass = 'no-transition';
+        this.wrapper = document.getElementById(this.wrapperId);
 
-            switch (transition) {
-                default:
-                    TransitionObject = DefaultTransition();
-            }
+        this.options = {
+            debug: false,
+            cacheBust: false,
+            elements: [`a:not(.${this.noPjaxRequestClass})`,'form[action]'],
+            selectors: ['title',`${this.containerClass}`],
+            switches: {}
+        };
+        this.options.switches[this.containerClass] = (oldEl, newEl, options) => this.switch(oldEl, newEl, options)
+        this.pjax = new Pjax(this.options);
 
-            clickedLink = undefined;
-            transition = '';
+        /*
+        ===== LISTENERS =====
+        */
 
-            return TransitionObject;
+        document.addEventListener('pjax:send',(e) => this.send(e));
+
+
+        $document.on(EVENT.READYTOREMOVE,(event) => {
+            this.remove(event.oldView, event.newView);
+        });
+        $document.on(EVENT.READYTODESTROY,(event) => {
+            this.reinit();
+        });
+    }
+
+
+    /**
+     * (PJAX) Launch when pjax receive a request
+     * get & manage data-transition,init and launch it
+     * @param  {event}
+     * @return void
+     */
+    send(e) {
+        if(isDebug) {
+            console.log("---- Launch request 🙌 -----");
         }
 
-        Barba.Dispatcher.on('linkClicked', (HTMLElement, MouseEvent) => {
-            clickedLink = HTMLElement;
+        let el = e.triggerElement;
+        
+        let transition = el.getAttribute('data-transition') ? el.getAttribute('data-transition') : 'BaseTransition';
+        $html.attr('data-transition',transition);
+
+        // options available : wrapper, overrideClass
+        this.transition = new transitions[transition]({
+            wrapper: this.wrapper,
+            clickedLink: el
         });
 
-        Barba.Dispatcher.on('newPageReady', (currentStatus, prevStatus, container, currentHTML) => {
-            // Fetch any inline script elements.
-            const scripts = container.querySelectorAll('script.js-inline');
+        this.transition.launch();
 
-            if (scripts instanceof window.NodeList) {
-                let i = 0;
-                let len = scripts.length;
-                for (; i < len; i++) {
-                    eval(scripts[i].innerHTML);
-                }
-            }
+    }
 
-            /**
-             * Execute any third party features.
-             */
+    /**
+     * (PJAX) Launch when new page is loaded
+     * @param  {js dom element}, 
+     * @param  {js dom element}
+     * @param  {options : pjax options}
+     * @return void
+     */
+    switch(oldView, newView, options) {
+        if(isDebug) {
+            console.log('---- Next view loaded 👌 -----');
+        }
+        this.transition.hideView(oldView, newView);
 
-            // Google Analytics
-            if (window.ga && !isDebug) {
-                ga('send', 'pageview');
-            }
+        this.pjax.onSwitch();
+        
+    }
+
+    /**
+     * Launch when you trigger EVENT.READYTOREMOVE in your transition -> hideView(), at the end
+     * after oldView hidden, delete modules and launch this.display()
+     * @param  {js dom element}, 
+     * @param  {js dom element}
+     * @return void
+     */
+    remove(oldView, newView) {
+
+        $document.triggerHandler({
+            type: APP_EVENT.DELETE_SCOPED_MODULES,
+            $scope: $pjaxWrapper
         });
 
-        Barba.Pjax.Dom.containerClass = 'js-barba-container';
-        Barba.Pjax.Dom.wrapperId = 'js-barba-wrapper';
+        oldView.remove();
 
-        Barba.Pjax.start();
+        this.display(newView);
+    }
+
+    /**
+     * launch after this.remove()
+     * @param  {js dom element}, 
+     * @return void
+     */
+    display(view) {
+        this.wrapper.innerHTML = view.outerHTML;
+
+        // Fetch any inline script elements.
+        const scripts = view.querySelectorAll('script.js-inline');
+
+        if (scripts instanceof window.NodeList) {
+            let i = 0;
+            let len = scripts.length;
+            for (; i < len; i++) {
+                eval(scripts[i].innerHTML);
+            }
+        }
+
+        $document.triggerHandler({
+            type: APP_EVENT.INIT_SCOPED_MODULES,
+            isPjax: true
+        });
+
+        this.transition.displayView(view);
+
+    }
+
+    /**
+     * Launch when you trigger EVENT.READYTODESTROY in your transition -> displayView(), at the end
+     * @return void
+     */
+    reinit() {
+        this.transition.destroy();
+        $html.attr('data-transition','');
+        this.transition = new transitions['BaseTransition']({
+            wrapper: this.wrapper
+        });
     }
 
     /**

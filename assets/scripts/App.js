@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { APP_NAME, $document, $barba } from './utils/environment';
+import { APP_NAME, $document, $pjaxWrapper } from './utils/environment';
 
 import globals from './globals';
 
@@ -106,8 +106,8 @@ class App {
             $moduleEls = $document.find('[data-module]');
         } else if (event.$scope instanceof jQuery && event.$scope.length > 0) {
             $moduleEls = event.$scope.find('[data-module]');
-        } else if (event.isBarba) {
-            $moduleEls = $barba.find('[data-module]');
+        } else if (event.isPjax) {
+            $moduleEls = $pjaxWrapper.find('[data-module]');
         }
 
         // Loop through elements
