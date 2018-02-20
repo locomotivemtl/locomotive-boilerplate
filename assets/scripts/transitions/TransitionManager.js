@@ -164,12 +164,23 @@ export default class {
     display(view) {
         this.wrapper.innerHTML = view.outerHTML;
 
-        this.transition.displayView(view);
+        // Fetch any inline script elements.
+        const scripts = view.querySelectorAll('script.js-inline');
+
+        if (scripts instanceof window.NodeList) {
+            let i = 0;
+            let len = scripts.length;
+            for (; i < len; i++) {
+                eval(scripts[i].innerHTML);
+            }
+        }
 
         $document.triggerHandler({
             type: APP_EVENT.INIT_SCOPED_MODULES,
             isPjax: true
         });
+
+        this.transition.displayView(view);
 
     }
 
