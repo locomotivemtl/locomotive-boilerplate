@@ -131,10 +131,7 @@ export default class {
         if(isDebug) {
             console.log('---- Next view loaded 👌 -----');
         }
-        this.transition.hideView(oldView, newView);
-
-        this.pjax.onSwitch();
-        
+        this.transition.hideView(oldView, newView);        
     }
 
     /**
@@ -179,6 +176,8 @@ export default class {
             type: APP_EVENT.INIT_SCOPED_MODULES,
             isPjax: true
         });
+
+        this.pjax.onSwitch();
 
         this.transition.displayView(view);
 
