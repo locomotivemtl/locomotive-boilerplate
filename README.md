@@ -13,22 +13,22 @@ Front-end boilerplate for projects by [Locomotive][locomtl].
 ## Getting started
 
 1.  **Get the latest node modules**
-    1.  `npm install -g npm-check-updates`
-    2.  `npm-check-updates -u`
-    3.  `npm install`
+    -  `npm install -g npm-check-updates`
+    -  `npm-check-updates -u`
+    -  `npm install`
 
-2.  **Run grunt and start coding**
-    -   `grunt`
+BrowserSync will automatically inject, refresh and sync all your browsers.
+2.	**Set your project**
+	-	`build/browserSync.js` update proxy
+	-	`assets/scripts/utils/environment.js` update `APP_NAME`
+
+2.  **Run grunt, BrowserSync and start coding**
+    -   `grunt sync`
 
 ### Grunt
 
 Each Grunt task has it's own file in the `grunt_tasks` folder.
 
-### BrowserSync
-
-BrowserSync will automatically inject, refresh and sync all your browsers.
-
-Run `grunt sync`
 
 ## CSS
 
@@ -45,23 +45,40 @@ Run `grunt sync`
 *   **Base:** Unclassed HTML elements (e.g. `a {}`, `blockquote {}`, `address {}`).
 *   **Objects:** Objects, abstractions, and design patterns (e.g. `.o-media {}`).
 *   **Components:** Discrete, complete chunks of UI (e.g. `.c-carousel {}`).
-*   **Trumps:** High-specificity, very explicit selectors. Overrides and helper
+*   **Utilities:** High-specificity, very explicit selectors. Overrides and helper
   classes (e.g. `.u-hidden {}`).
 
 ### Grid
+We use [inuitcss](https://github.com/inuitcss/inuitcss/tree/6eb574fa604481ffa36272e6034e77467334ec50) layout and width system. We are using a inline-block grid system.
 
-We are using a simple inline-block grid system.
+Insert a `.o-layout` block and add `.o-layout_item` elements inside it. By default `o-layout_item` made 100%.
+You can define different fractions in `/tools/_widths.scss` (`$widths-fractions`)
 
-**Usage**
+If you want a 2 columns grid, just add `.u-1/2` on your 2 `.o-layout_item`
 
-Insert a `o-grid` block and add `o-grid_item` elements inside it.
-No rows that contain floats, no twelve columns system; just the number of items you want, with the classes names you want, inside a single block.
+If you want to adapt columns by media queries, by example a 2 columns grid for 1000px + resolutions, and one columns in block under 1000px :
 
--   Include the grid mixins in your components classes.
--   Create custom width grid items by including the `grid_item` mixin and adding the widths you need or just include the helpers mixins with fractions like names.
--   Add media queries, on the helpers mixins or on your custom components to change the grid items widths, for your content, on different screen sizes.
+**HTML** 
+```
+<div class="o-layout">
+  	<div class="o-layout_item u-1/2@from-medium"> 
+    	first column
+  	</div>
+  	<div class="o-layout_item u-1/2@from-medium"> 
+  		second column
+  	</div>
+</div>
+```
 
-*[Demo][demo-grid]*
+**CSS** (`/tools/_widths.scss`)
+```
+	.u-1\/2\@from-medium {
+    @media (min-width: $from-medium) {
+        width: span(1/2);
+    }
+```
+
+
 
 ### Form
 
@@ -78,3 +95,34 @@ We included some basic CSS styles and resets to the form elements so we can easi
 [locomtl]:   https://locomotive.ca
 [demo-grid]: https://codepen.io/AntoineBoulanger/pen/EaLNxe
 [demo-form]: https://codepen.io/AntoineBoulanger/pen/uBJmi
+
+## Page transitions
+We use [Pjax](https://github.com/MoOx/pjax) by MoOx.
+
+### Setup
+1.	Create a wrapper : `.js-pjax-wrapper` and a container `.js-pjax-container` inside. When a transition is launched, the new container is put inside the wrapper, and the old one is remove.
+
+2.	Main settings are set inside `assets/scripts/transitions/TransitionManager.js`
+
+3.	`BaseTransition` is launched by default, to set a new transition (like `CustomTransition`) :
+	-	create a new class `TestTransition.js` witch extends `BaseTransition` in `assets/scripts/transitions/`
+	-	add a line in `assets/scripts/transitions/transitions.js` to add your transition
+	-	use it like : `<a href="/yourUrl" data-transition="TestTransition">My page</a>`
+	-	Enjoy and made everything you want in your transition, check `BaseTransition.js` or `CustomTransition.js` like example
+
+### Schema
+
+Legend
+-	`[ ]` : listener
+-	`*`   : trigger event
+
+`[pjax:send]` -> (transition) launch()
+
+`[pjax:switch]` (= new view is loaded) -> (BaseTransition) `hideView()` -> hide animations & `*readyToRemove`
+
+`[readyToRemove]` -> `remove()` -> delete modules, remove oldView from the DOM, innerHTML newView, init modules, `display()`
+
+`display()` -> (BaseTransition) `displayView()` -> display animations & `*readyToDestroy`
+          -> init new modules
+
+`[readyToRemove]` -> reinit()
