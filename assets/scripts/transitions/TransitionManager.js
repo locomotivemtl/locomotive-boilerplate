@@ -1,5 +1,5 @@
 /* jshint esnext: true */
-import { APP_NAME, $document, $html, isDebug, $pjaxWrapper } from '../utils/environment';
+import { APP_NAME, $document, $html, isDebug, $pjaxWrapper, $window } from '../utils/environment';
 import { EVENT as APP_EVENT } from '../App';
 
 //List here all of your transitions
@@ -39,7 +39,7 @@ const EVENT = {
                             -> remove oldView from the DOM, and innerHTMl newView
                             -> display()
 
-display() -> (transition) displayView() -> display animations & *readyToRemove
+display() -> (transition) displayView() -> display animations & *readyToDestroy
           -> init new modules
 
 [readyToRemove] -> reinit()
@@ -51,7 +51,7 @@ export default class {
         
 
         // jQuery ondomready
-        $(() => {
+        $window.on('load',() => {
             this.load();
         });
 
