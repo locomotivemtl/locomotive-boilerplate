@@ -18,11 +18,12 @@ Front-end boilerplate for projects by [Locomotive][locomtl].
     -  `npm install`
 
 BrowserSync will automatically inject, refresh and sync all your browsers.
+
 2.	**Set your project**
 	-	`build/browserSync.js` update proxy
 	-	`assets/scripts/utils/environment.js` update `APP_NAME`
 
-2.  **Run grunt, BrowserSync and start coding**
+3.  **Run grunt, BrowserSync and start coding**
     -   `grunt sync`
 
 ### Grunt
@@ -61,21 +62,22 @@ If you want to adapt columns by media queries, by example a 2 columns grid for 1
 **HTML** 
 ```
 <div class="o-layout">
-  	<div class="o-layout_item u-1/2@from-medium"> 
-    	first column
-  	</div>
-  	<div class="o-layout_item u-1/2@from-medium"> 
-  		second column
-  	</div>
+	<div class="o-layout_item u-1/2@from-medium">
+		first colum
+	</div>
+	<div class="o-layout_item u-1/2@from-medium">
+		second colum
+	</div>
 </div>
 ```
 
 **CSS** (`/tools/_widths.scss`)
 ```
-	.u-1\/2\@from-medium {
-    @media (min-width: $from-medium) {
-        width: span(1/2);
+.u-1\/2\@from-medium {
+	@media (min-width: $from-medium) {
+    	width: span(1/2);
     }
+}
 ```
 
 
