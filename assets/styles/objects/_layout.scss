@@ -61,6 +61,27 @@
 
     &.-reverse {
         direction: rtl;
+
+        &.-flex {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &.-flex {
+         display: flex;
+
+         &.-top {
+            align-items: flex-start;
+         }
+         &.-middle {
+            align-items: center;
+         }
+         &.-bottom {
+            align-items: flex-end;
+         }
+    }
+    &.-stretch {
+        align-items: stretch;
     }
 }
 
