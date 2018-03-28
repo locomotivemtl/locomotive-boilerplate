@@ -65,7 +65,6 @@ $checkbox-icon-color: $input-icon-color;
     padding-left: ($checkbox + rem(10px));
 
     &::before, &::after {
-        @extend .o-input;
 
         position: absolute;
         top: 50%;
@@ -76,6 +75,10 @@ $checkbox-icon-color: $input-icon-color;
         width: $checkbox;
         height: $checkbox;
         content: "";
+    }
+
+    &::before {
+        background-color: $white;
     }
 
     &::after {
