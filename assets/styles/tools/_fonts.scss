@@ -2,7 +2,7 @@
 // Tools / Font Faces
 // ==========================================================================
 
-$global-font-file-formats: "woff", "ttf" !default;
+$global-font-file-formats: "woff2", "woff" !default;
 
 //
 // Builds the `src` list for an `@font-face` declaration.

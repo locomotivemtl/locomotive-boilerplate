@@ -6,8 +6,7 @@
 // Simple page-level setup.
 //
 // 1. Set the default `font-size` and `line-height` for the entire project,
-//    sourced from our default variables. The `font-size` is calculated to exist
-//    in ems, the `line-height` is calculated to exist unitlessly.
+//    sourced from our default variables.
 // 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
 //    navigating between pages that do/do not have enough content to produce
 //    scrollbars naturally.
@@ -21,31 +20,31 @@ html {
     line-height: $line-height; /* [1] */
 
     @media (max-width: $to-small) {
-        font-size: em(12px);
+        font-size: 12px;
     }
 
     @media (min-width: $from-small) and (max-width: $to-medium) {
-        font-size: em(13px);
+        font-size: 13px;
     }
 
     @media (min-width: $from-medium) and (max-width: $to-large) {
-        font-size: em(14px);
+        font-size: 14px;
     }
 
     @media (min-width: $from-large) and (max-width: $to-huge) {
-        font-size: em($font-size); /* [1] */
+        font-size: $font-size; /* [1] */
     }
 
     @media (min-width: $from-huge) and (max-width: $to-gigantic) {
-        font-size: em(18px);
+        font-size: 18px;
     }
 
     @media (min-width: $from-gigantic) and (max-width: $to-colossal) {
-        font-size: em(21px);
+        font-size: 21px;
     }
 
     @media (min-width: $from-colossal) {
-        font-size: em(24px);
+        font-size: 24px;
     }
 }
 
