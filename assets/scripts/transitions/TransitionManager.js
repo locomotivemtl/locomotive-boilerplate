@@ -105,10 +105,19 @@ export default class {
             console.log("---- Launch request 🙌 -----");
         }
 
-        let el = e.triggerElement;
-        
-        let transition = el.getAttribute('data-transition') ? el.getAttribute('data-transition') : 'BaseTransition';
-        $html.attr('data-transition',transition);
+        let el,transition;
+
+        if(e.triggerElement != undefined) {
+
+            el = e.triggerElement;
+
+            transition = el.getAttribute('data-transition') ? el.getAttribute('data-transition') : 'BaseTransition';
+            $html.attr('data-transition',transition);
+
+        } else {
+            transition = 'BaseTransition';
+            el = document;
+        }
 
         // options available : wrapper, overrideClass
         this.transition = new transitions[transition]({
