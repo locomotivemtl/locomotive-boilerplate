@@ -25,8 +25,8 @@ export default class {
         }
 
         $html
-            .removeClass('dom-is-loaded dom-is-animated ')
-            .addClass(`dom-is-loading ${this.overrideClass}`);
+            .removeClass('has-dom-loaded has-dom-animated ')
+            .addClass(`has-dom-loading ${this.overrideClass}`);
 
     }
 
@@ -54,15 +54,15 @@ export default class {
         $html.attr('data-template', view.getAttribute('data-template'));
 
         setTimeout(() => {
-                
+
             $html
-                .addClass('dom-is-loaded')
-                .removeClass('dom-is-loading');
+                .addClass('has-dom-loaded')
+                .removeClass('has-dom-loading');
 
             setTimeout(() => {
                 $html
                     .removeClass(this.overrideClass)
-                    .addClass('dom-is-animated');
+                    .addClass('has-dom-animated');
             }, 1000);
 
             // launch it at the end (animations...)
@@ -73,7 +73,7 @@ export default class {
         },1000);
     }
 
-    
+
     destroy() {
         if(isDebug) {
             console.log("---- ❌ [transition]:destroy -----");

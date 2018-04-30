@@ -16,13 +16,13 @@ const EVENT = {
 
 /*
 
-@todo : 
+@todo :
 
 - ✅ get data-transition on clicked link -> launch() and add switch(){}
 - ❌ add goto listener
 - ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
 - ✅ add overrideClass system for all transitions
-- ✅ add base class manager like old DefaultTransition (dom-is-loaded, dom-is-loading etc..)
+- ✅ add base class manager like old DefaultTransition (has-dom-loaded, has-dom-loading etc..)
 
 
 
@@ -48,7 +48,7 @@ display() -> (transition) displayView() -> display animations & *readyToDestroy
 
 export default class {
     constructor() {
-        
+
 
         // jQuery ondomready
         $window.on('load',() => {
@@ -131,7 +131,7 @@ export default class {
 
     /**
      * (PJAX) Launch when new page is loaded
-     * @param  {js dom element}, 
+     * @param  {js dom element},
      * @param  {js dom element}
      * @param  {options : pjax options}
      * @return void
@@ -140,13 +140,13 @@ export default class {
         if(isDebug) {
             console.log('---- Next view loaded 👌 -----');
         }
-        this.transition.hideView(oldView, newView);        
+        this.transition.hideView(oldView, newView);
     }
 
     /**
      * Launch when you trigger EVENT.READYTOREMOVE in your transition -> hideView(), at the end
      * after oldView hidden, delete modules and launch this.display()
-     * @param  {js dom element}, 
+     * @param  {js dom element},
      * @param  {js dom element}
      * @return void
      */
@@ -164,7 +164,7 @@ export default class {
 
     /**
      * launch after this.remove()
-     * @param  {js dom element}, 
+     * @param  {js dom element},
      * @return void
      */
     display(view) {
@@ -210,10 +210,10 @@ export default class {
      * @return {void}
      */
     load() {
-        $html.addClass('dom-is-loaded');
-        $html.removeClass('dom-is-loading');
+        $html.addClass('has-dom-loaded');
+        $html.removeClass('has-dom-loading');
         setTimeout(() => {
-            $html.addClass('dom-is-animated');
+            $html.addClass('has-dom-animated');
         }, 1000)
     }
 }
