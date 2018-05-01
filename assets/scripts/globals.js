@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import TransitionManager from './transitions/TransitionManager';
 
 export default function(firstBlood) {

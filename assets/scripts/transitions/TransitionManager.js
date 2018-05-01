@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import { APP_NAME, $document, $html, isDebug, $pjaxWrapper, $window } from '../utils/environment';
 import { EVENT as APP_EVENT } from '../App';
 

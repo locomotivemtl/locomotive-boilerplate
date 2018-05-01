@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import { isNumeric } from './is'
 
 let isAnimating = false;

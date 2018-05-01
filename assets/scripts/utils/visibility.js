@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import { isFunction } from './is';
 import { arrayContains, findByKeyValue, removeFromArray } from './array';
 import { $document, $window, $html, $body } from './environment';

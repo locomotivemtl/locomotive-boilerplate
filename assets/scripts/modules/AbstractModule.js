@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 let uid = 0;
 
 /**
