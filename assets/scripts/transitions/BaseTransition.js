@@ -1,13 +1,6 @@
 import { APP_NAME, $document, $html, $body,  isDebug, $pjaxWrapper } from '../utils/environment';
 
-const MODULE_NAME = 'Transition';
-const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
-
-const EVENT = {
-    CLICK: `click.${EVENT_NAMESPACE}`,
-    READYTOREMOVE: `readyToRemove.${EVENT_NAMESPACE}`,
-    READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`
-};
+import { EVENT as TransitionEvent } from 'TransitionManager'
 
 export default class {
     constructor(options) {
@@ -37,7 +30,7 @@ export default class {
 
         // launch it at the end (animations...)
         $document.triggerHandler({
-            type:EVENT.READYTOREMOVE,
+            type:TransitionEvent.READYTOREMOVE,
             oldView: oldView,
             newView: newView
         });
@@ -67,7 +60,7 @@ export default class {
 
             // launch it at the end (animations...)
             $document.triggerHandler({
-                type:EVENT.READYTODESTROY
+                type:TransitionEvent.READYTODESTROY
             });
 
         },1000);

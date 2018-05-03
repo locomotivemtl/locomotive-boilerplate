@@ -8,10 +8,11 @@ import * as transitions from './transitions';
 const MODULE_NAME = 'Transition';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
-const EVENT = {
+export const EVENT = {
     CLICK: `click.${EVENT_NAMESPACE}`,
     READYTOREMOVE: `readyToRemove.${EVENT_NAMESPACE}`,
-    READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`
+    READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`,
+    GOTO: `goto.${EVENT_NAMESPACE}`
 };
 
 /*
@@ -19,7 +20,7 @@ const EVENT = {
 @todo :
 
 - ✅ get data-transition on clicked link -> launch() and add switch(){}
-- ❌ add goto listener
+- ✅ add goto listener
 - ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
 - ✅ add overrideClass system for all transitions
 - ✅ add base class manager like old DefaultTransition (has-dom-loaded, has-dom-loading etc..)
@@ -73,7 +74,10 @@ export default class {
             cacheBust: false,
             elements: [`a:not(.${this.noPjaxRequestClass})`,'form[action]'],
             selectors: ['title',`${this.containerClass}`],
-            switches: {}
+            switches: {},
+            requestOptions: {
+                timeout: 2000
+            }
         };
         this.options.switches[this.containerClass] = (oldEl, newEl, options) => this.switch(oldEl, newEl, options)
         this.pjax = new Pjax(this.options);
@@ -90,6 +94,23 @@ export default class {
         });
         $document.on(EVENT.READYTODESTROY,(event) => {
             this.reinit();
+        });
+
+
+        /** goto exampe
+        $document.triggerHandler({
+            type: 'goto.Transition',
+            options : {
+                el: {{element clicked?}},
+                link: {{url}}
+            }
+        });
+        */
+        $document.on(EVENT.GOTO, (e) => {
+            if(e.options.el != undefined) {
+                this.autoEl = e.options.el.get(0);
+            }
+            this.pjax.loadUrl(e.options.link, $.extend({}, this.pjax.options));
         });
     }
 
@@ -115,8 +136,14 @@ export default class {
             $html.attr('data-transition',transition);
 
         } else {
+            
+            if (this.autoEl != undefined) {
+                el = this.autoEl;
+            } else {
+                el = document;
+            }
+
             transition = 'BaseTransition';
-            el = document;
         }
 
         // options available : wrapper, overrideClass
