@@ -1,6 +1,6 @@
 import { APP_NAME, $document, $html, $body,  isDebug, $pjaxWrapper } from '../utils/environment';
 
-import { EVENT as TransitionEvent } from 'TransitionManager'
+import { EVENT as TransitionEvent } from './TransitionManager'
 
 export default class {
     constructor(options) {
