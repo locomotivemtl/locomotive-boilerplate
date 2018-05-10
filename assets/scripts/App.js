@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import { APP_NAME, $document, $pjaxWrapper } from './utils/environment';
 
 import globals from './globals';

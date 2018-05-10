@@ -1,4 +1,3 @@
-/* jshint esnext: true */
 import { APP_NAME } from '../utils/environment';
 import AbstractModule from './AbstractModule';
 
