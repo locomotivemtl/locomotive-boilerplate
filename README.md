@@ -3,33 +3,25 @@ Locomotive's Front-end Boilerplate
 
 Front-end boilerplate for projects by [Locomotive][locomtl].
 
-## Requirements
+## Installation
+```sh
+# install mbp and gulp
+npm install mbp gulp@next -g
+```
 
-| Prerequisite    | How to check  | How to install                   |
-| --------------- | ------------- | -------------------------------- |
-| Node.js 4.1.1   | `node -v`     | [nodejs.org](https://nodejs.org) |
-| Grunt >= 0.1.13 | `grunt -v`    | `npm install -g grunt-cli`       |
+## Usage
+```sh
+# init your project
+mbp init locomotivemtl/locomotive-boilerplate <directory>
 
-## Getting started
+# run default watch task
+gulp
+```
 
-1.  **Get the latest node modules**
-    -  `npm install -g npm-check-updates`
-    -  `npm-check-updates -u`
-    -  `npm install`
-
-BrowserSync will automatically inject, refresh and sync all your browsers.
-
-2.	**Set your project**
-	-	`build/browserSync.js` update proxy
-	-	`assets/scripts/utils/environment.js` update `APP_NAME`
-
-3.  **Run grunt, BrowserSync and start coding**
-    -   `grunt sync`
-
-### Grunt
-
-Each Grunt task has it's own file in the `grunt_tasks` folder.
-
+## Configuration
+Change the mentions of `boilerplate` for your project's name in
+- `mconfig.json` 
+- `assets/scripts/utils/environment.js`
 
 ## CSS
 
