@@ -12,7 +12,7 @@ npm install mbp gulp@next -g
 ## Usage
 ```sh
 # init your project
-mbp init locomotivemtl/shopify-boilerplate <directory>
+mbp init locomotivemtl/locomotive-boilerplate <directory>
 
 # run default watch task
 gulp
