@@ -1,5 +1,6 @@
+import Pjax from 'pjax';
 import { APP_NAME, $document, $html, isDebug, $pjaxWrapper, $window } from '../utils/environment';
-import { EVENT as APP_EVENT } from '../App';
+import { EVENT as APP_EVENT } from '../app';
 
 //List here all of your transitions
 import * as transitions from './transitions';
@@ -20,10 +21,8 @@ export const EVENT = {
 
 - ✅ get data-transition on clicked link -> launch() and add switch(){}
 - ✅ add goto listener
-- ❌ add newPageReady functon with google analytics send (maybe pjax do that?)
 - ✅ add overrideClass system for all transitions
 - ✅ add base class manager like old DefaultTransition (has-dom-loaded, has-dom-loading etc..)
-
 
 
 ======= SCHEMA =======
