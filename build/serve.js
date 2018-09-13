@@ -6,7 +6,9 @@ export const server = browserSync.create();
 function serve(done) {
     server.init({
         notify: false,
-        proxy: paths.url
+        proxy: paths.url,
+        host: paths.url,
+        open: 'external'
     });
     done();
 }
