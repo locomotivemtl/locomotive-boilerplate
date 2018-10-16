@@ -6,7 +6,8 @@
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
         "pjax": "*",
-        "svg4everybody": "*"
+        "svg4everybody": "*",
+        "locomotive-scroll": "git@github.com:locomotivemtl/locomotive-scroll.git#deven-add-scroll"
     },
     "devDependencies": {
         "gulp-concat": "*"
