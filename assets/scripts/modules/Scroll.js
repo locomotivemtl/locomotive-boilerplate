@@ -2,7 +2,7 @@ import { APP_NAME, $document } from '../utils/environment';
 import AbstractModule from './AbstractModule';
 import ScrollManager from '../scroll/vendors/ScrollManager';
 
-const MODULE_NAME = 'LocomotiveScroll';
+const MODULE_NAME = 'Scroll';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 export default class extends AbstractModule {
@@ -15,7 +15,7 @@ export default class extends AbstractModule {
             this.scrollManager = new ScrollManager({
                 container: this.$el,
                 selector: '.js-animate',
-                smooth: true,
+                smooth: false,
                 smoothMobile: false,
                 mobileContainer: $document,
                 getWay: false,
