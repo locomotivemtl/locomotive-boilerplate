@@ -1,0 +1,18 @@
+html.has-smooth-scroll {
+    overflow: hidden;
+}
+
+.o-scroll{
+    html.has-smooth-scroll & {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.scroll-content {
+    transform: translate3d(0,0,0);
+    margin: 0;
+    overflow: visible;
+    height: 100%;
+}
