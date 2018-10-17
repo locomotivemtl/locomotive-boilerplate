@@ -9,8 +9,8 @@ import copy from './build/copy.js';
 import { buildStyles, buildScripts } from './build/build.js';
 
 const compile = gulp.series(styles, scripts, svgs, concat);
-const main = gulp.series(compile, serve, watch);
-const build = gulp.series(compile, buildStyles, buildScripts);
+const main = gulp.series(copy, compile, serve, watch);
+const build = gulp.series(copy, compile, buildStyles, buildScripts);
 
 gulp.task('default', main);
 gulp.task('compile', compile);
