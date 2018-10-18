@@ -6,7 +6,9 @@
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
         "pjax": "*",
-        "svg4everybody": "*"
+        "svg4everybody": "*",
+        "smooth-scrollbar": "git+https://git@github.com/locomotivemtl/smooth-scrollbar.git#develop",
+        "locomotive-scroll": "git+https://git@github.com/locomotivemtl/locomotive-scroll.git"
     },
     "devDependencies": {
         "gulp-concat": "*"

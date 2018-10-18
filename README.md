@@ -73,7 +73,6 @@ If you want to adapt columns by media queries, by example a 2 columns grid for 1
 ```
 
 
-
 ### Form
 
 We included some basic CSS styles and resets to the form elements so we can easily have custom style form elements that work on every browsers.
@@ -120,3 +119,40 @@ Legend
           -> init new modules
 
 `[readyToRemove]` -> reinit()
+
+## Locomotive Scroll
+
+![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
+ - [locomotive-scroll](https://github.com/locomotivemtl/locomotive-scroll)
+
+### Configuration
+ - Create a `.o-scroll` container with `data-module="Scroll"`
+ - in the module `Scroll.js` you have a basic initialisation
+
+### Options
+
+Options | Type | Description
+--- | --- | ---
+container | $element | Scroll container (with the smooth scroll, this container will be transform)
+selector | String | Every elements will be check by the scroll, can be affect by a followed data attributes
+smooth | Boolean | If you want a smooth scroll
+smoothMobile | Boolean | If you want a smooth scroll on mobile
+mobileContainer | $element | Scroll container on mobile, document by default
+getWay | Boolean | if true, the animate will determine if you scroll down or scroll up
+getSpeed | Boolean | if true, the animate will calcul the velocity of your scroll. Access with `this.scroll.y`
+
+### Data attributes
+
+Data | Value | Description
+--- | --- | ---
+data-speed | number | Speed of transform for parallax elements
+data-repeat | false | Determine if the "In View" class is added one or each times
+data-inview-class | is-show | CSS Class when the element is in view.
+data-position | top/bottom | Trigger from top/bottom of the window instead of the default from bottom to top
+data-target | #id, .class | Trigger from another element
+data-horizontal | false | Use transformX instead of transformY
+data-sticky | false | Set $element sticky when it's in viewport
+data-sticky-target | #id | Stop the element stick when the target is in viewport
+data-callback | `test.Scroll(test:0)` | trigger event, with options way wich return "leave" or "enter" when $element is in viewport
+data-viewport-offset | i,j | value between 0 to 1 (0.3 to start at 30% of the bottom of the viewport), useful to trigger a sequence of callbacks. (i : value wich start at the bottom, j : start at the top, j is optional)
+
