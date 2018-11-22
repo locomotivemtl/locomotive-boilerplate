@@ -27,10 +27,10 @@ export default class {
         if(isDebug) {
             console.log('----- ❌ [VIEW]:hide - ', oldView.getAttribute('data-template'));
         }
-
+        
         // launch it at the end (animations...)
         $document.triggerHandler({
-            type:TransitionEvent.READYTOREMOVE,
+            type:TransitionEvent.READYTOAPPEND,
             oldView: oldView,
             newView: newView
         });

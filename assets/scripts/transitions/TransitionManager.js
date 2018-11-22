@@ -10,7 +10,7 @@ const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
 
 export const EVENT = {
     CLICK: `click.${EVENT_NAMESPACE}`,
-    READYTOREMOVE: `readyToRemove.${EVENT_NAMESPACE}`,
+    READYTOAPPEND: `readyToAppend.${EVENT_NAMESPACE}`,
     READYTODESTROY: `readyToDestroy.${EVENT_NAMESPACE}`,
     GOTO: `goto.${EVENT_NAMESPACE}`
 };
@@ -32,16 +32,16 @@ export const EVENT = {
 
 [pjax:send] -> (transition) launch()
 
-[pjax:switch] (= new view is loaded) -> (transition) hideView()-> hide animations & *readyToRemove
+[pjax:switch] (= new view is loaded) -> (transition) hideView()-> hide animations & *readyToAppend
 
-[readyToRemove] -> remove() -> delete modules
+[readyToAppend] -> append() -> delete modules
                             -> remove oldView from the DOM, and innerHTMl newView
-                            -> display()
+                            -> change()
 
 display() -> (transition) displayView() -> display animations & *readyToDestroy
           -> init new modules
 
-[readyToRemove] -> reinit()
+[readyToAppend] -> reinit()
 
 */
 
@@ -87,8 +87,8 @@ export default class {
         document.addEventListener('pjax:send',(e) => this.send(e));
 
 
-        $document.on(EVENT.READYTOREMOVE,(event) => {
-            this.remove(event.oldView, event.newView);
+        $document.on(EVENT.READYTOAPPEND,(event) => {
+            this.append(event.oldView, event.newView);
         });
         $document.on(EVENT.READYTODESTROY,(event) => {
             this.reinit();
@@ -169,13 +169,32 @@ export default class {
     }
 
     /**
-     * Launch when you trigger EVENT.READYTOREMOVE in your transition -> hideView(), at the end
-     * after oldView hidden, delete modules and launch this.display()
+     * Launch when you trigger EVENT.READYTOAPPEND in your transition
+     * after newView append, launch this.change()
      * @param  {js dom element},
      * @param  {js dom element}
      * @return void
      */
-    remove(oldView, newView) {
+    append(oldView, newView) {
+    
+        this.wrapper.appendChild(newView);
+
+        // Add these 2 rAF if you want to have the containers overlapped
+        // Useful with a image transition, to prevent flickering
+        // requestAnimationFrame(() => {
+            // requestAnimationFrame(() => {
+                this.change(oldView, newView);
+            // });
+        // });
+        
+    }
+
+    /**
+     * launch after this.append(), remove modules, remove oldView and set the newView
+     * @param  {js dom element},
+     * @return void
+     */
+    change(oldView, newView) {
 
         $document.triggerHandler({
             type: APP_EVENT.DELETE_SCOPED_MODULES,
@@ -184,19 +203,8 @@ export default class {
 
         oldView.remove();
 
-        this.display(newView);
-    }
-
-    /**
-     * launch after this.remove()
-     * @param  {js dom element},
-     * @return void
-     */
-    display(view) {
-        this.wrapper.innerHTML = view.outerHTML;
-
         // Fetch any inline script elements.
-        const scripts = view.querySelectorAll('script.js-inline');
+        const scripts = newView.querySelectorAll('script.js-inline');
 
         if (scripts instanceof window.NodeList) {
             let i = 0;
@@ -213,7 +221,7 @@ export default class {
 
         this.pjax.onSwitch();
 
-        this.transition.displayView(view);
+        this.transition.displayView(newView);
 
     }
 
