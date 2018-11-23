@@ -177,7 +177,7 @@ export default class {
      */
     append(oldView, newView) {
     
-        this.wrapper.appendChild(newView);
+        $(this.wrapper).append($(newView));
 
         // Add these 2 rAF if you want to have the containers overlapped
         // Useful with a image transition, to prevent flickering
