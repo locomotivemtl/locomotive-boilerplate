@@ -176,13 +176,16 @@ export default class {
      * @return void
      */
     append(oldView, newView) {
-    
-        $(this.wrapper).append($(newView));
+        
+        newView.style.opacity = 0;
+        this.wrapper.appendChild(newView);
 
         // Add these 2 rAF if you want to have the containers overlapped
         // Useful with a image transition, to prevent flickering
         // requestAnimationFrame(() => {
             // requestAnimationFrame(() => {
+                newView.style.opacity = 1;
+                this.wrapper.innerHTML = newView.outerHTML;
                 this.change(oldView, newView);
             // });
         // });
