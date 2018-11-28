@@ -185,7 +185,6 @@ export default class {
         // requestAnimationFrame(() => {
             // requestAnimationFrame(() => {
                 newView.style.opacity = 1;
-                this.wrapper.innerHTML = newView.outerHTML;
                 this.change(oldView, newView);
             // });
         // });
@@ -203,6 +202,8 @@ export default class {
             type: APP_EVENT.DELETE_SCOPED_MODULES,
             $scope: $pjaxWrapper
         });
+
+        this.wrapper.innerHTML = newView.outerHTML;
 
         oldView.remove();
 
