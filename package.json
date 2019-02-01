@@ -5,10 +5,11 @@
     "version": "1.0.0",
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
+        "locomotive-scroll": "git+https://git@github.com/locomotivemtl/locomotive-scroll.git",
+        "normalize.css": "*",
         "pjax": "*",
-        "svg4everybody": "*",
         "smooth-scrollbar": "git+https://git@github.com/locomotivemtl/smooth-scrollbar.git#develop",
-        "locomotive-scroll": "git+https://git@github.com/locomotivemtl/locomotive-scroll.git"
+        "svg4everybody": "*"
     },
     "devDependencies": {
         "gulp-concat": "*"
