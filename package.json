@@ -12,6 +12,7 @@
         "svg4everybody": "*"
     },
     "devDependencies": {
+        "@babel/polyfill": "*",
         "gulp-concat": "*"
     }
 }
