@@ -48,11 +48,7 @@ display() -> (transition) displayView() -> display animations & *readyToDestroy
 export default class {
     constructor() {
 
-
-        // jQuery ondomready
-        $window.on('load',() => {
-            this.load();
-        });
+        this.load();
 
         this.transition = new transitions['BaseTransition']({
             wrapper: this.wrapper
@@ -134,7 +130,7 @@ export default class {
             $html.attr('data-transition',transition);
 
         } else {
-            
+
             if (this.autoEl != undefined) {
                 el = this.autoEl;
             } else {
@@ -176,7 +172,7 @@ export default class {
      * @return void
      */
     append(oldView, newView) {
-        
+
         newView.style.opacity = 0;
         this.wrapper.appendChild(newView);
 
@@ -188,7 +184,7 @@ export default class {
                 this.change(oldView, newView);
             // });
         // });
-        
+
     }
 
     /**

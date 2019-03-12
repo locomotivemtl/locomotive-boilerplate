@@ -40,9 +40,32 @@
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/scripts/jquery-3.3.1.min.js"><\/script>')</script>
-        <script src="assets/scripts/vendors.js"></script>
-        <script src="assets/scripts/app.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/scripts/jquery-3.2.1.min.js"><\/script>')</script>
+
+        <script>
+            var iterator = 0;
+            var scripts = ['assets/scripts/vendors.js?v=0.1','assets/scripts/app.js?v=0.1'];
+
+            function dynamicallyLoadScript(url) {
+
+                var script = document.createElement("script");
+                script.type= 'text/javascript';
+                script.src = url;
+                document.body.appendChild(script);
+
+                script.onload = function() {
+                    if(iterator < scripts.length - 1) {
+                        iterator++;
+                        dynamicallyLoadScript(scripts[iterator]);
+                    }
+                }
+            }
+
+            window.onload = function(e) {
+                dynamicallyLoadScript(scripts[iterator]);
+            }
+        </script>
+
     </body>
 </html>
