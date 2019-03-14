@@ -71,7 +71,7 @@ class App {
             if (destroyAll || arrayContains(moduleIds, this.currentModules[i].uid)) {
                 removeFromArray(moduleIds, this.currentModules[i].uid);
                 this.currentModules[i].destroy();
-                this.currentModules.splice(i);
+                this.currentModules.splice(i, 1);
             }
         }
 
