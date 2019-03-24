@@ -1,2 +1,2 @@
-export {default as Example} from './modules/Example';
-export {default as Scroll} from './modules/Scroll';
+export {default as load} from './modules/load';
+export {default as scroll} from './modules/scroll';

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="has-no-js" lang="en" data-debug="true">
+<html class="has-no-js" lang="en" data-page="home">
     <head>
         <meta charset="utf-8">
         <title>Boilerplate</title>
@@ -16,31 +16,33 @@
 
         <link rel="stylesheet" href="assets/styles/main.css">
     </head>
-    <body>
+    <body data-module-load>
 
         <header>
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="page.html" data-transition="CustomTransition">Page</a>
-                </li>
-                <li>
-                    <a href="page.html" class="no-transition">No transition link</a>
-                </li>
-            </ul>
+            <h1>Boilerplate</h1>
+            <nav>
+                <ul>
+                    <li><a href="page.html">Page</a></li>
+                    <li><a href="page.html" data-load="customTransition">Custom page</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <div id="js-pjax-wrapper">
-            <div class="js-pjax-container" data-template="home">
-                <div class="o-scroll" data-module="Scroll">
-                    <div data-module="Example">Home page with Example module</div>
+        <main>
+            <div data-load-container>
+                <div data-module-scroll>
+
+                    <p>Home</p>
+
                 </div>
             </div>
-        </div>
+        </main>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <footer>
+            <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/scripts/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="assets/scripts/vendors.js"></script>
         <script src="assets/scripts/app.js"></script>

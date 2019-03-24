@@ -6,8 +6,9 @@
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
         "locomotive-scroll": "git+https://git@github.com/locomotivemtl/locomotive-scroll.git",
+        "modujs": "*",
+        "modularload": "*",
         "normalize.css": "*",
-        "pjax": "*",
         "smooth-scrollbar": "git+https://git@github.com/locomotivemtl/smooth-scrollbar.git#develop",
         "svg4everybody": "*"
     },
