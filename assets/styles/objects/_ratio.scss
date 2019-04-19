@@ -2,20 +2,6 @@
 // Objects / Ratio
 // ==========================================================================
 
-//
-// @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.ratio.scss
-//
-
-// A list of aspect ratios that get generated as modifier classes.
-
-$aspect-ratios: (
-    (2:1),
-    (4:3),
-    (16:9),
-) !default;
-
-
-
 /**
  * Create ratio-bound content blocks, to keep media (e.g. images, videos) in
  * their correct aspect ratios.
@@ -38,6 +24,7 @@ $aspect-ratios: (
 }
 
 .o-ratio_content,
+    .o-ratio > img,
     .o-ratio > iframe,
     .o-ratio > embed,
     .o-ratio > object {
@@ -46,34 +33,5 @@ $aspect-ratios: (
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    // height: 100%;
 }
-
-/* stylelint-disable */
-
-//
-// Generate a series of ratio classes to be used like so:
-//
-// @example
-//   <div class="o-ratio -16:9">
-//
-//
-.o-ratio {
-    @each $ratio in $aspect-ratios {
-        @each $antecedent, $consequent in $ratio {
-            @if (type-of($antecedent) != number) {
-                @error "`#{$antecedent}` needs to be a number."
-            }
-
-            @if (type-of($consequent) != number) {
-                @error "`#{$consequent}` needs to be a number."
-            }
-
-            &.-#{$antecedent}\:#{$consequent}::before {
-                padding-bottom: ($consequent/$antecedent) * 100%;
-            }
-        }
-    }
-}
-
-/* stylelint-enable */
