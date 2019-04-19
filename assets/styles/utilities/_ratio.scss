@@ -23,20 +23,18 @@ $aspect-ratios: (
 //   <div class="o-ratio -16:9">
 //
 //
-.o-ratio {
-    @each $ratio in $aspect-ratios {
-        @each $antecedent, $consequent in $ratio {
-            @if (type-of($antecedent) != number) {
-                @error "`#{$antecedent}` needs to be a number."
-            }
+@each $ratio in $aspect-ratios {
+    @each $antecedent, $consequent in $ratio {
+        @if (type-of($antecedent) != number) {
+            @error "`#{$antecedent}` needs to be a number."
+        }
 
-            @if (type-of($consequent) != number) {
-                @error "`#{$consequent}` needs to be a number."
-            }
+        @if (type-of($consequent) != number) {
+            @error "`#{$consequent}` needs to be a number."
+        }
 
-            &.-#{$antecedent}\:#{$consequent}::before {
-                padding-bottom: ($consequent/$antecedent) * 100%;
-            }
+        &.u-#{$antecedent}\:#{$consequent}::before {
+            padding-bottom: ($consequent/$antecedent) * 100%;
         }
     }
 }
