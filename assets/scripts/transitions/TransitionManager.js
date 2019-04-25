@@ -1,7 +1,7 @@
 import { isDebug, APP_NAME, $window, $document, $html, $pjaxWrapper } from '../utils/environment';
 import { EVENT as AppEvent } from '../app';
 import * as transitions from './transitions';
-import Pjax from 'pjax';
+import Phax from './Phax';
 
 const MODULE_NAME = 'Transition';
 const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
@@ -88,7 +88,7 @@ export default class
             }
         };
         this.options.switches[this.containerClass] = (oldEl, newEl, options) => this.switch(oldEl, newEl, options);
-        this.pjax = new Pjax(this.options);
+        this.pjax = new Phax(this.options);
 
         /*
         ===== LISTENERS =====

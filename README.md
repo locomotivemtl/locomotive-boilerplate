@@ -90,13 +90,13 @@ We included some basic CSS styles and resets to the form elements so we can easi
 [demo-form]: https://codepen.io/AntoineBoulanger/pen/uBJmi
 
 ## Page transitions
+
 We use [Pjax](https://github.com/MoOx/pjax) by MoOx.
 
 ### Setup
-1.	Create a wrapper : `.js-pjax-wrapper` and a container `.js-pjax-container` inside. When a transition is launched, the new container is put inside the wrapper, and the old one is remove.
 
+1.	Create a wrapper: `.js-pjax-wrapper` and a container `.js-pjax-container` inside. When a transition is launched, the new container is put inside the wrapper, and the old one is remove.
 2.	Main settings are set inside `assets/scripts/transitions/TransitionManager.js`
-
 3.	`BaseTransition` is launched by default, to set a new transition (like `CustomTransition`) :
 	-	create a new class `TestTransition.js` witch extends `BaseTransition` in `assets/scripts/transitions/`
 	-	add a line in `assets/scripts/transitions/transitions.js` to add your transition
@@ -105,20 +105,172 @@ We use [Pjax](https://github.com/MoOx/pjax) by MoOx.
 
 ### Schema
 
-Legend
--	`[ ]` : listener
--	`*`   : trigger event
+Legend:
 
-`[pjax:send]` -> (transition) launch()
+-	`[]` — Event Listener
+-	`*` — Event Trigger
 
-`[pjax:switch]` (= new view is loaded) -> (BaseTransition) `hideView()` -> hide animations & `*readyToRemove`
+Logic:
 
-`[readyToRemove]` -> `remove()` -> delete modules, remove oldView from the DOM, innerHTML newView, init modules, `display()`
-
-`display()` -> (BaseTransition) `displayView()` -> display animations & `*readyToDestroy`
+```
+[pjax:send] -> (transition) launch()
+[pjax:switch] (= new view is loaded) -> (transition) hideView()-> hide animations & *readyToAppend
+[readyToAppend] -> append() -> delete modules
+                            -> remove oldView from the DOM, and innerHTMl newView
+                            -> change()
+display() -> (transition) displayView() -> display animations & *readyToDestroy
           -> init new modules
+[readyToAppend] -> reinit()
+```
 
-`[readyToRemove]` -> reinit()
+### Local History
+
+We provide an enhanced variant of Pjax dubbed _Phax_.
+
+Phax allows one to update the browser's current URL using `pushState()` _without_ loading a new page using XHR.
+
+For example, a collection of recipes that can be filtered by cuisine, meal type, or cooking style.
+Each selection can update the browser's current URL and navigating between doesn't requiring the same page to be reloaded by XHR (it also bypasses the transition system above).
+
+This feature works by assigning a "namespace" and a "disposition" to a module's internal links.
+
+The following module illustrates how to implement internal states but the m
+
+```js
+import { APP_NAME, $document } from '../utils/environment';
+import { PhaxDisposition } from '../transitions/Phax';
+import AbstractModule from './AbstractModule';
+
+const MODULE_NAME = 'RecipeCollection';
+
+export default class extends AbstractModule
+{
+    constructor(options) {
+        super(options);
+
+        this.pjax  = null;
+        this.query = null;
+
+        this.availableFilters = options.filters;
+        this.selectedFilters  = [];
+    }
+
+    bind() {
+        $document.on('pjax:complete', (event) => {
+            // Resolve location of Phax properties
+            const options = (event.disposition && event.namespace)
+                            ? event
+                            : ((event.originalEvent.disposition && event.originalEvent.namespace)
+                                ? event.originalEvent
+                                : null);
+
+            if (options === null) {
+                console.warn('Missing PJAX state options');
+                return;
+            }
+
+            if (options.disposition === PhaxDisposition.INTERNAL && options.namespace === this.uid) {
+                if (options.backward || options.forward) {
+                    this.pullUrl();
+                }
+            }
+        });
+
+        this.$el.on('click', '.js-filter', (event) => {
+            // Toggle filter then call
+            this.pushUrl();
+        });
+    }
+
+    getPjax() {
+        // …
+    }
+
+    pullUrl() {
+        const isInitalQuery = (this.query === null);
+
+        this.query = new URLSearchParams(window.location.search);
+
+        if (window.location.search) {
+            this.parseSelectedFiltersFromQuery(this.query);
+        }
+
+        if (isInitalQuery) {
+            const pjax = this.getPjax();
+            if (!pjax) {
+                return;
+            }
+
+            if (!pjax.options.history) {
+                return;
+            }
+
+            pjax.lastUid         = pjax.maxUid = pjax.newUid();
+            pjax.lastNamespace   = this.uid;
+            pjax.lastDisposition = PhaxDisposition.INTERNAL;
+
+            window.history.replaceState(
+                {
+                    url:         window.location.href,
+                    title:       document.title,
+                    namespace:   pjax.lastNamespace,
+                    disposition: pjax.lastDisposition,
+                    uid:         pjax.maxUid,
+                    scrollPos:   [ 0, 0 ]
+                },
+                document.title
+            );
+        }
+    }
+
+    parseSelectedFiltersFromQuery(query) {
+        // …
+    }
+
+    pushUrl() {
+        this.query = this.parseQueryFromSelectedFilters();
+
+        const pjax = this.getPjax();
+        if (!pjax) {
+            return;
+        }
+
+        if (!pjax.options.history) {
+            return;
+        }
+
+        // Since pjax.loadUrl modifies options and
+        // we may add our own modifications below,
+        // clone it so the changes don't persist
+        const opts = $.extend({}, pjax.options, {
+            namespace:   this.uid,
+            disposition: PhaxDisposition.INTERNAL,
+        });
+
+        let currentURI    = new URL(window.location.href);
+        currentURI.search = this.query.toString();
+
+        pjax.loadUrl(currentURI.href, opts);
+    }
+
+    parseQueryFromSelectedFilters(query) {
+        if (!query) {
+            query = new URLSearchParams();
+        }
+
+        let selected = this.selectedFilters;
+        for (let type in selected) {
+            if (selected[type].length === 0) {
+                continue;
+            }
+
+            query.append(type, selected[type].join(' '))
+        }
+
+        return query;
+    }
+}
+```
 
 ## Locomotive Scroll
 
