@@ -82,6 +82,7 @@ export default class
                 `${this.containerClass}`,
             ],
             switches: {},
+            analytics: this.trackPageview,
             requestOptions: {
                 timeout: 2000
             }
@@ -128,6 +129,30 @@ export default class
                 $.extend({}, this.pjax.options)
             );
         });
+    }
+
+    /**
+     * @return {void}
+     */
+    trackPageview()
+    {
+        if (window.ga) {
+            ga('send', 'pageview', {
+                page:  location.pathname,
+                title: document.title
+            });
+        }
+
+        if (window._gaq) {
+            _gaq.push([ '_trackPageview' ]);
+        }
+
+        if (window.gtag) {
+            gtag('config', gtag.trackingID, {
+                page_path:  location.pathname,
+                page_title: document.title
+            });
+        }
     }
 
     /**
