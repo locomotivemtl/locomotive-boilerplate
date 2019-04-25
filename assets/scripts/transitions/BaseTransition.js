@@ -1,75 +1,93 @@
-import { APP_NAME, $document, $html, $body,  isDebug, $pjaxWrapper } from '../utils/environment';
+import { isDebug, $document, $html } from '../utils/environment';
+import { EVENT as TransitionEvent } from './TransitionManager';
 
-import { EVENT as TransitionEvent } from './TransitionManager'
-
-export default class {
-    constructor(options) {
-
-        this.options = options;
-        this.wrapper = options.wrapper;
+/**
+ * Base PJAX Transition
+ */
+export default class
+{
+    /**
+     * @param  {Object} options - The transition options.
+     * @return {void}
+     */
+    constructor(options)
+    {
+        this.options       = options;
+        this.wrapper       = options.wrapper;
         this.overrideClass = options.overrideClass ? options.overrideClass : '';
-        this.clickedLink = options.clickedLink;
-
+        this.clickedLink   = options.clickedLink;
     }
 
-    launch() {
-        if(isDebug) {
-            console.log("---- Launch transition 👊 -----");
+    /**
+     * @return {void}
+     */
+    launch()
+    {
+        if (isDebug) {
+            console.info('[BaseTransition.launch]', '👊', 'Launching Transition');
         }
 
-        $html
-            .removeClass('has-dom-loaded has-dom-animated ')
-            .addClass(`has-dom-loading ${this.overrideClass}`);
-
+        $html.removeClass('has-dom-loaded has-dom-animated')
+             .addClass(`has-dom-loading ${this.overrideClass}`);
     }
 
-    hideView(oldView, newView) {
-        if(isDebug) {
-            console.log('----- ❌ [VIEW]:hide - ', oldView.getAttribute('data-template'));
+    /**
+     * @param  {Element} oldView - The old element.
+     * @param  {Element} newView - The new element.
+     * @return {void}
+     */
+    hideView(oldView, newView)
+    {
+        if (isDebug) {
+            console.info('[BaseTransition.hideView]', '🌃', 'Hiding View', '--', oldView.getAttribute('data-template'));
         }
-        
+
         // launch it at the end (animations...)
         $document.triggerHandler({
-            type:TransitionEvent.READYTOAPPEND,
+            type:    TransitionEvent.READYTOAPPEND,
             oldView: oldView,
             newView: newView
         });
-
     }
 
-
-    displayView(view) {
-
-        if(isDebug) {
-            console.log('----- ✅ [VIEW]:display :', view.getAttribute('data-template'));
+    /**
+     * launch after this.append(), remove modules, remove oldView and set the newView
+     *
+     * @param  {Element} view - The new element.
+     * @return {void}
+     */
+    displayView(view)
+    {
+        if (isDebug) {
+            console.info('[BaseTransition.displayView]', '🌇', 'Showing View', '--', view.getAttribute('data-template'));
         }
 
         $html.attr('data-template', view.getAttribute('data-template'));
 
         setTimeout(() => {
-
-            $html
-                .addClass('has-dom-loaded')
-                .removeClass('has-dom-loading');
+            $html.addClass('has-dom-loaded')
+                 .removeClass('has-dom-loading');
 
             setTimeout(() => {
-                $html
-                    .removeClass(this.overrideClass)
-                    .addClass('has-dom-animated');
+                $html.removeClass(this.overrideClass)
+                     .addClass('has-dom-animated');
             }, 1000);
 
             // launch it at the end (animations...)
             $document.triggerHandler({
-                type:TransitionEvent.READYTODESTROY
+                type: TransitionEvent.READYTODESTROY
             });
 
-        },1000);
+        }, 1000);
     }
 
-
-    destroy() {
-        if(isDebug) {
-            console.log("---- ❌ [transition]:destroy -----");
+    /**
+     * @return {void}
+     */
+    destroy()
+    {
+        if (isDebug) {
+            console.info('[BaseTransition.destroy]', '💥', 'Destroying Transition');
         }
     }
 }

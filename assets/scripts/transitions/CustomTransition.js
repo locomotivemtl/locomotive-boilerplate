@@ -1,13 +1,20 @@
-import { APP_NAME, $document, $html, isDebug, $pjaxWrapper } from '../utils/environment';
+import { isDebug, $document, $html } from '../utils/environment';
+import { EVENT as TransitionEvent } from './TransitionManager';
 import BaseTransition from './BaseTransition';
 
-import { EVENT as TransitionEvent } from './TransitionManager'
-
-export default class extends BaseTransition{
-    constructor(options) {
+/**
+ * Custom PJAX Transition
+ */
+export default class extends BaseTransition
+{
+    /**
+     * @param  {Object} options - The transition options.
+     * @return {void}
+     */
+    constructor(options)
+    {
         super(options);
 
         this.overrideClass = '-custom-transition';
     }
-
 }
