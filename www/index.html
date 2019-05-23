@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="has-no-js" lang="en" data-debug="true">
+<html class="is-loading" lang="en" data-page="home">
     <head>
         <meta charset="utf-8">
         <title>Boilerplate</title>
@@ -16,32 +16,38 @@
 
         <link rel="stylesheet" href="assets/styles/main.css">
     </head>
-    <body>
+    <body data-module-load>
 
         <header>
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="page.html" data-transition="CustomTransition">Page</a>
-                </li>
-                <li>
-                    <a href="page.html" class="no-transition">No transition link</a>
-                </li>
-            </ul>
+            <a href="/"><h1>Boilerplate</h1></a>
+            <nav>
+                <ul>
+                    <li><a href="page.html">Page</a></li>
+                    <li><a href="page.html" data-load="customTransition">Custom page</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <div id="js-pjax-wrapper">
-            <div class="js-pjax-container" data-template="home">
-                <div class="o-scroll" data-module="Scroll">
-                    <div data-module="Example">Home page with Example module</div>
+        <main>
+            <div data-load-container>
+                <div data-module-scroll>
+
+                    <p>Home</p>
+
                 </div>
             </div>
-        </div>
+        </main>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/scripts/jquery-3.3.1.min.js"><\/script>')</script>
+        <footer>
+            <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
+        </footer>
+
+        <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js" crossorigin="anonymous"></script>
+        <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=fetch%2CCustomEvent%2CElement.prototype.matches" crossorigin="anonymous"></script>
+        <script nomodule src="assets/scripts/abortcontroller-polyfill-only.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/scripts/jquery-3.4.1.min.js"><\/script>')</script>
         <script src="assets/scripts/vendors.js"></script>
         <script src="assets/scripts/app.js"></script>
     </body>

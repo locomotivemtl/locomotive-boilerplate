@@ -1,31 +1,21 @@
-import { APP_NAME, $document } from '../utils/environment';
-import AbstractModule from './AbstractModule';
+import { module } from 'modujs';
+import { $document } from '../utils/environment'
 import ScrollManager from '../scroll/vendors/ScrollManager';
 
-const MODULE_NAME = 'Scroll';
-const EVENT_NAMESPACE = `${APP_NAME}.${MODULE_NAME}`;
-
-export default class extends AbstractModule {
-    constructor(options) {
-        super(options);
+export default class extends module {
+    constructor(m) {
+        super(m);
     }
 
     init() {
-        setTimeout(() => {
-            this.scrollManager = new ScrollManager({
-                container: this.$el,
-                selector: '.js-animate',
-                smooth: false,
-                smoothMobile: false,
-                mobileContainer: $document,
-                getWay: false,
-                getSpeed: false
-            });
-        }, 500);
+        this.scroll = new ScrollManager({
+            container: $(this.el),
+            smooth: true,
+            inertia: 1
+        });
     }
 
     destroy() {
-        super.destroy();
-        this.scrollManager.destroy();
+        this.scroll.destroy();
     }
 }
