@@ -8,15 +8,15 @@ export default class extends module {
 
     init() {
         const load = new modularLoad({
-            enterDelay: 0
+            enterDelay: 0,
+            transitions: {
+                customTransition: {}
+            }
         });
 
         load.on('loaded', (transition, oldContainer, newContainer) => {
             this.call('destroy', oldContainer, 'app');
-        })
-
-        load.on('ready', (transition, newContainer) => {
             this.call('update', newContainer, 'app');
-        })
+        });
     }
 }

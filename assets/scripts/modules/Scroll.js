@@ -8,18 +8,14 @@ export default class extends module {
     }
 
     init() {
-        this.scrollManager = new ScrollManager({
-            container: this.$el,
-            selector: '.js-animate',
-            smooth: false,
-            smoothMobile: false,
-            mobileContainer: $document,
-            getWay: false,
-            getSpeed: false
+        this.scroll = new ScrollManager({
+            container: $(this.el),
+            smooth: true,
+            inertia: 1
         });
     }
 
     destroy() {
-        this.scrollManager.destroy();
+        this.scroll.destroy();
     }
 }

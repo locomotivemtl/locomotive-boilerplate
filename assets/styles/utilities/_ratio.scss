@@ -20,7 +20,7 @@ $aspect-ratios: (
 // Generate a series of ratio classes to be used like so:
 //
 // @example
-//   <div class="o-ratio -16:9">
+//   <div class="o-ratio u-16:9">
 //
 //
 @each $ratio in $aspect-ratios {
