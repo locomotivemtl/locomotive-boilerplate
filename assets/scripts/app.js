@@ -10,6 +10,6 @@ const app = new modular({
 app.init(app);
 globals();
 
-html.classList.add('is-loaded is-ready');
+html.classList.add('is-loaded', 'is-ready');
 html.classList.remove('is-loading');
 
