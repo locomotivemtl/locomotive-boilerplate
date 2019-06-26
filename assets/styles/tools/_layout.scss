@@ -21,7 +21,9 @@
 // @output   `font-size`, `margin`, `padding`, `list-style`
 //
 @mixin o-layout($gutter: 0, $fix-whitespace: true) {
-    @include u-list-reset;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     @if ($fix-whitespace) {
         font-size: 0;
