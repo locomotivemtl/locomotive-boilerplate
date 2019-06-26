@@ -122,17 +122,6 @@
 }
 
 //
-// Injects generic rules for disabling UL/OL/LI styles.
-//
-// @output `list-style`, `margin`, `padding`
-//
-@mixin u-list-reset {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-//
 // Prevent text from wrapping onto multiple lines for the current element.
 //
 // An ellipsis is appended to the end of the line.

@@ -45,6 +45,19 @@ a {
     }
 }
 
+// Resets
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p,
+figure {
+    margin: 0;
+    padding: 0;
+}
+
 /**
  * 1. Single taps should be dispatched immediately on clickable elements
  */
