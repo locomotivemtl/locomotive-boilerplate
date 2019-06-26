@@ -46,6 +46,10 @@ html {
     @media (min-width: $from-colossal) {
         font-size: 24px;
     }
+
+    &.is-loading {
+        cursor: wait;
+    }
 }
 
 ::selection {
