@@ -1,4 +1,4 @@
-const APP_NAME     = 'Wirewerks';
+const APP_NAME     = 'Boilerplate';
 const DATA_API_KEY = '.data-api';
 
 const html         = document.documentElement;
