@@ -50,6 +50,20 @@ html {
     &.is-loading {
         cursor: wait;
     }
+
+    &.has-scroll-smooth {
+        overflow: hidden;
+    }
+
+    &.has-scroll-dragging {
+        user-select: none;
+    }
+}
+
+body {
+    .has-scroll-smooth & {
+        overflow: hidden;
+    }
 }
 
 ::selection {

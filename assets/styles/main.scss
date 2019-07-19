@@ -39,7 +39,6 @@
 @import "objects/form";
 @import "objects/button";
 @import "objects/pjax";
-@import "objects/scroll";
 // @import "objects/crop";
 // @import "objects/table";
 
@@ -49,7 +48,7 @@
 
 // Components
 // ==========================================================================
-// @import "components/component";
+@import "components/scrollbar";
 
 // Templates
 // ==========================================================================

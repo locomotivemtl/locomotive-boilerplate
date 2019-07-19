@@ -1,6 +1,5 @@
 import { module } from 'modujs';
-import { $document } from '../utils/environment'
-import ScrollManager from '../scroll/vendors/ScrollManager';
+import locomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
     constructor(m) {
@@ -8,10 +7,9 @@ export default class extends module {
     }
 
     init() {
-        this.scroll = new ScrollManager({
-            container: $(this.el),
-            smooth: true,
-            inertia: 1
+        this.scroll = new locomotiveScroll({
+            el: this.el,
+            smooth: true
         });
     }
 
