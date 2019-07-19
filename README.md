@@ -179,19 +179,18 @@ this.load = new modularLoad({
 
 #### Example
 ```html
-<div class="o-scroll" data-module-scroll>
-    <div class="js-animate">Trigger</div>
-    <div class="js-animate" data-speed="1">Parallax</div>
+<div data-module-scroll>
+    <div data-scroll>Trigger</div>
+    <div data-scroll data-scroll-speed="1">Parallax</div>
 </div>
 ```
 ```js
-import ScrollManager from '../scroll/vendors/ScrollManager';
+import locomotiveScroll from 'locomotive-scroll';
 
-this.scrollManager = new ScrollManager({
-    container: $(this.el),
-    selector: '.js-animate',
+this.scroll = new locomotiveScroll({
+    el: this.el,
     smooth: true
- });
+});
 ````
 
 [Learn more](https://github.com/locomotivemtl/locomotive-scroll)
