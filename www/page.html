@@ -28,19 +28,73 @@
             </nav>
         </header>
 
-        <main>
-            <div data-load-container>
-                <div data-module-scroll>
+        <div data-load-container>
+            <div class="o-scroll" data-module-scroll>
+                <main>
+                    <div class="o-container">
+                        <h1 class="c-heading -h1">Page</h1>
 
-                    <p>Page</p>
+                        <div class="o-layout">
+                            <div class="o-layout_item u-1/2@from-small">
 
-                </div>
+                                <form class="c-form">
+                                    <div class="c-form_item">
+                                        <label class="c-form_label" for="input">Input</label>
+                                        <input class="c-form_input" type="text" id="input">
+                                    </div>
+                                    <div class="c-form_item">
+                                        <div class="o-layout -gutter">
+                                            <div class="o-layout_item u-1/2">
+                                                <input class="c-form_checkbox" type="checkbox" id="checkbox">
+                                                <label class="c-form_checkboxLabel" for="checkbox">Checkbox</label>
+                                            </div>
+                                            <div class="o-layout_item u-1/2">
+                                                <input class="c-form_checkbox" type="checkbox" id="checkbox2">
+                                                <label class="c-form_checkboxLabel" for="checkbox2">Checkbox 2</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="c-form_item">
+                                        <div class="o-layout -gutter">
+                                            <div class="o-layout_item u-1/2">
+                                                <input class="c-form_radio" type="radio" name="radio" id="radio">
+                                                <label class="c-form_radioLabel" for="radio">Radio</label>
+                                            </div>
+                                            <div class="o-layout_item u-1/2">
+                                                <input class="c-form_radio" type="radio" name="radio" id="radio2">
+                                                <label class="c-form_radioLabel" for="radio2">Radio 2</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="c-form_item">
+                                        <label class="c-form_label" for="select">Select</label>
+                                        <div class="c-form_select">
+                                            <select class="c-form_select_input" id="select">
+                                                <option value="option">Option</option>
+                                                <option value="option2">Option 2</option>
+                                                <option value="option3">Option 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="c-form_item">
+                                        <label class="c-form_label" for="textarea">Textarea</label>
+                                        <textarea class="c-form_textarea" id="textarea"></textarea>
+                                    </div>
+                                    <button class="c-button" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer>
+                    <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
+                </footer>
             </div>
-        </main>
-
-        <footer>
-            <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
-        </footer>
+        </div>
 
         <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js" crossorigin="anonymous"></script>
         <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=fetch%2CCustomEvent%2CElement.prototype.matches" crossorigin="anonymous"></script>

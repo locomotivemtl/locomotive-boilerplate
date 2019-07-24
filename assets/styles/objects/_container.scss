@@ -12,16 +12,10 @@
 // @link http://stackoverflow.com/a/13202141/140357
 //
 
-/* stylelint-disable */
-@if (type-of($container-width) != number) {
-    @error "`#{$container-width}` needs to be a number."
-}
-/* stylelint-enable */
-
 .o-container {
     margin-right: auto;
     margin-left: auto;
-    padding-right: $padding;
-    padding-left: $padding;
-    max-width: $container-width;
+    padding-right: rem($padding);
+    padding-left: rem($padding);
+    max-width: rem($container-width + ($padding * 2));
 }

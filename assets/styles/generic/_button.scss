@@ -11,7 +11,7 @@
 // 6. Force all button-styled elements to appear clickable.
 //
 button,
-.o-button {
+.c-button {
     @include u-hocus {
         text-decoration: none;
     }
