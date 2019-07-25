@@ -73,9 +73,9 @@ body {
 }
 
 a {
+    color: $link-color;
+
     @include u-hocus {
         color: $link-hover-color;
     }
-
-    color: $link-color;
 }
