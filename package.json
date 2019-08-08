@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "author": "Locomotive <info@locomotive.ca>",
     "dependencies": {
-        "locomotive-scroll": "github:locomotivemtl/locomotive-scroll#v2",
+        "locomotive-scroll": "*",
         "modujs": "*",
         "modularload": "*",
         "normalize.css": "*",

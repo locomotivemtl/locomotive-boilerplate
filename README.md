@@ -185,9 +185,9 @@ this.load = new modularLoad({
 </div>
 ```
 ```js
-import locomotiveScroll from 'locomotive-scroll';
+import LocomotiveScroll from 'locomotive-scroll';
 
-this.scroll = new locomotiveScroll({
+this.scroll = new LocomotiveScroll({
     el: this.el,
     smooth: true
 });

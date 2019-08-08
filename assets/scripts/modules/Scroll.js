@@ -1,5 +1,5 @@
 import { module } from 'modujs';
-import locomotiveScroll from 'locomotive-scroll';
+import LocomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
     constructor(m) {
@@ -7,7 +7,7 @@ export default class extends module {
     }
 
     init() {
-        this.scroll = new locomotiveScroll({
+        this.scroll = new LocomotiveScroll({
             el: this.el,
             smooth: true
         });
