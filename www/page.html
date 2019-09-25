@@ -17,20 +17,19 @@
         <link rel="stylesheet" href="assets/styles/main.css">
     </head>
     <body data-module-load>
-
-        <header>
-            <a href="/"><h1>Boilerplate</h1></a>
-            <nav>
-                <ul>
-                    <li><a href="page.html">Page</a></li>
-                    <li><a href="page.html" data-load="customTransition">Custom page</a></li>
-                </ul>
-            </nav>
-        </header>
-
         <div data-load-container>
-            <div class="o-scroll" data-module-scroll>
-                <main>
+            <div class="o-scroll" data-module-scroll="main">
+                <header data-scroll-section>
+                    <a href="/"><h1>Boilerplate</h1></a>
+                    <nav>
+                        <ul>
+                            <li><a href="page.html">Page</a></li>
+                            <li><a href="page.html" data-load="customTransition">Custom page</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <main data-scroll-section>
                     <div class="o-container">
                         <h1 class="c-heading -h1">Page</h1>
 
@@ -90,7 +89,7 @@
                     </div>
                 </main>
 
-                <footer>
+                <footer data-scroll-section>
                     <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
                 </footer>
             </div>

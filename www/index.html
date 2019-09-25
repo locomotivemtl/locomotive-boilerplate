@@ -17,24 +17,67 @@
         <link rel="stylesheet" href="assets/styles/main.css">
     </head>
     <body data-module-load>
-
-        <header>
-            <a href="/"><h1>Boilerplate</h1></a>
-            <nav>
-                <ul>
-                    <li><a href="page.html">Page</a></li>
-                    <li><a href="page.html" data-load="customTransition">Custom page</a></li>
-                </ul>
-            </nav>
-        </header>
-
         <div data-load-container>
-            <div class="o-scroll" data-module-scroll>
-                <main>
-                    <h1 class="c-heading -h1">Home</h1>
+            <div class="o-scroll" data-module-scroll="main">
+                <header data-scroll-section>
+                    <a href="/"><h1>Boilerplate</h1></a>
+                    <nav>
+                        <ul>
+                            <li><a href="page.html">Page</a></li>
+                            <li><a href="page.html" data-load="customTransition">Custom page</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <main data-scroll-section>
+                    <div class="o-container">
+                        <h1 class="c-heading -h1">Home</h1>
+
+                        <section>
+                            <h2 class="c-heading -h2">Lazy load demo</h2>
+
+                            <h3 class="c-heading -h3">Basic</h3>
+
+                            <div style="width: 640px; max-width: 100%;">
+                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                            </div>
+
+                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
+
+                            <div style="width: 480px; max-width: 100%;">
+                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=1);"></div>
+                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=2);"></div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 class="c-heading -h3">Relative to scroll</h3>
+
+                            <h4 class="c-heading -h3">Using o-ratio & img</h3>
+
+                            <div style="width: 640px; max-width: 100%;">
+                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
+                            </div>
+
+                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
+
+                            <div style="width: 480px; max-width: 100%;">
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5"></div>
+                            </div>
+                        </section>
+                    </div>
                 </main>
 
-                 <footer>
+                 <footer data-scroll-section>
                     <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
                 </footer>
             </div>
