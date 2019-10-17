@@ -14,7 +14,12 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
         <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
 
-        <link rel="stylesheet" href="assets/styles/main.css">
+        <link rel="preload" href="assets/styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/styles/main.css"></noscript>
+        <script>
+            !function(n){"use strict";n.loadCSS||(n.loadCSS=function(){});var o=loadCSS.relpreload={};if(o.support=function(){var e;try{e=n.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),o.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},o.poly=function(){if(!o.support())for(var t=n.document.getElementsByTagName("link"),e=0;e<t.length;e++){var a=t[e];"preload"!==a.rel||"style"!==a.getAttribute("as")||a.getAttribute("data-loadcss")||(a.setAttribute("data-loadcss",!0),o.bindMediaToggle(a))}},!o.support()){o.poly();var t=n.setInterval(o.poly,500);n.addEventListener?n.addEventListener("load",function(){o.poly(),n.clearInterval(t)}):n.attachEvent&&n.attachEvent("onload",function(){o.poly(),n.clearInterval(t)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:n.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+        </script>
+        <script></script>
     </head>
     <body data-module-load>
         <div data-load-container>
@@ -23,70 +28,28 @@
                     <a href="/"><h1>Boilerplate</h1></a>
                     <nav>
                         <ul>
-                            <li><a href="page.html">Page</a></li>
-                            <li><a href="page.html" data-load="customTransition">Custom page</a></li>
+                            <li><a href="images.html">Images</a></li>
+                            <li><a href="form.html" data-load="customTransition">Form</a></li>
                         </ul>
                     </nav>
                 </header>
 
                 <main data-scroll-section>
                     <div class="o-container">
-                        <h1 class="c-heading -h1">Home</h1>
-
-                        <section>
-                            <h2 class="c-heading -h2">Lazy load demo</h2>
-
-                            <h3 class="c-heading -h3">Basic</h3>
-
-                            <div style="width: 640px; max-width: 100%;">
-                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                            </div>
-
-                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
-
-                            <div style="width: 480px; max-width: 100%;">
-                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=1);"></div>
-                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=2);"></div>
-                            </div>
-                        </section>
-
-                        <section>
-                            <h3 class="c-heading -h3">Relative to scroll</h3>
-
-                            <h4 class="c-heading -h3">Using o-ratio & img</h3>
-
-                            <div style="width: 640px; max-width: 100%;">
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></div>
-                            </div>
-
-                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
-
-                            <div style="width: 480px; max-width: 100%;">
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5"></div>
-                            </div>
-                        </section>
+                        <h1 class="c-heading -h1">Hello</h1>
                     </div>
                 </main>
 
                  <footer data-scroll-section>
-                    <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank">🚂</a></p>
+                    <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank" rel="noopener">🚂</a></p>
                 </footer>
             </div>
         </div>
 
-        <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js" crossorigin="anonymous"></script>
-        <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=fetch%2CCustomEvent%2CElement.prototype.matches%2NodeList.prototype.forEach%2AbortController" crossorigin="anonymous"></script>
+        <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossorigin="anonymous"></script>
+        <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=fetch%2CCustomEvent%2CElement.prototype.matches%2CNodeList.prototype.forEach%2CAbortController" crossorigin="anonymous"></script>
 
-        <script src="assets/scripts/vendors.js"></script>
-        <script src="assets/scripts/app.js"></script>
+        <script src="assets/scripts/vendors.js" defer></script>
+        <script src="assets/scripts/app.js" defer></script>
     </body>
 </html>
