@@ -9,8 +9,7 @@
         "modujs": "*",
         "modularload": "*",
         "normalize.css": "*",
-        "svg4everybody": "*",
-        "virtual-scroll": "*"
+        "svg4everybody": "*"
     },
     "devDependencies": {
         "gulp-concat": "*"
