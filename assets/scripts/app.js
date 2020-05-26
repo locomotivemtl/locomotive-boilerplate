@@ -7,9 +7,23 @@ const app = new modular({
     modules: modules
 });
 
-app.init(app);
-globals();
+window.onload = (event) => {
+    const $style = document.getElementById("stylesheet");
 
-html.classList.add('is-loaded', 'is-ready');
-html.classList.remove('is-loading');
+    if ($style.isLoaded) {
+        init();
+    } else {
+        $style.addEventListener('load', (event) => {
+            init();
+        });
+    }
+};
+
+function init() {
+    app.init(app);
+    globals();
+
+    html.classList.add('is-loaded', 'is-ready');
+    html.classList.remove('is-loading');
+}
 
