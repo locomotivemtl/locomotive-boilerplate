@@ -8,7 +8,7 @@
 
 ## Installation
 ```sh
-npm install mbp gulp -g
+npm install mbp -g
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ npm install mbp gulp -g
 # init your project
 mbp init locomotivemtl/locomotive-boilerplate <directory>
 
-# run default watch task
-gulp
+# and start it
+npm start
 ```
 
 ## Configuration
@@ -31,13 +31,13 @@ Change the mentions of `boilerplate` for your project's name in `mconfig.json`.
 #### Tasks
 ```sh
 # watch
-gulp
+npm start
 
 # compile
-gulp compile
+npm run compile
 
 # minify
-gulp build
+npm run build
 ```
 
 [Learn more](https://github.com/modularorg/modularbp-gulp)
