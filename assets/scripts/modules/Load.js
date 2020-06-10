@@ -7,6 +7,8 @@ export default class extends module {
     }
 
     init() {
+        this.analyticsId = this.getData('analytics');
+
         const load = new modularLoad({
             enterDelay: 0,
             transitions: {
@@ -17,6 +19,13 @@ export default class extends module {
         load.on('loaded', (transition, oldContainer, newContainer) => {
             this.call('destroy', oldContainer, 'app');
             this.call('update', newContainer, 'app');
+
+            if(window.gtag && this.analyticsId != null) {
+                gtag('config', this.analyticsId, {
+                    'page_path':  location.pathname,
+                    'page_title': document.title
+                });
+            }
         });
     }
 }
