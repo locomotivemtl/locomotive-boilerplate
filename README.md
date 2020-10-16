@@ -16,6 +16,9 @@ npm install mbp -g
 # init your project
 mbp init locomotivemtl/locomotive-boilerplate <directory>
 
+# go to the directory
+cd <directory>
+
 # and start it
 npm start
 ```
