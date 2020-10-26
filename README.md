@@ -139,7 +139,7 @@ export default class extends module {
     }
 
     loadMore() {
-        this.$('main').classList.add('is-loading');
+        this.$('main')[0].classList.add('is-loading');
     }
 }
 ```
