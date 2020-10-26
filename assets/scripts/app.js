@@ -20,10 +20,11 @@ window.onload = (event) => {
 };
 
 function init() {
-    app.init(app);
     globals();
+    app.init(app);
 
-    html.classList.add('is-loaded', 'is-ready');
+    html.classList.add('is-loaded');
+    html.classList.add('is-ready');
     html.classList.remove('is-loading');
 }
 

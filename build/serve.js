@@ -8,7 +8,8 @@ function serve(done) {
         notify: false,
         proxy: paths.url,
         host: paths.url,
-        open: 'external'
+        open: false,
+        ghostMode: false
     });
     done();
 }
