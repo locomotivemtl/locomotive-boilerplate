@@ -3,20 +3,25 @@
   "name": "@locomotivemtl/boilerplate",
   "title": "Locomotive Boilerplate",
   "version": "1.0.0",
+  "type": "module",
   "author": "Locomotive <info@locomotive.ca>",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "compile": "gulp compile"
+    "start": "node --experimental-json-modules build/watch.js",
+    "build": "node --experimental-json-modules build/build.js"
   },
   "dependencies": {
     "locomotive-scroll": "*",
-    "modujs": "*",
-    "modularload": "*",
+    "modujs": "^1.4.2",
+    "modularload": "^1.2.6",
     "normalize.css": "*",
     "svg4everybody": "*"
   },
   "devDependencies": {
-    "gulp-concat": "*"
+    "browser-sync": "^2.26.13",
+    "concat": "^1.0.3",
+    "esbuild": "^0.8.16",
+    "fs": "0.0.1-security",
+    "node-sass": "^5.0.0",
+    "svg-mixer": "^2.3.14"
   }
 }

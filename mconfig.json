@@ -1,12 +1,13 @@
 {
-  "url": "boilerplate.test",
+  "url": "locomotive-boilerplate.test",
   "src": "./assets/",
   "dest": "./www/",
   "build": "./build/",
   "styles": {
     "src": "./assets/styles/",
     "dest": "./www/assets/styles/",
-    "main": "main"
+    "main": "main",
+    "critical": "critical"
   },
   "scripts": {
     "src": "./assets/scripts/",
@@ -23,11 +24,5 @@
   },
   "views": {
     "src": "./views/boilerplate/template/"
-  },
-  "modules": {
-    "build": "gulp",
-    "style": "sass",
-    "script": "js",
-    "view": false
   }
 }

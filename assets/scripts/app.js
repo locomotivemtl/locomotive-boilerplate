@@ -21,6 +21,7 @@ window.onload = (event) => {
 
 function init() {
     globals();
+
     app.init(app);
 
     html.classList.add('is-loaded');

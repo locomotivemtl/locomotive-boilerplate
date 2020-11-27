@@ -8,39 +8,29 @@
 
 ## Installation
 ```sh
-npm install mbp -g
+npm i
 ```
 
 ## Usage
 ```sh
-# init your project
-mbp init locomotivemtl/locomotive-boilerplate <directory>
-
-# and start it
+# start it
 npm start
 ```
 
 ## Configuration
-Change the mentions of `boilerplate` for your project's name in `mconfig.json`. It is based on [modularBP](https://github.com/modularorg/modularbp).
-
-[Learn more](https://github.com/modularorg/modularbp)
+Change the mentions of `locomotive-boilerplate` for your project's name in `mconfig.json`. Legacy from [modularBP](https://github.com/modularorg/modularbp).
 
 ## Build
-[gulp](https://github.com/gulpjs/gulp) is our build system. It compiles our styles and scripts, generate svg sprites, live reload the browser and minify everything.  
 
 #### Tasks
 ```sh
 # watch
 npm start
 
-# compile
-npm run compile
-
-# minify
+# build
 npm run build
 ```
 
-[Learn more](https://github.com/modularorg/modularbp-gulp)
 
 ## Styles
 [Sass](https://github.com/sass/node-sass) is our CSS preprocessor. [Autoprefixer](https://github.com/postcss/autoprefixer) is also included.

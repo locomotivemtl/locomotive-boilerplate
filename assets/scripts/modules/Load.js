@@ -7,6 +7,7 @@ export default class extends module {
     }
 
     init() {
+        
         const load = new modularLoad({
             enterDelay: 0,
             transitions: {
