@@ -2,7 +2,6 @@ import { buildScripts } from './scripts.js';
 import { concatVendors } from './concat.js';
 import { compileStyles } from './styles.js' ;
 import { generateSpriteSVG } from './svgs.js';
-
 import paths from '../mconfig.json';
 
 // Create an named instance in one file...
@@ -15,6 +14,12 @@ bs.init({
     notify: false
 });
 
+// Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
+buildScripts();
+concatVendors();
+compileStyles();
+generateSpriteSVG();
+
 // and call any methods on it.
 bs.watch(
     [
@@ -25,12 +30,6 @@ bs.watch(
         paths.svgs.dest + 'sprite.svg'
     ]
 ).on('change', bs.reload);
-
-// Build scripts and compile styles on first hit
-buildScripts();
-concatVendors();
-compileStyles();
-generateSpriteSVG();
 
 // Watch scripts 
 bs.watch(
