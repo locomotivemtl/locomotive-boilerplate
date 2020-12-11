@@ -1,14 +1,23 @@
 
-// colors reference  : https://coderwall.com/p/yphywg/printing-colorful-text-in-terminal-when-run-node-js-script
-export default function message(text, type) {
-    
+import kleur from 'kleur';
+
+export default function message(text, type, timerId) {
+
     if(type === 'success') {
-        console.log(`\x1b[42m \x1b[30m`, `✅ ${text}`, `\x1b[0m`);
+        console.log(kleur.bgGreen().black(` ✅ ${text} `));
+
+        if(timerId !== undefined) {
+            console.timeEnd(timerId)
+        }
     } else if (type === 'error') {
-        console.log(`\x1b[41m \x1b[37m`,`🚨 ${text}`, `\x1b[0m`);
+        console.log(kleur.bgRed(` 🚨 ${text} `));
+
     } else if (type === 'waiting') {
-        console.log(`\x1b[43m \x1b[30m`,`⏱  ${text}`, `\x1b[0m`);
+
+        console.log(kleur.blue().italic(` ⏱  ${text} `));
     } else {
-        console.log(text);   
+        console.log(text);
     }
+
+    console.log('');
 }

@@ -5,6 +5,7 @@ import fs from 'fs';
 import message from './utils/message.js';
 
 export function compileStyles() {
+    console.time('Styles built in');
 
     // Compile main scss
     sass.render({
@@ -13,12 +14,12 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-        
+
         if(error) {
-            message('Error compile main.scss', 'error');
+            message('Error compiling main.scss', 'error');
             console.log(error);
         } else {
-            message('main.scss compiled', 'success');
+            message('Styles built', 'success', 'Styles built in');
         }
 
         if(!error){
@@ -26,6 +27,9 @@ export function compileStyles() {
             fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, (err) => {});
           }
     });
+
+    console.time('Critical style built in');
+
     // Compile critical scss
     sass.render({
         file: paths.styles.src + paths.styles.critical + '.scss',
@@ -33,12 +37,12 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-        
+
         if(error) {
-            message('Error compile critical.scss', 'error');
+            message('Error compiling critical.scss', 'error');
             console.log(error);
         } else {
-            message('critical.scss compiled', 'success');
+            message('Critical style built', 'success', 'Critical style built in');
         }
 
         if(!error){
