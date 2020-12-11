@@ -3,6 +3,7 @@ import sass from 'node-sass';
 import paths from '../mconfig.json';
 import fs from 'fs';
 import message from './utils/message.js';
+import notification from './notification.js';
 
 export function compileStyles() {
     console.time('Styles built in');
@@ -17,7 +18,12 @@ export function compileStyles() {
 
         if(error) {
             message('Error compiling main.scss', 'error');
-            console.log(error);
+            console.log(error.formatted);
+
+            notification({
+                title: 'main.scss compilation failed 🚨',
+                message: `${error.formatted}`
+            });
         } else {
             message('Styles built', 'success', 'Styles built in');
         }
