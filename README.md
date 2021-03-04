@@ -6,6 +6,15 @@
 <h1 align="center">Locomotive Boilerplate</h1>
 <p align="center">Front-end boilerplate for projects by Locomotive.</p>
 
+## Requirements
+
+| Name       | Version |
+| ---------- | ------- |
+| [Node]     | > 14.15  |
+[Node]:         https://nodejs.org/en/
+
+You can use [nvm](https://github.com/nvm-sh/nvm) to install the node version in `.nvmrc`.
+
 ## Installation
 ```sh
 npm i
