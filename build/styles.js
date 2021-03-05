@@ -1,4 +1,3 @@
-
 import sass from 'node-sass';
 import paths from '../mconfig.json';
 import fs from 'fs';
