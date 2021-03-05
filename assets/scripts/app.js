@@ -8,7 +8,7 @@ const app = new modular({
 });
 
 window.onload = (event) => {
-    const $style = document.getElementById("stylesheet");
+    const $style = document.getElementById('main-css');
 
     if ($style.isLoaded) {
         init();
