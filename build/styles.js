@@ -26,10 +26,10 @@ export function compileStyles() {
             message('Styles built', 'success', 'Styles built in');
         }
 
-        if(!error){
+        if (!error){
             // No errors during the compilation, write this result on the disk
             fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, (err) => {});
-          }
+        }
     });
 
     console.time('Critical style built in');
