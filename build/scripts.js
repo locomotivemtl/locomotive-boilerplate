@@ -7,7 +7,7 @@ export function buildScripts() {
     console.time('JS built in');
 
     esbuild.build({
-        entryPoints: [paths.scripts.src + paths.scripts.main + '.js'],
+        entryPoints: [ paths.scripts.src + paths.scripts.main + '.js' ],
         bundle: true,
         minify: true,
         sourcemap: true,
