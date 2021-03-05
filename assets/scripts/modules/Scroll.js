@@ -7,7 +7,6 @@ export default class extends module {
     }
 
     init() {
-
         this.scroll = new LocomotiveScroll({
             el: this.el,
             smooth: true
