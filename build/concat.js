@@ -24,4 +24,4 @@ export function concatVendors() {
     concat(jsFiles, paths.scripts.dest + paths.scripts.vendors.main + '.js').then(() => {
         message('Vendors concatenated', 'success', 'Concat in');
     })
-  }
+}
