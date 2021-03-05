@@ -9,18 +9,14 @@ export function concatVendors() {
     // Get all files in scripts/vendors/
     const files = fs.readdirSync(paths.scripts.vendors.src);
 
-    // Extract no-JS files
-    var jsFiles = files.filter((f)=>{
-      if(f.includes('.js')) {
-        return true;
-      } else {
-        return false;
-      }
+    // Exclude files that are not JavaScript
+    var jsFiles = files.filter((file) => {
+        return file.includes('.js');
     });
 
-    // Add absolute path
-    jsFiles = jsFiles.map((f) => {
-      return `${paths.scripts.vendors.src + f}`;
+    // Prepend absolute path
+    jsFiles = jsFiles.map((file) => {
+        return `${paths.scripts.vendors.src + file}`;
     });
 
 
