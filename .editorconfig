@@ -9,9 +9,8 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.md]
+[*.{md,markdown}]
 trim_trailing_whitespace = false
 
-[{*.yml,*.json}]
-indent_size = 4
-indent_style = space
+[*.{ms,mustache}]
+insert_final_newline = false

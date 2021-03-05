@@ -8,7 +8,7 @@ const app = new modular({
 });
 
 window.onload = (event) => {
-    const $style = document.getElementById("stylesheet");
+    const $style = document.getElementById('main-css');
 
     if ($style.isLoaded) {
         init();
@@ -21,6 +21,7 @@ window.onload = (event) => {
 
 function init() {
     globals();
+
     app.init(app);
 
     html.classList.add('is-loaded');

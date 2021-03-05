@@ -1,22 +1,32 @@
 {
-  "private": true,
-  "name": "@locomotivemtl/boilerplate",
-  "title": "Locomotive Boilerplate",
-  "version": "1.0.0",
-  "author": "Locomotive <info@locomotive.ca>",
-  "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "compile": "gulp compile"
-  },
-  "dependencies": {
-    "locomotive-scroll": "*",
-    "modujs": "*",
-    "modularload": "*",
-    "normalize.css": "*",
-    "svg4everybody": "*"
-  },
-  "devDependencies": {
-    "gulp-concat": "*"
-  }
+    "private": true,
+    "name": "@locomotivemtl/boilerplate",
+    "title": "Locomotive Boilerplate",
+    "version": "1.0.0",
+    "engines": {
+        "node": "^14.15"
+    },
+    "type": "module",
+    "author": "Locomotive <info@locomotive.ca>",
+    "scripts": {
+        "start": "node --experimental-json-modules --no-warnings build/watch.js",
+        "build": "node --experimental-json-modules --no-warnings build/build.js"
+    },
+    "dependencies": {
+        "locomotive-scroll": "*",
+        "modujs": "^1.4.2",
+        "modularload": "^1.2.6",
+        "normalize.css": "*",
+        "svg4everybody": "*"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.13",
+        "concat": "^1.0.3",
+        "esbuild": "^0.8.16",
+        "fs": "0.0.1-security",
+        "kleur": "^4.1.3",
+        "node-notifier": "^8.0.0",
+        "node-sass": "^5.0.0",
+        "svg-mixer": "^2.3.14"
+    }
 }
