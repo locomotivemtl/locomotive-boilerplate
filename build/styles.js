@@ -42,8 +42,7 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-
-        if(error) {
+        if (error) {
             message('Error compiling critical.scss', 'error');
             console.log(error);
         } else {
