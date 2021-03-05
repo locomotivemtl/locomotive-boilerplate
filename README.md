@@ -8,9 +8,10 @@
 
 ## Requirements
 
-| Name       | Version |
-| ---------- | ------- |
+| Name       | Version  |
+| ---------- | -------- |
 | [Node]     | > 14.15  |
+
 [Node]:         https://nodejs.org/en/
 
 You can use [nvm](https://github.com/nvm-sh/nvm) to install the node version in `.nvmrc`.
