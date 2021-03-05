@@ -14,8 +14,7 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-
-        if(error) {
+        if (error) {
             message('Error compiling main.scss', 'error');
             console.log(error.formatted);
 
