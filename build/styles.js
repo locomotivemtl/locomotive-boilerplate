@@ -48,9 +48,9 @@ export function compileStyles() {
             message('Critical style built', 'success', 'Critical style built in');
         }
 
-        if(!error){
+        if (!error){
             // No errors during the compilation, write this result on the disk
             fs.writeFile(paths.styles.dest + paths.styles.critical + '.css', result.css, (err) => {});
-          }
+        }
     });
 }
