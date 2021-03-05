@@ -1,4 +1,4 @@
-import { module } from 'modujs';
+import { module } from 'modujs';
 import LocomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
@@ -13,9 +13,9 @@ export default class extends module {
             smooth: true
         });
 
-        this.scroll.on('call', (func,way,obj,id) => {
+        this.scroll.on('call', (func, way, obj, id) => {
             // Using modularJS
-            this.call(func[0],{way,obj},func[1],func[2]);
+            this.call(func[0], { way, obj }, func[1], func[2]);
         });
 
         this.scroll.on('scroll', (args) => {
@@ -25,11 +25,11 @@ export default class extends module {
 
     toggleLazy(args) {
         let src = this.getData('lazy', args.obj.el)
-        if(src.length) {
-            if(args.obj.el.tagName == "IMG") {
+        if (src.length) {
+            if (args.obj.el.tagName === 'IMG') {
                 args.obj.el.src = src
             } else {
-                args.obj.el.style.backgroundImage = `url(${src})`
+                args.obj.el.style.backgroundImage = `url('${src}')`
             }
             this.setData('lazy', '', args.obj.el)
         }

@@ -1,20 +1,21 @@
 <!doctype html>
 <html class="is-loading" lang="en" data-page="home">
-    <head>
-        <meta charset="utf-8">
-        <title>Boilerplate</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="theme-color" content="#ffffff">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
-        <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
-        <!-- For a dark mode managment and svg favicon add this in your favicon.svg -->
-        <!--
+<head>
+    <meta charset="utf-8">
+    <title>Boilerplate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+    <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <!-- For a dark mode managment and svg favicon add this in your favicon.svg -->
+    <!--
             <style>
                 path {
                     fill: #000;
@@ -26,39 +27,48 @@
                 }
             </style>
         -->
-        <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
+    <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
 
-        <link id="stylesheet" rel="stylesheet" href="assets/styles/main.css" media="print" onload="this.media='all'; this.onload=null; this.isLoaded=true">
-    </head>
-    <body data-module-load>
-        <div data-load-container>
-            <div class="o-scroll" data-module-scroll="main">
-                <header data-scroll-section>
-                    <a href="/"><h1>Boilerplate</h1></a>
-                    <nav>
-                        <ul>
-                            <li><a href="images.html">Images</a></li>
-                            <li><a href="form.html" data-load="customTransition">Form</a></li>
-                        </ul>
-                    </nav>
-                </header>
+    <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print"
+        onload="this.media='all'; this.onload=null; this.isLoaded=true">
+</head>
 
-                <main data-scroll-section>
-                    <div class="o-container">
-                        <h1 class="c-heading -h1">Hello</h1>
-                    </div>
-                </main>
+<body data-module-load>
+    <div data-load-container>
+        <div class="o-scroll" data-module-scroll="main">
+            <header data-scroll-section>
+                <a href="/">
+                    <h1>Boilerplate</h1>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="images.html">Images</a></li>
+                        <li><a href="form.html" data-load="customTransition">Form</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-                 <footer data-scroll-section>
-                    <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank" rel="noopener">🚂</a></p>
-                </footer>
-            </div>
+            <main data-scroll-section>
+                <div class="o-container">
+                    <h1 class="c-heading -h1">Hello</h1>
+                </div>
+            </main>
+
+            <footer data-scroll-section>
+                <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate"
+                        title="Locomotive Boilerplate" target="_blank" rel="noopener">🚂</a></p>
+            </footer>
         </div>
+    </div>
 
-        <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossorigin="anonymous"></script>
-        <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.remove%2CElement.prototype.append%2Cfetch%2CCustomEvent%2CElement.prototype.matches%2CNodeList.prototype.forEach%2CAbortController" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"
+        crossorigin="anonymous"></script>
+    <script nomodule
+        src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.remove%2CElement.prototype.append%2Cfetch%2CCustomEvent%2CElement.prototype.matches%2CNodeList.prototype.forEach%2CAbortController"
+        crossorigin="anonymous"></script>
 
-        <script src="assets/scripts/vendors.js" defer></script>
-        <script src="assets/scripts/app.js" defer></script>
-    </body>
+    <script src="assets/scripts/vendors.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+</body>
+
 </html>
