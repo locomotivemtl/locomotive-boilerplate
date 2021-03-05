@@ -7,14 +7,14 @@ export function buildScripts() {
     console.time('JS built in');
 
     esbuild.build({
-        entryPoints: [paths.scripts.src + paths.scripts.main + '.js'],
+        entryPoints: [ paths.scripts.src + paths.scripts.main + '.js' ],
         bundle: true,
         minify: true,
         sourcemap: true,
         color: true,
         logLevel: 'error',
         errorLimit: 1,
-        target: ['es2015'],
+        target: [ 'es2015' ],
         outfile: paths.scripts.dest + paths.scripts.main + '.js'
     }).catch((e) => {
         // errors managments (already done in esbuild)
@@ -27,5 +27,4 @@ export function buildScripts() {
     }).then(() => {
         message('Javascript built','success', 'JS built in')
     })
-
 }

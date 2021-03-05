@@ -1,4 +1,3 @@
-
 import sass from 'node-sass';
 import paths from '../mconfig.json';
 import fs from 'fs';
@@ -15,8 +14,7 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-
-        if(error) {
+        if (error) {
             message('Error compiling main.scss', 'error');
             console.log(error.formatted);
 
@@ -28,10 +26,10 @@ export function compileStyles() {
             message('Styles built', 'success', 'Styles built in');
         }
 
-        if(!error){
+        if (!error){
             // No errors during the compilation, write this result on the disk
             fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, (err) => {});
-          }
+        }
     });
 
     console.time('Critical style built in');
@@ -43,17 +41,16 @@ export function compileStyles() {
         outputStyle: 'compressed',
         sourceMap: true
     }, (error, result) => {
-
-        if(error) {
+        if (error) {
             message('Error compiling critical.scss', 'error');
             console.log(error);
         } else {
             message('Critical style built', 'success', 'Critical style built in');
         }
 
-        if(!error){
+        if (!error){
             // No errors during the compilation, write this result on the disk
             fs.writeFile(paths.styles.dest + paths.styles.critical + '.css', result.css, (err) => {});
-          }
+        }
     });
 }

@@ -3,7 +3,6 @@ import paths from '../mconfig.json';
 import message from './utils/message.js';
 
 export function generateSpriteSVG() {
-
     console.time('Sprite generated in');
 
     // Write sprite content on disk

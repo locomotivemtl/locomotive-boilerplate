@@ -18,13 +18,10 @@ export function concatVendors() {
     jsFiles = jsFiles.map((file) => {
         return `${paths.scripts.vendors.src + file}`;
     });
-
-
     // add files in node_modules example:
     // jsFiles.push('node_modules/gsap/dist/gsap.min.js');
 
     concat(jsFiles, paths.scripts.dest + paths.scripts.vendors.main + '.js').then(() => {
         message('Vendors concatenated', 'success', 'Concat in');
-
     })
-  }
+}

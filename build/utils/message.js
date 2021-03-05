@@ -1,4 +1,3 @@
-
 import kleur from 'kleur';
 
 export default function message(text, type, timerId) {
