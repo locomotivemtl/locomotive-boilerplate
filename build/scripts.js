@@ -27,5 +27,4 @@ export function buildScripts() {
     }).then(() => {
         message('Javascript built','success', 'JS built in')
     })
-
 }
