@@ -10,12 +10,16 @@ const app = new modular({
 window.onload = (event) => {
     const $style = document.getElementById('main-css');
 
-    if ($style.isLoaded) {
-        init();
-    } else {
-        $style.addEventListener('load', (event) => {
+    if ($style) {
+        if ($style.isLoaded) {
             init();
-        });
+        } else {
+            $style.addEventListener('load', (event) => {
+                init();
+            });
+        }
+    } else {
+        console.warn('The "main-css" stylesheet not found');
     }
 };
 
