@@ -37,8 +37,9 @@ $spacing-properties: (
 
 $spacing-sizes: (
     null:     $unit,
+    '-double': $unit * 2,
     '-small': $unit-small,
-    '-none':  0
+    '-none':  0px
 ) !default;
 
 @each $property-namespace, $property in $spacing-properties {
@@ -46,7 +47,7 @@ $spacing-sizes: (
         @each $size-namespace, $size in $spacing-sizes {
             .u-#{$property-namespace}#{$direction-namespace}#{$size-namespace} {
                 @each $direction in $direction-rules {
-                    #{$property}#{$direction}: $size !important;
+                    #{$property}#{$direction}: rem($size) !important;
                 }
             }
         }
