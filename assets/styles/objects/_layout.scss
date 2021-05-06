@@ -47,7 +47,7 @@
     }
 
     &.-gutter-small {
-        margin-left: rem(-$unit/2);
+        margin-left: rem(-$unit-small);
     }
 
     // Horizontal aligment modifiers
@@ -94,7 +94,7 @@
     }
 
     .o-layout.-gutter-small > & {
-        padding-left: rem($unit/2);
+        padding-left: rem($unit-small);
     }
 
     // Vertical alignment modifiers
