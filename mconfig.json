@@ -1,5 +1,5 @@
 {
-    "url": "locomotive-boilerplate.test",
+    "proxy": "",
     "src": "./assets/",
     "dest": "./www/",
     "build": "./build/",
