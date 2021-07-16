@@ -3,6 +3,8 @@ import paths from '../mconfig.json';
 import fs from 'fs';
 import message from './utils/message.js';
 import notification from './notification.js';
+import autoprefixer from 'autoprefixer';
+import postcss from 'postcss';
 
 export function compileStyles() {
     console.time('Styles built in');
@@ -28,7 +30,17 @@ export function compileStyles() {
 
         if (!error){
             // No errors during the compilation, write this result on the disk
-            fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, (err) => {});
+
+                fs.readFile(paths.styles.dest + paths.styles.main + '.css', (err, css) => {
+                    postcss([autoprefixer])
+                        .process(result.css)
+                        .then(result => {
+                            fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, () => true)
+                            if ( result.map ) {
+                                fs.writeFile(paths.styles.dest + paths.styles.main + '.css.map', result.map.toString(), () => true)
+                            }
+                        })
+                })
         }
     });
 
@@ -50,7 +62,18 @@ export function compileStyles() {
 
         if (!error){
             // No errors during the compilation, write this result on the disk
-            fs.writeFile(paths.styles.dest + paths.styles.critical + '.css', result.css, (err) => {});
+
+            fs.readFile(paths.styles.dest + paths.styles.critical + '.css', (err, css) => {
+                postcss([autoprefixer])
+                    .process(result.css)
+                    .then(result => {
+                    fs.writeFile(paths.styles.dest + paths.styles.critical + '.css', result.css, () => true)
+                    if ( result.map ) {
+                        fs.writeFile(paths.styles.dest + paths.styles.critical + '.css.map', result.map.toString(), () => true)
+                    }
+                })
+            })
+
         }
     });
 }
