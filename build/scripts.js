@@ -13,7 +13,6 @@ export function buildScripts() {
         sourcemap: true,
         color: true,
         logLevel: 'error',
-        errorLimit: 1,
         target: [ 'es2015' ],
         outfile: paths.scripts.dest + paths.scripts.main + '.js'
     }).catch((e) => {
