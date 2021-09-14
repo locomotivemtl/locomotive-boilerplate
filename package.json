@@ -4,7 +4,7 @@
     "title": "Locomotive Boilerplate",
     "version": "1.0.0",
     "engines": {
-        "node": "^14.15"
+        "node": ">=14.17"
     },
     "type": "module",
     "author": "Locomotive <info@locomotive.ca>",
