@@ -43,7 +43,7 @@ export function concatVendors() {
         }
 
         concat(files, outfile).then(() => {
-            message(`${filename} concatenated'`, 'success', timeLabel);
+            message(`${filename} concatenated`, 'success', timeLabel);
         }).catch((err) => {
             message(`Error concatenating ${filename}`, 'error');
             message(err);
