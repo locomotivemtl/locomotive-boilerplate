@@ -9,7 +9,7 @@ import notification from './utils/notification.js';
 /**
  * Compiles and minifies main Sass files to CSS.
  */
-export function compileStyles() {
+export async function compileStyles() {
     [
         'critical',
         'main',

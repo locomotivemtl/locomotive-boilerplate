@@ -6,7 +6,7 @@ import esbuild from 'esbuild';
 /**
  * Bundles and minifies main JavaScript files.
  */
-export function compileScripts() {
+export async function compileScripts() {
     [
         'app.js',
     ].forEach((filename) => {

@@ -7,7 +7,7 @@ import fs from 'fs';
 /**
  * Concatenates third-party JavaScript files.
  */
-export function concatVendors() {
+export async function concatVendors() {
     const filename = 'vendors.js';
     const outfile  = paths.scripts.dest + filename;
     const external = [

@@ -6,7 +6,7 @@ import mixer from 'svg-mixer';
 /**
  * Generates and transforms SVG spritesheets.
  */
-export function compileSVGs() {
+export async function compileSVGs() {
     [
         {
             includes: [ paths.svgs.src + '*.svg' ],
