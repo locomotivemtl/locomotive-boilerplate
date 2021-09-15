@@ -37,4 +37,4 @@ export function compileScripts() {
             message(`${filename} compiled`, 'success', timeLabel);
         });
     });
-}
+};
