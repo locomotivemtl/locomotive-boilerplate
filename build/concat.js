@@ -1,6 +1,6 @@
 import paths from '../mconfig.json';
-import notification from './notification.js';
 import message from './utils/message.js';
+import notification from './utils/notification.js';
 import concat from 'concat';
 import fs from 'fs';
 

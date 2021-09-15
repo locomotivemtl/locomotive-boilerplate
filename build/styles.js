@@ -4,7 +4,7 @@ import sass from 'node-sass';
 import postcss from 'postcss';
 import paths from '../mconfig.json';
 import message from './utils/message.js';
-import notification from './notification.js';
+import notification from './utils/notification.js';
 
 /**
  * Compiles and minifies main Sass files to CSS.
