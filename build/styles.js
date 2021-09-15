@@ -1,9 +1,8 @@
-import autoprefixer from 'autoprefixer';
 import fs from 'fs';
 import sass from 'node-sass';
-import postcss from 'postcss';
 import paths from '../mconfig.json';
 import message from './utils/message.js';
+import postcss from './utils/postcss.js';
 import notification from './utils/notification.js';
 
 /**
@@ -39,50 +38,70 @@ export async function compileStyles() {
                 return;
             }
 
-            postcss([ autoprefixer ]).process(result.css, {
-                from: outfile,
-                to: outfile,
-                map: {
-                    annotation: false,
-                    inline: false,
-                    sourcesContent: true
-                }
-            }).then((result) => {
-                result.warnings().forEach((warn) => {
-                    message(`Error prefixing ${name}.css`, 'error');
-                    message(warn.toString());
-                });
-
-                fs.writeFile(outfile, result.css, (err) => {
-                    if (err) {
-                        message(`Error compiling ${name}.scss`, 'error');
-                        message(err);
-
-                        notification({
-                            title:   `${name}.scss compilation failed 🚨`,
-                            message: `Could not save stylesheet to ${name}.css`
-                        });
-                        return;
+            if (postcss) {
+                postcss.process(result.css, {
+                    from: outfile,
+                    to: outfile,
+                    map: {
+                        annotation: false,
+                        inline: false,
+                        sourcesContent: true
                     }
-
-                    message(`${name}.css compiled`, 'success', timeLabel);
-                });
-
-                if (result.map) {
-                    fs.writeFile(outfile + '.map', result.map.toString(), (err) => {
-                        if (err) {
-                            message(`Error compiling ${name}.scss`, 'error');
-                            message(err);
-
-                            notification({
-                                title:   `${name}.scss compilation failed 🚨`,
-                                message: `Could not save sourcemap to ${name}.css.map`
-                            });
-                            return;
-                        }
+                }).then((result) => {
+                    result.warnings().forEach((warn) => {
+                        message(`Error prefixing ${name}.css`, 'error');
+                        message(warn.toString());
                     });
-                }
-            });
+
+                    saveStylesheet(result, outfile, name, timeLabel);
+                });
+            } else {
+                saveStylesheet(result, outfile, name, timeLabel);
+            }
         });
     });
 };
+
+/**
+ * Writes the CSS file, and source map, to the disk.
+ *
+ * @param {object} result       - The compiler result.
+ * @param {Buffer} result.css   - The compiled CSS.
+ * @param {Buffer} [result.map] - The source map.
+ * @param {string} outfile      - The output file path.
+ * @param {string} name         - The Sass entry point identifier.
+ * @param {string} [timeLabel]  - The console time identifier.
+ */
+function saveStylesheet(result, outfile, name, timeLabel) {
+    if (result.css) {
+        fs.writeFile(outfile, result.css, (err) => {
+            if (err) {
+                message(`Error compiling ${name}.scss`, 'error');
+                message(err);
+
+                notification({
+                    title:   `${name}.scss compilation failed 🚨`,
+                    message: `Could not save stylesheet to ${name}.css`
+                });
+                return;
+            }
+
+            message(`${name}.css compiled`, 'success', timeLabel);
+        });
+    }
+
+    if (result.map) {
+        fs.writeFile(outfile + '.map', result.map, (err) => {
+            if (err) {
+                message(`Error compiling ${name}.scss`, 'error');
+                message(err);
+
+                notification({
+                    title:   `${name}.scss compilation failed 🚨`,
+                    message: `Could not save sourcemap to ${name}.css.map`
+                });
+                return;
+            }
+        });
+    }
+}
