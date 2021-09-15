@@ -39,62 +39,49 @@ export function compileStyles() {
                 return;
             }
 
-            fs.access(outfile, (err) => {
-                if (err) {
-                    message(`Error compiling ${name}.scss`, 'error');
-                    message(err);
-
-                    notification({
-                        title:   `${name}.scss compilation failed 🚨`,
-                        message: err
-                    });
-                    return;
+            postcss([ autoprefixer ]).process(result.css, {
+                from: outfile,
+                to: outfile,
+                map: {
+                    annotation: false,
+                    inline: false,
+                    sourcesContent: true
                 }
+            }).then((result) => {
+                result.warnings().forEach((warn) => {
+                    message(`Error prefixing ${name}.css`, 'error');
+                    message(warn.toString());
+                });
 
-                postcss([ autoprefixer ]).process(result.css, {
-                    from: outfile,
-                    to: outfile,
-                    map: {
-                        annotation: false,
-                        inline: false,
-                        sourcesContent: true
+                fs.writeFile(outfile, result.css, (err) => {
+                    if (err) {
+                        message(`Error compiling ${name}.scss`, 'error');
+                        message(err);
+
+                        notification({
+                            title:   `${name}.scss compilation failed 🚨`,
+                            message: `Could not save stylesheet to ${name}.css`
+                        });
+                        return;
                     }
-                }).then((result) => {
-                    result.warnings().forEach((warn) => {
-                        message(`Error prefixing ${name}.css`, 'error');
-                        message(warn.toString());
-                    });
 
-                    fs.writeFile(outfile, result.css, (err) => {
+                    message(`${name}.css compiled`, 'success', timeLabel);
+                });
+
+                if (result.map) {
+                    fs.writeFile(outfile + '.map', result.map.toString(), (err) => {
                         if (err) {
                             message(`Error compiling ${name}.scss`, 'error');
                             message(err);
 
                             notification({
                                 title:   `${name}.scss compilation failed 🚨`,
-                                message: `Could not save stylesheet to ${name}.css`
+                                message: `Could not save sourcemap to ${name}.css.map`
                             });
                             return;
                         }
-
-                        message(`${name}.css compiled`, 'success', timeLabel);
                     });
-
-                    if (result.map) {
-                        fs.writeFile(outfile + '.map', result.map.toString(), (err) => {
-                            if (err) {
-                                message(`Error compiling ${name}.scss`, 'error');
-                                message(err);
-
-                                notification({
-                                    title:   `${name}.scss compilation failed 🚨`,
-                                    message: `Could not save sourcemap to ${name}.css.map`
-                                });
-                                return;
-                            }
-                        });
-                    }
-                });
+                }
             });
         });
     });
