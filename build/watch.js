@@ -13,9 +13,9 @@ let bsConfig = {
     notify: false
 };
 
-if (typeof paths.proxy === 'string' && paths.proxy.length > 0) {
+if (typeof paths.url === 'string' && paths.url.length > 0) {
     // Use proxy
-    bsConfig.proxy = paths.proxy;
+    bsConfig.proxy = paths.url;
 } else {
     // Use base directory
     bsConfig.server = { baseDir: paths.dest };
