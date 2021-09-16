@@ -2,7 +2,7 @@ import paths from '../mconfig.json';
 import message from './utils/message.js';
 import notification from './utils/notification.js';
 import concat from 'concat';
-import fs from 'fs';
+import { readdir } from 'node:fs/promises';
 
 /**
  * Concatenates third-party JavaScript files.
@@ -18,17 +18,9 @@ export async function concatVendors() {
     const timeLabel = `${filename} concatenated in`;
     console.time(timeLabel);
 
-    // Get all files in `scripts/vendors/`
-    fs.readdir(paths.scripts.vendors.src, (err, files) => {
-        if (err) {
-            message(`Error preparing ${filename}`, 'error');
-            message(err);
-
-            notification({
-                title:   `${filename} concatenation failed 🚨`,
-                message: `${err.name}: ${e.message}`
-            });
-        }
+    try {
+        // Get all files in `scripts/vendors/`
+        let files = await readdir(paths.scripts.vendors.src);
 
         if (files.length) {
             // Exclude files that are not JavaScript
@@ -42,16 +34,16 @@ export async function concatVendors() {
             files = files.concat(external);
         }
 
-        concat(files, outfile).then(() => {
-            message(`${filename} concatenated`, 'success', timeLabel);
-        }).catch((err) => {
-            message(`Error concatenating ${filename}`, 'error');
-            message(err);
+        await concat(files, outfile);
 
-            notification({
-                title:   `${filename} concatenation failed 🚨`,
-                message: `${err.name}: ${err.message}`
-            });
+        message(`${filename} concatenated`, 'success', timeLabel);
+    } catch (err) {
+        message(`Error concatenating ${filename}`, 'error');
+        message(err);
+
+        notification({
+            title:   `${filename} concatenation failed 🚨`,
+            message: `${err.name}: ${err.message}`
         });
-    });
+    }
 };
