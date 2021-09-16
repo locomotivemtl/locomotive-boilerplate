@@ -3,12 +3,9 @@ import { concatVendors } from './concat.js';
 import { compileStyles } from './styles.js' ;
 import { generateSpriteSVG } from './svgs.js';
 import paths from '../mconfig.json';
-
-// Create an named instance in one file...
 import server from 'browser-sync';
 
-// Start the Browsersync server
-let serverConfig = {
+const serverConfig = {
     open: false,
     notify: false
 };
@@ -23,6 +20,7 @@ if (typeof paths.url === 'string' && paths.url.length > 0) {
     };
 }
 
+// Start the Browsersync server
 server.init(serverConfig);
 
 // Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
