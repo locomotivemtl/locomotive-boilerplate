@@ -1,29 +1,40 @@
-import esbuild from 'esbuild';
 import paths from '../mconfig.json';
-import message from './utils/message.js';
 import notification from './notification.js';
+import message from './utils/message.js';
+import esbuild from 'esbuild';
 
-export function buildScripts() {
-    console.time('JS built in');
+/**
+ * Bundles and minifies main JavaScript files.
+ */
+export function compileScripts() {
+    [
+        'app.js',
+    ].forEach((filename) => {
+        const includes = [ paths.scripts.src  + filename ];
+        const outfile  = paths.scripts.dest + filename;
 
-    esbuild.build({
-        entryPoints: [ paths.scripts.src + paths.scripts.main + '.js' ],
-        bundle: true,
-        minify: true,
-        sourcemap: true,
-        color: true,
-        logLevel: 'error',
-        target: [ 'es2015' ],
-        outfile: paths.scripts.dest + paths.scripts.main + '.js'
-    }).catch((e) => {
-        // errors managments (already done in esbuild)
+        const timeLabel = `${filename} compiled in`;
+        console.time(timeLabel);
 
-        notification({
-            title: 'Javascript built failed 🚨',
-            message: `${e.errors[0].text} in ${e.errors[0].location.file} line ${e.errors[0].location.line}`
+        esbuild.build({
+            entryPoints: includes,
+            bundle: true,
+            minify: true,
+            sourcemap: true,
+            color: true,
+            logLevel: 'error',
+            target: [
+                'es2015',
+            ],
+            outfile
+        }).catch((err) => {
+            // errors managments (already done in esbuild)
+            notification({
+                title:   `${filename} compilation failed 🚨`,
+                message: `${err.errors[0].text} in ${err.errors[0].location.file} line ${err.errors[0].location.line}`
+            });
+        }).then(() => {
+            message(`${filename} compiled`, 'success', timeLabel);
         });
-
-    }).then(() => {
-        message('Javascript built','success', 'JS built in')
-    })
+    });
 }

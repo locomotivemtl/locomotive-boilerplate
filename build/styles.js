@@ -1,56 +1,54 @@
+import fs from 'fs';
 import sass from 'node-sass';
 import paths from '../mconfig.json';
-import fs from 'fs';
 import message from './utils/message.js';
 import notification from './notification.js';
 
+/**
+ * Compiles and minifies main Sass files to CSS.
+ */
 export function compileStyles() {
-    console.time('Styles built in');
+    [
+        'critical',
+        'main',
+    ].forEach((name) => {
+        const infile  = paths.styles.src  + name + '.scss';
+        const outfile = paths.styles.dest + name + '.css';
 
-    // Compile main scss
-    sass.render({
-        file: paths.styles.src + paths.styles.main + '.scss',
-        outFile: paths.styles.dest + paths.styles.main + '.css',
-        outputStyle: 'compressed',
-        sourceMap: true
-    }, (error, result) => {
-        if (error) {
-            message('Error compiling main.scss', 'error');
-            console.log(error.formatted);
+        const timeLabel = `${name}.css compiled in`;
+        console.time(timeLabel);
 
-            notification({
-                title: 'main.scss compilation failed 🚨',
-                message: `${error.formatted}`
+        sass.render({
+            file: infile,
+            outFile: outfile,
+            outputStyle: 'compressed',
+            sourceMap: true
+        }, (err, result) => {
+            if (err) {
+                message(`Error compiling ${name}.scss`, 'error');
+                message(err.formatted);
+
+                notification({
+                    title:   `${name}.scss compilation failed 🚨`,
+                    message: err.formatted
+                });
+                return;
+            }
+
+            fs.writeFile(outfile, result.css, (err) => {
+                if (err) {
+                    message(`Error compiling ${name}.scss`, 'error');
+                    message(err.formatted);
+
+                    notification({
+                        title:   `${name}.scss compilation failed 🚨`,
+                        message: `Could not save stylesheet to ${name}.css`
+                    });
+                    return;
+                }
+
+                message(`${name}.css compiled`, 'success', timeLabel);
             });
-        } else {
-            message('Styles built', 'success', 'Styles built in');
-        }
-
-        if (!error){
-            // No errors during the compilation, write this result on the disk
-            fs.writeFile(paths.styles.dest + paths.styles.main + '.css', result.css, (err) => {});
-        }
-    });
-
-    console.time('Critical style built in');
-
-    // Compile critical scss
-    sass.render({
-        file: paths.styles.src + paths.styles.critical + '.scss',
-        outFile: paths.styles.dest + paths.styles.critical + '.css',
-        outputStyle: 'compressed',
-        sourceMap: true
-    }, (error, result) => {
-        if (error) {
-            message('Error compiling critical.scss', 'error');
-            console.log(error);
-        } else {
-            message('Critical style built', 'success', 'Critical style built in');
-        }
-
-        if (!error){
-            // No errors during the compilation, write this result on the disk
-            fs.writeFile(paths.styles.dest + paths.styles.critical + '.css', result.css, (err) => {});
-        }
+        });
     });
 }

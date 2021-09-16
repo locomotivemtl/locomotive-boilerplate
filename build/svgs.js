@@ -1,19 +1,42 @@
-import mixer from 'svg-mixer';
 import paths from '../mconfig.json';
+import notification from './notification.js';
 import message from './utils/message.js';
+import mixer from 'svg-mixer';
 
-export function generateSpriteSVG() {
-    console.time('Sprite generated in');
+/**
+ * Generates and transforms SVG spritesheets.
+ */
+export function compileSVGs() {
+    [
+        {
+            includes: [ paths.svgs.src + '*.svg' ],
+            filename: 'sprite.svg'
+        },
+    ].forEach(({
+        includes,
+        filename
+    }) => {
+        const outfile = paths.scripts.dest + filename;
 
-    // Write sprite content on disk
-    mixer([
-        paths.svgs.src + '*.svg'
-    ], {
-        spriteConfig: {
-            usages: false
-        }
-    }).then((result) => {
-        result.write(paths.svgs.dest + 'sprite.svg');
-        message('SVG Sprite generated', 'success', 'Sprite generated in');
+        const timeLabel = `${filename} compiled in`;
+        console.time(timeLabel);
+
+        mixer(includes, {
+            spriteConfig: {
+                usages: false
+            }
+        }).then((result) => {
+            result.write(outfile).then(() => {
+                message(`${filename} compiled`, 'success', timeLabel);
+            });
+        }).catch((err) => {
+            message(`Error compiling ${filename}`, 'error');
+            message(err);
+
+            notification({
+                title:   `${filename} compilation failed 🚨`,
+                message: `${err.name}: ${err.message}`
+            });
+        });
     });
 }

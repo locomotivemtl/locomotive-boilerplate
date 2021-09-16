@@ -5,17 +5,13 @@
     "build": "./build/",
     "styles": {
         "src": "./assets/styles/",
-        "dest": "./www/assets/styles/",
-        "main": "main",
-        "critical": "critical"
+        "dest": "./www/assets/styles/"
     },
     "scripts": {
         "src": "./assets/scripts/",
         "dest": "./www/assets/scripts/",
-        "main": "app",
         "vendors": {
-            "src": "./assets/scripts/vendors/",
-            "main": "vendors"
+            "src": "./assets/scripts/vendors/"
         }
     },
     "svgs": {

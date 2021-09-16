@@ -1,9 +1,9 @@
-import { buildScripts } from './scripts.js';
 import { concatVendors } from './concat.js';
+import { compileScripts } from './scripts.js';
 import { compileStyles } from './styles.js' ;
-import { generateSpriteSVG } from './svgs.js' ;
+import { compileSVGs } from './svgs.js' ;
 
-buildScripts();
 concatVendors();
+compileScripts();
 compileStyles();
-generateSpriteSVG();
+compileSVGs();

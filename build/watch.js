@@ -1,8 +1,8 @@
-import { buildScripts } from './scripts.js';
-import { concatVendors } from './concat.js';
-import { compileStyles } from './styles.js' ;
-import { generateSpriteSVG } from './svgs.js';
 import paths from '../mconfig.json';
+import { concatVendors } from './concat.js';
+import { compileScripts } from './scripts.js';
+import { compileStyles } from './styles.js' ;
+import { compileSVGs } from './svgs.js';
 import server from 'browser-sync';
 
 const serverConfig = {
@@ -24,35 +24,34 @@ if (typeof paths.url === 'string' && paths.url.length > 0) {
 server.init(serverConfig);
 
 // Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
-buildScripts();
 concatVendors();
+compileScripts();
 compileStyles();
-generateSpriteSVG();
+compileSVGs();
 
 // and call any methods on it.
 server.watch(
     [
         paths.views.src,
-        paths.scripts.dest + paths.scripts.main + '.js',
-        paths.scripts.dest + paths.scripts.vendors.main + '.js',
-        paths.styles.dest + paths.styles.main + '.css',
-        paths.svgs.dest + 'sprite.svg'
+        paths.scripts.dest + '*.js',
+        paths.styles.dest + '*.css',
+        paths.svgs.dest + '*.svg',
     ]
 ).on('change', server.reload);
 
 // Watch scripts
 server.watch(
     [
-        paths.scripts.src + '**/*.js'
+        paths.scripts.src + '**/*.js',
     ]
 ).on('change', () => {
-    buildScripts();
+    compileScripts();
 });
 
 // Watch scripts vendors
 server.watch(
     [
-        paths.scripts.vendors.src + '*.js'
+        paths.scripts.vendors.src + '*.js',
     ]
 ).on('change', () => {
     concatVendors();
@@ -61,7 +60,7 @@ server.watch(
 // Watch styles
 server.watch(
     [
-        paths.styles.src + '**/*.scss'
+        paths.styles.src + '**/*.scss',
     ]
 ).on('change', () => {
     compileStyles();
@@ -70,8 +69,8 @@ server.watch(
 // Watch svgs
 server.watch(
     [
-        paths.svgs.src + '*.svg'
+        paths.svgs.src + '*.svg',
     ]
 ).on('change', () => {
-    generateSpriteSVG();
+    compileSVGs();
 });

@@ -1,27 +1,57 @@
 import paths from '../mconfig.json';
+import notification from './notification.js';
 import message from './utils/message.js';
-import fs from 'fs';
 import concat from 'concat';
+import fs from 'fs';
 
+/**
+ * Concatenates third-party JavaScript files.
+ */
 export function concatVendors() {
-    console.time('Concat in');
+    const filename = 'vendors.js';
+    const outfile  = paths.scripts.dest + filename;
+    const external = [
+        // Add files in node_modules example:
+        // 'node_modules/gsap/dist/gsap.min.js',
+    ];
 
-    // Get all files in scripts/vendors/
-    const files = fs.readdirSync(paths.scripts.vendors.src);
+    const timeLabel = `${filename} concatenated in`;
+    console.time(timeLabel);
 
-    // Exclude files that are not JavaScript
-    var jsFiles = files.filter((file) => {
-        return file.includes('.js');
+    // Get all files in `scripts/vendors/`
+    fs.readdir(paths.scripts.vendors.src, (err, files) => {
+        if (err) {
+            message(`Error preparing ${filename}`, 'error');
+            message(err);
+
+            notification({
+                title:   `${filename} concatenation failed 🚨`,
+                message: `${err.name}: ${e.message}`
+            });
+        }
+
+        if (files.length) {
+            // Exclude files that are not JavaScript
+            files = files.filter((file) => file.includes('.js'));
+
+            // Prepend absolute path
+            files = files.map((file) => paths.scripts.vendors.src + file);
+        }
+
+        if (external.length) {
+            files = files.concat(external);
+        }
+
+        concat(files, outfile).then(() => {
+            message(`${filename} concatenated'`, 'success', timeLabel);
+        }).catch((err) => {
+            message(`Error concatenating ${filename}`, 'error');
+            message(err);
+
+            notification({
+                title:   `${filename} concatenation failed 🚨`,
+                message: `${err.name}: ${err.message}`
+            });
+        });
     });
-
-    // Prepend absolute path
-    jsFiles = jsFiles.map((file) => {
-        return `${paths.scripts.vendors.src + file}`;
-    });
-    // add files in node_modules example:
-    // jsFiles.push('node_modules/gsap/dist/gsap.min.js');
-
-    concat(jsFiles, paths.scripts.dest + paths.scripts.vendors.main + '.js').then(() => {
-        message('Vendors concatenated', 'success', 'Concat in');
-    })
 }
