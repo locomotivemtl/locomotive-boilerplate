@@ -5,23 +5,25 @@ import { generateSpriteSVG } from './svgs.js';
 import paths from '../mconfig.json';
 
 // Create an named instance in one file...
-import bs from 'browser-sync';
+import server from 'browser-sync';
 
 // Start the Browsersync server
-let bsConfig = {
+let serverConfig = {
     open: false,
     notify: false
 };
 
 if (typeof paths.url === 'string' && paths.url.length > 0) {
     // Use proxy
-    bsConfig.proxy = paths.url;
+    serverConfig.proxy = paths.url;
 } else {
     // Use base directory
-    bsConfig.server = { baseDir: paths.dest };
+    serverConfig.server = {
+        baseDir: paths.dest
+    };
 }
 
-bs.init(bsConfig);
+server.init(serverConfig);
 
 // Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
 buildScripts();
@@ -30,7 +32,7 @@ compileStyles();
 generateSpriteSVG();
 
 // and call any methods on it.
-bs.watch(
+server.watch(
     [
         paths.views.src,
         paths.scripts.dest + paths.scripts.main + '.js',
@@ -38,10 +40,10 @@ bs.watch(
         paths.styles.dest + paths.styles.main + '.css',
         paths.svgs.dest + 'sprite.svg'
     ]
-).on('change', bs.reload);
+).on('change', server.reload);
 
 // Watch scripts
-bs.watch(
+server.watch(
     [
         paths.scripts.src + '**/*.js'
     ]
@@ -50,7 +52,7 @@ bs.watch(
 });
 
 // Watch scripts vendors
-bs.watch(
+server.watch(
     [
         paths.scripts.vendors.src + '*.js'
     ]
@@ -59,7 +61,7 @@ bs.watch(
 });
 
 // Watch styles
-bs.watch(
+server.watch(
     [
         paths.styles.src + '**/*.scss'
     ]
@@ -68,7 +70,7 @@ bs.watch(
 });
 
 // Watch svgs
-bs.watch(
+server.watch(
     [
         paths.svgs.src + '*.svg'
     ]
