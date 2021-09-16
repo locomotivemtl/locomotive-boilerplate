@@ -48,10 +48,13 @@ export async function compileStyles() {
                         sourcesContent: true
                     }
                 }).then((result) => {
-                    result.warnings().forEach((warn) => {
-                        message(`Error prefixing ${name}.css`, 'error');
-                        message(warn.toString());
-                    });
+                    const warnings = result.warnings();
+                    if (warnings.length) {
+                        message(`Error processing ${name}.css`, 'warning');
+                        warnings.forEach((warn) => {
+                            message(warn.toString());
+                        });
+                    }
 
                     saveStylesheet(result, outfile, name, timeLabel);
                 });
