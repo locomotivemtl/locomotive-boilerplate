@@ -1,19 +1,14 @@
 /**
- * If available, create the PostCSS processor with any plugins.
- *
- * @type {?module:postcss~Processor}
+ * @file If available, returns the PostCSS processor with any plugins.
  */
-export default await (async () => {
-    try {
-        const { default: postcss } = await import('postcss');
-        const { default: autoprefixer } = await import('autoprefixer');
 
-        if (postcss && autoprefixer) {
-            return postcss([ autoprefixer ]);
-        }
-    } catch (err) {
-        // swallow this error; postcss and plugins are optional.
-    }
+try {
+    var { default: postcss } = await import('postcss');
+    let { default: autoprefixer } = await import('autoprefixer');
 
-    return null;
-})();
+    postcss = postcss([ autoprefixer ]);
+} catch (err) {
+    postcss = null;
+}
+
+export default postcss;
