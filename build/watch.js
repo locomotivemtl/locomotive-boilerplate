@@ -8,11 +8,20 @@ import paths from '../mconfig.json';
 import bs from 'browser-sync';
 
 // Start the Browsersync server
-bs.init({
-    proxy: paths.url,
+let bsConfig = {
     open: false,
     notify: false
-});
+};
+
+if (typeof paths.proxy === 'string' && paths.proxy.length > 0) {
+    // Use proxy
+    bsConfig.proxy = paths.proxy;
+} else {
+    // Use base directory
+    bsConfig.server = { baseDir: paths.dest };
+}
+
+bs.init(bsConfig);
 
 // Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
 buildScripts();
@@ -31,7 +40,7 @@ bs.watch(
     ]
 ).on('change', bs.reload);
 
-// Watch scripts 
+// Watch scripts
 bs.watch(
     [
         paths.scripts.src + '**/*.js'
