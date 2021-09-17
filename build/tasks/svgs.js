@@ -1,6 +1,6 @@
 import paths from '../mconfig.json';
-import message from './utils/message.js';
-import notification from './utils/notification.js';
+import message from '../utils/message.js';
+import notification from '../utils/notification.js';
 import mixer from 'svg-mixer';
 
 /**

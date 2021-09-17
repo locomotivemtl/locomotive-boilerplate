@@ -1,7 +1,7 @@
 import paths from '../mconfig.json';
-import message from './utils/message.js';
-import postcss from './utils/postcss.js';
-import notification from './utils/notification.js';
+import message from '../utils/message.js';
+import postcss from '../utils/postcss.js';
+import notification from '../utils/notification.js';
 import { writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import sass from 'node-sass';
