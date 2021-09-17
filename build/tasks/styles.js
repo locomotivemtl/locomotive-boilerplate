@@ -1,8 +1,10 @@
-import paths from '../mconfig.json';
+import loconfig from '../../loconfig.json';
 import message from '../utils/message.js';
-import postcss from '../utils/postcss.js';
 import notification from '../utils/notification.js';
+import postcss from '../utils/postcss.js';
+import template from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
+import { basename } from 'node:path';
 import { promisify } from 'node:util';
 import sass from 'node-sass';
 
@@ -12,17 +14,19 @@ const sassRender = promisify(sass.render);
  * Compiles and minifies main Sass files to CSS.
  */
 export async function compileStyles() {
-    [
-        'critical',
-        'main',
-    ].forEach(async (name) => {
-        const infile  = paths.styles.src  + name + '.scss';
-        const outfile = paths.styles.dest + name + '.css';
+    loconfig.tasks.styles.forEach(async ({
+        infile,
+        outfile
+    }) => {
+        const name = basename((outfile || 'undefined'), '.scss');
 
         const timeLabel = `${name}.css compiled in`;
         console.time(timeLabel);
 
         try {
+            infile  = template(infile);
+            outfile = template(outfile);
+
             let result = await sassRender({
                 file: infile,
                 omitSourceMapUrl: true,

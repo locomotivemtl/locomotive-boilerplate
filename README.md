@@ -28,7 +28,7 @@ npm start
 ```
 
 ## Configuration
-Change the mentions of `locomotive-boilerplate` for your project's name in `mconfig.json`. Legacy from [modularBP](https://github.com/modularorg/modularbp).
+Rename occurrences of `locomotive-boilerplate` with your project's name in `loconfig.json`.
 
 ## Build
 

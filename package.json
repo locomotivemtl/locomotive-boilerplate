@@ -28,6 +28,7 @@
         "node-notifier": "^10.0.0",
         "node-sass": "^6.0.1",
         "postcss": "^8.3.6",
-        "svg-mixer": "^2.3.14"
+        "svg-mixer": "^2.3.14",
+        "tiny-glob": "^0.2.9"
     }
 }

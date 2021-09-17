@@ -1,9 +1,12 @@
-import paths from '../mconfig.json';
-import { concatVendors } from './tasks/concat.js';
+import loconfig from '../loconfig.json';
+import { concatFiles } from './tasks/concats.js';
 import { compileScripts } from './tasks/scripts.js';
 import { compileStyles } from './tasks/styles.js' ;
 import { compileSVGs } from './tasks/svgs.js';
+import template from './utils/template.js';
 import server from 'browser-sync';
+
+const { paths, tasks } = loconfig;
 
 const serverConfig = {
     open: false,
@@ -23,8 +26,9 @@ if (typeof paths.url === 'string' && paths.url.length > 0) {
 // Start the Browsersync server
 server.init(serverConfig);
 
-// Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
-concatVendors();
+// Build scripts, compile styles, concat files,
+// and generate spritesheets on first hit
+concatFiles();
 compileScripts();
 compileStyles();
 compileSVGs();
@@ -48,13 +52,14 @@ server.watch(
     compileScripts();
 });
 
-// Watch scripts vendors
+// Watch concats
 server.watch(
-    [
-        paths.scripts.vendors.src + '*.js',
-    ]
+    tasks.concats.reduce(
+        (patterns, { includes }) => patterns.concat(includes),
+        []
+    ).map((path) => template(path))
 ).on('change', () => {
-    concatVendors();
+    concatFiles();
 });
 
 // Watch styles
