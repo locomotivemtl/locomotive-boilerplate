@@ -10,7 +10,7 @@
 
 | Name       | Version  |
 | ---------- | -------- |
-| [Node]     | > 14.15  |
+| [Node]     | > 14.17  |
 
 [Node]: https://nodejs.org/en/
 
