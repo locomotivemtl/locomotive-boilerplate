@@ -31,7 +31,24 @@ npm start
 
 ## Configuration
 
-Rename occurrences of `locomotive-boilerplate` with your project's name in `loconfig.json`.
+There are a few occurrences that should be renamed for your project:
+
+* [package.json](package.json):
+  * Package name: `@locomotivemtl/boilerplate`
+  * Package title: `Locomotive Boilerplate`
+* [package-lock.json](package-lock.json):
+  * Package name: `@locomotivemtl/boilerplate`
+* [loconfig.json](loconfig.json):
+  * Browser Sync proxy URL: `locomotive-boilerplate.test`
+    Remove `paths.url` to use Browser Sync's built-in server which uses `paths.dest`.
+  * View path: `./views/boilerplate/template`
+* [environment.js](assets/scripts/utils/environment.js):
+  * Application name: `Boilerplate`
+* [site.webmanifest](www/site.webmanifest):
+  * Manifest name: `Locomotive Boilerplate`
+  * Manifest short name: `Boilerplate`
+* HTML files:
+  * Page title: `Locomotive Boilerplate`
 
 ## Build
 
