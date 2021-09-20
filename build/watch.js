@@ -5,6 +5,7 @@ import { compileStyles } from './tasks/styles.js' ;
 import { compileSVGs } from './tasks/svgs.js';
 import template from './utils/template.js';
 import server from 'browser-sync';
+import { join } from 'node:path';
 
 const { paths, tasks } = loconfig;
 
@@ -37,16 +38,16 @@ compileSVGs();
 server.watch(
     [
         paths.views.src,
-        paths.scripts.dest + '*.js',
-        paths.styles.dest + '*.css',
-        paths.svgs.dest + '*.svg',
+        join(paths.scripts.dest, '*.js'),
+        join(paths.styles.dest, '*.css'),
+        join(paths.svgs.dest, '*.svg'),
     ]
 ).on('change', server.reload);
 
 // Watch scripts
 server.watch(
     [
-        paths.scripts.src + '**/*.js',
+        join(paths.scripts.src, '**/*.js'),
     ]
 ).on('change', () => {
     compileScripts();
@@ -65,7 +66,7 @@ server.watch(
 // Watch styles
 server.watch(
     [
-        paths.styles.src + '**/*.scss',
+        join(paths.styles.src, '**/*.scss'),
     ]
 ).on('change', () => {
     compileStyles();
@@ -74,7 +75,7 @@ server.watch(
 // Watch svgs
 server.watch(
     [
-        paths.svgs.src + '*.svg',
+        join(paths.svgs.src, '*.svg'),
     ]
 ).on('change', () => {
     compileSVGs();
