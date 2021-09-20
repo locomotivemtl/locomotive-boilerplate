@@ -1,4 +1,4 @@
-import { module } from 'modujs';
+import { module } from 'modujs';
 
 export default class extends module {
     constructor(m) {
@@ -6,6 +6,5 @@ export default class extends module {
     }
 
     init() {
-
     }
 }
