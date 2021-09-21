@@ -12,6 +12,9 @@
 
 import { promisify } from 'node:util';
 
+/**
+ * @type {string[]} A list of packages to attempt import.
+ */
 const candidates = [
     'tiny-glob',
     'globby',
@@ -19,46 +22,50 @@ const candidates = [
     'glob',
 ];
 
-var glob, module;
+export default await importGlob();
 
-for (let name of candidates) {
-    try {
-        module = await import(name);
-        module = module.default;
+/**
+ * Imports the first available glob function.
+ *
+ * @throws {TypeError} If no glob library was found.
+ * @return {function}
+ */
+async function importGlob() {
+    let glob, module;
 
-        /**
-         * Wrap the function to ensure
-         * a common pattern.
-         */
-        switch (name) {
-            case 'tiny-glob':
-                glob = createArrayableGlob(module, {
-                    filesOnly: true
-                });
-                break;
+    for (let name of candidates) {
+        try {
+            module = await import(name);
 
-            case 'glob':
-                glob = promisify(module);
-                break;
+            if (typeof module.default !== 'function') {
+                throw new TypeError(`Expected ${name} to be a function`);
+            }
 
-            default:
-                glob = module;
-                break;
+            /**
+             * Wrap the function to ensure
+             * a common pattern.
+             */
+            switch (name) {
+                case 'tiny-glob':
+                    return createArrayableGlob(module.default, {
+                        filesOnly: true
+                    });
+
+                case 'glob':
+                    return promisify(module.default);
+
+                default:
+                    return module.default;
+            }
+        } catch (err) {
+            // swallow this error; skip to the next candidate.
         }
-
-        break; // loop
-    } catch (err) {
-        // swallow this error; skip to the next candidate.
     }
-}
 
-if (!glob) {
     throw new TypeError(
         `No glob library was found, expected one of: ${modules.join(', ')}`
     );
 }
-
-export default glob;
 
 /**
  * Creates a wrapper function for the glob function
