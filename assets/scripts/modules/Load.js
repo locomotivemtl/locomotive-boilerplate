@@ -1,4 +1,4 @@
-import { module } from 'modujs';
+import { module } from 'modujs';
 import modularLoad from 'modularload';
 
 export default class extends module {

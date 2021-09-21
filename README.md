@@ -10,25 +10,45 @@
 
 | Name       | Version  |
 | ---------- | -------- |
-| [Node]     | > 14.15  |
+| [Node]     | > 14.17  |
 
-[Node]:         https://nodejs.org/en/
+[Node]: https://nodejs.org/en/
 
 You can use [nvm](https://github.com/nvm-sh/nvm) to install the node version in `.nvmrc`.
 
 ## Installation
+
 ```sh
 npm i
 ```
 
 ## Usage
+
 ```sh
 # start it
 npm start
 ```
 
 ## Configuration
-Change the mentions of `locomotive-boilerplate` for your project's name in `mconfig.json`. Legacy from [modularBP](https://github.com/modularorg/modularbp).
+
+There are a few occurrences that should be renamed for your project:
+
+* [package.json](package.json):
+  * Package name: `@locomotivemtl/boilerplate`
+  * Package title: `Locomotive Boilerplate`
+* [package-lock.json](package-lock.json):
+  * Package name: `@locomotivemtl/boilerplate`
+* [loconfig.json](loconfig.json):
+  * Browser Sync proxy URL: `locomotive-boilerplate.test`
+    Remove `paths.url` to use Browser Sync's built-in server which uses `paths.dest`.
+  * View path: `./views/boilerplate/template`
+* [environment.js](assets/scripts/utils/environment.js):
+  * Application name: `Boilerplate`
+* [site.webmanifest](www/site.webmanifest):
+  * Manifest name: `Locomotive Boilerplate`
+  * Manifest short name: `Boilerplate`
+* HTML files:
+  * Page title: `Locomotive Boilerplate`
 
 ## Build
 
@@ -41,11 +61,12 @@ npm start
 npm run build
 ```
 
-
 ## Styles
+
 [Sass](https://github.com/sass/node-sass) is our CSS preprocessor. [Autoprefixer](https://github.com/postcss/autoprefixer) is also included.
 
 #### Architecture
+
 [ITCSS](https://github.com/itcss) is our CSS architecture.
 
 * `settings`: Global variables, site-wide settings, config switches, etc.
@@ -60,11 +81,15 @@ npm run build
 [_source_](https://github.com/inuitcss/inuitcss#css-directory-structure)
 
 #### Naming
+
 We use a simplified [BEM](https://github.com/bem) syntax.
 
- `.block .block_element -modifier`
+```
+.block .block_element -modifier
+```
 
 #### Namespaces
+
 We namespace our classes for more [transparency](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/).
 
 * `o-`: Object that it may be used in any number of unrelated contexts to the one you can currently see it in. Making modifications to these types of class could potentially have knock-on effects in a lot of other unrelated places.
@@ -76,6 +101,7 @@ We namespace our classes for more [transparency](https://csswizardry.com/2015/03
 [_source_](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/#the-namespaces)
 
 #### Example
+
 ```html
 <div class="c-block -large">
     <div class="c-block_layout o-layout">
@@ -105,17 +131,20 @@ We namespace our classes for more [transparency](https://csswizardry.com/2015/03
 ```
 
 ## Scripts
+
 [modularJS](https://github.com/modularorg/modularjs) is a small framework we use on top of ES modules. It compiles with [Rollup](https://github.com/rollup/rollup) and [Babel](https://github.com/babel/babel).
 
 #### Why
-- Automatically init visible modules.
-- Easily call other modules methods.
-- Quickly set scoped events with delegation.
-- Simply select DOM elements scoped in their module.
+
+* Automatically init visible modules.
+* Easily call other modules methods.
+* Quickly set scoped events with delegation.
+* Simply select DOM elements scoped in their module.
 
 [_source_](https://github.com/modularorg/modularjs#why)
 
 #### Example
+
 ```html
 <div data-module-example>
     <div data-example="main">
@@ -124,8 +153,9 @@ We namespace our classes for more [transparency](https://csswizardry.com/2015/03
     <button data-example="load">More</button>
 </div>
 ```
+
 ```js
-import { module } from 'modujs';
+import { module } from 'modujs';
 
 export default class extends module {
     constructor(m) {
@@ -147,9 +177,11 @@ export default class extends module {
 [Learn more](https://github.com/modularorg/modularjs)
 
 ## Page transitions
+
 [modularLoad](https://github.com/modularorg/modularload) is used for page transitions and lazy loading.
 
 #### Example
+
 ```html
 <nav>
     <a href="/">Home</a>
@@ -175,15 +207,18 @@ this.load = new modularLoad({
 [Learn more](https://github.com/modularorg/modularload)
 
 ## Scroll detection
- [Locomotive Scroll](https://github.com/locomotivemtl/locomotive-scroll) is used for elements in viewport detection and smooth scrolling with parallax.
+
+[Locomotive Scroll](https://github.com/locomotivemtl/locomotive-scroll) is used for elements in viewport detection and smooth scrolling with parallax.
 
 #### Example
+
 ```html
 <div data-module-scroll>
     <div data-scroll>Trigger</div>
     <div data-scroll data-scroll-speed="1">Parallax</div>
 </div>
 ```
+
 ```js
 import LocomotiveScroll from 'locomotive-scroll';
 

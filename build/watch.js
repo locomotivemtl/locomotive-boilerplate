@@ -1,9 +1,13 @@
-import { buildScripts } from './scripts.js';
-import { concatVendors } from './concat.js';
-import { compileStyles } from './styles.js' ;
-import { generateSpriteSVG } from './svgs.js';
-import paths from '../mconfig.json';
+import loconfig from '../loconfig.json';
+import concatFiles from './tasks/concats.js';
+import compileScripts from './tasks/scripts.js';
+import compileStyles from './tasks/styles.js' ;
+import compileSVGs from './tasks/svgs.js';
+import template from './utils/template.js';
 import server from 'browser-sync';
+import { join } from 'node:path';
+
+const { paths, tasks } = loconfig;
 
 const serverConfig = {
     open: false,
@@ -23,45 +27,46 @@ if (typeof paths.url === 'string' && paths.url.length > 0) {
 // Start the Browsersync server
 server.init(serverConfig);
 
-// Build scripts, compile styles, concat vendors and generate the svgs sprite on first hit
-buildScripts();
-concatVendors();
+// Build scripts, compile styles, concat files,
+// and generate spritesheets on first hit
+concatFiles();
+compileScripts();
 compileStyles();
-generateSpriteSVG();
+compileSVGs();
 
 // and call any methods on it.
 server.watch(
     [
         paths.views.src,
-        paths.scripts.dest + paths.scripts.main + '.js',
-        paths.scripts.dest + paths.scripts.vendors.main + '.js',
-        paths.styles.dest + paths.styles.main + '.css',
-        paths.svgs.dest + 'sprite.svg'
+        join(paths.scripts.dest, '*.js'),
+        join(paths.styles.dest, '*.css'),
+        join(paths.svgs.dest, '*.svg'),
     ]
 ).on('change', server.reload);
 
 // Watch scripts
 server.watch(
     [
-        paths.scripts.src + '**/*.js'
+        join(paths.scripts.src, '**/*.js'),
     ]
 ).on('change', () => {
-    buildScripts();
+    compileScripts();
 });
 
-// Watch scripts vendors
+// Watch concats
 server.watch(
-    [
-        paths.scripts.vendors.src + '*.js'
-    ]
+    tasks.concats.reduce(
+        (patterns, { includes }) => patterns.concat(includes),
+        []
+    ).map((path) => template(path))
 ).on('change', () => {
-    concatVendors();
+    concatFiles();
 });
 
 // Watch styles
 server.watch(
     [
-        paths.styles.src + '**/*.scss'
+        join(paths.styles.src, '**/*.scss'),
     ]
 ).on('change', () => {
     compileStyles();
@@ -70,8 +75,8 @@ server.watch(
 // Watch svgs
 server.watch(
     [
-        paths.svgs.src + '*.svg'
+        join(paths.svgs.src, '*.svg'),
     ]
 ).on('change', () => {
-    generateSpriteSVG();
+    compileSVGs();
 });

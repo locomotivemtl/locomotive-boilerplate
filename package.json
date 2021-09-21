@@ -20,12 +20,15 @@
         "svg4everybody": "*"
     },
     "devDependencies": {
+        "autoprefixer": "^10.3.4",
         "browser-sync": "^2.26.13",
         "concat": "^1.0.3",
         "esbuild": "^0.12.28",
         "kleur": "^4.1.4",
         "node-notifier": "^10.0.0",
         "node-sass": "^6.0.1",
-        "svg-mixer": "^2.3.14"
+        "postcss": "^8.3.6",
+        "svg-mixer": "^2.3.14",
+        "tiny-glob": "^0.2.9"
     }
 }
