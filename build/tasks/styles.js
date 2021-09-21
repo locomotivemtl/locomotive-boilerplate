@@ -18,7 +18,7 @@ export async function compileStyles() {
         infile,
         outfile
     }) => {
-        const name = basename((outfile || 'undefined'), '.scss');
+        const name = basename((outfile || 'undefined'), '.css');
 
         const timeLabel = `${name}.css compiled in`;
         console.time(timeLabel);
@@ -65,33 +65,33 @@ export async function compileStyles() {
                     message(`${name}.css is empty`, 'notice', timeLabel);
                 }
             }).catch((err) => {
-                message(`Error compiling ${name}.scss`, 'error');
+                message(`Error compiling ${name}.css`, 'error');
                 message(err);
 
                 notification({
-                    title:   `${name}.scss compilation failed 🚨`,
+                    title:   `${name}.css save failed 🚨`,
                     message: `Could not save stylesheet to ${name}.css`
                 });
             });
 
             if (result.map) {
                 writeFile(outfile + '.map', result.map.toString()).catch((err) => {
-                    message(`Error compiling ${name}.scss`, 'error');
+                    message(`Error compiling ${name}.css.map`, 'error');
                     message(err);
 
                     notification({
-                        title:   `${name}.scss compilation failed 🚨`,
+                        title:   `${name}.css.map save failed 🚨`,
                         message: `Could not save sourcemap to ${name}.css.map`
                     });
                 });
             }
         } catch (err) {
             message(`Error compiling ${name}.scss`, 'error');
-            message(err.formatted);
+            message(err.formatted || err);
 
             notification({
                 title:   `${name}.scss compilation failed 🚨`,
-                message: err.formatted
+                message: (err.formatted || `${err.name}: ${err.message}`)
             });
         }
     });
