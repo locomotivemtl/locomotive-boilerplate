@@ -12,8 +12,11 @@ const sassRender = promisify(sass.render);
 
 /**
  * Compiles and minifies main Sass files to CSS.
+ *
+ * @async
+ * @return {Promise}
  */
-export async function compileStyles() {
+export default async function compileStyles() {
     loconfig.tasks.styles.forEach(async ({
         infile,
         outfile

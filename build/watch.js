@@ -1,8 +1,8 @@
 import loconfig from '../loconfig.json';
-import { concatFiles } from './tasks/concats.js';
-import { compileScripts } from './tasks/scripts.js';
-import { compileStyles } from './tasks/styles.js' ;
-import { compileSVGs } from './tasks/svgs.js';
+import concatFiles from './tasks/concats.js';
+import compileScripts from './tasks/scripts.js';
+import compileStyles from './tasks/styles.js' ;
+import compileSVGs from './tasks/svgs.js';
 import template from './utils/template.js';
 import server from 'browser-sync';
 import { join } from 'node:path';

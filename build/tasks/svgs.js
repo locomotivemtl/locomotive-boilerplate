@@ -7,8 +7,11 @@ import mixer from 'svg-mixer';
 
 /**
  * Generates and transforms SVG spritesheets.
+ *
+ * @async
+ * @return {Promise}
  */
-export async function compileSVGs() {
+export default async function compileSVGs() {
     loconfig.tasks.svgs.forEach(async ({
         includes,
         outfile

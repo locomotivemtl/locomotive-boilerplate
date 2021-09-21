@@ -7,8 +7,11 @@ import { basename } from 'node:path';
 
 /**
  * Bundles and minifies main JavaScript files.
+ *
+ * @async
+ * @return {Promise}
  */
-export async function compileScripts() {
+export default async function compileScripts() {
     loconfig.tasks.scripts.forEach(async ({
         includes,
         outdir = '',

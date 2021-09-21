@@ -8,8 +8,11 @@ import { basename } from 'node:path';
 
 /**
  * Concatenates groups of files.
+ *
+ * @async
+ * @return {Promise}
  */
-export async function concatFiles() {
+export default async function concatFiles() {
     loconfig.tasks.concats.forEach(async ({
         includes,
         outfile
