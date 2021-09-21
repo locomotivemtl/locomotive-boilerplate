@@ -1,7 +1,7 @@
 import loconfig from '../../loconfig.json';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
-import postcss from '../utils/postcss.js';
+import postcss, { autoprefixer } from '../utils/postcss.js';
 import template from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
@@ -9,6 +9,9 @@ import { promisify } from 'node:util';
 import sass from 'node-sass';
 
 const sassRender = promisify(sass.render);
+
+const isPostCSSAvailable = (postcss && autoprefixer);
+let postcssProcessor;
 
 /**
  * Compiles and minifies main Sass files to CSS.
@@ -39,8 +42,14 @@ export default async function compileStyles() {
                 sourceMapContents: true
             });
 
-            if (postcss) {
-                result = await postcss.process(result.css, {
+            if (isPostCSSAvailable) {
+                if (typeof postcssProcessor === 'undefined') {
+                    postcssProcessor = postcss([
+                        autoprefixer,
+                    ]);
+                }
+
+                result = await postcssProcessor.process(result.css, {
                     from: outfile,
                     to: outfile,
                     map: {
