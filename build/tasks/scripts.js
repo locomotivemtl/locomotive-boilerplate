@@ -6,12 +6,53 @@ import esbuild from 'esbuild';
 import { basename } from 'node:path';
 
 /**
+ * @const {object} defaultESBuildOptions     - The default shared ESBuild options.
+ * @const {object} developmentESBuildOptions - The predefined ESBuild options for development.
+ * @const {object} productionESBuildOptions  - The predefined ESBuild options for production.
+ */
+export const defaultESBuildOptions = {
+    bundle: true,
+    color: true,
+    sourcemap: true,
+    target: [
+        'es2015',
+    ],
+};
+export const developmentESBuildOptions = Object.assign({}, defaultESBuildOptions);
+export const productionESBuildOptions  = Object.assign({}, defaultESBuildOptions, {
+    logLevel: 'warning',
+    minify: true,
+});
+
+/**
+ * @const {object} developmentScriptsArgs - The predefined `compileScripts()` options for development.
+ * @const {object} productionScriptsArgs  - The predefined `compileScripts()` options for production.
+ */
+export const developmentScriptsArgs = [
+    developmentESBuildOptions,
+];
+export const productionScriptsArgs  = [
+    productionESBuildOptions,
+];
+
+/**
  * Bundles and minifies main JavaScript files.
  *
  * @async
+ * @param  {object} [esBuildOptions=null] - Customize the ESBuild build API options.
+ *     If `null`, default production options are used.
  * @return {Promise}
  */
-export default async function compileScripts() {
+export default async function compileScripts(esBuildOptions = null) {
+    if (esBuildOptions == null) {
+        esBuildOptions = productionESBuildOptions;
+    } else if (
+        esBuildOptions !== developmentESBuildOptions &&
+        esBuildOptions !== productionESBuildOptions
+    ) {
+        esBuildOptions = Object.assign({}, defaultESBuildOptions, esBuildOptions);
+    }
+
     loconfig.tasks.scripts.forEach(async ({
         includes,
         outdir = '',
@@ -35,19 +76,11 @@ export default async function compileScripts() {
                 );
             }
 
-            await esbuild.build({
+            await esbuild.build(Object.assign({}, esBuildOptions, {
                 entryPoints: includes,
-                bundle: true,
-                minify: true,
-                sourcemap: true,
-                color: true,
-                logLevel: 'error',
-                target: [
-                    'es2015',
-                ],
                 outdir,
-                outfile
-            });
+                outfile,
+            }));
 
             message(`${filename} compiled`, 'success', timeLabel);
         } catch (err) {

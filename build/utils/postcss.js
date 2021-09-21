@@ -17,9 +17,12 @@ try {
 }
 
 export default postcss;
-export const plugins = [
+export const pluginsList = [
     autoprefixer,
 ];
+export const pluginsMap = {
+    'autoprefixer': autoprefixer,
+};
 export {
     autoprefixer
 };

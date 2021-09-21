@@ -9,6 +9,8 @@ import { basename } from 'node:path';
 /**
  * Concatenates groups of files.
  *
+ * @todo Add support for minification.
+ *
  * @async
  * @return {Promise}
  */
