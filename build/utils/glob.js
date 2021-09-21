@@ -12,19 +12,19 @@
 
 import { promisify } from 'node:util';
 
-const modules = [
+const candidates = [
     'tiny-glob',
     'globby',
     'fast-glob',
     'glob',
 ];
 
-var glob;
+var glob, module;
 
-for (let name of modules) {
+for (let name of candidates) {
     try {
-        glob = await import(name);
-        glob = glob.default;
+        module = await import(name);
+        module = module.default;
 
         /**
          * Wrap the function to ensure
@@ -32,13 +32,17 @@ for (let name of modules) {
          */
         switch (name) {
             case 'tiny-glob':
-                glob = createArrayableGlob(glob, {
+                glob = createArrayableGlob(module, {
                     filesOnly: true
                 });
                 break;
 
             case 'glob':
-                glob = promisify(glob);
+                glob = promisify(module);
+                break;
+
+            default:
+                glob = module;
                 break;
         }
 
@@ -62,7 +66,7 @@ export default glob;
  *
  * @param  {function} glob    - The glob function.
  * @param  {object}   options - The glob options.
- * @return {Promise}
+ * @return {function}
  */
 function createArrayableGlob(glob, options) {
     return (patterns, options) => {
