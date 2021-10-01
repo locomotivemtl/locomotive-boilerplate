@@ -13,11 +13,11 @@
         "build": "node --experimental-json-modules --no-warnings build/build.js"
     },
     "dependencies": {
-        "locomotive-scroll": "*",
+        "locomotive-scroll": "^4.1.2",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
-        "normalize.css": "*",
-        "svg4everybody": "*"
+        "normalize.css": "^8.0.1",
+        "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
         "autoprefixer": "^10.3.5",
