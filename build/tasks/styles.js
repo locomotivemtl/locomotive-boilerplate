@@ -61,13 +61,15 @@ export default async function compileStyles() {
                 }
             }
 
-            writeFile(outfile, result.css).then(() => {
+            try {
+                await writeFile(outfile, result.css);
+
                 if (result.css) {
                     message(`${name}.css compiled`, 'success', timeLabel);
                 } else {
                     message(`${name}.css is empty`, 'notice', timeLabel);
                 }
-            }).catch((err) => {
+            } catch (err) {
                 message(`Error compiling ${name}.css`, 'error');
                 message(err);
 
@@ -75,10 +77,12 @@ export default async function compileStyles() {
                     title:   `${name}.css save failed 🚨`,
                     message: `Could not save stylesheet to ${name}.css`
                 });
-            });
+            }
 
             if (result.map) {
-                writeFile(outfile + '.map', result.map.toString()).catch((err) => {
+                try {
+                    await writeFile(outfile + '.map', result.map.toString())
+                } catch (err) {
                     message(`Error compiling ${name}.css.map`, 'error');
                     message(err);
 
@@ -86,7 +90,7 @@ export default async function compileStyles() {
                         title:   `${name}.css.map save failed 🚨`,
                         message: `Could not save sourcemap to ${name}.css.map`
                     });
-                });
+                }
             }
         } catch (err) {
             message(`Error compiling ${name}.scss`, 'error');
