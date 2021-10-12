@@ -6,7 +6,8 @@
     "author": "Locomotive <info@locomotive.ca>",
     "type": "module",
     "engines": {
-        "node": ">=14.17"
+        "node": ">=14.17",
+        "npm": ">=6.0"
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
@@ -20,14 +21,14 @@
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
-        "autoprefixer": "^10.3.6",
+        "autoprefixer": "^10.3.7",
         "browser-sync": "^2.26.13",
         "concat": "^1.0.3",
-        "esbuild": "^0.13.3",
+        "esbuild": "^0.13.4",
         "kleur": "^4.1.4",
         "node-notifier": "^10.0.0",
         "node-sass": "^6.0.1",
-        "postcss": "^8.3.8",
+        "postcss": "^8.3.9",
         "svg-mixer": "^2.3.14",
         "tiny-glob": "^0.2.9"
     }

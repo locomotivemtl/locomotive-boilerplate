@@ -10,9 +10,11 @@
 
 | Name       | Version  |
 | ---------- | -------- |
-| [Node]     | > 14.17  |
+| [Node]     | >= 14.17 |
+| [NPM]      | >= 6.0   |
 
-[Node]: https://nodejs.org/en/
+[Node]: https://nodejs.org/
+[NPM]:  https://npmjs.com/
 
 You can use [nvm](https://github.com/nvm-sh/nvm) to install the node version in `.nvmrc`.
 
