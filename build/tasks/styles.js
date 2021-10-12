@@ -81,7 +81,7 @@ export default async function compileStyles() {
 
             if (result.map) {
                 try {
-                    await writeFile(outfile + '.map', result.map.toString())
+                    await writeFile(outfile + '.map', result.map.toString());
                 } catch (err) {
                     message(`Error compiling ${name}.css.map`, 'error');
                     message(err);
