@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="is-loading" lang="en" data-page="home">
+<html class="is-loading" lang="en" data-page="images">
     <head>
         <meta charset="utf-8">
         <title>Images | Locomotive Boilerplate</title>
@@ -14,7 +14,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
         <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
 
-        <link id="stylesheet" rel="stylesheet" href="assets/styles/main.css" media="print" onload="this.media='all'; this.onload=null; this.isLoaded=true">
+        <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print" onload="this.media='all'; this.onload=null; this.isLoaded=true">
     </head>
     <body data-module-load>
         <div data-load-container>
@@ -57,21 +57,59 @@
                             <h4 class="c-heading -h3">Using o-ratio & img</h3>
 
                             <div style="width: 640px; max-width: 100%;">
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                                <div class="o-ratio u-4:3"><img data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
+                                <div class="o-ratio u-4:3">
+                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                </div>
+                                <div class="o-ratio u-4:3">
+                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                </div>
+                                <div class="o-ratio u-4:3">
+                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=3" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                </div>
+                                <div class="o-ratio u-4:3">
+                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=4" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                </div>
+                                <div class="o-ratio u-4:3">
+                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=5" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                                </div>
                             </div>
 
                             <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
 
                             <div style="width: 480px; max-width: 100%;">
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=1"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=2"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=3"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=4"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="toggleLazy, Scroll, main" data-scroll-lazy="http://picsum.photos/640/480?v=5"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=1"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=2"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=3"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=4"></div>
+                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=5"></div>
+                            </div>
+
+                            <h4 class="c-heading -h3">Using SVG viewport for ratio</h3>
+
+                            <div style="width: 480px; max-width: 100%;">
+                                <img
+                                    data-scroll
+                                    data-scroll-call="lazyLoad, Scroll, main"
+                                    data-src="http://picsum.photos/640/480?v=6"
+                                    alt=""
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
+                                />
+
+                                <img
+                                    data-scroll
+                                    data-scroll-call="lazyLoad, Scroll, main"
+                                    data-src="http://picsum.photos/640/480?v=7"
+                                    alt=""
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
+                                />
+
+                                <img
+                                    data-scroll
+                                    data-scroll-call="lazyLoad, Scroll, main"
+                                    data-src="http://picsum.photos/640/480?v=8"
+                                    alt=""
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
+                                />
                             </div>
                         </section>
                     </div>
