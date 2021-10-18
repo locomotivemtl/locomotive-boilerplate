@@ -1,4 +1,5 @@
 import { module } from 'modujs';
+import { lazyLoadImage } from '../utils/image';
 import LocomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
@@ -22,16 +23,17 @@ export default class extends module {
         })
     }
 
-    toggleLazy(args) {
-        let src = this.getData('lazy', args.obj.el)
-        if (src.length) {
-            if (args.obj.el.tagName === 'IMG') {
-                args.obj.el.src = src
-            } else {
-                args.obj.el.style.backgroundImage = `url('${src}')`
-            }
-            this.setData('lazy', '', args.obj.el)
-        }
+    /**
+     * Lazy load
+     * See '../utils/image'
+     * Recommended to wrap your image in `.c-lazy`. `-lazy-loaded` modifier will be applied on both parent and children
+     *
+     * @param {obj} | Locomotive Scroll object
+     */
+    lazyLoad(args) {
+        lazyLoadImage(args.obj.target, null, () => {
+            //callback
+        })
     }
 
     destroy() {
