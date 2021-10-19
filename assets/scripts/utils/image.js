@@ -5,7 +5,10 @@ const LAZY_LOADED_IMAGES = []
 export function loadImage(url, options = {}) {
     return new Promise((resolve, reject) => {
         const $img = new Image();
-        if (options.crossOrigin) $img.crossOrigin = options.crossOrigin;
+
+        if (options.crossOrigin) {
+            $img.crossOrigin = options.crossOrigin;
+        }
 
         const loadCallback = () => {
             resolve({
@@ -53,7 +56,11 @@ export async function lazyLoadImage($el, url, callback) {
 
     if (!loadedImage) {
         loadedImage = await loadImage(src)
-        if (!loadedImage.url) return;
+
+        if (!loadedImage.url) {
+            return;
+        }
+
         LAZY_LOADED_IMAGES.push(loadedImage)
     }
 
@@ -61,7 +68,7 @@ export async function lazyLoadImage($el, url, callback) {
         return
     }
 
-    if ($el.tagName == "IMG") {
+    if ($el.tagName === 'IMG') {
         $el.src = loadedImage.url;
     } else {
         $el.style.backgroundImage = `url(${loadedImage.url})`;
@@ -69,10 +76,12 @@ export async function lazyLoadImage($el, url, callback) {
 
     requestAnimationFrame(() => {
         let lazyParent = queryClosestParent($el, '.c-lazy')
+
         if(lazyParent) {
             lazyParent.classList.add('-lazy-loaded')
             lazyParent.style.backgroundImage = ''
         }
+
         $el.classList.add('-lazy-loaded')
 
         callback?.()
