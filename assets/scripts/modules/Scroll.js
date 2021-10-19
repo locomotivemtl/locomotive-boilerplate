@@ -24,11 +24,21 @@ export default class extends module {
     }
 
     /**
-     * Lazy load
-     * See '../utils/image'
-     * Recommended to wrap your image in `.c-lazy`. `-lazy-loaded` modifier will be applied on both parent and children
+     * Lazy load the related image.
      *
-     * @param {obj} | Locomotive Scroll object
+     * @see ../utils/image.js
+     *
+     * It is recommended to wrap your `<img>` into an element with the
+     * CSS class name `.c-lazy`. The CSS class name modifier `.-lazy-loaded`
+     * will be applied on both the image and the parent wrapper.
+     *
+     * ```html
+     * <div class="c-lazy o-ratio u-4:3">
+     *     <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+     * </div>
+     * ```
+     *
+     * @param {LocomotiveScroll} args - The Locomotive Scroll instance.
      */
     lazyLoad(args) {
         lazyLoadImage(args.obj.target, null, () => {

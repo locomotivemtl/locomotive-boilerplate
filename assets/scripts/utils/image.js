@@ -39,13 +39,14 @@ export function getImageMetadata($img) {
 }
 
 /**
- * Lazy load images
+ * Lazy load the given image.
  *
- * @param {node} | $el
- * @param {string} | url
- * @param {function} | callback
+ * @param {HTMLImageElement} $el      - The image element.
+ * @param {?string}          url      - The URI to lazy load into $el.
+ *     If falsey, the value of the `data-src` attribute on $el will be used as the URI.
+ * @param {?function}        callback - A function to call when the image is loaded.
  */
-export async function lazyLoadImage($el, url, callback = () => {}) {
+export async function lazyLoadImage($el, url, callback) {
     let src = url ? url : $el.dataset.src
 
     let loadedImage = LAZY_LOADED_IMAGES.find(image => image.url === src)
