@@ -1,5 +1,3 @@
-import { queryClosestParent } from './html';
-
 const LAZY_LOADED_IMAGES = []
 
 export function loadImage(url, options = {}) {
@@ -75,7 +73,7 @@ export async function lazyLoadImage($el, url, callback) {
     }
 
     requestAnimationFrame(() => {
-        let lazyParent = queryClosestParent($el, '.c-lazy')
+        let lazyParent = $el.closest('.c-lazy');
 
         if(lazyParent) {
             lazyParent.classList.add('-lazy-loaded')
