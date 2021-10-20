@@ -1,4 +1,5 @@
 import { module } from 'modujs';
+import { lazyLoadImage } from '../utils/image';
 import LocomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
@@ -22,16 +23,27 @@ export default class extends module {
         })
     }
 
-    toggleLazy(args) {
-        let src = this.getData('lazy', args.obj.el)
-        if (src.length) {
-            if (args.obj.el.tagName === 'IMG') {
-                args.obj.el.src = src
-            } else {
-                args.obj.el.style.backgroundImage = `url('${src}')`
-            }
-            this.setData('lazy', '', args.obj.el)
-        }
+    /**
+     * Lazy load the related image.
+     *
+     * @see ../utils/image.js
+     *
+     * It is recommended to wrap your `<img>` into an element with the
+     * CSS class name `.c-lazy`. The CSS class name modifier `.-lazy-loaded`
+     * will be applied on both the image and the parent wrapper.
+     *
+     * ```html
+     * <div class="c-lazy o-ratio u-4:3">
+     *     <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/640/480?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+     * </div>
+     * ```
+     *
+     * @param {LocomotiveScroll} args - The Locomotive Scroll instance.
+     */
+    lazyLoad(args) {
+        lazyLoadImage(args.obj.target, null, () => {
+            //callback
+        })
     }
 
     destroy() {
