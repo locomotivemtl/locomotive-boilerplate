@@ -90,6 +90,54 @@
 }
 
 //
+// Retrieves the overlay component z-index.
+//
+// Adapted from OZMap.
+//
+// 1. The elements of the global z-index map may contain `null`
+//    (to indicate that the z-index value should be set automatically).
+// 2. The elements of the global z-index map may contain
+//    a hardcoded number, to be used as the z-index for that element.
+//    - Note that the value must be greater than any preceding element,
+//      to maintain the order.
+//
+// @link https://rafistrauss.com/blog/ordered_z_index_maps/ OZMap
+//
+// @param  {String} $list-key - The global z-index map key.
+// @param  {Number} $modifier - A positive or negative modifier to apply
+//     to the returned z-index value.
+// @throw  Error if the $list-key does not exist or value is unacceptable.
+// @return {Number} The next available z-index value.
+//
+@function overlay-zindex($list-key, $modifier: 0) {
+    @if map-has-key($overlay-zindexes, $key: $list-key) {
+        $accumulator: 0;
+
+        @each $key, $val in $overlay-zindexes {
+            @if ($val == null) {
+                $accumulator: $accumulator + $overlay-zindex-increment;
+                $val: $accumulator;
+            } @else {
+                @if ($val <= $accumulator) {
+                    //* If the z-index is not greater than the elements preceding it,
+                    //* the whole element-order paradigm is invalidated
+                    @error "z-index for #{$key} must be greater than the preceding value!";
+                }
+                $accumulator: $val;
+            }
+
+            @if ($key == $list-key) {
+                @return ($accumulator + $modifier);
+            }
+        }
+    } @else {
+        @error "#{$list-key} doesn't exist in the $overlay-zindexes map";
+    }
+}
+
+$overlay-zindex-increment: 1 !default;
+
+//
 // Resolve whether a rule is important or not.
 //
 // @param  {Boolean}     $flag - Whether a rule is important (TRUE) or not (FALSE).
@@ -124,5 +172,3 @@
 @function is-frontend() {
     @return ('frontend' == $context);
 }
-
-$context: 'frontend' !default;
