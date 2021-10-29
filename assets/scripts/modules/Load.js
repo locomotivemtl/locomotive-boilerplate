@@ -14,6 +14,10 @@ export default class extends module {
             }
         });
 
+        this.load.on('loading', (transition, oldContainer) => {
+            this.call('hide', null, 'Modal');
+        });
+
         load.on('loaded', (transition, oldContainer, newContainer) => {
             this.call('destroy', oldContainer, 'app');
             this.call('update', newContainer, 'app');

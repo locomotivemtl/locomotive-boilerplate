@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="is-loading" lang="en" data-page="page">
+    <head>
+        <meta charset="utf-8">
+        <title>Modal | Locomotive Boilerplate</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="theme-color" content="#ffffff">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+        <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
+
+        <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print" onload="this.media='all'; this.onload=null; this.isLoaded=true">
+        <style type="text/css">
+            .o-link-like {
+                background-color: transparent;
+                text-decoration: underline;
+                border: 0;
+                margin: 0;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                color: #1A0DAB;
+            }
+
+            .o-link-like:hover,
+            .o-link-like:active {
+                color: #13097C;
+            }
+        </style>
+    </head>
+    <body data-module-load>
+        <div data-load-container>
+            <div class="o-scroll" data-module-scroll="main">
+                <header data-scroll-section>
+                    <a href="/"><h1>Locomotive Boilerplate</h1></a>
+                    <nav>
+                        <ul>
+                            <li><a href="images.html">Images</a></li>
+                            <li><a href="form.html" data-load="customTransition">Form</a></li>
+                            <li><a href="modal.html">Modal</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <main data-scroll-section>
+                    <div class="o-container">
+                        <h1 class="c-heading -h1">Modal</h1>
+
+                        <p>
+                            This page demonstrates our Modal component that enhances Kitty Giraudel's
+                            <a href="https://github.com/HugoGiraudel/a11y-dialog">a11ty-dialog</a>
+                            script to create accessible dialog windows.
+                        </p>
+                        <p>
+                            To see this dialog in action, you just need to
+                            <button class="o-link-like" data-a11y-dialog-show="my-dialog">open the dialog window</button>.
+                            Once it’s open, you should not be able to interact with other links
+                            on the main page. The focus is said to be “trapped” inside the dialog
+                            until the user explicitely decides to leave it.
+                        </p>
+                    </div>
+                </main>
+
+                <div class="c-dialog_container"
+                     data-module-modal="my-dialog"
+                     aria-hidden="true"
+                     aria-labelledby="my-dialog-title"
+                     aria-describedby="my-dialog-description">
+                    <div class="c-dialog_overlay" data-a11y-dialog-hide></div>
+                    <div class="c-dialog_content" role="document">
+                        <button
+                            data-a11y-dialog-hide
+                            class="c-dialog_close c-button"
+                            aria-label="Close this dialog window"
+                        >
+                            &times;
+                        </button>
+
+                        <h1 id="my-dialog-title">Subscribe to our newsletter</h1>
+
+                        <p id="my-dialog-description">
+                            Fill in the ridiculously small form below to receive our ridiculously
+                            cool newsletter!
+                        </p>
+
+                        <form class="c-form">
+                            <div class="c-form_item">
+                                <label class="c-form_label" for="email">Email (required)</label>
+                                <input class="c-form_input"
+                                       type="email"
+                                       name="EMAIL"
+                                       id="email"
+                                       placeholder="john.doe@gmail.com"
+                                       required
+                                />
+                            </div>
+                            <button class="c-button" type="submit" name="button">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+
+                <footer data-scroll-section>
+                    <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate" title="Locomotive Boilerplate" target="_blank" rel="noopener">🚂</a></p>
+                </footer>
+            </div>
+        </div>
+
+        <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossorigin="anonymous"></script>
+        <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.remove%2CElement.prototype.append%2Cfetch%2CCustomEvent%2CElement.prototype.matches%2CNodeList.prototype.forEach%2CAbortController" crossorigin="anonymous"></script>
+
+        <script src="assets/scripts/vendors.js" defer></script>
+        <script src="assets/scripts/app.js" defer></script>
+    </body>
+</html>

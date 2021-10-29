@@ -1,0 +1,83 @@
+// =============================================================================
+// Modal Dialog
+// =============================================================================
+// Adapted from https://codesandbox.io/s/a11y-dialog-pnwqu?file=/src/styles.css
+// =============================================================================
+
+// Component settings
+// =============================================================================
+
+$dialog-container-zindex:          overlay-zindex(modal) !default;
+$dialog-backdrop-background-color: rgba(0, 0, 0, 0.9) !default;
+$dialog-content-background-color:  rgb(255, 255, 255) !default;
+
+// Basic component styles
+// =============================================================================
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(10%);
+    }
+}
+
+.has-modal-open {
+    overflow-y: hidden;
+}
+
+.c-dialog_container {
+    display: flex;
+    overflow: scroll;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: $dialog-container-zindex;
+
+    &[aria-hidden='true'] {
+        display: none;
+    }
+}
+
+.c-dialog_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $dialog-backdrop-background-color;
+    animation: fade-in 200ms both;
+}
+
+.c-dialog_content {
+    background-color: $dialog-content-background-color;
+    margin: auto;
+    z-index: 2;
+    position: relative;
+    animation: fade-in 400ms 200ms both, slide-up 400ms 200ms both;
+    padding: 1em;
+    max-width: 90%;
+    width: 600px;
+    border-radius: 2px;
+
+    @media screen and (min-width: $from-small) {
+        padding: 2em;
+    }
+}
+
+.c-dialog_close {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+
+    @media screen and (min-width: $from-small) {
+        top: 1em;
+        right: 1em;
+    }
+}
