@@ -12,8 +12,7 @@ try {
     autoprefixer = await import('autoprefixer');
     autoprefixer = autoprefixer.default;
 } catch (err) {
-    postcss      = null;
-    autoprefixer = null;
+    // do nothing
 }
 
 export default postcss;
