@@ -1,6 +1,7 @@
 import loconfig from '../helpers/config.js';
 import message from '../helpers/message.js';
 import notification from '../helpers/notification.js';
+import optimize from '../helpers/svgo.js';
 import resolve from '../helpers/template.js';
 import { merge } from '../utils/index.js';
 import { basename } from 'node:path';
@@ -20,25 +21,39 @@ export const developmentMixerOptions = Object.assign({}, defaultMixerOptions);
 export const productionMixerOptions  = Object.assign({}, defaultMixerOptions);
 
 /**
- * @const {object} developmentSVGsArgs - The predefined `compileSVGs()` options for development.
- * @const {object} productionSVGsArgs  - The predefined `compileSVGs()` options for production.
+ * @const {object} defaultSVGOOptions     - The default shared SVGO options.
+ * @const {object} developmentSVGOOptions - The predefined SVGO options for development.
+ * @const {object} productionSVGOOptions  - The predefined SVGO options for production.
+ */
+export const defaultSVGOOptions = {
+};
+export const developmentSVGOOptions = Object.assign({}, defaultSVGOOptions);
+export const productionSVGOOptions  = Object.assign({}, defaultSVGOOptions);
+
+/**
+ * @const {object|boolean} developmentSVGsArgs - The predefined `compileSVGs()` options for development.
+ * @const {object|boolean} productionSVGsArgs  - The predefined `compileSVGs()` options for production.
  */
 export const developmentSVGsArgs = [
     developmentMixerOptions,
+    false,
 ];
 export const productionSVGsArgs  = [
     productionMixerOptions,
+    productionSVGOOptions,
 ];
 
 /**
  * Generates and transforms SVG spritesheets.
  *
  * @async
- * @param  {object} [mixerOptions=null] - Customize the Mixer API options.
+ * @param  {object}         [mixerOptions=null] - Customize the Mixer API options.
+ *     If `null`, default production options are used.
+ * @param  {object|boolean} [svgoOptions=null]  - Customize the SVGO processor API options.
  *     If `null`, default production options are used.
  * @return {Promise}
  */
-export default async function compileSVGs(mixerOptions = null) {
+export default async function compileSVGs(mixerOptions = null, svgoOptions = null) {
     if (mixerOptions == null) {
         mixerOptions = productionMixerOptions;
     } else if (
@@ -46,6 +61,18 @@ export default async function compileSVGs(mixerOptions = null) {
         mixerOptions !== productionMixerOptions
     ) {
         mixerOptions = merge({}, defaultMixerOptions, mixerOptions);
+    }
+
+    if (optimize) {
+        if (svgoOptions == null) {
+            svgoOptions = productionSVGOOptions;
+        } else if (
+            svgoOptions !== false &&
+            svgoOptions !== developmentSVGOOptions &&
+            svgoOptions !== productionSVGOOptions
+        ) {
+            svgoOptions = Object.assign({}, defaultSVGOOptions, svgoOptions);
+        }
     }
 
     /**
@@ -78,6 +105,10 @@ export default async function compileSVGs(mixerOptions = null) {
             outfile  = resolve(outfile);
 
             const result = await mixer(includes, mixerOptions);
+
+            if (optimize && svgoOptions) {
+                result.content = optimize(result.content, svgoOptions).data;
+            }
 
             await result.write(outfile);
 
