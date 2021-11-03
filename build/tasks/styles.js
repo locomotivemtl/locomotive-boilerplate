@@ -88,8 +88,8 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             postcssOptions = productionPostCSSOptions;
         } else if (
             postcssOptions !== false &&
-            postcssOptions !== developmentSassOptions &&
-            postcssOptions !== productionSassOptions
+            postcssOptions !== developmentPostCSSOptions &&
+            postcssOptions !== productionPostCSSOptions
         ) {
             postcssOptions = Object.assign({}, defaultPostCSSOptions, postcssOptions);
         }
