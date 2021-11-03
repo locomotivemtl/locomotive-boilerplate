@@ -1,8 +1,8 @@
 import loconfig from '../loconfig.json';
 import concatFiles from './tasks/concats.js';
-import compileScripts from './tasks/scripts.js';
-import compileStyles from './tasks/styles.js' ;
-import compileSVGs from './tasks/svgs.js';
+import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
+import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
+import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
 import template from './utils/template.js';
 import server from 'browser-sync';
 import { join } from 'node:path';
@@ -30,9 +30,9 @@ server.init(serverConfig);
 // Build scripts, compile styles, concat files,
 // and generate spritesheets on first hit
 concatFiles();
-compileScripts();
-compileStyles();
-compileSVGs();
+compileScripts(...developmentScriptsArgs);
+compileStyles(...developmentStylesArgs);
+compileSVGs(...developmentSVGsArgs);
 
 // and call any methods on it.
 server.watch(
@@ -50,7 +50,7 @@ server.watch(
         join(paths.scripts.src, '**/*.js'),
     ]
 ).on('change', () => {
-    compileScripts();
+    compileScripts(...developmentScriptsArgs);
 });
 
 // Watch concats
@@ -69,7 +69,7 @@ server.watch(
         join(paths.styles.src, '**/*.scss'),
     ]
 ).on('change', () => {
-    compileStyles();
+    compileStyles(...developmentStylesArgs);
 });
 
 // Watch svgs
@@ -78,5 +78,5 @@ server.watch(
         join(paths.svgs.src, '*.svg'),
     ]
 ).on('change', () => {
-    compileSVGs();
+    compileSVGs(...developmentSVGsArgs);
 });

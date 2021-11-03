@@ -1,14 +1,28 @@
 /**
- * @file If available, returns the PostCSS processor with any plugins.
+ * @file If available, returns the PostCSS Processor creator and
+ * any the Autoprefixer PostCSS plugin.
  */
 
-try {
-    var { default: postcss } = await import('postcss');
-    let { default: autoprefixer } = await import('autoprefixer');
+let postcss, autoprefixer;
 
-    postcss = postcss([ autoprefixer ]);
+try {
+    postcss = await import('postcss');
+    postcss = postcss.default;
+
+    autoprefixer = await import('autoprefixer');
+    autoprefixer = autoprefixer.default;
 } catch (err) {
-    postcss = null;
+    postcss      = null;
+    autoprefixer = null;
 }
 
 export default postcss;
+export const pluginsList = [
+    autoprefixer,
+];
+export const pluginsMap = {
+    'autoprefixer': autoprefixer,
+};
+export {
+    autoprefixer
+};
