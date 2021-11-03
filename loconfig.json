@@ -52,7 +52,7 @@
         "svgs": [
             {
                 "includes": [
-                    "{% paths.svgs.src %}/*.svg"
+                    "{% paths.svgs.src %}/**/*.svg"
                 ],
                 "outfile": "{% paths.svgs.dest %}/sprite.svg"
             }

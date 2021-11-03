@@ -1,8 +1,14 @@
 import loconfig from '../loconfig.json';
 import concatFiles from './tasks/concats.js';
-import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
-import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
-import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
+import compileScripts, {
+    developmentScriptsArgs
+} from './tasks/scripts.js';
+import compileStyles, {
+    developmentStylesArgs
+} from './tasks/styles.js' ;
+import compileSVGs, {
+    developmentSVGsArgs
+} from './tasks/svgs.js';
 import template from './utils/template.js';
 import server from 'browser-sync';
 import { join } from 'node:path';
@@ -75,7 +81,7 @@ server.watch(
 // Watch svgs
 server.watch(
     [
-        join(paths.svgs.src, '*.svg'),
+        join(paths.svgs.src, '**/*.svg'),
     ]
 ).on('change', () => {
     compileSVGs(...developmentSVGsArgs);
