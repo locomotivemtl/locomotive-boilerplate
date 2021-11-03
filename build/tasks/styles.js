@@ -47,8 +47,8 @@ export const developmentPostCSSOptions = Object.assign({}, defaultPostCSSOptions
 export const productionPostCSSOptions  = Object.assign({}, defaultPostCSSOptions);
 
 /**
- * @const {object} developmentStylesArgs - The predefined `compileStyles()` options for development.
- * @const {object} productionStylesArgs  - The predefined `compileStyles()` options for production.
+ * @const {object|boolean} developmentStylesArgs - The predefined `compileStyles()` options for development.
+ * @const {object|boolean} productionStylesArgs  - The predefined `compileStyles()` options for production.
  */
 export const developmentStylesArgs = [
     developmentSassOptions,
