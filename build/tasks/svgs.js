@@ -49,11 +49,14 @@ export default async function compileSVGs(mixerOptions = null) {
 
     loconfig.tasks.svgs.forEach(async ({
         includes,
-        outfile
+        outfile,
+        label = null
     }) => {
-        const filename = basename(outfile || 'undefined');
+        if (!label) {
+            label = basename(outfile || 'undefined');
+        }
 
-        const timeLabel = `${filename} compiled in`;
+        const timeLabel = `${label} compiled in`;
         console.time(timeLabel);
 
         try {
@@ -64,13 +67,13 @@ export default async function compileSVGs(mixerOptions = null) {
 
             await result.write(outfile);
 
-            message(`${filename} compiled`, 'success', timeLabel);
+            message(`${label} compiled`, 'success', timeLabel);
         } catch (err) {
-            message(`Error compiling ${filename}`, 'error');
+            message(`Error compiling ${label}`, 'error');
             message(err);
 
             notification({
-                title:   `${filename} compilation failed 🚨`,
+                title:   `${label} compilation failed 🚨`,
                 message: `${err.name}: ${err.message}`
             });
         }

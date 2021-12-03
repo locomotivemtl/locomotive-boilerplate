@@ -17,11 +17,14 @@ import { basename } from 'node:path';
 export default async function concatFiles() {
     loconfig.tasks.concats.forEach(async ({
         includes,
-        outfile
+        outfile,
+        label = null
     }) => {
-        const filename = basename(outfile || 'undefined');
+        if (!label) {
+            label = basename(outfile || 'undefined');
+        }
 
-        const timeLabel = `${filename} concatenated in`;
+        const timeLabel = `${label} concatenated in`;
         console.time(timeLabel);
 
         try {
@@ -33,16 +36,16 @@ export default async function concatFiles() {
             await concat(files, outfile);
 
             if (files.length) {
-                message(`${filename} concatenated`, 'success', timeLabel);
+                message(`${label} concatenated`, 'success', timeLabel);
             } else {
-                message(`${filename} is empty`, 'notice', timeLabel);
+                message(`${label} is empty`, 'notice', timeLabel);
             }
         } catch (err) {
-            message(`Error concatenating ${filename}`, 'error');
+            message(`Error concatenating ${label}`, 'error');
             message(err);
 
             notification({
-                title:   `${filename} concatenation failed 🚨`,
+                title:   `${label} concatenation failed 🚨`,
                 message: `${err.name}: ${err.message}`
             });
         }

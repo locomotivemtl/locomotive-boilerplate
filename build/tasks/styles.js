@@ -97,11 +97,12 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
 
     loconfig.tasks.styles.forEach(async ({
         infile,
-        outfile
+        outfile,
+        label = null
     }) => {
-        const name = basename((outfile || 'undefined'), '.css');
+        const filestem = basename((outfile || 'undefined'), '.css');
 
-        const timeLabel = `${name}.css compiled in`;
+        const timeLabel = `${label || `${filestem}.css`} compiled in`;
         console.time(timeLabel);
 
         try {
@@ -132,7 +133,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
                 if (result.warnings) {
                     const warnings = result.warnings();
                     if (warnings.length) {
-                        message(`Error processing ${name}.css`, 'warning');
+                        message(`Error processing ${label || `${filestem}.css`}`, 'warning');
                         warnings.forEach((warn) => {
                             message(warn.toString());
                         });
@@ -144,17 +145,17 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
                 await writeFile(outfile, result.css);
 
                 if (result.css) {
-                    message(`${name}.css compiled`, 'success', timeLabel);
+                    message(`${label || `${filestem}.css`} compiled`, 'success', timeLabel);
                 } else {
-                    message(`${name}.css is empty`, 'notice', timeLabel);
+                    message(`${label || `${filestem}.css`} is empty`, 'notice', timeLabel);
                 }
             } catch (err) {
-                message(`Error compiling ${name}.css`, 'error');
+                message(`Error compiling ${label || `${filestem}.css`}`, 'error');
                 message(err);
 
                 notification({
-                    title:   `${name}.css save failed 🚨`,
-                    message: `Could not save stylesheet to ${name}.css`
+                    title:   `${label || `${filestem}.css`} save failed 🚨`,
+                    message: `Could not save stylesheet to ${label || `${filestem}.css`}`
                 });
             }
 
@@ -162,21 +163,21 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
                 try {
                     await writeFile(outfile + '.map', result.map.toString());
                 } catch (err) {
-                    message(`Error compiling ${name}.css.map`, 'error');
+                    message(`Error compiling ${label || `${filestem}.css.map`}`, 'error');
                     message(err);
 
                     notification({
-                        title:   `${name}.css.map save failed 🚨`,
-                        message: `Could not save sourcemap to ${name}.css.map`
+                        title:   `${label || `${filestem}.css.map`} save failed 🚨`,
+                        message: `Could not save sourcemap to ${label || `${filestem}.css.map`}`
                     });
                 }
             }
         } catch (err) {
-            message(`Error compiling ${name}.scss`, 'error');
+            message(`Error compiling ${label || `${filestem}.scss`}`, 'error');
             message(err.formatted || err);
 
             notification({
-                title:   `${name}.scss compilation failed 🚨`,
+                title:   `${label || `${filestem}.scss`} compilation failed 🚨`,
                 message: (err.formatted || `${err.name}: ${err.message}`)
             });
         }

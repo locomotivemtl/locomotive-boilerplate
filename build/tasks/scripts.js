@@ -56,11 +56,14 @@ export default async function compileScripts(esBuildOptions = null) {
     loconfig.tasks.scripts.forEach(async ({
         includes,
         outdir = '',
-        outfile = ''
+        outfile = '',
+        label = null
     }) => {
-        const filename = basename(outdir || outfile || 'undefined');
+        if (!label) {
+            label = basename(outdir || outfile || 'undefined');
+        }
 
-        const timeLabel = `${filename} compiled in`;
+        const timeLabel = `${label} compiled in`;
         console.time(timeLabel);
 
         try {
@@ -82,11 +85,11 @@ export default async function compileScripts(esBuildOptions = null) {
                 outfile,
             }));
 
-            message(`${filename} compiled`, 'success', timeLabel);
+            message(`${label} compiled`, 'success', timeLabel);
         } catch (err) {
             // errors managments (already done in esbuild)
             notification({
-                title:   `${filename} compilation failed 🚨`,
+                title:   `${label} compilation failed 🚨`,
                 message: `${err.errors[0].text} in ${err.errors[0].location.file} line ${err.errors[0].location.line}`
             });
         }
