@@ -9,6 +9,21 @@ import { join } from 'node:path';
 
 const { paths, tasks } = loconfig;
 
+// Convert view(s) to an array
+switch (typeof paths.views) {
+    case 'string':
+        paths.views = [ paths.views ];
+        break;
+
+    case 'object':
+        if (paths.views == null) {
+            paths.views = [];
+        } else if (!Array.isArray(paths.views)) {
+            paths.views = Object.values(paths.views);
+        }
+        break;
+}
+
 const serverConfig = {
     open: false,
     notify: false
@@ -38,7 +53,7 @@ compileSVGs(...developmentSVGsArgs);
 // Reload on any changes to views or processed files
 server.watch(
     [
-        paths.views.src,
+        ...paths.views,
         join(paths.scripts.dest, '*.js'),
         join(paths.styles.dest, '*.css'),
         join(paths.svgs.dest, '*.svg'),
