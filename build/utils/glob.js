@@ -63,7 +63,7 @@ async function importGlob() {
     }
 
     throw new TypeError(
-        `No glob library was found, expected one of: ${modules.join(', ')}`
+        `No glob library was found, expected one of: ${candidates.join(', ')}`
     );
 }
 
