@@ -14,6 +14,7 @@ const serverConfig = {
     notify: false
 };
 
+// Resolve the URI for the Browsersync server
 if (typeof paths.url === 'string' && paths.url.length > 0) {
     // Use proxy
     serverConfig.proxy = paths.url;
@@ -34,7 +35,7 @@ compileScripts(...developmentScriptsArgs);
 compileStyles(...developmentStylesArgs);
 compileSVGs(...developmentSVGsArgs);
 
-// and call any methods on it.
+// Reload on any changes to views or processed files
 server.watch(
     [
         paths.views.src,
@@ -44,7 +45,7 @@ server.watch(
     ]
 ).on('change', server.reload);
 
-// Watch scripts
+// Watch source scripts
 server.watch(
     [
         join(paths.scripts.src, '**/*.js'),
@@ -53,7 +54,7 @@ server.watch(
     compileScripts(...developmentScriptsArgs);
 });
 
-// Watch concats
+// Watch source concats
 server.watch(
     tasks.concats.reduce(
         (patterns, { includes }) => patterns.concat(includes),
@@ -63,7 +64,7 @@ server.watch(
     concatFiles();
 });
 
-// Watch styles
+// Watch source styles
 server.watch(
     [
         join(paths.styles.src, '**/*.scss'),
@@ -72,7 +73,7 @@ server.watch(
     compileStyles(...developmentStylesArgs);
 });
 
-// Watch svgs
+// Watch source SVGs
 server.watch(
     [
         join(paths.svgs.src, '*.svg'),
