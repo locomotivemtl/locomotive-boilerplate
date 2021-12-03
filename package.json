@@ -11,7 +11,8 @@
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
-        "build": "node --experimental-json-modules --no-warnings build/build.js"
+        "build": "node --experimental-json-modules --no-warnings build/build.js",
+        "optimize:svg": "svgo --config=build/config/svgo.js"
     },
     "dependencies": {
         "locomotive-scroll": "^5.0.0-beta.11",
