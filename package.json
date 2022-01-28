@@ -21,14 +21,14 @@
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.0",
+        "autoprefixer": "^10.4.2",
         "browser-sync": "^2.27.7",
         "concat": "^1.0.3",
-        "esbuild": "^0.13.12",
+        "esbuild": "^0.14.14",
         "kleur": "^4.1.4",
         "node-notifier": "^10.0.0",
-        "node-sass": "^6.0.1",
-        "postcss": "^8.3.11",
+        "node-sass": "^7.0.1",
+        "postcss": "^8.4.5",
         "svg-mixer": "^2.3.14",
         "tiny-glob": "^0.2.9"
     }
