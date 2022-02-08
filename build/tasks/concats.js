@@ -56,20 +56,24 @@ export const productionConcatFilesArgs  = [
  * @todo Add support for minification.
  *
  * @async
- * @param  {object} [globOptions=null]   - Customize the glob options.
+ * @param  {object|boolean} [globOptions=null]   - Customize the glob options.
  *     If `null`, default production options are used.
- * @param  {object} [concatOptions=null] - Customize the concatenation options.
+ *     If `false`, the glob function will be ignored.
+ * @param  {object}         [concatOptions=null] - Customize the concatenation options.
  *     If `null`, default production options are used.
  * @return {Promise}
  */
 export default async function concatFiles(globOptions = null, concatOptions = null) {
-    if (globOptions == null) {
-        globOptions = productionGlobOptions;
-    } else if (
-        globOptions !== developmentGlobOptions &&
-        globOptions !== productionGlobOptions
-    ) {
-        globOptions = Object.assign({}, defaultGlobOptions, globOptions);
+    if (glob) {
+        if (globOptions == null) {
+            globOptions = productionGlobOptions;
+        } else if (
+            globOptions !== false &&
+            globOptions !== developmentGlobOptions &&
+            globOptions !== productionGlobOptions
+        ) {
+            globOptions = Object.assign({}, defaultGlobOptions, globOptions);
+        }
     }
 
     if (concatOptions == null) {
@@ -97,7 +101,13 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
             includes = includes.map((path) => template(path));
             outfile  = template(outfile);
 
-            let files = await glob(includes, globOptions);
+            let files;
+
+            if (glob && globOptions) {
+                files = await glob(includes, globOptions);
+            } else {
+                files = includes;
+            }
 
             if (concatOptions.removeDuplicates) {
                 files = files.map((path) => normalize(path));

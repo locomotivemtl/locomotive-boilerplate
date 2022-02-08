@@ -22,7 +22,15 @@ const candidates = [
     'glob',
 ];
 
-export default await importGlob();
+let glob;
+
+try {
+    glob = await importGlob();
+} catch (err) {
+    // do nothing
+}
+
+export default glob;
 
 /**
  * Imports the first available glob function.
