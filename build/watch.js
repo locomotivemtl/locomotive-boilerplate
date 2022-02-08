@@ -1,5 +1,5 @@
 import loconfig from '../loconfig.json';
-import concatFiles from './tasks/concats.js';
+import concatFiles, { developmentConcatFilesArgs } from './tasks/concats.js';
 import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
 import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
 import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
@@ -45,7 +45,7 @@ server.init(serverConfig);
 
 // Build scripts, compile styles, concat files,
 // and generate spritesheets on first hit
-concatFiles();
+concatFiles(...developmentConcatFilesArgs);
 compileScripts(...developmentScriptsArgs);
 compileStyles(...developmentStylesArgs);
 compileSVGs(...developmentSVGsArgs);
@@ -76,7 +76,7 @@ server.watch(
         []
     ).map((path) => template(path))
 ).on('change', () => {
-    concatFiles();
+    concatFiles(...developmentConcatFilesArgs);
 });
 
 // Watch source styles
