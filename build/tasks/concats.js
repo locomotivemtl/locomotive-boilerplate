@@ -4,7 +4,10 @@ import message from '../utils/message.js';
 import notification from '../utils/notification.js';
 import template from '../utils/template.js';
 import concat from 'concat';
-import { basename } from 'node:path';
+import {
+    basename,
+    normalize,
+} from 'node:path';
 
 /**
  * @const {object} defaultGlobOptions     - The default shared glob options.
@@ -17,14 +20,34 @@ export const developmentGlobOptions = Object.assign({}, defaultGlobOptions);
 export const productionGlobOptions  = Object.assign({}, defaultGlobOptions);
 
 /**
+ * @typedef  {object} ConcatOptions
+ * @property {boolean} removeDuplicates - Removes duplicate paths from
+ *     the array of matching files and folders.
+ *     Only the first occurrence of each path is kept.
+ */
+
+/**
+ * @const {ConcatOptions} defaultConcatOptions     - The default shared concatenation options.
+ * @const {ConcatOptions} developmentConcatOptions - The predefined concatenation options for development.
+ * @const {ConcatOptions} productionConcatOptions  - The predefined concatenation options for production.
+ */
+export const defaultConcatOptions = {
+    removeDuplicates: true,
+};
+export const developmentConcatOptions = Object.assign({}, defaultConcatOptions);
+export const productionConcatOptions  = Object.assign({}, defaultConcatOptions);
+
+/**
  * @const {object} developmentConcatFilesArgs - The predefined `concatFiles()` options for development.
  * @const {object} productionConcatFilesArgs  - The predefined `concatFiles()` options for production.
  */
 export const developmentConcatFilesArgs = [
     developmentGlobOptions,
+    developmentConcatOptions,
 ];
 export const productionConcatFilesArgs  = [
     productionGlobOptions,
+    productionConcatOptions,
 ];
 
 /**
@@ -35,9 +58,11 @@ export const productionConcatFilesArgs  = [
  * @async
  * @param  {object} [globOptions=null]   - Customize the glob options.
  *     If `null`, default production options are used.
+ * @param  {object} [concatOptions=null] - Customize the concatenation options.
+ *     If `null`, default production options are used.
  * @return {Promise}
  */
-export default async function concatFiles(globOptions = null) {
+export default async function concatFiles(globOptions = null, concatOptions = null) {
     if (globOptions == null) {
         globOptions = productionGlobOptions;
     } else if (
@@ -45,6 +70,15 @@ export default async function concatFiles(globOptions = null) {
         globOptions !== productionGlobOptions
     ) {
         globOptions = Object.assign({}, defaultGlobOptions, globOptions);
+    }
+
+    if (concatOptions == null) {
+        concatOptions = productionConcatOptions;
+    } else if (
+        concatOptions !== developmentConcatOptions &&
+        concatOptions !== productionConcatOptions
+    ) {
+        concatOptions = Object.assign({}, defaultConcatOptions, concatOptions);
     }
 
     loconfig.tasks.concats.forEach(async ({
@@ -63,7 +97,12 @@ export default async function concatFiles(globOptions = null) {
             includes = includes.map((path) => template(path));
             outfile  = template(outfile);
 
-            const files = await glob(includes, globOptions);
+            let files = await glob(includes, globOptions);
+
+            if (concatOptions.removeDuplicates) {
+                files = files.map((path) => normalize(path));
+                files = [ ...new Set(files) ];
+            }
 
             await concat(files, outfile);
 
