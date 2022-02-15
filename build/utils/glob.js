@@ -4,8 +4,9 @@
  * Note that options vary between libraries.
  *
  * Candidates:
+ *
  * - {@link https://npmjs.com/package/tiny-glob tiny-glob}
- * - {@link https://npmjs.com/package/globby}
+ * - {@link https://npmjs.com/package/globby globby}
  * - {@link https://npmjs.com/package/fast-glob fast-glob}
  * - {@link https://npmjs.com/package/glob glob}
  */
