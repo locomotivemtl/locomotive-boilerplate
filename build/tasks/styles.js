@@ -1,4 +1,4 @@
-import loconfig from '../../loconfig.json';
+import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
 import postcss, { pluginsMap as postcssPluginsMap } from '../utils/postcss.js';

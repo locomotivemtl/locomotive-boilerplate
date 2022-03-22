@@ -2,7 +2,7 @@
  * @file Provides simple template tags.
  */
 
-import loconfig from '../../loconfig.json';
+import loconfig from './config.js';
 
 const templateData = flatten({
     paths: loconfig.paths
