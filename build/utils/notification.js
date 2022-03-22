@@ -1,3 +1,7 @@
+/**
+ * @file Provides a decorator for cross-platform notification.
+ */
+
 import notifier from 'node-notifier';
 
 /**
