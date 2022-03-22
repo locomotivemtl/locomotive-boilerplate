@@ -3,7 +3,7 @@ import concatFiles, { developmentConcatFilesArgs } from './tasks/concats.js';
 import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
 import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
 import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
-import template from './utils/template.js';
+import resolve from './utils/template.js';
 import server from 'browser-sync';
 import { join } from 'node:path';
 
@@ -71,10 +71,12 @@ server.watch(
 
 // Watch source concats
 server.watch(
-    tasks.concats.reduce(
-        (patterns, { includes }) => patterns.concat(includes),
-        []
-    ).map((path) => template(path))
+    resolve(
+        tasks.concats.reduce(
+            (patterns, { includes }) => patterns.concat(includes),
+            []
+        )
+    )
 ).on('change', () => {
     concatFiles(...developmentConcatFilesArgs);
 });
