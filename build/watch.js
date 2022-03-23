@@ -9,6 +9,9 @@ import resolve from './utils/template.js';
 import browserSync from 'browser-sync';
 import { join } from 'node:path';
 
+// Match a URL protocol.
+const regexUrlStartsWithProtocol = /^[a-z0-9\-]:\/\//i;
+
 // Build scripts, compile styles, concat files,
 // and generate spritesheets on first hit
 concatFiles(...developmentConcatFilesArgs);
@@ -113,18 +116,29 @@ function createServerOptions({
         notify: false
     };
 
-    // Resolve the URI for the BrowserSync server
-    if (typeof paths.url === 'string' && paths.url.length > 0) {
+    // Resolve the URL for the BrowserSync server
+    if (isNonEmptyString(paths.url)) {
         // Use proxy
         config.proxy = paths.url;
-    } else if (typeof paths.dest === 'string' && paths.dest.length > 0) {
+    } else if (isNonEmptyString(paths.dest)) {
         // Use base directory
         config.server = {
             baseDir: paths.dest
         };
     }
 
-    return merge(config, resolve(options));
+    merge(config, resolve(options));
+
+    // If HTTPS is enabled, prepend `https://` to proxy URL
+    if (options?.https) {
+        if (isNonEmptyString(config.proxy?.target)) {
+            config.proxy.target = prependSchemeToUrl(config.proxy.target, 'https');
+        } else if (isNonEmptyString(config.proxy)) {
+            config.proxy = prependSchemeToUrl(config.proxy, 'https');
+        }
+    }
+
+    return config;
 }
 
 /**
@@ -152,4 +166,30 @@ function createViewsArray(views) {
     throw new TypeError(
         'Expected \'views\' to be a string, array, or object'
     );
+}
+
+/**
+ * Prepends the scheme to the URL.
+ *
+ * @param  {string} url      - The URL to mutate.
+ * @param  {string} [scheme] - The URL scheme to prepend.
+ * @return {string} Returns the mutated URL.
+ */
+function prependSchemeToUrl(url, scheme = 'http') {
+    if (regexUrlStartsWithProtocol.test(url)) {
+        return url.replace(regexUrlStartsWithProtocol, `${scheme}://`);
+    }
+
+    return `${scheme}://${url}`;
+}
+
+/**
+ * Determines whether the passed value is a string with at least one character.
+ *
+ * @param  {*} value - The value to be checked.
+ * @return {boolean} Returns `true` if the value is a non-empty string,
+ *     otherwise `false`.
+ */
+function isNonEmptyString(value) {
+    return (typeof value === 'string' && value.length > 0);
 }
