@@ -22,7 +22,7 @@ We use [node-sass] (LibSass) for processing and minifying SCSS into CSS.
 We also use [PostCSS] and [Autoprefixer] to parse our CSS and add
 vendor prefixes for experimental features.
 
-#### CSS Architecture
+### CSS Architecture
 
 The boilerplate's CSS architecture is based on [Inuit CSS][inuitcss] and [ITCSS].
 
@@ -37,7 +37,7 @@ The boilerplate's CSS architecture is based on [Inuit CSS][inuitcss] and [ITCSS]
 
 Learn more about [Inuit CSS](https://github.com/inuitcss/inuitcss#css-directory-structure).
 
-#### CSS Naming Convention
+### CSS Naming Convention
 
 We use a simplified [BEM] (Block, Element, Modifier) syntax:
 
@@ -45,7 +45,7 @@ We use a simplified [BEM] (Block, Element, Modifier) syntax:
 * `.block_element`
 * `.-modifier`
 
-#### CSS Namespacing
+### CSS Namespacing
 
 We namespace our classes for more UI transparency:
 
@@ -57,7 +57,7 @@ We namespace our classes for more UI transparency:
 
 Learn about [namespacing](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/).
 
-#### Example \#1
+### Example \#1
 
 ```html
 <div class="c-block -large">
@@ -90,7 +90,7 @@ Learn about [namespacing](https://csswizardry.com/2015/03/more-transparent-ui-co
 
 ## Scripts
 
-We use [esbuild] for bundling and minifying JavaScript/ES6.
+We use [esbuild] for bundling and minifying JavaScript/ES modules.
 
 [modularJS] is a small framework we use on top of ES modules.
 
@@ -99,9 +99,9 @@ We use [esbuild] for bundling and minifying JavaScript/ES6.
 * Quickly set scoped events with delegation.
 * Simply select DOM elements scoped in their module.
 
-[_source_](https://github.com/modularorg/modularjs#why)
+[_source_](https://npmjs.com/package/modujs#why)
 
-#### Example \#2
+### Example \#2
 
 ```html
 <div data-module-example>
@@ -138,7 +138,7 @@ Learn more about [modularJS].
 
 [modularLoad] is used for page transitions and lazy loading.
 
-#### Example \#3
+### Example \#3
 
 ```html
 <nav>
@@ -169,7 +169,7 @@ Learn more about [modularLoad].
 [Locomotive Scroll][locomotive-scroll] is used for elements in viewport
 detection and smooth scrolling with parallax.
 
-#### Example \#4
+### Example \#4
 
 ```html
 <div data-module-scroll>
@@ -189,19 +189,19 @@ this.scroll = new LocomotiveScroll({
 
 Learn more about [Locomotive Scroll][locomotive-scroll].
 
-[Autoprefixer]:      https://autoprefixer.github.io/
+[Autoprefixer]:      https://npmjs.com/package/autoprefixer
 [BEM]:               https://bem.info/
-[BrowserSync]:       https://browsersync.io/
-[esbuild]:           https://esbuild.github.io/
+[BrowserSync]:       https://npmjs.com/package/browser-sync
+[esbuild]:           https://npmjs.com/package/esbuild
 [inuitcss]:          https://github.com/inuitcss/inuitcss
 [ITCSS]:             https://itcss.io/
-[locomotive-scroll]: https://github.com/locomotivemtl/locomotive-scroll
-[modularJS]:         https://github.com/modularorg/modularjs
-[modularLoad]:       https://github.com/modularorg/modularload
-[node-sass]:         https://github.com/sass/node-sass
-[PostCSS]:           https://postcss.org/
+[locomotive-scroll]: https://npmjs.com/package/locomotive-scroll
+[modularJS]:         https://npmjs.com/package/modujs
+[modularLoad]:       https://npmjs.com/package/modularload
+[node-sass]:         https://npmjs.com/package/node-sass
+[PostCSS]:           https://npmjs.com/package/postcss
 [Sass]:              https://sass-lang.com/
-[svg-mixer]:         https://github.com/JetBrains/svg-mixer
+[svg-mixer]:         https://npmjs.com/package/svg-mixer
 [Node]:              https://nodejs.org/
 [NPM]:               https://npmjs.com/
 [NVM]:               https://github.com/nvm-sh/nvm

@@ -8,13 +8,13 @@
 
 ## Features
 
-* Uses a custom, easily configured, wrapper [asset handler](docs/development.md).
-* Uses [Sass] for a feature rich extension of CSS.
-* Uses [ESBuild] for extremely fast processing of JS/ES6.
+* Uses a custom [task runner](docs/development.md) for handling assets.
+* Uses [BrowserSync] for fast development and testing in browsers.
+* Uses [Sass] for a feature rich superset of CSS.
+* Uses [ESBuild] for extremely fast processing of JS/ES modules.
 * Uses [SVG Mixer] for processing SVG files and generating spritesheets.
 * Uses [ITCSS] for a sane and scalable CSS architecture.
 * Uses [Locomotive Scroll] for smooth scrolling with parallax effects.
-* Uses [BrowserSync] for fast development and testing in browsers.
 
 Learn more about [languages and technologies](docs/technologies.md).
 
@@ -61,6 +61,9 @@ Then update the following files to suit your project:
 ## Installation
 
 ```sh
+# Switch to recommended Node version from .nvmrc
+nvm use
+
 # Install dependencies from package.json
 npm install
 ```
@@ -68,7 +71,7 @@ npm install
 ## Development
 
 ```sh
-# Watch for file changes and compile assets
+# Start development server, watch for changes, and compile assets
 npm start
 
 # Compile and minify assets
@@ -82,14 +85,14 @@ Learn more about [development and building](docs/development.md).
 * [Development and building](docs/development.md)
 * [Languages and technologies](docs/technologies.md)
 
-[BrowserSync]:       https://browsersync.io/
-[ESBuild]:           https://esbuild.github.io/
+[BrowserSync]:       https://npmjs.com/package/browser-sync
+[ESBuild]:           https://npmjs.com/package/esbuild
 [ITCSS]:             https://itcss.io/
-[Locomotive Scroll]: https://github.com/locomotivemtl/locomotive-scroll
-[modularJS]:         https://github.com/modularorg/modularjs
-[modularLoad]:       https://github.com/modularorg/modularload
+[Locomotive Scroll]: https://npmjs.com/package/locomotive-scroll
+[modularJS]:         https://npmjs.com/package/modujs
+[modularLoad]:       https://npmjs.com/package/modularload
 [Sass]:              https://sass-lang.com/
-[SVG Mixer]:         https://github.com/JetBrains/svg-mixer
+[SVG Mixer]:         https://npmjs.com/package/svg-mixer
 [Node]:              https://nodejs.org/
 [NPM]:               https://npmjs.com/
 [NVM]:               https://github.com/nvm-sh/nvm

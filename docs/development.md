@@ -1,24 +1,13 @@
 # Development
 
-Essentially, the boilerplate uses:
-
-* [esbuild] for processing JS,
-* [node-sass] for processing CSS,
-* [svg-mixer] for processing SVG,
-* [browsersync] for testing in browsers.
-
-See [technologies](./technologies.md) for details.
-
----
-
 * [Installation](#installation)
 * [Usage](#usage)
 * [Configuration](#configuration)
   * [Environment Configuration](#environment-configuration)
   * [Development Configuration](#development-configuration)
     * [`paths` option](#paths-option)
-    * [`paths.url` option](#paths.url-option)
-    * [`paths.dest` option](#paths.dest-option)
+    * [`paths.url` option](#pathsurl-option)
+    * [`paths.dest` option](#pathsdest-option)
     * [`tasks` option](#tasks-option)
     * [`server` option](#server-option)
 * [Tasks](#tasks)
@@ -27,9 +16,24 @@ See [technologies](./technologies.md) for details.
   * [`styles`](#styles)
   * [`svgs`](#svgs)
 
+---
+
+The boilerplate provides a custom, easily configured, and very simple,
+task runner for [Node] to process assets and test quickly in browsers.
+
+Learn more about the boilerplate's [tasks](#tasks) below.
+
 ## Installation
 
+Make sure you have the following installed:
+
+* [Node] — at least 14.17, the latest LTS is recommended.
+* [NPM] — at least 6.0, the latest LTS is recommended.
+
 ```sh
+# Switch to recommended Node version from .nvmrc
+nvm use
+
 # Install dependencies from package.json
 npm install
 ```
@@ -63,7 +67,7 @@ In fresh copy of the boilerplate, the root directory of your project
 will contain a [`loconfig.example.json`](../loconfig.example.json) file.
 
 > 💡 The boilerplate's default example customizes the development server
-> with a custom SSL certificate.
+> to use a custom SSL certificate.
 
 That file can be copied to `loconfig.local.json` and customized to suit
 your local environment.
@@ -81,8 +85,10 @@ behaviour for processing front-end assets.
 
 #### `paths` option
 
-The `paths` setting is primarily used for template tags to reference
-any configuration properties, such as file paths, to reduce repetition.
+The `paths` option defines URIs and file paths.
+
+It is primarily used for template tags to reference any configuration
+properties to reduce repetition.
 
 Template tags are specified using `{%  %}` delimiters. They will be
 automatically expanded when tasks process paths.
@@ -98,8 +104,8 @@ automatically expanded when tasks process paths.
     "tasks": {
         "styles": [
             {
-                "infile": "{% paths.styles.src %}/main.scss", // ./assets/styles/main.scss
-                "outfile": "{% paths.styles.dest %}/main.css" // ./www/assets/styles/main.css
+                "infile": "{% paths.styles.src %}/main.scss", // → ./assets/styles/main.scss
+                "outfile": "{% paths.styles.dest %}/main.css" // → ./www/assets/styles/main.css
             }
         ]
     }
@@ -109,6 +115,7 @@ automatically expanded when tasks process paths.
 #### `paths.url` option
 
 The `paths.url` option defines the base URI of the project.
+
 By default, it is used by the development server as a proxy
 for an existing virtual host.
 
@@ -123,8 +130,9 @@ for an existing virtual host.
 #### `paths.dest` option
 
 The `paths.dest` option defines the public web directory of the project.
+
 By default, it is used by the development server as the base directory
-to serve the website from.
+to serve the website from if a proxy URI is not provided.
 
 ```json
 {
@@ -137,7 +145,7 @@ to serve the website from.
 #### `tasks` option
 
 Which assets and how they should be processed can be configured via
-the `tasks` setting:
+the `tasks` option:
 
 ```json
 {
@@ -165,7 +173,7 @@ See [tasks](#tasks) section, below, for details.
 #### `server` option
 
 The development server (BrowserSync) can be configured via
-the `server` setting:
+the `server` option:
 
 ```json
 {
@@ -184,12 +192,14 @@ for all options.
 
 ## Tasks
 
-The boilerplate provides a handful of "tasks" for handling
+The boilerplate provides a handful of tasks for handling
 the most commonly processed assets.
 
 ### `concats`
 
-For concatenating multiple files.
+A wrapper around [concat] (with optional support for globbing) for concatenating multiple files.
+
+By default, [tiny-glob] is installed with the boilerplate.
 
 Example:
 
@@ -223,7 +233,7 @@ See [`concats.js`](../build/tasks/concats.js) for details.
 
 ### `scripts`
 
-For bundling and minifying modern JS/ES6 modules.
+A wrapper around [esbuild] for bundling and minifying modern JS/ES modules.
 
 Example:
 
@@ -252,7 +262,10 @@ See [`scripts.js`](../build/tasks/scripts.js) for details.
 
 ### `styles`
 
-For compiling and minifying Sass into CSS.
+A wrapper around [node-sass] (and optionally [Autoprefixer] via [PostCSS])
+for compiling and minifying Sass into CSS.
+
+By default, [PostCSS] and [Autoprefixer] are installed with the boilerplate.
 
 Example:
 
@@ -287,7 +300,8 @@ See [`styles.js`](../build/tasks/styles.js) for details.
 
 ### `svgs`
 
-For transforming and minifying SVG files and generating spritesheets.
+A wrapper around [SVG Mixer] for transforming and minifying SVG files
+and generating spritesheets.
 
 Example:
 
@@ -314,7 +328,15 @@ Example:
 
 See [`svgs.js`](../build/tasks/svgs.js) for details.
 
-[browsersync]: https://browsersync.io/
-[esbuild]:     https://esbuild.github.io/
-[node-sass]:   https://github.com/sass/node-sass
-[svg-mixer]:   https://github.com/JetBrains/svg-mixer
+[Autoprefixer]: https://npmjs.com/package/autoprefixer
+[BrowserSync]:  https://npmjs.com/package/browser-sync
+[concat]:       https://npmjs.com/package/concat
+[esbuild]:      https://npmjs.com/package/esbuild
+[fast-glob]:    https://npmjs.com/package/fast-glob
+[glob]:         https://npmjs.com/package/glob
+[globby]:       https://npmjs.com/package/globby
+[Node]:         https://nodejs.org/
+[node-sass]:    https://npmjs.com/package/node-sass
+[PostCSS]:      https://npmjs.com/package/postcss
+[SVG Mixer]:    https://npmjs.com/package/svg-mixer
+[tiny-glob]:    https://npmjs.com/package/tiny-glob
