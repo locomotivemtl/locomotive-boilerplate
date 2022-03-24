@@ -1,8 +1,8 @@
-import loconfig from '../../loconfig.json';
+import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
 import postcss, { pluginsMap as postcssPluginsMap } from '../utils/postcss.js';
-import template from '../utils/template.js';
+import resolve from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
@@ -106,8 +106,8 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
         console.time(timeLabel);
 
         try {
-            infile  = template(infile);
-            outfile = template(outfile);
+            infile  = resolve(infile);
+            outfile = resolve(outfile);
 
             let result = await sassRender(Object.assign({}, sassOptions, {
                 file: infile,

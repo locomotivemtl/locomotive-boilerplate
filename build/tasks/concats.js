@@ -1,8 +1,8 @@
-import loconfig from '../../loconfig.json';
+import loconfig from '../utils/config.js';
 import glob from '../utils/glob.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
-import template from '../utils/template.js';
+import resolve from '../utils/template.js';
 import concat from 'concat';
 import {
     basename,
@@ -98,8 +98,8 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
         console.time(timeLabel);
 
         try {
-            includes = includes.map((path) => template(path));
-            outfile  = template(outfile);
+            includes = resolve(includes);
+            outfile  = resolve(outfile);
 
             let files;
 

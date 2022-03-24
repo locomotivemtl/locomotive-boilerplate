@@ -1,7 +1,7 @@
-import loconfig from '../../loconfig.json';
+import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
-import template from '../utils/template.js';
+import resolve from '../utils/template.js';
 import esbuild from 'esbuild';
 import { basename } from 'node:path';
 
@@ -67,12 +67,12 @@ export default async function compileScripts(esBuildOptions = null) {
         console.time(timeLabel);
 
         try {
-            includes = includes.map((path) => template(path));
+            includes = resolve(includes);
 
             if (outdir) {
-                outdir = template(outdir);
+                outdir = resolve(outdir);
             } else if (outfile) {
-                outfile = template(outfile);
+                outfile = resolve(outfile);
             } else {
                 throw new TypeError(
                     'Expected \'outdir\' or \'outfile\''
