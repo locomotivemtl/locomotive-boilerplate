@@ -19,7 +19,7 @@
             "dest": "./www/assets/images"
         },
         "views": {
-            "src": "./views/boilerplate/template"
+            "src": "./www/"
         }
     },
     "tasks": {
@@ -56,6 +56,14 @@
                 ],
                 "outfile": "{% paths.svgs.dest %}/sprite.svg"
             }
-        ]
+        ],
+        "purgeCSS": {
+            "content": [
+                "./www/**/*.html",
+                "./views/app/template/**/*.mustache",
+                "./src/App/Template/*.php",
+                "./assets/scripts/**/*"
+            ]
+        }
     }
 }
