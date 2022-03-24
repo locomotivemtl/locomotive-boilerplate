@@ -1,0 +1,63 @@
+// ==========================================================================
+// Tools / Grid Columns
+// ==========================================================================
+
+//
+// Grid layout system.
+//
+// This tool generates columns for all needed media queries.
+// Unused classes will be purge by the css post-processor.
+//
+
+$colsMax: $base-column-nb + 1;
+
+$breakpoints: (
+    "null" null,
+    "fromTiny" "from-tiny",
+    "fromSmall" "from-small",
+    "fromMedium" "from-medium",
+    "fromLarge" "from-large",
+    "fromBig" "from-big"
+) !default;
+
+@each $breakpoint-namespace, $breakpoint in $breakpoints {
+    @for $fromIndex from 1 through $colsMax {
+        @for $toIndex from 1 through $colsMax {
+            @if $breakpoint == null {
+                .u-gc-#{$fromIndex}\/#{$toIndex} {
+                    grid-column-start: #{$fromIndex};
+                    grid-column-end: #{$toIndex};
+                }
+            } @else {
+                .u-gc-#{$fromIndex}\/#{$toIndex}\@#{$breakpoint} {
+                    @if $breakpoint-namespace == fromTiny {
+                        @media (min-width: $from-tiny) {
+                            grid-column-start: #{$fromIndex};
+                            grid-column-end: #{$toIndex};
+                        }
+                    } @else if $breakpoint-namespace == fromSmall {
+                        @media (min-width: $from-small) {
+                            grid-column-start: #{$fromIndex};
+                            grid-column-end: #{$toIndex};
+                        }
+                    } @else if $breakpoint-namespace == fromMedium {
+                        @media (min-width: $from-medium) {
+                            grid-column-start: #{$fromIndex};
+                            grid-column-end: #{$toIndex};
+                        }
+                    } @else if $breakpoint-namespace == fromLarge {
+                        @media (min-width: $from-large) {
+                            grid-column-start: #{$fromIndex};
+                            grid-column-end: #{$toIndex};
+                        }
+                    } @else if $breakpoint-namespace == fromBig {
+                        @media (min-width: $from-big) {
+                            grid-column-start: #{$fromIndex};
+                            grid-column-end: #{$toIndex};
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

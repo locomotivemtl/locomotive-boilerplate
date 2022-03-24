@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="is-loading" lang="en" data-page="grid">
+
+<head>
+    <meta charset="utf-8">
+    <title>Locomotive Boilerplate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+    <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <!-- For a dark mode managment and svg favicon add this in your favicon.svg -->
+    <!--
+            <style>
+                path {
+                    fill: #000;
+                }
+                @media (prefers-color-scheme: dark) {
+                    path {
+                        fill: #fff;
+                    }
+                }
+            </style>
+        -->
+    <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
+
+    <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print"
+        onload="this.media='all'; this.onload=null; this.isLoaded=true">
+</head>
+
+<body data-module-load>
+    <div data-load-container>
+        <div class="o-scroll" data-module-scroll="main">
+            <header data-scroll-section>
+                <a href="/">
+                    <h1>Locomotive Boilerplate</h1>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="images.html">Images</a></li>
+                        <li><a href="form.html" data-load="customTransition">Form</a></li>
+                        <li><a href="grid.html">Grid</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main data-scroll-section>
+                <div class="o-container">
+                    <h1 class="c-heading -h1">Hello</h1>
+
+                    <div class="o-grid -col-4 -col-12@from-medium -gutters">
+                        <div class="o-grid_item u-gc-1/8@from-medium" style="background-color: gray;">
+                            <h2 class="c-heading -h2">This grid has 4 columns and 12 columns from `medium` MQ</h2>
+                        </div>
+
+                        <div class="o-grid_item u-gc-1/5@from-medium" style="background-color: yellow;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-5/9@from-medium" style="background-color: red;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-9/13@from-medium" style="background-color: blue;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-1/3 u-gc-5/13@from-medium" style="background-color: pink;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer data-scroll-section>
+                <p>Made with <a href="https://github.com/locomotivemtl/locomotive-boilerplate"
+                        title="Locomotive Boilerplate" target="_blank" rel="noopener">🚂</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"
+        crossorigin="anonymous"></script>
+    <script nomodule
+        src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.remove%2CElement.prototype.append%2Cfetch%2CCustomEvent%2CElement.prototype.matches%2CNodeList.prototype.forEach%2CAbortController"
+        crossorigin="anonymous"></script>
+
+    <script src="assets/scripts/vendors.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+</body>
+
+</html>
