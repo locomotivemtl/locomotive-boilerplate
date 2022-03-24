@@ -337,6 +337,8 @@ See [`svgs.js`](../build/tasks/svgs.js) for details.
 [globby]:       https://npmjs.com/package/globby
 [Node]:         https://nodejs.org/
 [node-sass]:    https://npmjs.com/package/node-sass
+[NPM]:          https://npmjs.com/
+[NVM]:          https://github.com/nvm-sh/nvm
 [PostCSS]:      https://npmjs.com/package/postcss
 [SVG Mixer]:    https://npmjs.com/package/svg-mixer
 [tiny-glob]:    https://npmjs.com/package/tiny-glob
