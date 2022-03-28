@@ -5,18 +5,18 @@
   * [Build tasks](#build-tasks)
     * [Config file](#config-file)
 * [Usage](#usage)
-  * [Example](#example-1)
+  * [Example](#example)
 * [Limitations](#limitations)
 
 ## Architectures
 
-The Grid System is meant to be simple and easy to use. To goal is to obtain way to build light, flexible and reusable way to build layouts.
+The Grid System is meant to be simple and easy to use. To goal is to create a light, flexible and reusable way to build layouts.
 
 ### Styles
 
 Some styles are needed to make it work properly :
 
-* [`o-grid.scss`](../assets/styles/objects/_grid.scss): Objecy file where the default grid styles are set. Column numbers, modifiers, options.
+* [`o-grid.scss`](../assets/styles/objects/_grid.scss): Object file where the default grid styles are set. Column numbers, modifiers, options.
 * [`u-grid-columns.scss`](../assets/styles/utilities/_grid-column.scss): Utility file where it generates every possible column styles based on an array of media queries and column numbers.
 
 ### Build tasks
@@ -41,7 +41,72 @@ Depending on your project, you will need to specify all the files that will incl
 
 ## Usage
 
-Test
+The first step is to set intial SCSS values in the following files :
 
+- [`config.scss`](../assets/styles/settings/_config.scss)
+```scss
+// Grid
+// ==========================================================================
+$base-column-nb: 12;
+$base-column-gap: $unit-small;
+```
+
+You can create multiple column layouts depending on media queries
+
+- [`grid.scss`](../assets/styles/objects/_grid.scss)
+```scss
+.o-grid {
+    display: grid;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // ==========================================================================
+    // Cols
+    // ==========================================================================
+    &.-col-#{$base-column-nb} {
+        grid-template-columns: repeat(#{$base-column-nb}, 1fr);
+    }
+
+    &.-col-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.-col-#{$base-column-nb}\@from-medium {
+        @media (min-width: $from-medium) {
+            grid-template-columns: repeat(#{$base-column-nb}, 1fr);
+        }
+    }
+    ...
+```
+
+### Example
+
+Here is an example of a layout that has 4 columns `>=999px` and 12 columns `<1000px`
+
+```html
+<div class="o-container">
+    <h1 class="c-heading -h1">Hello</h1>
+
+    <div class="o-grid -col-4 -col-12@from-medium -gutters">
+        <div class="o-grid_item u-gc-1/8@from-medium">
+            <h2 class="c-heading -h2">This grid has 4 columns and 12 columns from `medium` MQ</h2>
+        </div>
+
+        <div class="o-grid_item u-gc-1/5@from-medium">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+        </div>
+
+        <div class="o-grid_item u-gc-5/9@from-medium">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+        </div>
+
+        <div class="o-grid_item u-gc-9/13@from-medium">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+        </div>
+    </div>
+</div>
+```
 
 [purgecss]:      https://purgecss.com/
