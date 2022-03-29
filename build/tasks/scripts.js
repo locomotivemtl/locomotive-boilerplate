@@ -54,6 +54,17 @@ export default async function compileScripts(esBuildOptions = null) {
         esBuildOptions = merge({}, defaultESBuildOptions, esBuildOptions);
     }
 
+    /**
+     * @async
+     * @param  {object}   entry           - The entrypoint to process.
+     * @param  {string[]} entry.includes  - One or more paths to process.
+     * @param  {string}   [entry.outdir]  - The directory to write to.
+     * @param  {string}   [entry.outfile] - The file to write to.
+     * @param  {?string}  [entry.label]   - The task label.
+     *     Defaults to the outdir or outfile name.
+     * @throws {TypeError} If outdir and outfile are missing.
+     * @return {Promise}
+     */
     loconfig.tasks.scripts.forEach(async ({
         includes,
         outdir = '',

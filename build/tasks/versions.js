@@ -100,6 +100,17 @@ export default async function bumpVersions(versionOptions = null) {
 
     const queue = new Map();
 
+    /**
+     * @async
+     * @param  {object}         entry          - The entrypoint to process.
+     * @param  {string}         entry.outfile  - The file to write to.
+     * @param  {?string}        [entry.label]  - The task label.
+     *     Defaults to the outfile name.
+     * @param  {?string}        [entry.format] - The version number format.
+     * @param  {?string}        [entry.key]    - The JSON field name assign the version number to.
+     * @param  {?string|number} [entry.pretty] - The white space to use to format the JSON file.
+     * @return {Promise}
+     */
     loconfig.tasks.versions.forEach(({
         outfile,
         label = null,

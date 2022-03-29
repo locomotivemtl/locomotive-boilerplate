@@ -102,6 +102,15 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
         }
     }
 
+    /**
+     * @async
+     * @param  {object}   entry         - The entrypoint to process.
+     * @param  {string[]} entry.infile  - The file to process.
+     * @param  {string}   entry.outfile - The file to write to.
+     * @param  {?string}  [entry.label] - The task label.
+     *     Defaults to the outfile name.
+     * @return {Promise}
+     */
     loconfig.tasks.styles.forEach(async ({
         infile,
         outfile,

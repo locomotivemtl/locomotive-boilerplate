@@ -86,6 +86,15 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
         concatOptions = merge({}, defaultConcatOptions, concatOptions);
     }
 
+    /**
+     * @async
+     * @param  {object}   entry          - The entrypoint to process.
+     * @param  {string[]} entry.includes - One or more paths to process.
+     * @param  {string}   entry.outfile  - The file to write to.
+     * @param  {?string}  [entry.label]  - The task label.
+     *     Defaults to the outfile name.
+     * @return {Promise}
+     */
     loconfig.tasks.concats.forEach(async ({
         includes,
         outfile,

@@ -48,6 +48,15 @@ export default async function compileSVGs(mixerOptions = null) {
         mixerOptions = merge({}, defaultMixerOptions, mixerOptions);
     }
 
+    /**
+     * @async
+     * @param  {object}   entry          - The entrypoint to process.
+     * @param  {string[]} entry.includes - One or more paths to process.
+     * @param  {string}   entry.outfile  - The file to write to.
+     * @param  {?string}  [entry.label]  - The task label.
+     *     Defaults to the outfile name.
+     * @return {Promise}
+     */
     loconfig.tasks.svgs.forEach(async ({
         includes,
         outfile,
