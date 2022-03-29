@@ -98,25 +98,25 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
         console.time(timeLabel);
 
         try {
+            if (!Array.isArray(includes)) {
+                includes = [ includes ];
+            }
+
             includes = resolve(includes);
             outfile  = resolve(outfile);
 
-            let files;
-
             if (glob && globOptions) {
-                files = await glob(includes, globOptions);
-            } else {
-                files = includes;
+                includes = await glob(includes, globOptions);
             }
 
             if (concatOptions.removeDuplicates) {
-                files = files.map((path) => normalize(path));
-                files = [ ...new Set(files) ];
+                includes = includes.map((path) => normalize(path));
+                includes = [ ...new Set(includes) ];
             }
 
-            await concat(files, outfile);
+            await concat(includes, outfile);
 
-            if (files.length) {
+            if (includes.length) {
                 message(`${label} concatenated`, 'success', timeLabel);
             } else {
                 message(`${label} is empty`, 'notice', timeLabel);

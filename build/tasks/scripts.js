@@ -67,6 +67,10 @@ export default async function compileScripts(esBuildOptions = null) {
         console.time(timeLabel);
 
         try {
+            if (!Array.isArray(includes)) {
+                includes = [ includes ];
+            }
+
             includes = resolve(includes);
 
             if (outdir) {

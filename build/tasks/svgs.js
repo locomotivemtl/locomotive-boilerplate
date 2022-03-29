@@ -60,6 +60,10 @@ export default async function compileSVGs(mixerOptions = null) {
         console.time(timeLabel);
 
         try {
+            if (!Array.isArray(includes)) {
+                includes = [ includes ];
+            }
+
             includes = resolve(includes);
             outfile  = resolve(outfile);
 
