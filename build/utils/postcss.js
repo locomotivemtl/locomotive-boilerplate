@@ -15,6 +15,8 @@ try {
     // do nothing
 }
 
+export const supportsPostCSS = (typeof postcss === 'function');
+
 export default postcss;
 export const pluginsList = [
     autoprefixer,

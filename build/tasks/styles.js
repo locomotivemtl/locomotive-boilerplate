@@ -1,7 +1,10 @@
 import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
-import postcss, { pluginsMap as postcssPluginsMap } from '../utils/postcss.js';
+import postcss, {
+    pluginsMap as postcssPluginsMap,
+    supportsPostCSS
+} from '../utils/postcss.js';
 import resolve from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
@@ -85,7 +88,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
         sassOptions = Object.assign({}, defaultSassOptions, sassOptions);
     }
 
-    if (postcss) {
+    if (supportsPostCSS) {
         if (postcssOptions == null) {
             postcssOptions = productionPostCSSOptions;
         } else if (
@@ -116,7 +119,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
                 outFile: outfile,
             }));
 
-            if (postcss && postcssOptions) {
+            if (supportsPostCSS && postcssOptions) {
                 if (typeof postcssProcessor === 'undefined') {
                     postcssProcessor = createPostCSSProcessor(
                         postcssPluginsMap,
