@@ -31,6 +31,8 @@ try {
     // do nothing
 }
 
+export const supportsGlob = (typeof glob === 'function');
+
 export default glob;
 
 /**

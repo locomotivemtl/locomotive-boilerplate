@@ -1,5 +1,5 @@
 import loconfig from '../utils/config.js';
-import glob from '../utils/glob.js';
+import glob, { supportsGlob } from '../utils/glob.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
 import resolve from '../utils/template.js';
@@ -64,7 +64,7 @@ export const productionConcatFilesArgs  = [
  * @return {Promise}
  */
 export default async function concatFiles(globOptions = null, concatOptions = null) {
-    if (glob) {
+    if (supportsGlob) {
         if (globOptions == null) {
             globOptions = productionGlobOptions;
         } else if (
@@ -105,7 +105,7 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
             includes = resolve(includes);
             outfile  = resolve(outfile);
 
-            if (glob && globOptions) {
+            if (supportsGlob && globOptions) {
                 includes = await glob(includes, globOptions);
             }
 
