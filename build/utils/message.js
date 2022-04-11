@@ -17,7 +17,7 @@ export default function message(text, type, timerID) {
             console.log('✅ ', kleur.bgGreen().black(text));
             break;
 
-        case 'cleaning':
+        case 'chore':
             console.log('🧹 ', kleur.bgGreen().black(text));
             break;
 
