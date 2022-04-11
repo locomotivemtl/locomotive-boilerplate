@@ -25,7 +25,7 @@ The generation of columns adds a lot of styles in the css output file. To solve 
 
 #### Config file
 
-Depending on your project, you will need to specify all the files that will include the Grid System classes. These files will be parsed by [PurgeCSS] and then a "cleaned" css file will be generated. The styles should also compile everytime the following listed files are changed.
+Depending on your project, you will need to specify all the files that include CSS classes from the grid system. These files will be scanned by [PurgeCSS] to your compiled CSS files.
 
 Example of a Charcoal project:
 
