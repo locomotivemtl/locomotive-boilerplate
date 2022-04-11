@@ -144,8 +144,8 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
 
             try {
                 await writeFile(outfile, result.css).then(() => {
-                    //Purge css once file exists.
-                    purgeUnusedCSS(outfile, filestem);
+                    // Purge CSS once file exists.
+                    purgeUnusedCSS(outfile, `${label || `${filestem}.css`}`);
                 });
 
                 if (result.css) {
@@ -222,14 +222,10 @@ function createPostCSSProcessor(pluginsListOrMap, options)
  *
  * @async
  *
- * @param  {string}         [outfile=false] - The path of a css file
- *      If missing the function stops.
- * @param {string} text      - The file name.
+ * @param  {string} outfile  - The path of the CSS file.
+ * @param  {string} filestem - The CSS file name.
  */
 async function purgeUnusedCSS(outfile = false, filestem) {
-    if(!outfile) {
-        return;
-    }
 
     const timeLabel = `${filestem}.css purged in`;
         console.time(timeLabel);
