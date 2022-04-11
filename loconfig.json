@@ -60,8 +60,6 @@
         "purgeCSS": {
             "content": [
                 "./www/**/*.html",
-                "./views/app/template/**/*.mustache",
-                "./src/App/Template/*.php",
                 "./assets/scripts/**/*"
             ]
         }

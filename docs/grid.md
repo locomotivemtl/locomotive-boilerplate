@@ -27,63 +27,64 @@ The generation of columns adds a lot of styles in the css output file. To solve 
 
 Depending on your project, you will need to specify all the files that will include the Grid System classes. These files will be parsed by [PurgeCSS] and then a "cleaned" css file will be generated. The styles should also compile everytime the following listed files are changed.
 
-```json
-// Charcoal project example
+Example of a Charcoal project:
+
+```jsonc
 "purgeCSS": {
     "content": [
-        "./www/**/*.html", 
         "./views/app/template/**/*.mustache",
         "./src/App/Template/*.php",
-        "./assets/scripts/**/*" // use case: el.classList.add('u-gc-1/2')
+        "./assets/scripts/**/*" // use case: `el.classList.add('u-gc-1/2')`
     ]
 }
-```
 
 ## Usage
 
 The first step is to set intial SCSS values in the following files :
 
-- [`config.scss`](../assets/styles/settings/_config.scss)
-```scss
-// Grid
-// ==========================================================================
-$base-column-nb: 12;
-$base-column-gap: $unit-small;
-```
+- [`settings/_config.scss`](../assets/styles/settings/_config.scss)
 
-You can create multiple column layouts depending on media queries
-
-- [`grid.scss`](../assets/styles/objects/_grid.scss)
-```scss
-.o-grid {
-    display: grid;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
+    ```scss
+    // Grid
     // ==========================================================================
-    // Cols
-    // ==========================================================================
-    &.-col-#{$base-column-nb} {
-        grid-template-columns: repeat(#{$base-column-nb}, 1fr);
-    }
+    $base-column-nb: 12;
+    $base-column-gap: $unit-small;
+    ```
 
-    &.-col-4 {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    You can create multiple column layouts depending on media queries.
 
-    &.-col-#{$base-column-nb}\@from-medium {
-        @media (min-width: $from-medium) {
+- [`objects/_grid.scss`](../assets/styles/objects/_grid.scss)
+
+    ```scss
+    .o-grid {
+        display: grid;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        // ==========================================================================
+        // Cols
+        // ==========================================================================
+        &.-col-#{$base-column-nb} {
             grid-template-columns: repeat(#{$base-column-nb}, 1fr);
         }
-    }
-    ...
-```
+
+        &.-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.-col-#{$base-column-nb}\@from-medium {
+            @media (min-width: $from-medium) {
+                grid-template-columns: repeat(#{$base-column-nb}, 1fr);
+            }
+        }
+        // …
+    ```
 
 ### Example
 
-Here is an example of a layout that has 4 columns `>=999px` and 12 columns `<1000px`
+The following layout has 4 columns at `>=999px` and 12 columns at `<1000px`.
 
 ```html
 <div class="o-container">
@@ -109,4 +110,4 @@ Here is an example of a layout that has 4 columns `>=999px` and 12 columns `<100
 </div>
 ```
 
-[purgecss]:      https://purgecss.com/
+[PurgeCSS]: https://purgecss.com/
