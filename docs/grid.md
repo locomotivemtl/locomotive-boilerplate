@@ -34,6 +34,7 @@ Example of a Charcoal project:
         "./assets/scripts/**/*" // use case: `el.classList.add('u-gc-1/2')`
     ]
 }
+```
 
 ## Usage
 
