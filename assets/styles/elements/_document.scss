@@ -2,6 +2,22 @@
 // Elements / Document
 // ==========================================================================
 
+:root {
+
+    // Grid
+    --grid-columns      : 4;
+    --grid-gutter       : #{rem(10px)};
+    --grid-gutter-half  : calc(0.5 * var(--grid-gutter));
+    --grid-margin       : 0px;
+
+    @media (min-width: $from-small) {
+        --grid-columns  : 12;
+        --grid-gutter   : #{rem(16px)};
+        --grid-margin   : #{rem(20px)};
+    }
+}
+
+//
 // Simple page-level setup.
 //
 // 1. Include web fonts
