@@ -1,0 +1,46 @@
+// ==========================================================================
+// Objects / SVG Icons
+// ==========================================================================
+
+
+// Global styles for icones
+// ==========================================================================
+
+.o-icon {
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+        --icon-height: calc(var(--icon-width) * (1 / (var(--icon-ratio))));
+
+        display: block;
+        width: var(--icon-width);
+        height: var(--icon-height);
+        fill: currentColor;
+    }
+}
+
+
+// SVG sizes
+// ==========================================================================
+
+// Logo
+.svg-logo {
+    --icon-width: #{rem(100px)};
+    --icon-ratio: 41/84; // width/height based on svg viewBox
+
+    --svg-logo-bg   : transparent;
+    --svg-logo-icon : #000;
+
+    // Sizes
+    .o-icon.-big & {
+        --icon-width: #{rem(200px)};
+    }
+
+    // Colors
+    &.-invert {
+        --svg-logo-bg   : #000;
+        --svg-logo-icon : #fff;
+    }
+}
+
