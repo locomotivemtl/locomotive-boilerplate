@@ -12,14 +12,25 @@ $assets-path: "../"  !default;
 
 // Typefaces
 // =============================================================================
-$font-sans-serif: sans-serif;
+
+$font-dir: "../fonts/";
+
+$font-families: (
+    "sans": ("Webfont Sans", "Helvetica Neue", Arial, sans-serif),
+    // "serif": ("Webfont Serif", Georgia, serif)
+);
+
+$fontfaces: (
+    // "Webfont Sans" "webfont-sans_regular" 400 normal,
+    // "Webfont Sans" "webfont-sans_regular-italic" 400 italic,
+    // "Webfont Serif" "webfont-sans_bold" 700 normal,
+);
 
 // Typography
 // =============================================================================
 // Base
 $font-size:   16px;
 $line-height: 24px / $font-size;
-$font-family: $font-sans-serif;
 $color:       #222222;
 // Headings
 $font-size-h1:  36px  !default;
