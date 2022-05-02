@@ -2,21 +2,43 @@
 // Tools / Font Faces
 // ==========================================================================
 
-// Mixin
-@mixin fontfaces($webfonts, $dir) {
-    @each $webfont in $webfonts {
-        @font-face {
-            font-display: swap;
-            font-family: nth($webfont, 1);
-            src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
-                 url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
-            font-weight: #{nth($webfont, 3)};
-            font-style: #{nth($webfont, 4)};
-        }
+//
+// Import the webfont with font-face as woff and woff2
+//
+// @param  {List} $webfont (font name, filename, font-weight, font-style) - Each webfont to import.
+// @param  {String} $dir                                                  - The webfont directory path
+// @output void
+//
+@mixin font-face($webfont, $dir) {
+    @font-face {
+        font-display: swap;
+        font-family: nth($webfont, 1);
+        src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
+             url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
+        font-weight: #{nth($webfont, 3)};
+        font-style: #{nth($webfont, 4)};
     }
 }
 
-// Function
+//
+// Loops through a list of local fonts and import each font-face as woff and woff2
+//
+// @param  {List} $webfonts [(font name, filename, font-weight, font-style)] - Each webfont to import.
+// @param  {String} $dir                                                     - The webfont directory path
+// @output void
+//
+@mixin font-faces($webfonts, $dir) {
+    @each $webfont in $webfonts {
+        @include font-face($webfont, $dit);
+    }
+}
+
+//
+// Map the font-family requires with the existing imported font-families
+//
+// @param  {String} $font-family - The name of the webfont.
+// @return {String} The webfont and it's fallbacks.
+//
 @function ff($font-family) {
     @if not map-has-key($font-families, $font-family) {
        @error "No font-family found in $font-families map for `#{$font-family}`. Property omitted.";
