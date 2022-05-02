@@ -10,7 +10,7 @@ html {
 // Add the correct display in IE 10-.
 // 1. Add the correct display in IE.
 //
-template, /* [1] */
+template, // [1]
 [hidden] {
     display: none;
 }
@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
  * 1. Single taps should be dispatched immediately on clickable elements
  */
 a, area, button, input, label, select, textarea, [tabindex] {
-    -ms-touch-action: manipulation; /* [1] */
+    -ms-touch-action: manipulation; // [1]
     touch-action: manipulation;
 }
 

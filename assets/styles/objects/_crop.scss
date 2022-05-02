@@ -21,9 +21,9 @@ $crop-ratios: (
  * 2. This is the crucial part: where the cropping happens.
  */
 .o-crop {
-    position: relative; /* [1] */
+    position: relative; // [1]
     display: block;
-    overflow: hidden; /* [2] */
+    overflow: hidden; // [2]
 }
 
 /**
@@ -34,9 +34,9 @@ $crop-ratios: (
  */
 .o-crop_content {
     position: absolute;
-    top: 0; /* [1] */
-    left: 0; /* [1] */
-    max-width: none; /* [2] */
+    top: 0; // [1]
+    left: 0; // [1]
+    max-width: none; // [2]
 
     /**
      * We can position the media in different locations within the cropping area.
