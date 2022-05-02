@@ -1,0 +1,55 @@
+// ==========================================================================
+// Typography / Wysiwyg
+// ==========================================================================
+
+.t-wysiwyg {
+
+    p,
+    ul,
+    ol,
+    blockquote {
+        margin-bottom: $line-height * 1em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 1em 0 0.5em;
+    }
+
+    h1 { @extend .t-h1; }
+    h2 { @extend .t-h2; }
+    h3 { @extend .t-h3; }
+    h4 { @extend .t-h4; }
+    h5 { @extend .t-h5; }
+    h6 { @extend .t-h6; }
+
+    ul,
+    ol {
+        padding-left: 2em;
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    b,
+    strong {
+        font-weight: 700;
+    }
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}

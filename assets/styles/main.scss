@@ -31,6 +31,11 @@
 @import "elements/fonts";
 @import "elements/page";
 
+// Typography
+// ==========================================================================
+@import "typography/headings";
+@import "typography/wysiwyg";
+
 // Objects
 // ==========================================================================
 @import "objects/scroll";
@@ -47,7 +52,6 @@
 // Components
 // ==========================================================================
 @import "components/scrollbar";
-@import "components/heading";
 @import "components/button";
 @import "components/form";
 
