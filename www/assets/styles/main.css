@@ -394,11 +394,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-/**
- * 1. Single taps should be dispatched immediately on clickable elements
- */
 a, area, button, input, label, select, textarea, [tabindex] {
-  /* [1] */
   touch-action: manipulation;
 }
 
@@ -427,7 +423,6 @@ img,
 svg,
 video {
   vertical-align: middle;
-  /* [1] */
 }
 
 audio:not([controls]) {
@@ -438,25 +433,21 @@ audio:not([controls]) {
 img,
 svg {
   max-width: 100%;
-  /* [2] */
   height: auto;
 }
 
 img[width], img[height],
 svg[width],
 svg[height] {
-  /* [4] */
   max-width: none;
 }
 
 img {
   font-style: italic;
-  /* [4] */
 }
 
 svg {
   fill: currentColor;
-  /* [5] */
 }
 
 input,
@@ -499,27 +490,20 @@ textarea {
 button,
 .c-button {
   display: inline-block;
-  /* [1] */
   overflow: visible;
-  /* [2] */
   margin: 0;
-  /* [3] */
   padding: 0;
   outline: 0;
   border: 0;
   background: none transparent;
   color: inherit;
   vertical-align: middle;
-  /* [4] */
   text-align: center;
-  /* [3] */
   text-decoration: none;
   text-transform: none;
   font: inherit;
-  /* [5] */
   line-height: normal;
   cursor: pointer;
-  /* [6] */
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -635,14 +619,6 @@ a:focus, a:hover {
   max-width: 132.5rem;
 }
 
-/**
- * Create ratio-bound content blocks, to keep media (e.g. images, videos) in
- * their correct aspect ratios.
- *
- * http://alistapart.com/article/creating-intrinsic-ratios-for-video
- *
- * 1. Default cropping is a 1:1 ratio (i.e. a perfect square).
- */
 .o-ratio {
   position: relative;
   display: block;
@@ -652,7 +628,6 @@ a:focus, a:hover {
 .o-ratio:before {
   display: block;
   padding-bottom: 100%;
-  /* [1] */
   width: 100%;
   content: "";
 }

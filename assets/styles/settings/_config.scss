@@ -4,6 +4,7 @@
 
 // Context
 // =============================================================================
+
 // The current stylesheet context. Available values: frontend, editor.
 $context: frontend  !default;
 
@@ -28,10 +29,12 @@ $font-faces: (
 
 // Typography
 // =============================================================================
+
 // Base
 $font-size:   16px;
 $line-height: 24px / $font-size;
 $color:       #222222;
+
 // Headings
 $font-size-h1:  36px  !default;
 $font-size-h2:  28px  !default;
@@ -40,6 +43,7 @@ $font-size-h4:  20px  !default;
 $font-size-h5:  18px  !default;
 $font-size-h6:  16px  !default;
 $line-height-h: $line-height;
+
 // Weights
 $light:  300;
 $normal: 400;
@@ -48,21 +52,25 @@ $bold:   700;
 
 // Transitions
 // =============================================================================
+
 $speed:  0.3s;
 $easing: $Power2EaseOut;
 
 // Spacing Units
 // =============================================================================
+
 $unit:       60px;
 $unit-small: 30px;
 
 // Container
-// ==========================================================================
+// =============================================================================
+
 $container-width: 2000px;
 $padding:         $unit;
 
 // Breakpoints
 // =============================================================================
+
 $from-tiny:     500px              !default;
 $to-tiny:       $from-tiny - 1     !default;
 $from-small:    700px              !default;

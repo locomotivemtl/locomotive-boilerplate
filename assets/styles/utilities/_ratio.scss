@@ -4,10 +4,8 @@
 
 //
 // @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.ratio.scss
-//
 
 // A list of aspect ratios that get generated as modifier classes.
-
 $aspect-ratios: (
     (2:1),
     (4:3),
@@ -21,8 +19,7 @@ $aspect-ratios: (
 //
 // @example
 //   <div class="o-ratio u-16:9">
-//
-//
+
 @each $ratio in $aspect-ratios {
     @each $antecedent, $consequent in $ratio {
         @if (type-of($antecedent) != number) {

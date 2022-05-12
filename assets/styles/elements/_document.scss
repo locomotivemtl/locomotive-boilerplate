@@ -1,5 +1,5 @@
 // ==========================================================================
-// Base / Page
+// Elements / Document
 // ==========================================================================
 
 //
@@ -7,8 +7,7 @@
 //
 // 1. Include web fonts
 // 2. Ensure the page always fills at least the entire height of the viewport.
-// 3. Set the default `font-size` and `line-height` for the entire project,
-//    sourced from our default variables.
+// 3. Set the default `font-size` and `line-height` for the entire project, sourced from our default variables.
 
 @include font-faces($font-faces, $font-dir); // [1]
 

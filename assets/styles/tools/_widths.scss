@@ -45,7 +45,7 @@ $breakpoint-delimiter: \@ !default;
 // @param    {List}     $colums     - The columns we want the widths to have.
 // @param    {String}   $breakpoint - Optional suffix for responsive widths.
 // @output   `width`, `position`, `right`, `left`
-//
+
 @mixin widths($columns, $breakpoint: null, $important: true) {
     $important: important($important);
 

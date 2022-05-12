@@ -9,7 +9,7 @@
 //
 // @param  {Color} $value [rgba(0, 0, 0, 0)] - The value of the highlight.
 // @output `-webkit-tap-highlight-color`
-//
+
 @mixin tap-highlight-color($value: rgba(0, 0, 0, 0)) {
     -webkit-tap-highlight-color: $value;
 }
@@ -21,7 +21,7 @@
 //
 // @param  {String} $value [rgba(0, 0, 0, 0)] - The type of scrolling.
 // @output `-webkit-overflow-scrolling`
-//
+
 @mixin overflow-scrolling($value: touch) {
     -webkit-overflow-scrolling: $value;
 }
@@ -32,7 +32,7 @@
 // @link   http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
 // @param  {List} $supports The type of clearfix to generate.
 // @output Injects `:::after` pseudo-element.
-//
+
 @mixin u-clearfix($supports...) {
     &::after {
         display: if(list-contains($supports, table), table, block);
@@ -49,7 +49,7 @@
 // @param  {Number}  $line-height [auto]  - The line box height.
 // @param  {Boolean} $important   [false] - Whether the font-size is important.
 // @output `font-size`, `line-height`
-//
+
 @mixin font-size($font-size, $line-height: auto, $important: false) {
     $important: important($important);
     font-size: rem($font-size) $important;
@@ -75,7 +75,7 @@
 // and its children.
 //
 // @output `font-size`, `display`, `vertical-align`
-//
+
 @mixin o-vertical-center {
     font-size: 0;
 
@@ -99,7 +99,7 @@
 // @link    https://github.com/inuitcss/inuitcss/blob/master/tools/_tools.mixins.scss
 // @content Wrapped in `:focus` and `:hover` pseudo-classes.
 // @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
-//
+
 @mixin u-hocus {
     &:focus,
     &:hover {
@@ -113,7 +113,7 @@
 // @see     {Mixin} u-hocus
 // @content Wrapped in `:focus` and `:active` pseudo-classes.
 // @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
-//
+
 @mixin u-actus {
     &:focus,
     &:active {
@@ -131,7 +131,7 @@
 //
 // @param  {Number} $width [100%] - The maximum width of element.
 // @output `max-width`, `word-wrap`, `white-space`, `overflow`, `text-overflow`
-//
+
 @mixin u-truncate($width: 100%) {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -147,7 +147,7 @@
 //
 // @param  {Boolean} $important [true] - Whether the visibility is important.
 // @output Properties for removing the element from the document flow.
-//
+
 @mixin u-accessibly-hidden($important: true) {
     $important: important($important);
     position: absolute $important;
@@ -165,7 +165,7 @@
 //
 // @content For styling the now visible element.
 // @output  Injects `:focus`, `:active` pseudo-classes.
-//
+
 @mixin u-accessibly-focusable {
     @include u-actus {
         clip: auto;
@@ -184,7 +184,7 @@
 // @link   http://juicystudio.com/article/screen-readers-display-none.php
 // @param  {Boolean} $important [true] - Whether the visibility is important.
 // @output `display`, `visibility`
-//
+
 @mixin u-hidden($important: true) {
     $important: important($important);
     display: none   $important;
@@ -199,7 +199,7 @@
 // @param  {String}  $display   [block] - The rendering box used for the element.
 // @param  {Boolean} $important [true]  - Whether the visibility is important.
 // @output `display`, `visibility`
-//
+
 @mixin u-shown($display: block, $important: true) {
     $important: important($important);
     display: $display $important;
