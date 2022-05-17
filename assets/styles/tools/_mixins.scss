@@ -2,7 +2,6 @@
 // Tools / Mixins
 // ==========================================================================
 
-//
 // Set the color of the highlight that appears over a link while it's being tapped.
 //
 // By default, the highlight is suppressed.
@@ -14,7 +13,6 @@
     -webkit-tap-highlight-color: $value;
 }
 
-//
 // Set whether or not touch devices use momentum-based scrolling for the given element.
 //
 // By default, applies momentum-based scrolling for the current element.
@@ -26,7 +24,6 @@
     -webkit-overflow-scrolling: $value;
 }
 
-//
 // Micro clearfix rules for containing floats.
 //
 // @link   http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
@@ -41,7 +38,6 @@
     }
 }
 
-//
 // Generate a font-size and baseline-compatible line-height.
 //
 // @link   https://github.com/inuitcss/inuitcss/c14029c/tools/_tools.font-size.scss
@@ -67,7 +63,6 @@
     }
 }
 
-//
 // Vertically-center the direct descendants of the current element.
 //
 // Centering is achieved by displaying children as inline-blocks. Any whitespace
@@ -93,7 +88,6 @@
     }
 }
 
-//
 // Generate `:hover` and `:focus` styles in one go.
 //
 // @link    https://github.com/inuitcss/inuitcss/blob/master/tools/_tools.mixins.scss
@@ -107,7 +101,6 @@
     }
 }
 
-//
 // Generate `:active` and `:focus` styles in one go.
 //
 // @see     {Mixin} u-hocus
@@ -121,7 +114,6 @@
     }
 }
 
-//
 // Prevent text from wrapping onto multiple lines for the current element.
 //
 // An ellipsis is appended to the end of the line.
@@ -142,7 +134,6 @@
     }
 }
 
-//
 // Applies accessible hiding to the current element.
 //
 // @param  {Boolean} $important [true] - Whether the visibility is important.
@@ -160,7 +151,6 @@
     border: 0;
 }
 
-//
 // Allows an accessibly hidden element to be focusable via keyboard navigation.
 //
 // @content For styling the now visible element.
@@ -176,7 +166,6 @@
     }
 }
 
-//
 // Hide the current element from all.
 //
 // The element will be hidden from screen readers and removed from the document flow.
@@ -191,7 +180,6 @@
     visibility: hidden $important;
 }
 
-//
 // Show the current element for all.
 //
 // The element will be accessible from screen readers and visible in the document flow.

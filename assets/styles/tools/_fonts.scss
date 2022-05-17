@@ -2,7 +2,6 @@
 // Tools / Font Faces
 // ==========================================================================
 
-//
 // Import the webfont with font-face as woff and woff2
 //
 // @param  {List} $webfont (font name, filename, font-weight, font-style) - Each webfont to import.
@@ -20,7 +19,6 @@
     }
 }
 
-//
 // Loops through a list of local fonts and import each font-face as woff and woff2
 //
 // @param  {List} $webfonts [(font name, filename, font-weight, font-style)] - Each webfont to import.
@@ -33,7 +31,6 @@
     }
 }
 
-//
 // Map the font-family requires with the existing imported font-families
 //
 // @param  {String} $font-family - The name of the webfont.

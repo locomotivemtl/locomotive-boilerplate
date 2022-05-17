@@ -2,7 +2,6 @@
 // Tools / Family
 // ==========================================================================
 
-//
 // DOCS : https://lukyvj.github.io/family.scss/
 //
 // Select all children from the first to `$num`.
@@ -22,7 +21,6 @@
     }
 }
 
-//
 // Select all children from the last to `$num`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -34,7 +32,6 @@
     }
 }
 
-//
 // Select all children after the first to `$num`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -46,7 +43,6 @@
     }
 }
 
-//
 // Select all children before `$num` from the last.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -58,7 +54,6 @@
     }
 }
 
-//
 // Select all children between `$first` and `$last`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -69,7 +64,6 @@
     }
 }
 
-//
 // Select all even children between `$first` and `$last`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -80,7 +74,6 @@
     }
 }
 
-//
 // Select all odd children between `$first` and `$last`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -91,7 +84,6 @@
     }
 }
 
-//
 // Select all `$num` children between `$first` and `$last`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -102,7 +94,6 @@
     }
 }
 
-//
 // Select all children but `$num`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -114,7 +105,6 @@
     }
 }
 
-//
 // Select children each `$num`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -127,7 +117,6 @@
     }
 }
 
-//
 // Select children each `$num`.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -139,7 +128,6 @@
     }
 }
 
-//
 // Select the `$num` child from the start and the `$num` child from the last.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -152,7 +140,6 @@
     }
 }
 
-//
 // Select the item in the middle of `$num` child. Only works with odd number
 // chain.
 // @group with-arguments
@@ -165,7 +152,6 @@
     }
 }
 
-//
 // Select all children between the `$num` first and the `$num` last.
 // @group with-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -177,7 +163,6 @@
     }
 }
 
-//
 // This quantity-query mixin will only select the first of `$limit` items. It will not
 // work if there is not as much as item as you set in `$limit`.
 // @group Quantity queries
@@ -190,7 +175,6 @@
     }
 }
 
-//
 // This quantity-query mixin will only select the last of `$limit` items. It will not
 // if there is not as much as item as you set in `$limit`.
 // @group Quantity queries
@@ -203,7 +187,6 @@
     }
 }
 
-//
 // This quantity-query mixin will select every items if there is at least `$num` items. It will not
 // if there is not as much as item as you set in `$num`.
 // @group Quantity queries
@@ -220,7 +203,6 @@
     }
 }
 
-//
 // This quantity-query mixin will select every items if there is at most `$num` items. It will not
 // if there is not as much as item as you set in `$num`.
 // @group Quantity queries
@@ -237,7 +219,6 @@
     }
 }
 
-//
 // This quantity-query mixin will select every items only if there is between `$min` and `$max` items.
 // @group Quantity queries
 // @param {number} $limit
@@ -253,7 +234,6 @@
     }
 }
 
-//
 // Select the first exact child
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -264,7 +244,6 @@
     }
 }
 
-//
 // Select the last exact child
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -275,7 +254,6 @@
     }
 }
 
-//
 // Select all even children.
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -286,7 +264,6 @@
     }
 }
 
-//
 // Select all odd children.
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -297,7 +274,6 @@
     }
 }
 
-//
 // Select only the first and last child.
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -309,7 +285,6 @@
     }
 }
 
-//
 // Will only select the child if it’s unique.
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -321,7 +296,6 @@
     }
 }
 
-//
 // Will only select the child if it’s unique.
 // @group no-arguments
 // @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -332,7 +306,6 @@
     }
 }
 
-//
 // Will only select children if they are not unique. Meaning if there is at
 // least 2 children, the style is applied.
 // @group no-arguments
@@ -344,7 +317,6 @@
     }
 }
 
-//
 // This mixin is used to automatically sort z-index in numerical order. But it
 // can also sort them in anti-numerical order, depending the parameters you use.
 // @group using functions
@@ -369,7 +341,6 @@
     }
 }
 
-//
 // Used by the child-index mixin. It will returned the proper sorted numbers
 // depending on the `$index` value.
 // @access private

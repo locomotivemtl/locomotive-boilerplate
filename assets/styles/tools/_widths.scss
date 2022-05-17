@@ -10,19 +10,21 @@
 //   .u-pull-2/4
 //   .u-pull-1/5
 //   .u-push-2/3
+
 $widths-offsets: false !default;
 
 // By default, the boilerplate uses fractions-like classes like `<div class="u-1/4">`.
 // You can change the `/` to whatever you fancy with this variable.
+
 $fractions-delimiter: \/ !default;
 
 // When using Sass-MQ, this defines the separator for the breakpoints suffix
 // in the class name. By default, we are generating the responsive suffixes
 // for the classes with a `@` symbol so you get classes like:
 // <div class="u-3/12@mobile">
+
 $breakpoint-delimiter: \@ !default;
 
-//
 // Generate a series of width helper classes
 //
 // @example scss

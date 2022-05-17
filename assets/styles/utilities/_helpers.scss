@@ -33,33 +33,31 @@
 //     display: block;
 // }
 
-// //
 // // 1. Fix for Firefox bug: an image styled `max-width:100%` within an
 // // inline-block will display at its default size, and not limit its width to
 // // 100% of an ancestral container.
-
+//
 // .u-inline-block {
 //     display: inline-block !important;
 //     max-width: 100%; /* 1 */
 // }
-
+//
 // .u-inline {
 //     display: inline !important;
 // }
-
+//
 // .u-table {
 //     display: table !important;
 // }
-
+//
 // .u-tableCell {
 //     display: table-cell !important;
 // }
-
+//
 // .u-tableRow {
 //     display: table-row !important;
 // }
 
-//
 // Completely remove from the flow but leave available to screen readers.
 
 .u-screen-reader-text {
@@ -72,7 +70,6 @@
     }
 }
 
-//
 // Extends the `.screen-reader-text` class to allow the element
 // to be focusable when navigated to via the keyboard.
 //

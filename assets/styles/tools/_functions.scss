@@ -2,7 +2,6 @@
 // Tools / Functions
 // ==========================================================================
 
-//
 // Converts the given pixel value to its EM quivalent.
 //
 // @param  {Number} $size                     - The pixel value to convert.
@@ -29,7 +28,6 @@
     @return ($size / $base) * 1em;
 }
 
-//
 // Converts the given pixel value to its REM quivalent.
 //
 // @param  {Number} $size                     - The pixel value to convert.
@@ -56,7 +54,6 @@
     @return ($size / $base) * 1rem;
 }
 
-//
 // Converts a number to a percentage.
 //
 // @alias  percentage()
@@ -68,7 +65,6 @@
     @return percentage($number);
 }
 
-//
 // Checks if a list contains a value(s).
 //
 // @link   https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/validators/_contains.scss
@@ -90,7 +86,6 @@
     @return true;
 }
 
-//
 // Resolve whether a rule is important or not.
 //
 // @param  {Boolean}     $flag - Whether a rule is important (TRUE) or not (FALSE).
@@ -106,7 +101,6 @@
     }
 }
 
-//
 // Determine if the current context is for a WYSIWYG editor.
 //
 // @requires {String} $context - The global context of the stylesheet.
@@ -116,7 +110,6 @@
     @return ('editor' == $context);
 }
 
-//
 // Determine if the current context is for the front-end.
 //
 // @requires {String} $context - The global context of the stylesheet.

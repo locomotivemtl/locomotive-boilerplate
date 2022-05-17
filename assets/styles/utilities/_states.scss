@@ -2,7 +2,6 @@
 // Utilities / States
 // ==========================================================================
 
-//
 // ARIA roles display visual cursor hints
 
 [aria-busy="true"] {
@@ -17,7 +16,6 @@
     cursor: default;
 }
 
-//
 // Control visibility without affecting flow.
 
 .is-visible {
@@ -30,7 +28,6 @@
     opacity: 0 !important;
 }
 
-//
 // Completely remove from the flow and screen readers.
 
 .is-hidden {
@@ -54,29 +51,27 @@
 //         display: none;
 //     }
 // }
-
+//
 // .is-hidden\@from-large {
 //     @media (min-width: $from-large) {
 //         display: none;
 //     }
 // }
 
-// //
 // // Display a hidden-by-default element.
 //
-
 // .is-shown {
 //     @include u-shown;
 // }
-
+//
 // table.is-shown {
 //     display: table !important;
 // }
-
+//
 // tr.is-shown {
 //     display: table-row !important;
 // }
-
+//
 // td.is-shown,
 // th.is-shown {
 //     display: table-cell !important;
