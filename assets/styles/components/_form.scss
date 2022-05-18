@@ -1,6 +1,7 @@
 // ==========================================================================
-// Form
+// Components / Form
 // ==========================================================================
+
 .c-form {
 
 }
@@ -12,6 +13,7 @@
 
 // Label
 // ==========================================================================
+
 .c-form_label {
     display: block;
     margin-bottom: rem(10px);
@@ -19,6 +21,7 @@
 
 // Input
 // ==========================================================================
+
 $input-icon-color: 424242; // No #
 
 .c-form_input {
@@ -41,6 +44,7 @@ $input-icon-color: 424242; // No #
 
 // Checkbox
 // ==========================================================================
+
 $checkbox: rem(18px);
 $checkbox-icon-color: $input-icon-color;
 
@@ -108,6 +112,7 @@ $checkbox-icon-color: $input-icon-color;
 
 // Radio
 // ==========================================================================
+
 $radio-icon-color: $input-icon-color;
 
 .c-form_radioLabel {
@@ -129,6 +134,7 @@ $radio-icon-color: $input-icon-color;
 
 // Select
 // =============================================================================
+
 $select-icon: rem(40px);
 $select-icon-color: $input-icon-color;
 
@@ -163,6 +169,7 @@ $select-icon-color: $input-icon-color;
 
 // Textarea
 // =============================================================================
+
 .c-form_textarea {
     @extend .c-form_input;
 

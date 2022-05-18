@@ -2,13 +2,12 @@
 // Tools / Font Faces
 // ==========================================================================
 
-//
 // Import the webfont with font-face as woff and woff2
 //
 // @param  {List} $webfont (font name, filename, font-weight, font-style) - Each webfont to import.
 // @param  {String} $dir                                                  - The webfont directory path
 // @output void
-//
+
 @mixin font-face($webfont, $dir) {
     @font-face {
         font-display: swap;
@@ -20,25 +19,23 @@
     }
 }
 
-//
 // Loops through a list of local fonts and import each font-face as woff and woff2
 //
 // @param  {List} $webfonts [(font name, filename, font-weight, font-style)] - Each webfont to import.
 // @param  {String} $dir                                                     - The webfont directory path
 // @output void
-//
+
 @mixin font-faces($webfonts, $dir) {
     @each $webfont in $webfonts {
         @include font-face($webfont, $dir);
     }
 }
 
-//
 // Map the font-family requires with the existing imported font-families
 //
 // @param  {String} $font-family - The name of the webfont.
 // @return {String} The webfont and it's fallbacks.
-//
+
 @function ff($font-family) {
     @if not map-has-key($font-families, $font-family) {
        @error "No font-family found in $font-families map for `#{$font-family}`. Property omitted.";
