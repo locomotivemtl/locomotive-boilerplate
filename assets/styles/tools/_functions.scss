@@ -86,6 +86,38 @@
     @return true;
 }
 
+// Create variables for the media queries
+//
+// @param  {string} $breakpoint The breakpoint
+// @param  {string} $type       Type of media query (min or max)
+// @return {string}             A media query expression
+
+@function md($breakpoint, $type: "min") {
+
+    @if not map-has-key($breakpoints, $breakpoint) {
+        @warn "No breakpoint found in $breakpoints map for `#{$breakpoint}`. Property omitted.";
+    }
+
+    $value: map-get($breakpoints, $breakpoint);
+
+    @if $type == "min" {
+        @return "(min-width: #{$value})";
+    }
+    @if $type == "max" {
+        @return "(max-width: #{$value - 1px})";
+    }
+}
+
+// Create variables for the media queries between two values
+//
+// @param  {string} $breakpointMin  The breakpoint from
+// @param  {string} $breakpointMax  The breakpoint to
+// @return {string}                 A media query expression
+
+@function mdb($breakpointMin, $breakpointMax) {
+    @return "#{md($breakpointMin)} and #{md($breakpointMax, "max")}";
+}
+
 // Resolve whether a rule is important or not.
 //
 // @param  {Boolean}     $flag - Whether a rule is important (TRUE) or not (FALSE).

@@ -47,13 +47,13 @@
 }
 
 // .is-hidden\@to-large {
-//     @media (max-width: $to-large) {
+//     @media #{md("large", "max")} {
 //         display: none;
 //     }
 // }
 //
 // .is-hidden\@from-large {
-//     @media (min-width: $from-large) {
+//     @media #{md("large")} {
 //         display: none;
 //     }
 // }

@@ -89,3 +89,15 @@ $from-gigantic: 2000px             !default;
 $to-gigantic:   $from-gigantic - 1 !default;
 $from-colossal: 2400px             !default;
 $to-colossal:   $from-colossal - 1 !default;
+
+$breakpoints: (
+    "tiny":     500px,
+    "small":    700px,
+    "medium":   1000px,
+    "large":    1200px,
+    "big":      1400px,
+    "huge":     1600px,
+    "enormous": 1800px,
+    "gigantic": 2000px,
+    "colossal": 2400px
+);

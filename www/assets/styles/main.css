@@ -526,13 +526,22 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (max-width: 699px) {
-  html {
-    font-size: 14px;
-  }
+html.is-loading {
+  cursor: wait;
 }
 
-@media (min-width: 700px) and (max-width: 999px) {
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+@media (max-width: 999px) {
   html {
     font-size: 14px;
   }
@@ -566,21 +575,6 @@ html {
   html {
     font-size: 20px;
   }
-}
-
-html.is-loading {
-  cursor: wait;
-}
-
-html.has-scroll-smooth {
-  overflow: hidden;
-}
-
-html.has-scroll-dragging {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 .has-scroll-smooth body {
