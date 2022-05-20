@@ -4,7 +4,7 @@ export default config = {
 
     // App
     APP_NAME: 'Boilerplate',
-    DATA_API_KEY: '.data-api';   ,
+    DATA_API_KEY: '.data-api',
 
     // Env
     ENV: env,
@@ -15,6 +15,6 @@ export default config = {
     CLASS: {
         LOADING: 'is-loading',
         READY: 'is-ready',
-        LOADED: 'is-loaded'
-    }
+        LOADED: 'is-loaded',
+    },
 }

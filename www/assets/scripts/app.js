@@ -1617,6 +1617,8 @@
   // assets/scripts/config.js
   var env = "development";
   var config_default = config = {
+    APP_NAME: "Boilerplate",
+    DATA_API_KEY: ".data-api",
     ENV: env,
     IS_PROD: env === "production",
     IS_DEV: env === "development",
@@ -1633,26 +1635,21 @@
       super(m);
     }
     init() {
-      this.barba = import_core.default.init({
+      import_core.default.init({
         debug: config_default.IS_DEV,
         schema: {
           prefix: "data-load"
         },
         transitions: [{
           name: "default-transition",
-          beforeLeave: () => {
-          },
           leave: (data) => {
             this.call("destroy", data.current.container, "app");
-          },
-          beforeEnter: () => {
           },
           enter: (data) => {
             this.call("update", data.next.container, "app");
           }
         }]
       });
-      console.log("init", this.barba, import_core.default);
     }
   };
 
@@ -4224,10 +4221,9 @@
     (0, import_svg4everybody.default)();
   }
 
-  // assets/scripts/utils/environment.js
-  var html = document.documentElement;
-  var body = document.body;
-  var isDebug = html.hasAttribute("data-debug");
+  // assets/scripts/utils/dom.js
+  var $html = document.documentElement;
+  var $body = document.body;
 
   // assets/scripts/app.js
   var app = new main_esm_default({
@@ -4250,9 +4246,9 @@
   function init() {
     globals_default();
     app.init(app);
-    html.classList.add(config_default.CLASS.LOADED);
-    html.classList.add(config_default.CLASS.READY);
-    html.classList.remove(config_default.CLASS.LOADING);
+    $html.classList.add(config_default.CLASS.LOADED);
+    $html.classList.add(config_default.CLASS.READY);
+    $html.classList.remove(config_default.CLASS.LOADING);
   }
 })();
 /*
