@@ -1,5 +1,6 @@
 import { module } from 'modujs';
-import modularLoad from 'modularload';
+import barba from '@barba/core';
+import config from '../config'
 
 export default class extends module {
     constructor(m) {
@@ -7,16 +8,20 @@ export default class extends module {
     }
 
     init() {
-        const load = new modularLoad({
-            enterDelay: 0,
-            transitions: {
-                customTransition: {}
-            }
-        });
-
-        load.on('loaded', (transition, oldContainer, newContainer) => {
-            this.call('destroy', oldContainer, 'app');
-            this.call('update', newContainer, 'app');
+        barba.init({
+            debug: config.IS_DEV,
+            schema: {
+                prefix: 'data-load',
+            },
+            transitions: [{
+                name: 'default-transition',
+                leave: (data) => {
+                    this.call('destroy', data.current.container, 'app');
+                },
+                enter: (data) => {
+                    this.call('update', data.next.container, 'app');
+                }
+            }]
         });
     }
 }
