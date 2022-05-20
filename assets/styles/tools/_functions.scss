@@ -54,6 +54,22 @@
     @return ($size / $base) * 1rem;
 }
 
+// A function helper to avoid having to type `map-get($layers, ...)`
+//
+// @link on http://css-tricks.com/handling-z-index/
+// @param  {string} $layer The name of the z-index
+// @param  {number} $var   The modifier if needed
+// @return {number}        The corresponding z-index based on the $layers var
+
+@function z($layer, $var: 0) {
+    @if not map-has-key($layers, $layer) {
+        @error "No z-index found in $layers map for `#{$layer}`. Property omitted.";
+    }
+
+    $value: map-get($layers, $layer);
+    @return $value + $var;
+}
+
 // Converts a number to a percentage.
 //
 // @alias  percentage()

@@ -89,3 +89,16 @@ $from-gigantic: 2000px             !default;
 $to-gigantic:   $from-gigantic - 1 !default;
 $from-colossal: 2400px             !default;
 $to-colossal:   $from-colossal - 1 !default;
+
+// Z-indexes
+// =============================================================================
+
+$layers: (
+    "goku"     : 9000,
+    "loader"   : 500,
+    "modal"    : 300,
+    "header"   : 200,
+    "dropdown" : 100,
+    "default"  : 1,
+    "limbo"    : -999
+);
