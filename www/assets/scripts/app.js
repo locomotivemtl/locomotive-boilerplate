@@ -1095,8 +1095,13 @@
   };
 
   // assets/scripts/utils/image.js
-  var LAZY_LOADED_IMAGES = [];
-  function loadImage(url, options = {}) {
+  var getImageMetadata = ($img) => ({
+    url: $img.src,
+    width: $img.naturalWidth,
+    height: $img.naturalHeight,
+    ratio: $img.naturalWidth / $img.naturalHeight
+  });
+  var loadImage = (url, options = {}) => {
     return new Promise((resolve, reject) => {
       const $img = new Image();
       if (options.crossOrigin) {
@@ -1120,45 +1125,36 @@
         $img.src = url;
       }
     });
-  }
-  function getImageMetadata($img) {
-    return {
-      url: $img.src,
-      width: $img.naturalWidth,
-      height: $img.naturalHeight,
-      ratio: $img.naturalWidth / $img.naturalHeight
-    };
-  }
-  function lazyLoadImage($el, url, callback) {
-    return __async(this, null, function* () {
-      let src2 = url ? url : $el.dataset.src;
-      let loadedImage = LAZY_LOADED_IMAGES.find((image) => image.url === src2);
-      if (!loadedImage) {
-        loadedImage = yield loadImage(src2);
-        if (!loadedImage.url) {
-          return;
-        }
-        LAZY_LOADED_IMAGES.push(loadedImage);
-      }
-      if ($el.src === src2) {
+  };
+  var LAZY_LOADED_IMAGES = [];
+  var lazyLoadImage = ($el, url, callback) => __async(void 0, null, function* () {
+    let src2 = url ? url : $el.dataset.src;
+    let loadedImage = LAZY_LOADED_IMAGES.find((image) => image.url === src2);
+    if (!loadedImage) {
+      loadedImage = yield loadImage(src2);
+      if (!loadedImage.url) {
         return;
       }
-      if ($el.tagName === "IMG") {
-        $el.src = loadedImage.url;
-      } else {
-        $el.style.backgroundImage = `url(${loadedImage.url})`;
+      LAZY_LOADED_IMAGES.push(loadedImage);
+    }
+    if ($el.src === src2) {
+      return;
+    }
+    if ($el.tagName === "IMG") {
+      $el.src = loadedImage.url;
+    } else {
+      $el.style.backgroundImage = `url(${loadedImage.url})`;
+    }
+    requestAnimationFrame(() => {
+      let lazyParent = $el.closest(".c-lazy");
+      if (lazyParent) {
+        lazyParent.classList.add("-lazy-loaded");
+        lazyParent.style.backgroundImage = "";
       }
-      requestAnimationFrame(() => {
-        let lazyParent = $el.closest(".c-lazy");
-        if (lazyParent) {
-          lazyParent.classList.add("-lazy-loaded");
-          lazyParent.style.backgroundImage = "";
-        }
-        $el.classList.add("-lazy-loaded");
-        callback == null ? void 0 : callback();
-      });
+      $el.classList.add("-lazy-loaded");
+      callback == null ? void 0 : callback();
     });
-  }
+  });
 
   // node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js
   function _classCallCheck3(instance, Constructor) {

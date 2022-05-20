@@ -1,37 +1,67 @@
 const toString = Object.prototype.toString;
 const arrayLikePattern = /^\[object (?:Array|FileList)\]$/;
 
-// thanks, http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
-export function isArray ( thing ) {
-    return toString.call( thing ) === '[object Array]';
-}
+/**
+ * Check if argument is an array
+ * @param {?array}      x   - element to check
+ * @return {boolean}    true if element is an array
+ */
 
-export function isArrayLike ( obj ) {
-    return arrayLikePattern.test( toString.call( obj ) );
-}
+const isArray = x => toString.call(x) === '[object Array]'
 
-export function isEqual ( a, b ) {
-    if ( a === null && b === null ) {
-        return true;
-    }
 
-    if ( typeof a === 'object' || typeof b === 'object' ) {
-        return false;
-    }
+/**
+ * Check if argument is an array like
+ * @param {array|object}    x   - element to check
+ * @return {boolean}        true if element is an array like
+ */
 
-    return a === b;
-}
+const isArrayLike = x => arrayLikePattern.test(toString.call(x))
 
-// http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-export function isNumeric ( thing ) {
-    return !isNaN( parseFloat( thing ) ) && isFinite( thing );
-}
 
-export function isObject ( thing ) {
-    return ( thing && toString.call( thing ) === '[object Object]' );
-}
+/**
+ * Check if two values are equal
+ * @param {?}           a   - first value
+ * @param {?}           b   - second value
+ * @return {boolean}    true if element both elements are equals
+ */
 
-export function isFunction( thing ) {
-    const getType = {};
-    return thing && getType.toString.call(thing) === '[object Function]';
+const isEqual = (a, b) => (typeof a === 'object' || typeof b === 'object') ? false : a === b
+
+
+/**
+ * Check if argument is a number
+ * @param {?number}     x   - element to check
+ * @return {boolean}    true if element is a number
+ */
+
+const isNumeric = x => !isNaN(x) && !isNaN(parseFloat(x))
+
+
+/**
+ * Check if argument is an object
+ * @param {?object}     x   - element to check
+ * @return {boolean}    true if element is an object
+ */
+
+const isObject = x => (x && toString.call(x) === '[object Object]')
+
+
+/**
+ * Check if argument is function
+ * @param {?function}   x   - element to check
+ * @return {boolean}    true if element is a function
+ */
+
+const isFunction = x => x instanceof Function
+
+
+// Export
+export {
+    isArray,
+    isArrayLike,
+    isEqual,
+    isNumeric,
+    isObject,
+    isFunction
 }

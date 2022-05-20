@@ -1,15 +1,19 @@
-export default function(func, wait, immediate) {
-    let timeout;
-    return function() {
-        const context = this;
-        const args = arguments;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
+/**
+ * Debounce function
+ * @param {function}    callback
+ * @param {number}      delay in ms
+ * @return {function}   callback
+ */
+
+const debounce = (callback, delay) => {
+    let timeoutId = null
+
+    return (...args) => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            callback.apply(null, args)
+        }, delay)
+    }
 }
+
+export default debounce
