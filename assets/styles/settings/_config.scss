@@ -31,61 +31,61 @@ $font-faces: (
 // =============================================================================
 
 // Base
-$font-size:   16px;
-$line-height: 24px / $font-size;
-$color:       #222222;
+$font-size      : 16px;
+$line-height    : 24px / $font-size;
+$font-color     : $color-darkest;
 
 // Headings
-$font-size-h1:  36px  !default;
-$font-size-h2:  28px  !default;
-$font-size-h3:  24px  !default;
-$font-size-h4:  20px  !default;
-$font-size-h5:  18px  !default;
-$font-size-h6:  16px  !default;
-$line-height-h: $line-height;
+$font-size-h1   : 36px  !default;
+$font-size-h2   : 28px  !default;
+$font-size-h3   : 24px  !default;
+$font-size-h4   : 20px  !default;
+$font-size-h5   : 18px  !default;
+$font-size-h6   : 16px  !default;
+$line-height-h  : $line-height;
 
 // Weights
-$light:  300;
-$normal: 400;
-$medium: 500;
-$bold:   700;
+$font-weight-light  : 300;
+$font-weight-normal : 400;
+$font-weight-medium : 500;
+$font-weight-bold   : 700;
 
 // Transitions
 // =============================================================================
 
-$speed:  0.3s;
-$easing: $Power2EaseOut;
+$speed  : 0.3s;
+$easing : $ease-power2-out;
 
 // Spacing Units
 // =============================================================================
 
-$unit:       60px;
-$unit-small: 30px;
+$unit       : 60px;
+$unit-small : 30px;
 
 // Container
 // =============================================================================
 
-$container-width: 2000px;
-$padding:         $unit;
+$container-width    : 2000px;
+$padding            : $unit;
 
 // Breakpoints
 // =============================================================================
 
-$from-tiny:     500px              !default;
-$to-tiny:       $from-tiny - 1     !default;
-$from-small:    700px              !default;
-$to-small:      $from-small - 1    !default;
-$from-medium:   1000px             !default;
-$to-medium:     $from-medium - 1   !default;
-$from-large:    1200px             !default;
-$to-large:      $from-large - 1    !default;
-$from-big:      1400px             !default;
-$to-big:        $from-big - 1      !default;
-$from-huge:     1600px             !default;
-$to-huge:       $from-huge - 1     !default;
-$from-enormous: 1800px             !default;
-$to-enormous:   $from-enormous - 1 !default;
-$from-gigantic: 2000px             !default;
-$to-gigantic:   $from-gigantic - 1 !default;
-$from-colossal: 2400px             !default;
-$to-colossal:   $from-colossal - 1 !default;
+$from-tiny      : 500px              !default;
+$to-tiny        : $from-tiny - 1     !default;
+$from-small     : 700px              !default;
+$to-small       : $from-small - 1    !default;
+$from-medium    : 1000px             !default;
+$to-medium      : $from-medium - 1   !default;
+$from-large     : 1200px             !default;
+$to-large       : $from-large - 1    !default;
+$from-big       : 1400px             !default;
+$to-big         : $from-big - 1      !default;
+$from-huge      : 1600px             !default;
+$to-huge        : $from-huge - 1     !default;
+$from-enormous  : 1800px             !default;
+$to-enormous    : $from-enormous - 1 !default;
+$from-gigantic  : 2000px             !default;
+$to-gigantic    : $from-gigantic - 1 !default;
+$from-colossal  : 2400px             !default;
+$to-colossal    : $from-colossal - 1 !default;

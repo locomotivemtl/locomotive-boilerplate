@@ -520,7 +520,7 @@ html {
   min-height: 100%;
   line-height: 1.5;
   font-family: "Webfont Sans", "Helvetica Neue", Arial, sans-serif;
-  color: #222222;
+  color: #000000;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -753,7 +753,7 @@ a:focus, a:hover {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: black;
+  background-color: #000000;
   opacity: 0.5;
   width: 7px;
   border-radius: 10px;
@@ -818,7 +818,7 @@ a:focus, a:hover {
 .c-form_input, .c-form_select_input, .c-form_textarea {
   padding: 0.625rem;
   border: 1px solid lightgray;
-  background-color: white;
+  background-color: #FFFFFF;
 }
 
 .c-form_input:hover, .c-form_select_input:hover, .c-form_textarea:hover {
