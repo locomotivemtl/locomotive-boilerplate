@@ -1616,18 +1616,16 @@
 
   // assets/scripts/config.js
   var env = "development";
-  var config_default = config = {
-    APP_NAME: "Boilerplate",
-    DATA_API_KEY: ".data-api",
+  var config_default = config = Object.freeze({
     ENV: env,
     IS_PROD: env === "production",
     IS_DEV: env === "development",
-    CLASS: {
+    CLASS_NAME: {
       LOADING: "is-loading",
       READY: "is-ready",
       LOADED: "is-loaded"
     }
-  };
+  });
 
   // assets/scripts/modules/Load.js
   var Load_default = class extends _default {
@@ -4246,9 +4244,9 @@
   function init() {
     globals_default();
     app.init(app);
-    $html.classList.add(config_default.CLASS.LOADED);
-    $html.classList.add(config_default.CLASS.READY);
-    $html.classList.remove(config_default.CLASS.LOADING);
+    $html.classList.add(config_default.CLASS_NAME.LOADED);
+    $html.classList.add(config_default.CLASS_NAME.READY);
+    $html.classList.remove(config_default.CLASS_NAME.LOADING);
   }
 })();
 /*

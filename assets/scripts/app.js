@@ -29,8 +29,8 @@ function init() {
 
     app.init(app);
 
-    $html.classList.add(config.CLASS.LOADED);
-    $html.classList.add(config.CLASS.READY);
-    $html.classList.remove(config.CLASS.LOADING);
+    $html.classList.add(config.CLASS_NAME.LOADED);
+    $html.classList.add(config.CLASS_NAME.READY);
+    $html.classList.remove(config.CLASS_NAME.LOADING);
 }
 
