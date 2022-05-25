@@ -3,6 +3,27 @@
 // ==========================================================================
 
 
+// Markup
+//
+// 1. If icon is accessible and has a title
+// 2. If icon is decorative
+//
+// <i class="o-icon ${modifier}">
+//     <svg
+//         class="svg-${icon-name}"
+//         xmlns="http://www.w3.org/2000/svg"
+//         role="img" [1]
+//         aria-hidden="true" [2]
+//         focusable="false" [2]
+//         aria-labelledby="${id}" [1]
+//     >
+//         <title id="${id}"> [1]
+//             Locomotive
+//         </title>
+//         <use xlink:href="assets/images/sprite.svg#${icon-name}" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+//     </svg>
+// </i>
+
 // Global styles for icones
 // ==========================================================================
 
@@ -24,23 +45,14 @@
 // SVG sizes
 // ==========================================================================
 
-// Logo
-.svg-logo {
-    --icon-width: #{rem(100px)};
-    --icon-ratio: 41/84; // width/height based on svg viewBox
+// // Logo
+// .svg-logo {
+//     --icon-width: #{rem(100px)};
+//     --icon-ratio: 20/30; // width/height based on svg viewBox
 
-    --svg-logo-bg   : transparent;
-    --svg-logo-icon : #000;
-
-    // Sizes
-    .o-icon.-big & {
-        --icon-width: #{rem(200px)};
-    }
-
-    // Colors
-    &.-invert {
-        --svg-logo-bg   : #000;
-        --svg-logo-icon : #fff;
-    }
-}
+//     // Sizes
+//     .o-icon.-big & {
+//         --icon-width: #{rem(200px)};
+//     }
+// }
 

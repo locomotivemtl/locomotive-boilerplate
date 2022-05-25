@@ -684,22 +684,6 @@ a:focus, a:hover {
   fill: currentColor;
 }
 
-.svg-logo {
-  --icon-width: 6.25rem;
-  --icon-ratio: 41/84;
-  --svg-logo-bg: transparent;
-  --svg-logo-icon: #000;
-}
-
-.o-icon.-big .svg-logo {
-  --icon-width: 12.5rem;
-}
-
-.svg-logo.-invert {
-  --svg-logo-bg: #000;
-  --svg-logo-icon: #fff;
-}
-
 .o-layout {
   margin: 0;
   padding: 0;
