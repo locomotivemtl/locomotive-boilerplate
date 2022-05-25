@@ -14,9 +14,9 @@
         "build": "node --experimental-json-modules --no-warnings build/build.js"
     },
     "dependencies": {
+        "@barba/core": "^2.9.7",
         "locomotive-scroll": "^4.1.4",
         "modujs": "^1.4.2",
-        "modularload": "^1.2.6",
         "normalize.css": "^8.0.1",
         "svg4everybody": "^2.1.9"
     },
