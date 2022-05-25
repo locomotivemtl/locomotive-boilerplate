@@ -11,10 +11,10 @@
     @return $number / ($number * 0 + 1);
 }
 
-// Square root function
+// Returns the square root of the given number.
 //
-// @param  {string} $number     The number
-// @return {string}             The sqrt number
+// @param  {number} $number The number to calculate.
+// @return {number}
 
 @function sqrt($number) {
     $x: 1;
@@ -75,21 +75,23 @@
     @return 3.14159265359;
 }
 
-// Convert deg to rad
+// Converts the number in degrees to the radian equivalent .
 //
-// @param  {string} $angle The angle to convert
-// @return {number}        The unitless angle converted to rad
+// @param  {number} $angle  The angular value to calculate.
+// @return {number}         If $angle has the `deg` unit,
+//                          the radian equivalent is returned.
+//                          Otherwise, the unitless value of $angle is returned.
 
 @function rad($angle) {
     $unit: unit($angle);
-    $unitless: $angle / ($angle * 0 + 1);
+    $angle: strip-units($angle);
 
-    // If the angle has 'deg' as unit, convert to radians.
-    @if $unit == deg {
-        $unitless: $unitless / 180 * pi();
+    // If the angle has `deg` as unit, convert to radians.
+    @if ($unit == deg) {
+        @return $angle / 180 * pi();
     }
 
-    @return $unitless;
+    @return $angle;
 }
 
 // Returns the sine of the given number.
