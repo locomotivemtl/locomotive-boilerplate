@@ -31,9 +31,22 @@ const lerp = (x, y, a) => x * (1 - a) + y * a
 const invlerp = (x, y, a) => clamp((v - x)/(a - x))
 
 
-// Export
+/**
+ * Round number to n decimal
+ * @param {number}  x   - float number to round
+ * @param {number}  n   - integer number of decimals
+ * @return {number} rounded number
+ */
+
+const roundNumber = (x, n = 2) => {
+    const decimals = 10 ** n
+    return Math.round(x * decimals)/decimals
+}
+
+
 export {
     clamp,
     lerp,
-    invlerp
+    invlerp,
+    roundNumber
 }
