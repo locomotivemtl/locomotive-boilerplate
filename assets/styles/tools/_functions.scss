@@ -86,36 +86,55 @@
     @return true;
 }
 
-// Create variables for the media queries
+// Creates a min-width or max-width media query expression.
 //
-// @param  {string} $breakpoint The breakpoint
-// @param  {string} $type       Type of media query (min or max)
-// @return {string}             A media query expression
+// @param  {string} $breakpoint The breakpoint.
+// @param  {string} $type       Either "min" or "max".
+// @return {string}
 
-@function md($breakpoint, $type: "min") {
-
-    @if not map-has-key($breakpoints, $breakpoint) {
-        @warn "No breakpoint found in $breakpoints map for `#{$breakpoint}`. Property omitted.";
+@function mq($breakpoint, $type: "min") {
+    @if not map-has-key($mq-breakpoints, $breakpoint) {
+        @warn "Unknown media query breakpoint: `#{$breakpoint}`";
     }
 
-    $value: map-get($breakpoints, $breakpoint);
+    $value: map-get($mq-breakpoints, $breakpoint);
 
-    @if $type == "min" {
+    @if ($type == "min") {
         @return "(min-width: #{$value})";
     }
-    @if $type == "max" {
+    @if ($type == "max") {
         @return "(max-width: #{$value - 1px})";
     }
+
+    @error "Unknown media query type: #{$type}";
 }
 
-// Create variables for the media queries between two values
+// Creates a min-width media query expression.
 //
-// @param  {string} $breakpointMin  The breakpoint from
-// @param  {string} $breakpointMax  The breakpoint to
-// @return {string}                 A media query expression
+// @param  {string} $breakpoint The breakpoint.
+// @return {string}
 
-@function mdb($breakpointMin, $breakpointMax) {
-    @return "#{md($breakpointMin)} and #{md($breakpointMax, "max")}";
+@function mq-min($breakpoint) {
+    @return mq($breakpointMin, "min")};
+}
+
+// Creates a max-width media query expression.
+//
+// @param  {string} $breakpoint The breakpoint.
+// @return {string}
+
+@function mq-max($breakpoint) {
+    @return mq($breakpointMin, "max")};
+}
+
+// Creates a min-width and max-width media query expression.
+//
+// @param  {string} $from  The min-width breakpoint.
+// @param  {string} $until The max-width breakpoint.
+// @return {string}
+
+@function mq-between($breakpointMin, $breakpointMax) {
+    @return "#{mq-min($breakpointMin)} and #{mq-max($breakpointMax, "max")}";
 }
 
 // Resolve whether a rule is important or not.

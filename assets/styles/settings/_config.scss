@@ -68,10 +68,10 @@ $unit-small: 30px;
 $container-width: 2000px;
 $padding:         $unit;
 
-// Breakpoints
+// Media Query Breakpoints
 // =============================================================================
 
-$breakpoints: (
+$mq-breakpoints: (
     "tiny":     500px,
     "small":    700px,
     "medium":   1000px,
