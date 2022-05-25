@@ -45,7 +45,6 @@ const getTranslate = $el => {
 }
 
 
-// Export
 export {
     transform,
     getTranslate

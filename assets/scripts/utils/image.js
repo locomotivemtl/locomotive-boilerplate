@@ -103,7 +103,6 @@ const lazyLoadImage = async ($el, url, callback) => {
 }
 
 
-// Export
 export {
     getImageMetadata,
     loadImage,

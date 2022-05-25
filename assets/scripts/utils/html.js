@@ -167,7 +167,6 @@ const queryClosestParent = ($el, selector) => {
 }
 
 
-// Export
 export {
     escapeHtml,
     unescapeHtml,

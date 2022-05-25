@@ -1,22 +1,4 @@
 const toString = Object.prototype.toString;
-const arrayLikePattern = /^\[object (?:Array|FileList)\]$/;
-
-/**
- * Check if argument is an array
- * @param {?array}      x   - element to check
- * @return {boolean}    true if element is an array
- */
-
-const isArray = x => toString.call(x) === '[object Array]'
-
-
-/**
- * Check if argument is an array like
- * @param {array|object}    x   - element to check
- * @return {boolean}        true if element is an array like
- */
-
-const isArrayLike = x => arrayLikePattern.test(toString.call(x))
 
 
 /**
@@ -56,10 +38,7 @@ const isObject = x => (x && toString.call(x) === '[object Object]')
 const isFunction = x => x instanceof Function
 
 
-// Export
 export {
-    isArray,
-    isArrayLike,
     isEqual,
     isNumeric,
     isObject,
