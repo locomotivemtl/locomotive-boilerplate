@@ -7,7 +7,7 @@ export default config = Object.freeze({
     IS_DEV: env === 'development',
 
     // CSS class names
-    CLASS_NAME: {
+    CSS_CLASS: {
         LOADING: 'is-loading',
         READY: 'is-ready',
         LOADED: 'is-loaded',
