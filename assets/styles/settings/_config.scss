@@ -93,12 +93,16 @@ $to-colossal:   $from-colossal - 1 !default;
 // Z-indexes
 // =============================================================================
 
-$layers: (
-    "goku"     : 9000,
-    "loader"   : 500,
-    "modal"    : 300,
-    "header"   : 200,
-    "dropdown" : 100,
-    "default"  : 1,
-    "limbo"    : -999
+$z-indexes: (
+    "goku":       9000,
+    "transition": 500,
+    "toast":      400,
+    "popover":    300,
+    "modal":      250,
+    "sheet":      200,
+    "fixed":      150,
+    "sticky":     100,
+    "dropdown":   50,
+    "default":    1,
+    "limbo":      -999
 );

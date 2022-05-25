@@ -54,20 +54,29 @@
     @return ($size / $base) * 1rem;
 }
 
-// A function helper to avoid having to type `map-get($layers, ...)`
+// Retrieves the z-index from the {@see $layers master list}.
 //
 // @link on http://css-tricks.com/handling-z-index/
-// @param  {string} $layer The name of the z-index
-// @param  {number} $var   The modifier if needed
-// @return {number}        The corresponding z-index based on the $layers var
+//
+// @param  {string} $layer    The name of the z-index.
+// @param  {number} $modifier A positive or negative modifier to apply
+//     to the returned z-index value.
+// @throw  Error if the $layer does not exist.
+// @throw  Warning if the $modifier might overlap another master z-index.
+// @return {number}           The computed z-index of $layer and $modifier.
 
-@function z($layer, $var: 0) {
+@function z($layer, $modifier: 0) {
     @if not map-has-key($layers, $layer) {
-        @error "No z-index found in $layers map for `#{$layer}`. Property omitted.";
+        @error "Unknown master z-index layer: #{$layer}";
     }
 
-    $value: map-get($layers, $layer);
-    @return $value + $var;
+    @if ($modifier >= 50 or $modifier <= -50) {
+        @warn "Modifier may overlap the another master z-index layer: #{$modifier}";
+    }
+
+    $index: map-get($z-indexes, $layer);
+
+    @return $index + $modifier;
 }
 
 // Converts a number to a percentage.
@@ -110,7 +119,7 @@
 @function important($flag: false) {
     @if ($flag == true) {
         @return !important;
-    } @elseif ($important == false) {
+    } @else if ($important == false) {
         @return null;
     } @else {
         @error "`#{$flag}` needs to be `true` or `false`.";
