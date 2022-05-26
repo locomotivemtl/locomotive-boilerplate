@@ -36,17 +36,7 @@ const isValidElement = $el => (isWindow($el) || isDomElement($el))
  * @return {Boolean}    True if the event is already attached to the element
  */
 
-const getCustomEventIndex = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.$el === $el && e.event === event)
-
-
-/**
- * Check if element already has the event attached
- * @param  {Element}    $el     - Element where the event is attached
- * @param  {String}     event   - The event name
- * @return {Boolean}    True if the event is already attached to the element
- */
-
-const customEventIsDefined = ($el, event) => getCustomEventIndex($el, event) > -1
+const customEventIsDefined = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.$el === $el && e.event === event) > -1
 
 
 /**
@@ -62,21 +52,6 @@ const addCustomEvent = ($el, event) => {
             $el,
             event
         })
-    }
-}
-
-
-/**
- * Remove custom event to event storage
- * @param  {Element}    $el     - Element where the event is attached
- * @param  {String}     event   - The event name
- * @return {void}
- */
-
-const removeCustomEvent = ($el, event) => {
-    const customEventIndex = getCustomEventIndex($el, event)
-    if(customEventIndex > -1) {
-        CUSTOM_EVENT_LISTENERS.splice(customEventIndex, 1)
     }
 }
 
@@ -100,6 +75,7 @@ const addStartEvent = ($el, event, delay = 200) => {
 
     // Check if event already exists
     if(customEventIsDefined($el, eventName)) {
+        console.log(`[addStartEvent:${event}]: Already exists for '${el}' element`)
         return
     }
 
@@ -132,6 +108,7 @@ const addEndEvent = ($el, event, delay = 200) => {
 
     // Check if event already exists
     if(customEventIsDefined($el, eventName)) {
+        console.log(`[addEndEvent:${event}]: Already exists for '${el}' element`)
         return
     }
 
@@ -226,5 +203,4 @@ export {
     addEndEvent,
     addScrollUpEvent,
     addScrollDownEvent,
-    removeCustomEvent
 }
