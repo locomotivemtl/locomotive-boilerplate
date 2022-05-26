@@ -65,17 +65,17 @@ const addCustomEvent = ($el, event) => {
 
 const addStartEvent = ($el, event, delay = 200) => {
 
+    const eventName = `${event}Start`
+
     // Check element
     if(!isValidElement($el)) {
-        console.warn(`[addStartEvent:${event}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
+        console.warn(`[addStartEvent:${eventName}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
         return
     }
 
-    const eventName = `${event}Start`
-
     // Check if event already exists
     if(customEventIsDefined($el, eventName)) {
-        console.log(`[addStartEvent:${event}]: Already exists for '${el}' element`)
+        console.log(`[addStartEvent:${eventName}]: Already exists for '${el}' element`)
         return
     }
 
@@ -98,17 +98,17 @@ const addStartEvent = ($el, event, delay = 200) => {
 
 const addEndEvent = ($el, event, delay = 200) => {
 
+    const eventName = `${event}End`
+
     // Check element
     if(!isValidElement($el)) {
-        console.warn(`[addEndEvent:${event}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
+        console.warn(`[addEndEvent:${eventName}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
         return
     }
 
-    const eventName = `${event}End`
-
     // Check if event already exists
     if(customEventIsDefined($el, eventName)) {
-        console.log(`[addEndEvent:${event}]: Already exists for '${el}' element`)
+        console.log(`[addEndEvent:${eventName}]: Already exists for '${el}' element`)
         return
     }
 
