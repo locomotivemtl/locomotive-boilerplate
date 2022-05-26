@@ -36,7 +36,17 @@ const isValidElement = $el => (isWindow($el) || isDomElement($el))
  * @return {Boolean}    True if the event is already attached to the element
  */
 
-const eventIsListened = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.$el === $el && e.event === event) > -1
+const getCustomEventIndex = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.$el === $el && e.event === event)
+
+
+/**
+ * Check if element already has the event attached
+ * @param  {Element}    $el     - Element where the event is attached
+ * @param  {String}     event   - The event name
+ * @return {Boolean}    True if the event is already attached to the element
+ */
+
+const customEventIsDefined = ($el, event) => getCustomEventIndex($el, event) > -1
 
 
 /**
@@ -46,12 +56,27 @@ const eventIsListened = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.
  * @return {void}
  */
 
-const addToEventListeners = ($el, event) => {
-    if(!eventIsListened($el, event)) {
+const addCustomEvent = ($el, event) => {
+    if(!customEventIsDefined($el, event)) {
         CUSTOM_EVENT_LISTENERS.push({
             $el,
             event
         })
+    }
+}
+
+
+/**
+ * Remove custom event to event storage
+ * @param  {Element}    $el     - Element where the event is attached
+ * @param  {String}     event   - The event name
+ * @return {void}
+ */
+
+const removeCustomEvent = ($el, event) => {
+    const customEventIndex = getCustomEventIndex($el, event)
+    if(customEventIndex > -1) {
+        CUSTOM_EVENT_LISTENERS.splice(customEventIndex, 1)
     }
 }
 
@@ -74,12 +99,12 @@ const addStartEvent = ($el, event, delay = 200) => {
     const eventName = `${event}Start`
 
     // Check if event already exists
-    if(eventIsListened($el, eventName)) {
+    if(customEventIsDefined($el, eventName)) {
         return
     }
 
     // Register element and event
-    addToEventListeners($el, eventName)
+    addCustomEvent($el, eventName)
 
     // Create event
     const startEvent = new CustomEvent(eventName)
@@ -106,12 +131,12 @@ const addEndEvent = ($el, event, delay = 200) => {
     const eventName = `${event}End`
 
     // Check if event already exists
-    if(eventIsListened($el, eventName)) {
+    if(customEventIsDefined($el, eventName)) {
         return
     }
 
     // Register element and event
-    addToEventListeners($el, eventName)
+    addCustomEvent($el, eventName)
 
     // Create event
     const endEvent = new CustomEvent(eventName)
@@ -200,5 +225,6 @@ export {
     addStartEvent,
     addEndEvent,
     addScrollUpEvent,
-    addScrollDownEvent
+    addScrollDownEvent,
+    removeCustomEvent
 }
