@@ -2,6 +2,7 @@ import modular from 'modujs';
 import * as modules from './modules';
 import globals from './globals';
 import { html } from './utils/environment';
+import config from './config'
 
 const app = new modular({
     modules: modules
@@ -28,8 +29,8 @@ function init() {
 
     app.init(app);
 
-    html.classList.add('is-loaded');
-    html.classList.add('is-ready');
-    html.classList.remove('is-loading');
+    html.classList.add(config.CSS_CLASS.LOADED);
+    html.classList.add(config.CSS_CLASS.READY);
+    html.classList.remove(config.CSS_CLASS.LOADING);
 }
 

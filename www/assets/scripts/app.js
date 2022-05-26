@@ -3663,6 +3663,19 @@
   var body = document.body;
   var isDebug = html.hasAttribute("data-debug");
 
+  // assets/scripts/config.js
+  var env = "development";
+  var config_default = config = Object.freeze({
+    ENV: env,
+    IS_PROD: env === "production",
+    IS_DEV: env === "development",
+    CSS_CLASS: {
+      LOADING: "is-loading",
+      READY: "is-ready",
+      LOADED: "is-loaded"
+    }
+  });
+
   // assets/scripts/app.js
   var app = new main_esm_default({
     modules: modules_exports
@@ -3684,9 +3697,9 @@
   function init() {
     globals_default();
     app.init(app);
-    html.classList.add("is-loaded");
-    html.classList.add("is-ready");
-    html.classList.remove("is-loading");
+    html.classList.add(config_default.CSS_CLASS.LOADED);
+    html.classList.add(config_default.CSS_CLASS.READY);
+    html.classList.remove(config_default.CSS_CLASS.LOADING);
   }
 })();
 /*
