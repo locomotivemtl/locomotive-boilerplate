@@ -15,7 +15,7 @@ html {
     min-height: 100%; // [2]
     line-height: $line-height;
     font-family: ff("sans");
-    color: $color;
+    color: $font-color;
     line-height: $line-height; // [3]
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -74,9 +74,9 @@ body {
 }
 
 a {
-    color: $link-color;
+    color: $color-link;
 
     @include u-hocus {
-        color: $link-hover-color;
+        color: $color-link-hover;
     }
 }
