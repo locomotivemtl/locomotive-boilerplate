@@ -14,19 +14,28 @@ $assets-path: "../"  !default;
 // Typefaces
 // =============================================================================
 
+// Font directory
 $font-dir: "../fonts/";
 
+// Font fallbacks
 $font-fallback-sans: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
 $font-fallback-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 $font-fallback-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
+// Font families list.
+//
+// 1. Font id
+// 2. Font name
+// 3. Font fallback
+
 $font-families: (
+    // [1]: ([2], [3])
     "sans": ("Webfont Sans", $font-fallback-sans),
     // "serif": ("Webfont Serif", $font-fallback-serif),
     // "mono": ("Webfont Mono", $font-fallback-mono)
 );
 
-// Font faces list:
+// Font faces list.
 //
 // 1. Font name used in $font-families
 // 2. Font filename
