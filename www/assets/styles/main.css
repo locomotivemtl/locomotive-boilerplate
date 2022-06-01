@@ -394,11 +394,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-/**
- * 1. Single taps should be dispatched immediately on clickable elements
- */
+
 a, area, button, input, label, select, textarea, [tabindex] {
-  /* [1] */
+
   touch-action: manipulation;
 }
 
@@ -427,7 +425,6 @@ img,
 svg,
 video {
   vertical-align: middle;
-  /* [1] */
 }
 
 audio:not([controls]) {
@@ -438,25 +435,21 @@ audio:not([controls]) {
 img,
 svg {
   max-width: 100%;
-  /* [2] */
   height: auto;
 }
 
 img[width], img[height],
 svg[width],
 svg[height] {
-  /* [4] */
   max-width: none;
 }
 
 img {
   font-style: italic;
-  /* [4] */
 }
 
 svg {
   fill: currentColor;
-  /* [5] */
 }
 
 input,
@@ -499,27 +492,20 @@ textarea {
 button,
 .c-button {
   display: inline-block;
-  /* [1] */
   overflow: visible;
-  /* [2] */
   margin: 0;
-  /* [3] */
   padding: 0;
   outline: 0;
   border: 0;
   background: none transparent;
   color: inherit;
   vertical-align: middle;
-  /* [4] */
   text-align: center;
-  /* [3] */
   text-decoration: none;
   text-transform: none;
   font: inherit;
-  /* [5] */
   line-height: normal;
   cursor: pointer;
-  /* [6] */
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -534,11 +520,10 @@ button:focus, button:hover,
 
 html {
   min-height: 100%;
-  /* [2] */
-  color: #222222;
-  font-family: sans-serif;
   line-height: 1.5;
-  /* [1] */
+  font-family: "Webfont Sans", "Helvetica Neue", Arial, sans-serif;
+  color: #000000;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -564,7 +549,6 @@ html {
 @media (min-width: 1200px) and (max-width: 1599px) {
   html {
     font-size: 16px;
-    /* [1] */
   }
 }
 
@@ -637,14 +621,6 @@ a:focus, a:hover {
   max-width: 132.5rem;
 }
 
-/**
- * Create ratio-bound content blocks, to keep media (e.g. images, videos) in
- * their correct aspect ratios.
- *
- * http://alistapart.com/article/creating-intrinsic-ratios-for-video
- *
- * 1. Default cropping is a 1:1 ratio (i.e. a perfect square).
- */
 .o-ratio {
   position: relative;
   display: block;
@@ -654,7 +630,6 @@ a:focus, a:hover {
 .o-ratio:before {
   display: block;
   padding-bottom: 100%;
-  /* [1] */
   width: 100%;
   content: "";
 }
@@ -793,7 +768,7 @@ a:focus, a:hover {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: black;
+  background-color: #000000;
   opacity: 0.5;
   width: 7px;
   border-radius: 10px;
@@ -858,7 +833,7 @@ a:focus, a:hover {
 .c-form_input, .c-form_select_input, .c-form_textarea {
   padding: 0.625rem;
   border: 1px solid lightgray;
-  background-color: white;
+  background-color: #FFFFFF;
 }
 
 .c-form_input:hover, .c-form_select_input:hover, .c-form_textarea:hover {

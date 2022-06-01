@@ -31,11 +31,11 @@ select {
         color: inherit;
     }
 
-    // Remove Firefox :focus dotted outline, breaks color inherit
-    // &:-moz-focusring {
-    //     color: transparent;
-    //     text-shadow: 0 0 0 #000000; // Text :focus color
-    // }
+    // // Remove Firefox :focus dotted outline, breaks color inherit
+    // // &:-moz-focusring {
+    // //     color: transparent;
+    // //     text-shadow: 0 0 0 #000000; // Text :focus color
+    // // }
 }
 
 textarea {

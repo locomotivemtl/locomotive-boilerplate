@@ -4,6 +4,7 @@
 
 // Settings
 // ==========================================================================
+
 @import "settings/config.eases";
 @import "settings/config.colors";
 @import "settings/config";
@@ -11,6 +12,8 @@
 // ==========================================================================
 // Tools
 // ==========================================================================
+
+@import "tools/maths";
 @import "tools/functions";
 @import "tools/mixins";
 @import "tools/fonts";
@@ -20,6 +23,7 @@
 
 // Generic
 // ==========================================================================
+
 @import "node_modules/normalize.css/normalize";
 @import "generic/generic";
 @import "generic/media";
@@ -28,11 +32,12 @@
 
 // Elements
 // ==========================================================================
-@import "elements/fonts";
-@import "elements/page";
+
+@import "elements/document";
 
 // Objects
 // ==========================================================================
+
 @import "objects/scroll";
 @import "objects/container";
 @import "objects/ratio";
@@ -47,17 +52,15 @@
 
 // Components
 // ==========================================================================
+
 @import "components/scrollbar";
 @import "components/heading";
 @import "components/button";
 @import "components/form";
 
-// Templates
-// ==========================================================================
-// @import "templates/template";
-
 // Utilities
 // ==========================================================================
+
 @import "utilities/ratio";
 @import "utilities/widths";
 // @import "utilities/align";

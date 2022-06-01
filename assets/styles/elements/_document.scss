@@ -1,19 +1,22 @@
 // ==========================================================================
-// Base / Page
+// Elements / Document
 // ==========================================================================
 
-//
 // Simple page-level setup.
 //
-// 1. Set the default `font-size` and `line-height` for the entire project,
-//    sourced from our default variables.
+// 1. Include web fonts
 // 2. Ensure the page always fills at least the entire height of the viewport.
-//
+// 3. Set the default `font-size` and `line-height` for the entire project,
+//    sourced from our default variables.
+
+@include font-faces($font-faces, $font-dir); // [1]
+
 html {
-    min-height: 100%; /* [2] */
-    color: $color;
-    font-family: $font-family;
-    line-height: $line-height; /* [1] */
+    min-height: 100%; // [2]
+    line-height: $line-height;
+    font-family: ff("sans");
+    color: $font-color;
+    line-height: $line-height; // [3]
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
@@ -30,7 +33,7 @@ html {
     }
 
     @media (min-width: $from-large) and (max-width: $to-huge) {
-        font-size: $font-size; /* [1] */
+        font-size: $font-size; // [1]
     }
 
     @media (min-width: $from-huge) and (max-width: $to-gigantic) {
@@ -71,9 +74,9 @@ body {
 }
 
 a {
-    color: $link-color;
+    color: $color-link;
 
     @include u-hocus {
-        color: $link-hover-color;
+        color: $color-link-hover;
     }
 }

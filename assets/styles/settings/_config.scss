@@ -4,6 +4,7 @@
 
 // Context
 // =============================================================================
+
 // The current stylesheet context. Available values: frontend, editor.
 $context: frontend  !default;
 
@@ -12,15 +13,28 @@ $assets-path: "../"  !default;
 
 // Typefaces
 // =============================================================================
-$font-sans-serif: sans-serif;
+
+$font-dir: "../fonts/";
+
+$font-families: (
+    "sans": ("Webfont Sans", "Helvetica Neue", Arial, sans-serif),
+    // "serif": ("Webfont Serif", Georgia, serif)
+);
+
+$font-faces: (
+    // "Webfont Sans" "webfont-sans_regular" 400 normal,
+    // "Webfont Sans" "webfont-sans_regular-italic" 400 italic,
+    // "Webfont Serif" "webfont-sans_bold" 700 normal,
+);
 
 // Typography
 // =============================================================================
+
 // Base
-$font-size:   16px;
-$line-height: 24px / $font-size;
-$font-family: $font-sans-serif;
-$color:       #222222;
+$font-size: 16px;
+$line-height:   24px / $font-size;
+$font-color:    $color-darkest;
+
 // Headings
 $font-size-h1:  36px  !default;
 $font-size-h2:  28px  !default;
@@ -29,29 +43,34 @@ $font-size-h4:  20px  !default;
 $font-size-h5:  18px  !default;
 $font-size-h6:  16px  !default;
 $line-height-h: $line-height;
+
 // Weights
-$light:  300;
-$normal: 400;
-$medium: 500;
-$bold:   700;
+$font-weight-light:     300;
+$font-weight-normal:    400;
+$font-weight-medium:    500;
+$font-weight-bold:      700;
 
 // Transitions
 // =============================================================================
-$speed:  0.3s;
-$easing: $Power2EaseOut;
+
+$speed:     0.3s;
+$easing:    $ease-power2-out;
 
 // Spacing Units
 // =============================================================================
-$unit:       60px;
-$unit-small: 30px;
+
+$unit:          60px;
+$unit-small:    30px;
 
 // Container
-// ==========================================================================
-$container-width: 2000px;
-$padding:         $unit;
+// =============================================================================
+
+$container-width:   2000px;
+$padding:           $unit;
 
 // Breakpoints
 // =============================================================================
+
 $from-tiny:     500px              !default;
 $to-tiny:       $from-tiny - 1     !default;
 $from-small:    700px              !default;
@@ -70,3 +89,20 @@ $from-gigantic: 2000px             !default;
 $to-gigantic:   $from-gigantic - 1 !default;
 $from-colossal: 2400px             !default;
 $to-colossal:   $from-colossal - 1 !default;
+
+// Master z-indexe
+// =============================================================================
+
+$z-indexes: (
+    "goku":       9000,
+    "transition": 500,
+    "toast":      400,
+    "popover":    300,
+    "modal":      250,
+    "sheet":      200,
+    "fixed":      150,
+    "sticky":     100,
+    "dropdown":   50,
+    "default":    1,
+    "limbo":      -999
+);
