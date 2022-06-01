@@ -394,9 +394,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-
 a, area, button, input, label, select, textarea, [tabindex] {
-
   touch-action: manipulation;
 }
 
@@ -521,7 +519,7 @@ button:focus, button:hover,
 html {
   min-height: 100%;
   line-height: 1.5;
-  font-family: "Webfont Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Webfont Sans", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
   color: #000000;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
