@@ -89,3 +89,20 @@ $from-gigantic: 2000px             !default;
 $to-gigantic:   $from-gigantic - 1 !default;
 $from-colossal: 2400px             !default;
 $to-colossal:   $from-colossal - 1 !default;
+
+// Master z-indexe
+// =============================================================================
+
+$z-indexes: (
+    "goku":       9000,
+    "transition": 500,
+    "toast":      400,
+    "popover":    300,
+    "modal":      250,
+    "sheet":      200,
+    "fixed":      150,
+    "sticky":     100,
+    "dropdown":   50,
+    "default":    1,
+    "limbo":      -999
+);
