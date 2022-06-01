@@ -28,11 +28,11 @@
     @return $value;
 }
 
-// Power function
+// Returns a number raised to the power of an exponent.
 //
-// @param  {number} $number Number to apply power
-// @param  {number} $exp    The exponant for the power
-// @return {number}         The powered number
+// @param  {number} $number The base number.
+// @param  {number} $exp    The exponent.
+// @return {number}
 
 @function pow($number, $exp) {
     $value: 1;
@@ -50,10 +50,10 @@
     @return $value;
 }
 
-// Factorial function
+// Returns the factorial of the given number.
 //
-// @param  {number} $number The number to factorize
-// @return {number}         The factorised number
+// @param  {number} $number The number to calculate.
+// @return {number}
 
 @function fact($number) {
     $value: 1;
@@ -67,9 +67,9 @@
     @return $value;
 }
 
-// Pi reference
+// Returns an approximation of pi, with 11 decimals.
 //
-// @return {number} Retrun PI with 11 decimals
+// @return {number}
 
 @function pi() {
     @return 3.14159265359;
