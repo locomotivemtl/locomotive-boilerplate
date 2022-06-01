@@ -13,6 +13,7 @@
 // Tools
 // ==========================================================================
 
+@import "tools/maths";
 @import "tools/functions";
 @import "tools/mixins";
 @import "tools/fonts";
@@ -40,6 +41,7 @@
 @import "objects/scroll";
 @import "objects/container";
 @import "objects/ratio";
+@import "objects/icons";
 @import "objects/layout";
 // @import "objects/crop";
 // @import "objects/table";
@@ -55,10 +57,6 @@
 @import "components/heading";
 @import "components/button";
 @import "components/form";
-
-// Templates
-// ==========================================================================
-// @import "templates/template";
 
 // Utilities
 // ==========================================================================
