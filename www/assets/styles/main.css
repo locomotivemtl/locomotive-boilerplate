@@ -394,7 +394,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+
 a, area, button, input, label, select, textarea, [tabindex] {
+
   touch-action: manipulation;
 }
 
@@ -642,6 +644,19 @@ a:focus, a:hover {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.o-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.o-icon svg {
+  --icon-height: calc(var(--icon-width) * (1 / (var(--icon-ratio))));
+  display: block;
+  width: var(--icon-width);
+  height: var(--icon-height);
+  fill: currentColor;
 }
 
 .o-layout {
