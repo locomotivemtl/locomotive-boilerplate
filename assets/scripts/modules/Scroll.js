@@ -1,5 +1,5 @@
 import { module } from 'modujs';
-import { lazyLoadImage } from '../utils/image';
+import { lazyLoadImage } from '../utils/loaders';
 import LocomotiveScroll from 'locomotive-scroll';
 
 export default class extends module {
