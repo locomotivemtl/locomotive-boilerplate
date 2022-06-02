@@ -1,16 +1,19 @@
 /**
- * Check if argument is an object
- * @param {?object}     x   - elemet to check
- * @return {boolean}    true if element is an object
+ * Determines if the argument is object-like.
+ *
+ * A value is object-like if it's not `null` and has a `typeof` result of "object".
+ *
+ * @param  {*} x - The value to be checked.
+ * @return {boolean}
  */
 
 const isObject = x => (x && typeof x === 'object')
 
-
 /**
- * Check if argument is function
- * @param {?function}   x   - element to check
- * @return {boolean}    true if element is a function
+ * Determines if the argument is a function.
+ *
+ * @param  {*} x - The value to be checked.
+ * @return {boolean}
  */
 
 const isFunction = x => x instanceof Function
