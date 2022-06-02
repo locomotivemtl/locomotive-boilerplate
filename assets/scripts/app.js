@@ -22,18 +22,13 @@ class App {
         }
 
         // Create app
-        this.app = new modular({
+        this.moduleManager = new modular({
             modules: modules
         })
 
-        // // Add custom events
         // this.addCustomEvents()
 
-        // Set vars
         this.setVars()
-
-        // Window events
-        window.addEventListener('load', () => this.load())
     }
 
     load() {
@@ -76,7 +71,7 @@ class App {
         globals()
 
         // Init modular app
-        this.app.init(this.app)
+        this.moduleManager.init(this.moduleManager)
 
         // Update classes
         html.classList.add(config.CSS_CLASS.LOADED)
@@ -88,10 +83,15 @@ class App {
         console.log(`${this.constructor.name}:addCustomEvents`)
     }
 
+    /*
+     * Set initial vars
+     *
+     * `--vh-initial` is necessary for mobile vh unit
+     */
     setVars() {
         html.style.setProperty('--vh-initial', `${0.01 * html.clientHeight}px`)
     }
 }
 
-// Instanciate app
-new App()
+const app = new App()
+window.addEventListener('load', app.load)

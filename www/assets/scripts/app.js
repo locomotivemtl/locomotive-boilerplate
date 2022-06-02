@@ -447,12 +447,12 @@
     }
     _createClass(_default4, [{
       key: "init",
-      value: function init(app, scope) {
+      value: function init(app2, scope) {
         var _this = this;
         var container = scope || document;
         var elements = container.querySelectorAll("*");
-        if (app && !this.app) {
-          this.app = app;
+        if (app2 && !this.app) {
+          this.app = app2;
         }
         this.activeModules["app"] = {
           "app": this.app
@@ -1094,6 +1094,26 @@
     }
   };
 
+  // assets/scripts/config.js
+  var env = "development";
+  var config_default = config = Object.freeze({
+    ENV: env,
+    IS_PROD: env === "production",
+    IS_DEV: env === "development",
+    CSS_CLASS: {
+      LOADING: "is-loading",
+      READY: "is-ready",
+      LOADED: "is-loaded",
+      FONTS_LOADED: "has-fonts-loaded",
+      IMAGES_PRELOADED: "has-images-preloaded",
+      LAZY_LOADED: "is-lazy-loaded"
+    },
+    SELECTORS: {
+      IMAGE_LAZY: ".c-lazy",
+      IMAGE_PRELOAD: "img[data-preload]"
+    }
+  });
+
   // assets/scripts/utils/image.js
   var getImageMetadata = ($img) => ({
     url: $img.src,
@@ -1249,16 +1269,16 @@
       $el.style.backgroundImage = `url(${loadedImage.url})`;
     }
     requestAnimationFrame(() => {
-      let lazyParent = $el.closest(".c-lazy");
+      let lazyParent = $el.closest(config_default.SELECTORS.IMAGE_LAZY);
       if (lazyParent) {
-        lazyParent.classList.add("-lazy-loaded");
+        lazyParent.classList.add(config_default.CSS_CLASS.LAZY_LOADED);
         lazyParent.style.backgroundImage = "";
       }
-      $el.classList.add("-lazy-loaded");
+      $el.classList.add(config_default.CSS_CLASS.LAZY_LOADED);
       callback == null ? void 0 : callback();
     });
   });
-  var preloadImages = (selector = "img[data-preload]", callback) => {
+  var preloadImages = (selector = config_default.SELECTORS.IMAGE_PRELOAD, callback) => {
     const $imagesToLoad = document.querySelectorAll(selector);
     if (!$imagesToLoad.length) {
       callback == null ? void 0 : callback();
@@ -3782,21 +3802,6 @@
   var body = document.body;
   var isDebug = html.hasAttribute("data-debug");
 
-  // assets/scripts/config.js
-  var env = "development";
-  var config_default = config = Object.freeze({
-    ENV: env,
-    IS_PROD: env === "production",
-    IS_DEV: env === "development",
-    CSS_CLASS: {
-      LOADING: "is-loading",
-      READY: "is-ready",
-      LOADED: "is-loaded",
-      FONTS_LOADED: "has-fonts-loaded",
-      IMAGES_PRELOADED: "has-images-preloaded"
-    }
-  });
-
   // assets/scripts/app.js
   var App = class {
     constructor() {
@@ -3810,11 +3815,10 @@
           "#main-css"
         ]
       };
-      this.app = new main_esm_default({
+      this.moduleManager = new main_esm_default({
         modules: modules_exports
       });
       this.setVars();
-      window.addEventListener("load", () => this.load());
     }
     load() {
       console.log(`${this.constructor.name}:load`);
@@ -3844,7 +3848,7 @@
     init() {
       console.log(`${this.constructor.name}:init`);
       globals_default();
-      this.app.init(this.app);
+      this.moduleManager.init(this.moduleManager);
       html.classList.add(config_default.CSS_CLASS.LOADED);
       html.classList.add(config_default.CSS_CLASS.READY);
       html.classList.remove(config_default.CSS_CLASS.LOADING);
@@ -3856,7 +3860,8 @@
       html.style.setProperty("--vh-initial", `${0.01 * html.clientHeight}px`);
     }
   };
-  new App();
+  var app = new App();
+  window.addEventListener("load", app.load);
 })();
 /*
 object-assign

@@ -13,5 +13,12 @@ export default config = Object.freeze({
         LOADED: 'is-loaded',
         FONTS_LOADED: 'has-fonts-loaded',
         IMAGES_PRELOADED: 'has-images-preloaded',
+        LAZY_LOADED: 'is-lazy-loaded',
     },
+
+    // JS selectors
+    SELECTORS: {
+        IMAGE_LAZY: '.c-lazy',
+        IMAGE_PRELOAD: 'img[data-preload]'
+    }
 })

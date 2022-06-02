@@ -1,3 +1,4 @@
+import config from '../config'
 import { getImageMetadata } from './image'
 
 /**
@@ -244,14 +245,14 @@ const lazyLoadImage = async ($el, url, callback) => {
     }
 
     requestAnimationFrame(() => {
-        let lazyParent = $el.closest('.c-lazy')
+        let lazyParent = $el.closest(config.SELECTORS.IMAGE_LAZY)
 
         if (lazyParent) {
-            lazyParent.classList.add('-lazy-loaded')
+            lazyParent.classList.add(config.CSS_CLASS.LAZY_LOADED)
             lazyParent.style.backgroundImage = ''
         }
 
-        $el.classList.add('-lazy-loaded')
+        $el.classList.add(config.CSS_CLASS.LAZY_LOADED)
 
         callback?.()
     })
@@ -264,7 +265,7 @@ const lazyLoadImage = async ($el, url, callback) => {
  * @param {?function}        callback - A function to call when all images are loaded.
  */
 
-const preloadImages = (selector = 'img[data-preload]', callback) => {
+const preloadImages = (selector = config.SELECTORS.IMAGE_PRELOAD, callback) => {
     const $imagesToLoad = document.querySelectorAll(selector)
 
     if (!$imagesToLoad.length) {
