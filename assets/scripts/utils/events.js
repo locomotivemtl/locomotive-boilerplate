@@ -1,206 +1,180 @@
 import { debounce } from './tickers'
 
-CUSTOM_EVENT_LISTENERS = []
+/**
+ * @typedef {object} RegisteredCustomEvent
+ *
+ * @property {EventTarget} target - The event target ({@see Window} or {@see Node}).
+ * @property {string}      type   - The custom event name.
+ */
+/** @type {RegisteredCustomEvent[]} */
+
+REGISTERED_CUSTOM_EVENTS = []
 
 /**
- * Check if element is Window
- * @param  {DOMElement} $el - Element to check
- * @return {boolean}    True if window
+ * Determines if the given object is the {@see Window}.
+ *
+ * @param  {object} obj
+ * @return {boolean}
  */
 
-const isWindow = $el => $el === window
+const isWindow = obj => obj === window
 
 
 /**
- * Check if element is a DOM element
- * @param  {DOMElement} $el - Element to check
- * @return {boolean}    True if dom element
+ * Determines if the given object implements {@see EventTarget}.
+ *
+ * @param  {object} obj
+ * @return {boolean}
  */
 
-const isDomElement = $el => ($el instanceof Element || $el instanceof HTMLDocument || $el instanceof HTMLDocument)
+const isEventTarget = obj => (obj instanceof EventTarget)
 
 
 /**
- * Check if element is Window or DOM element
- * @param  {Element}    $el - Element to check
- * @return {boolean}    True if window or DOM element
+ * Determines if the target already has the event attached.
+ *
+ * @param  {EventTarget} target
+ * @param  {string}      type   - The custom event name.
+ * @return {boolean}
  */
 
-const isValidElement = $el => (isWindow($el) || isDomElement($el))
+const isCustomEventRegistered = (target, type) => REGISTERED_CUSTOM_EVENTS.some(e => e.target === target && e.type === type)
 
 
 /**
- * Check if element already has the event attached
- * @param  {Element}    $el     - Element where the event is attached
- * @param  {String}     event   - The event name
- * @return {Boolean}    True if the event is already attached to the element
- */
-
-const customEventIsDefined = ($el, event) => CUSTOM_EVENT_LISTENERS.findIndex(e => e.$el === $el && e.event === event) > -1
-
-
-/**
- * Add custom event to event storage
- * @param  {Element}    $el     - Element where the event is attached
- * @param  {String}     event   - The event name
+ * Registers the custom event with the given target, if not already registered.
+ *
+ * @param  {EventTarget} target
+ * @param  {string}      type   - The custom event name.
  * @return {void}
  */
 
-const addCustomEvent = ($el, event) => {
-    if(!customEventIsDefined($el, event)) {
+const addCustomEvent = (target, type) => {
+    if (!isCustomEventDefined(target, type)) {
         CUSTOM_EVENT_LISTENERS.push({
-            $el,
-            event
+            target,
+            type
         })
     }
 }
 
 
 /**
- * Create a sarting event for the event triggered
- * @param  {Element}    EventTarget     - Element to bind the event to
- * @param  {object}     event   - The triggered event's name
+ * Adds a custom "start" event for the given target.
+ *
+ * Internally, this function adds a debounced event listener on
+ * the given `event` to trigger the custom `<event>start` event.
+ *
+ * @param  {EventTarget} target
+ * @param  {string}      type    - The base event name.
+ * @param  {number}      [delay] - The number of milliseconds to wait
+ *     before dispatching the custom event.
+ * @throws Error If the target is invalid.
+ * @throws Error If the custom event is already defined.
  * @return {void}
  */
 
-const addStartEvent = (EventTarget, event, delay = 200) => {
+const addStartEvent = (target, type, delay = 200) => {
 
-    const eventName = `${event}Start`
+    const customType = `${type}start`
 
-    // Check element
-    if(!isValidElement(EventTarget)) {
-        console.warn(`[addStartEvent:${eventName}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
-        return
+    if (!isEventTarget(target)) {
+        throw new Error(`addStartEvent: target parameter must be an instance of EventTarget`)
     }
 
-    // Check if event already exists
-    if(customEventIsDefined(EventTarget, eventName)) {
-        console.log(`[addStartEvent:${eventName}]: Already exists for '${el}' element`)
-        return
+    if (isCustomEventDefined(target, customType)) {
+        throw new Error(`addStartEvent: '${customType}' already exists for target parameter`)
     }
 
-    // Register element and event
-    addCustomEvent(EventTarget, eventName)
+    addCustomEvent(target, customType)
+    const startEvent = new CustomEvent(customType)
 
-    // Create event
-    const startEvent = new CustomEvent(eventName)
-    EventTarget.addEventListener(event, debounce(() => {
-        EventTarget.dispatchEvent(startEvent)
+    target.addEventListener(event, debounce(() => {
+        target.dispatchEvent(startEvent)
     }, delay, true))
 }
 
+
 /**
- * Create an ending event for the event triggered
- * @param  {Element}    EventTarget     - Element to bind the event to
- * @param  {object}     event   - The triggered event's name
+ * Adds a custom "end" event for the given target.
+ *
+ * Internally, this function adds a debounced event listener on
+ * the given `event` to trigger the custom `<event>end` event.
+ *
+ * @param  {EventTarget} target
+ * @param  {string}      type    - The base event name.
+ * @param  {number}      [delay] - The number of milliseconds to wait
+ *     before dispatching the custom event.
+ * @throws Error If the target is invalid.
+ * @throws Error If the custom event is already defined.
  * @return {void}
  */
 
-const addEndEvent = (EventTarget, event, delay = 200) => {
+const addEndEvent = (target, type, delay = 200) => {
 
-    const eventName = `${event}End`
+    const customType = `${event}end`
 
-    // Check element
-    if(!isValidElement(EventTarget)) {
-        console.warn(`[addEndEvent:${eventName}]: Wrong parameter '${el}'. The parameter must be document, window or a DOM element`)
-        return
+    if (!isEventTarget(target)) {
+        throw new Error(`addEndEvent: target parameter must be an instance of EventTarget`)
     }
 
-    // Check if event already exists
-    if(customEventIsDefined(EventTarget, eventName)) {
-        console.log(`[addEndEvent:${eventName}]: Already exists for '${el}' element`)
-        return
+    if (isCustomEventDefined(target, customType)) {
+        throw new Error(`addEndEvent: '${customType}' already exists for target parameter`)
     }
 
-    // Register element and event
-    addCustomEvent(EventTarget, eventName)
+    addCustomEvent(target, customType)
+    const endEvent = new CustomEvent(customType)
 
-    // Create event
-    const endEvent = new CustomEvent(eventName)
-    EventTarget.addEventListener(event, debounce(() => {
-        EventTarget.dispatchEvent(endEvent)
+    target.addEventListener(event, debounce(() => {
+        target.dispatchEvent(endEvent)
     }, delay))
 }
 
 
 /**
- * Add scrollUp event to element (window by default)
- * @param  {Element} EventTarget - Element to bind the event to
+ * Adds custom scroll "up" and "down" events for the given target.
+ *
+ * Internally, this function adds an event listener on
+ * the scroll event to detect the direction and trigger
+ * the custom `scrollup` and `scrolldown` events.
+ *
+ * @param  {EventTarget} [target] - If omitted, the custom event
+ *     if attached to the Window.
+ * @throws Error If the target is invalid.
  * @return {void}
  */
 
-const addScrollUpEvent = (EventTarget = window) => {
+const addScrollDirectionEvents = (target = window) => {
 
-    // Check element
-    if(!isValidElement(EventTarget)) {
-        console.warn(`[addScrollUpEvent]: Wrong parameter '${el}'. The parameter must be window or a DOM element`)
-        return
+    if (!isEventTarget(target)) {
+        throw new Error(`addScrollDirectionEvents: target parameter must be an instance of EventTarget`)
     }
 
-    let scrollTop = EventTarget.scrollTop
+    let scrollTop = target.scrollTop
     let previousScrollTop = scrollTop
     let direction = 0
-    const scrollUp = new CustomEvent('scrollUp')
-    const scrollProperty = isWindow(EventTarget) ? 'scrollY' : 'scrollTop'
+    const scrollUp = new CustomEvent('scrollup')
+    const scrollDown = new CustomEvent('scrolldown')
+    const scrollProperty = isWindow(target) ? 'scrollY' : 'scrollTop'
 
-    EventTarget.addEventListener('scroll', e => {
-        scrollTop = EventTarget[scrollProperty]
-
+    target.addEventListener('scroll', () => {
+        scrollTop = target[scrollProperty]
         // Scroll up
-        if(scrollTop < previousScrollTop && direction > -1) {
-            EventTarget.dispatchEvent(scrollUp)
+        if (scrollTop < previousScrollTop && direction > -1) {
+            target.dispatchEvent(scrollUp)
             direction = -1
-
         // Scroll down
-        } else if(scrollTop > previousScrollTop && direction < 1) {
+        } else if (scrollTop > previousScrollTop && direction < 1) {
+            target.dispatchEvent(scrollDown)
             direction = 1
         }
-
         previousScrollTop = scrollTop
     })
 }
 
-
-/**
- * Add scrollDown event to element (window by default)
- * @param  {Element} EventTarget - Element to bind the event to
- * @return {void}
- */
-
-const addScrollDownEvent = (EventTarget = window) => {
-
-    // Check element
-    if(!isValidElement(EventTarget)) {
-        console.warn(`[addScrollDownEvent]: Wrong parameter '${el}'. The parameter must be window or a DOM element`)
-        return
-    }
-
-    let scrollTop = EventTarget.scrollTop
-    let previousScrollTop = scrollTop
-    let direction = 0
-    const scrollDown = new CustomEvent('scrollDown')
-    const scrollProperty = isWindow(EventTarget) ? 'scrollY' : 'scrollTop'
-
-    EventTarget.addEventListener('scroll', e => {
-        scrollTop = EventTarget[scrollProperty]
-
-        // Scroll up
-        if(scrollTop < previousScrollTop && direction > -1) {
-            direction = -1
-
-        // Scroll down
-        } else if(scrollTop > previousScrollTop && direction < 1) {
-            EventTarget.dispatchEvent(scrollDown)
-            direction = 1
-        }
-
-        previousScrollTop = scrollTop
-    })
-}
 
 export {
     addStartEvent,
     addEndEvent,
-    addScrollUpEvent,
-    addScrollDownEvent,
+    addScrollDirectionEvents,
 }
