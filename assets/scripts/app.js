@@ -9,17 +9,17 @@ class App {
     constructor() {
         console.log(`${this.constructor.name}:constructor`)
 
-        this.options = {
+        this.options = Object.freeze({
             fonts: [
                 // { name: '<font-name>', style: '<font-style>', weight: '<font-weight>' }
             ],
             preloadImage: [
-                'img[data-preload]'
+                config.SELECTORS.IMAGE_PRELOAD
             ],
             styleSheets: [
-                '#main-css'
+                config.SELECTORS.MAIN_STYLESHEET
             ]
-        }
+        })
 
         // Create app
         this.moduleManager = new modular({
@@ -28,7 +28,7 @@ class App {
 
         // this.addCustomEvents()
 
-        this.setVars()
+        this.setInitialVars()
     }
 
     load() {
@@ -84,14 +84,26 @@ class App {
     }
 
     /*
-     * Set initial vars
-     *
-     * `--vh-initial` is necessary for mobile vh unit
+     * Set initial variables.
      */
-    setVars() {
+
+    setInitialVars() {
+
+        /**
+         * Store the initial viewport height in a CSS property.
+         *
+         * @see {@link https://css-tricks.com/the-trick-to-viewport-units-on-mobile/}
+         *     This can be applied to elements, instead of using the `vh` unit,
+         *     for consistent and correct sizing on mobile browsers.
+         *
+         * @see {@link https://caniuse.com/viewport-unit-variants}
+         *     This trick should be replaced with viewport-relative units
+         *     once browser support has improved.
+         */
+
         html.style.setProperty('--vh-initial', `${0.01 * html.clientHeight}px`)
     }
 }
 
 const app = new App()
-window.addEventListener('load', app.load)
+window.addEventListener('load', () => app.load(), { once: true })

@@ -19,6 +19,7 @@ export default config = Object.freeze({
     // JS selectors
     SELECTORS: {
         IMAGE_LAZY: '.c-lazy',
-        IMAGE_PRELOAD: 'img[data-preload]'
+        IMAGE_PRELOAD: 'img[data-preload]',
+        MAIN_STYLESHEET: '#main-css'
     }
 })

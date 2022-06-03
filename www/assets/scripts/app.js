@@ -1110,7 +1110,8 @@
     },
     SELECTORS: {
       IMAGE_LAZY: ".c-lazy",
-      IMAGE_PRELOAD: "img[data-preload]"
+      IMAGE_PRELOAD: "img[data-preload]",
+      MAIN_STYLESHEET: "#main-css"
     }
   });
 
@@ -3806,19 +3807,19 @@
   var App = class {
     constructor() {
       console.log(`${this.constructor.name}:constructor`);
-      this.options = {
+      this.options = Object.freeze({
         fonts: [],
         preloadImage: [
-          "img[data-preload]"
+          config_default.SELECTORS.IMAGE_PRELOAD
         ],
         styleSheets: [
-          "#main-css"
+          config_default.SELECTORS.MAIN_STYLESHEET
         ]
-      };
+      });
       this.moduleManager = new main_esm_default({
         modules: modules_exports
       });
-      this.setVars();
+      this.setInitialVars();
     }
     load() {
       console.log(`${this.constructor.name}:load`);
@@ -3856,12 +3857,12 @@
     addCustomEvents() {
       console.log(`${this.constructor.name}:addCustomEvents`);
     }
-    setVars() {
+    setInitialVars() {
       html.style.setProperty("--vh-initial", `${0.01 * html.clientHeight}px`);
     }
   };
   var app = new App();
-  window.addEventListener("load", app.load);
+  window.addEventListener("load", () => app.load(), { once: true });
 })();
 /*
 object-assign
