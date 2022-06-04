@@ -9,7 +9,7 @@
 // 3. Set the default `font-size` and `line-height` for the entire project,
 //    sourced from our default variables.
 
-@include font-faces($font-faces, $font-dir); // [1]
+@include build-font-faces($font-faces, $font-dir); // [1]
 
 html {
     min-height: 100%; // [2]

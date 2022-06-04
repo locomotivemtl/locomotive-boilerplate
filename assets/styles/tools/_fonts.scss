@@ -16,7 +16,7 @@
         font-display: swap;
         font-family: nth($webfont, 1);
         src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
-             url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
+            url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
         font-weight: #{nth($webfont, 3)};
         font-style: #{nth($webfont, 4)};
     }
@@ -31,9 +31,15 @@
 // @param  {String}     $dir      - The webfont directory path.
 // @output The `@font-face` at-rules specifying the custom fonts.
 
-@mixin font-faces($webfonts, $dir) {
-    @each $webfont in $webfonts {
-        @include font-face($webfont, $dir);
+@mixin build-font-faces($webfonts, $dir) {
+    @if (list-separator($webfonts) == "comma") {
+        @each $webfont in $webfonts {
+            @include font-face($webfont, $dir);
+        }
+    } @else if (list-separator($webfonts) == "space") {
+        @include font-face($webfonts, $dir);
+    } @else {
+        @error 'Invalid list separator for $webfonts';
     }
 }
 
@@ -47,8 +53,8 @@
 
 @function ff($font-family) {
     @if not map-has-key($font-families, $font-family) {
-       @error "No font-family found in $font-families map for `#{$font-family}`.";
-   }
+        @error "No font-family found in $font-families map for `#{$font-family}`. Property omitted.";
+    }
 
     $value: map-get($font-families, $font-family);
     @return $value;
