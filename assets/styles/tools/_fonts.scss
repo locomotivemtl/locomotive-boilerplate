@@ -16,7 +16,7 @@
         font-display: swap;
         font-family: nth($webfont, 1);
         src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
-            url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
+             url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
         font-weight: #{nth($webfont, 3)};
         font-style: #{nth($webfont, 4)};
     }
@@ -31,7 +31,7 @@
 // @param  {String}     $dir      - The webfont directory path.
 // @output The `@font-face` at-rules specifying the custom fonts.
 
-@mixin build-font-faces($webfonts, $dir) {
+@mixin font-faces($webfonts, $dir) {
     @if (list-separator($webfonts) == "comma") {
         @each $webfont in $webfonts {
             @include font-face($webfont, $dir);
