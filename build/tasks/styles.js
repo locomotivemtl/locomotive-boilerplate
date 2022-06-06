@@ -2,12 +2,12 @@ import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import notification from '../utils/notification.js';
 import postcss, { pluginsMap as postcssPluginsMap } from '../utils/postcss.js';
-import { PurgeCSS } from 'purgecss';
 import resolve from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
 import sass from 'node-sass';
+import { PurgeCSS } from 'purgecss';
 
 const sassRender = promisify(sass.render);
 
