@@ -32,14 +32,14 @@
 // @output The `@font-face` at-rules specifying the custom fonts.
 
 @mixin font-faces($webfonts, $dir) {
-    @if (list-separator($webfonts) == "comma") {
-        @each $webfont in $webfonts {
-            @include font-face($webfont, $dir);
+    @if (length($webfonts) > 0) {
+        @if (type-of(nth($webfonts, 1)) == "list") {
+            @each $webfont in $webfonts {
+                @include font-face($webfont, $dir);
+            }
+        } @else {
+            @include font-face($webfonts, $dir);
         }
-    } @else if (list-separator($webfonts) == "space") {
-        @include font-face($webfonts, $dir);
-    } @else {
-        @error 'Invalid list separator for $webfonts';
     }
 }
 
