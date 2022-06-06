@@ -146,7 +146,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
                 await writeFile(outfile, result.css).then(() => {
                     // Purge CSS once file exists.
                     if (outfile) {
-                        purgeUnusedCSS(outfile, filestem);
+                        purgeUnusedCSS(outfile, `${label || `${filestem}.css`}`);
                     }
                 });
 
@@ -220,33 +220,35 @@ function createPostCSSProcessor(pluginsListOrMap, options)
 }
 
 /**
- * Purge unused styles of minified CSS files.
+ * Purge unused styles from CSS files.
  *
  * @async
  *
- * @param  {string} outfile  - The path of the CSS file.
- * @param  {string} filestem - The CSS file name.
+ * @param  {string} outfile - The path of a css file
+ *      If missing the function stops.
+ * @param  {string} label   - The CSS file label or name.
+ * @return {Promise}
  */
-async function purgeUnusedCSS(outfile, filestem) {
-
+async function purgeUnusedCSS(outfile, label) {
+    label = label ?? basename(outfile);
     const timeLabel = `${filestem}.css purged in`;
-        console.time(timeLabel);
+    console.time(timeLabel);
 
     const purgeCSSContentFiles = Array.from(loconfig.tasks.purgeCSS.content);
 
     const purgeCSSResults = await new PurgeCSS().purge({
         content: purgeCSSContentFiles,
-        css: [outfile],
+        css: [ outfile ],
         rejected: true,
         defaultExtractor: content => content.match(/[a-z0-9_\-\\\/\@]+/gi) || [],
         safelist: {
-            standard: [/^((?!\bu-gc-).)*$/]
+            standard: [ /^((?!\bu-gc-).)*$/ ]
         }
     })
 
     for(let result of purgeCSSResults) {
         await writeFile(outfile, result.css)
 
-        message(`${filestem}.css purged`, 'chore', timeLabel);
+        message(`${label} purged`, 'chore', timeLabel);
     }
 }

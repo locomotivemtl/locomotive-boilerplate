@@ -1,12 +1,10 @@
 # Grid system
 
-* [Architectures](#architectures)
-  * [Styles](#styles)
+* [Architectures](#architecture)
   * [Build tasks](#build-tasks)
-    * [Config file](#config-file)
+    * [Configuration](#configuration)
 * [Usage](#usage)
   * [Example](#example)
-* [Limitations](#limitations)
 
 ## Architecture
 

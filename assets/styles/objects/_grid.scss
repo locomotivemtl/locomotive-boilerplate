@@ -3,19 +3,20 @@
 // ==========================================================================
 // Help: https://css-tricks.com/snippets/css/complete-guide-grid/
 //
-// How to use :
 /**
-*```html
-* <div class="o-grid -col-4 -col-12@from-medium -gutters">
-*     <div class="o-grid_item u-gc-1/2 u-gc-3/9@from-medium">
-*           <p>Hello</p>
-*     </div>
-*     <div class="o-grid_item u-gc-3/4 u-gc-9/13@from-medium">
-*           <p>Hello</p>
-*     </div>
-* </div>
-* ```
-**/
+ * Usage:
+ *
+ * ```html
+ * <div class="o-grid -col-4 -col-12@from-medium -gutters">
+ *     <div class="o-grid_item u-gc-1/2 u-gc-3/9@from-medium">
+ *         <p>Hello</p>
+ *     </div>
+ *     <div class="o-grid_item u-gc-3/4 u-gc-9/13@from-medium">
+ *         <p>Hello</p>
+ *     </div>
+ * </div>
+ * ```
+ */
 
 .o-grid {
     display: grid;
