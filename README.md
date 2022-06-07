@@ -15,6 +15,7 @@
 * Uses [SVG Mixer] for processing SVG files and generating spritesheets.
 * Uses [ITCSS] for a sane and scalable CSS architecture.
 * Uses [Locomotive Scroll] for smooth scrolling with parallax effects.
+* Uses a custom [grid system](docs/grid.md) for layout creation.
 
 Learn more about [languages and technologies](docs/technologies.md).
 
@@ -84,6 +85,7 @@ Learn more about [development and building](docs/development.md).
 
 * [Development and building](docs/development.md)
 * [Languages and technologies](docs/technologies.md)
+* [Grid system](docs/grid.md)
 
 [BrowserSync]:       https://npmjs.com/package/browser-sync
 [ESBuild]:           https://npmjs.com/package/esbuild
