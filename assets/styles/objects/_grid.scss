@@ -21,9 +21,12 @@
 .o-grid {
     display: grid;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+    &:is(ul, ol) {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
     // ==========================================================================
     // Cols
