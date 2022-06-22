@@ -8,7 +8,7 @@ import { debounce } from './tickers'
  */
 /** @type {RegisteredCustomEvent[]} */
 
-REGISTERED_CUSTOM_EVENTS = []
+const REGISTERED_CUSTOM_EVENTS = []
 
 /**
  * Determines if the given object is the {@see Window}.
