@@ -49,8 +49,8 @@ export default class GridHelper extends module {
         elStyles.width = '100%'
         elStyles.height = '100%'
         elStyles.columnGap = GridHelper.settings.GUTTER
-        elStyles.paddingLeft = `calc(${GridHelper.settings.MARGIN} + ${GridHelper.settings.GUTTER})`
-        elStyles.paddingRight = `calc(${GridHelper.settings.MARGIN} + ${GridHelper.settings.GUTTER})`
+        elStyles.paddingLeft = `${GridHelper.settings.MARGIN}`
+        elStyles.paddingRight = `${GridHelper.settings.MARGIN}`
         elStyles.pointerEvents = 'none'
         elStyles.visibility = 'hidden'
     }
