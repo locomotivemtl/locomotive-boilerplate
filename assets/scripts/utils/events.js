@@ -50,8 +50,8 @@ const isCustomEventRegistered = (target, type) => REGISTERED_CUSTOM_EVENTS.some(
  */
 
 const addCustomEvent = (target, type) => {
-    if (!isCustomEventDefined(target, type)) {
-        CUSTOM_EVENT_LISTENERS.push({
+    if (!isCustomEventRegistered(target, type)) {
+        REGISTERED_CUSTOM_EVENTS.push({
             target,
             type
         })
@@ -82,14 +82,14 @@ const addStartEvent = (target, type, delay = 200) => {
         throw new Error(`addStartEvent: target parameter must be an instance of EventTarget`)
     }
 
-    if (isCustomEventDefined(target, customType)) {
+    if (isCustomEventRegistered(target, customType)) {
         throw new Error(`addStartEvent: '${customType}' already exists for target parameter`)
     }
 
     addCustomEvent(target, customType)
     const startEvent = new CustomEvent(customType)
 
-    target.addEventListener(event, debounce(() => {
+    target.addEventListener(type, debounce(() => {
         target.dispatchEvent(startEvent)
     }, delay, true))
 }
@@ -112,20 +112,20 @@ const addStartEvent = (target, type, delay = 200) => {
 
 const addEndEvent = (target, type, delay = 200) => {
 
-    const customType = `${event}end`
+    const customType = `${type}end`
 
     if (!isEventTarget(target)) {
         throw new Error(`addEndEvent: target parameter must be an instance of EventTarget`)
     }
 
-    if (isCustomEventDefined(target, customType)) {
+    if (isCustomEventRegistered(target, customType)) {
         throw new Error(`addEndEvent: '${customType}' already exists for target parameter`)
     }
 
     addCustomEvent(target, customType)
     const endEvent = new CustomEvent(customType)
 
-    target.addEventListener(event, debounce(() => {
+    target.addEventListener(type, debounce(() => {
         target.dispatchEvent(endEvent)
     }, delay))
 }
