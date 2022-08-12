@@ -231,7 +231,7 @@ function createPostCSSProcessor(pluginsListOrMap, options)
  */
 async function purgeUnusedCSS(outfile, label) {
     label = label ?? basename(outfile);
-    const timeLabel = `${filestem}.css purged in`;
+    const timeLabel = `${label} purged in`;
     console.time(timeLabel);
 
     const purgeCSSContentFiles = Array.from(loconfig.tasks.purgeCSS.content);
