@@ -1,0 +1,94 @@
+// ==========================================================================
+// Components / Styleguide
+// ==========================================================================
+
+.c-styleguide {
+}
+
+.c-styleguide_tooltip {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid rgba(1,1,1,0.1);
+    border-radius: 4px;
+    padding: 6px 10px;
+    z-index: 10;
+    opacity: 0;
+    transform: translate3d(-50%, 30px, 0);
+
+    html.is-ready & {
+        transition: opacity 0.2s linear, transform 0.3s ease-in;
+
+        &.is-visible {
+            opacity: 1;
+            transform: translate3d(-50%, 0, 0);
+            transition: opacity 0.2s linear, transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+    }   
+}
+
+.c-styleguide_block {
+    margin: 30px 0;
+
+    &.-flex {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px 10px;
+    }
+}
+
+.c-styleguide_heading {
+    display: block;
+    width: 100%;
+    padding: 20px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+.c-styleguide_element {
+    position: relative;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.1s linear;
+
+    &:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
+
+    > * {
+        margin: 0
+    }
+}
+
+.c-styleguide_color {
+}
+
+.c-styleguide_color_preview {
+    width: 100px;
+    height: 70px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.c-styleguide_color_code {
+    display: block;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.c-styleguide_color_name {
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
