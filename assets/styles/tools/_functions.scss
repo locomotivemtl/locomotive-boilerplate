@@ -60,7 +60,7 @@
 // @return {number}           The computed z-index of $layer and $modifier.
 
 @function z($layer, $modifier: 0) {
-    @if not map-has-key($layers, $layer) {
+    @if not map-has-key($z-indexes, $layer) {
         @error "Unknown master z-index layer: #{$layer}";
     }
 
