@@ -28,7 +28,7 @@ $font-fallback-mono:    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console
 // <font-id>: (<font-name>, <font-fallbacks>)
 // ```
 $font-families: (
-    "sans": ("Webfont Sans", $font-fallback-sans),
+    "sans": ("Webfont", $font-fallback-sans),
     // "serif": ("Webfont Serif", $font-fallback-serif),
     // "mono": ("Webfont Mono", $font-fallback-mono)
 );
@@ -39,7 +39,7 @@ $font-families: (
 // <font-name> <font-file-basename> <font-weight> <font-style>
 // ```
 $font-faces: (
-    // "Webfont Sans" "webfont-sans_regular" 400 normal,
+    "Webfont" "SourceSansPro-Regular" 400 normal,
     // "Webfont Sans" "webfont-sans_regular-italic" 400 italic,
     // "Webfont Serif" "webfont-sans_bold" 700 normal,
 );

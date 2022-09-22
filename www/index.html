@@ -29,11 +29,17 @@
         -->
     <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
 
+    <!-- Preload Fonts -->
+    <link rel="preload" href="assets/fonts/SourceSansPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
     <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print"
         onload="this.media='all'; this.onload=null; this.isLoaded=true">
 </head>
 
 <body data-module-load>
+
+    <p aria-hidden="true" class="u-screen-reader-text" style="font-family: 'Webfont';">&nbsp;</p>
+
     <div data-load-container>
         <div class="o-scroll" data-module-scroll="main">
             <header data-scroll-section>
