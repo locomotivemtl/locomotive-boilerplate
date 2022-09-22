@@ -1,5 +1,5 @@
 /**
- * Watch font faces used in our website and trigger a custom event when all font faces are loaded.
+ * Watch font faces used in our website and trigger a custom event `fontsLoaded` when all font faces are loaded.
  *
  *  @param {Object[]} fonts - List of fonts to watch
  *  @param {string} fonts[].fontFamily - The family name used is our CSS to identify the font.

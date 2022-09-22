@@ -1,4 +1,4 @@
-import { module } from 'modujs'
+import { module } from 'modujs':
 
 export default class extends module {
     constructor(m) {
@@ -31,11 +31,11 @@ export default class extends module {
     // Events
     ///////////////
     bindEvents() {
-        window.addEventListener("fontsLoaded", this.onFontsLoadedBind)
+        window.addEventListener('fontsLoaded', this.onFontsLoadedBind)
     }
 
     unbindEvents() {
-        window.removeEventListener("fontsLoaded", this.onFontsLoadedBind)
+        window.removeEventListener('fontsLoaded', this.onFontsLoadedBind)
     }
 
     ///////////////
