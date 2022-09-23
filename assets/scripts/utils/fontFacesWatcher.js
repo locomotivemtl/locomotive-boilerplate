@@ -29,10 +29,10 @@ export function watchFontFaces(fonts, isDebug = false) {
             if (!isAllLoaded) {
                 window.requestAnimationFrame(checkFonts);
             } else {
-                isDebug && console.log("All fonts loaded");
+                debug && console.log('[FontFacesWatcher]', 'All fonts loaded');
 
                 requestAnimationFrame(() => {
-                    const fontsLoadedEvent = new CustomEvent("fontsLoaded");
+                    const fontsLoadedEvent = new CustomEvent('fontsloaded');
                     window.dispatchEvent(fontsLoadedEvent);
                     window.isFontsLoaded = true;
                     resolve();
