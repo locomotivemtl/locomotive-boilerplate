@@ -30,36 +30,38 @@
         }
         
         if (!fonts) {
-            document.fonts.ready.then(() => {
-                onReady();
-            })
-        } else {
-            const checkFonts = () => {
-                let isAllLoaded = true;
-    
-                for (const font of fonts) {
+            document.fonts.ready.then(() => onReady());
+            return;
+        }
+
+        const checkFonts = () => {
+            let isAllLoaded = true;
+
+            for (const font of fonts) {
+                if (!font.isLoaded) {
+                    font.isLoaded = document.fonts.check(
+                        `${font.weight} ${font.style} 16px ${font.fontFamily}`
+                    );
+
                     if (!font.isLoaded) {
-                        font.isLoaded = document.fonts.check(
-                            `${font.weight} ${font.style} 16px ${font.fontFamily}`
+                        isAllLoaded = false;
+                    } else {
+                        debug && console.log(
+                            `[watchFontFaces]', '${font.fontFamily} is loaded`
                         );
-                        if (!font.isLoaded) {
-                            isAllLoaded = false;
-                        } else {
-                            debug && console.log(`[WatchFontFaces]', '${font.fontFamily} is loaded`);
-                        }
                     }
                 }
-                if (!isAllLoaded) {
-                    window.requestAnimationFrame(checkFonts);
-                } else {
-                    debug && console.log('[WatchFontFaces]', 'All fonts loaded');
-    
-                    requestAnimationFrame(() => {
-                        onReady();
-                    });
-                }
-            };
-            window.requestAnimationFrame(checkFonts);
-        }
+            }
+
+            if (!isAllLoaded) {
+                window.requestAnimationFrame(checkFonts);
+            } else {
+                debug && console.log('[watchFontFaces]', 'All fonts loaded');
+
+                requestAnimationFrame(() => onReady());
+            }
+        };
+
+        window.requestAnimationFrame(checkFonts);
     });
 }
