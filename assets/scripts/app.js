@@ -2,7 +2,7 @@ import modular from 'modujs';
 import * as modules from './modules';
 import globals from './globals';
 import { html } from './utils/environment';
-import { fontFacesWatcher } from './utils/fontFacesWatcher';
+import { watchFontFaces } from './utils/fontFacesWatcher';
 
 const app = new modular({
     modules: modules,
@@ -33,9 +33,9 @@ function init() {
     html.classList.add('is-ready');
     html.classList.remove('is-loading');
 
-    fontFacesWatcher([
+    watchFontFaces([
         { family: 'Webfont', style: 400, weight: 'normal' },
     ]).then(() => {
-        html.classList.add('is-fonts-loaded');
+        html.classList.add('fonts-loaded');
     });
 }
