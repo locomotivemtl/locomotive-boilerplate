@@ -9,7 +9,7 @@
  *
  *  @return {Promise} Promise that helps us execute code when all font faces are loaded.
  */
-export function fontFacesWatcher(fonts, isDebug = false) {
+export function watchFontFaces(fonts, isDebug = false) {
     return new Promise((resolve) => {
         const checkFonts = () => {
             let isAllLoaded = true;
