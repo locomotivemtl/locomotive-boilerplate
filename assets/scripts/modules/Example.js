@@ -7,8 +7,6 @@ export default class extends module {
         // Binding
         this.onFontsLoadedBind = this.onFontsLoaded.bind(this)
 
-        // UI
-        this.$el = this.el
     }
 
     ///////////////
