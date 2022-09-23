@@ -33,7 +33,6 @@ function init() {
     html.classList.add('is-ready');
     html.classList.remove('is-loading');
 
-    // Fontsfaces watcher
     fontFacesWatcher([
         { fontFamily: 'Webfont', style: 400, weight: 'normal' },
     ]).then(() => {
