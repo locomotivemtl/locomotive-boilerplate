@@ -13,9 +13,8 @@ export function watchFontFaces(fonts, isDebug = false) {
     return new Promise((resolve) => {
         const checkFonts = () => {
             let isAllLoaded = true;
-            let index = 0;
-            while (index < fonts.length) {
-                const font = fonts[index];
+
+            for (const font of fonts) {
                 if (!font.isLoaded) {
                     font.isLoaded = document.fonts.check(
                         `${font.weight} ${font.style} 16px ${font.fontFamily}`
@@ -23,10 +22,9 @@ export function watchFontFaces(fonts, isDebug = false) {
                     if (!font.isLoaded) {
                         isAllLoaded = false;
                     } else {
-                        isDebug && console.log(`${font.fontFamily} is loaded`);
+                        debug && console.log(`[FontFaceWatcher]', '${font.fontFamily} is loaded`);
                     }
                 }
-                index++;
             }
             if (!isAllLoaded) {
                 window.requestAnimationFrame(checkFonts);
