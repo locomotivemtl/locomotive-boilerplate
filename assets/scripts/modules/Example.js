@@ -29,7 +29,9 @@ export default class extends module {
     // Events
     ///////////////
     bindEvents() {
-        window.addEventListener('fontsLoaded', this.onFontsLoadedBind)
+        window.addEventListener('fontsLoaded', this.onFontsLoadedBind, {
+            once: true
+        })
     }
 
     unbindEvents() {
