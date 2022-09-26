@@ -15,8 +15,9 @@
  * Watches for the given font faces and triggers a custom event `fontsloaded`
  * when all font faces are loaded.
  *
- * @param {FontFaceReference[]} fonts - List of fonts to watch
- * @param {boolean}             debug - Log details to the console.
+ * @param {FontFaceReference[]|null} [fonts] - List of fonts to watch
+ *     or NULL to watch for all fonts.
+ * @param {boolean}                  [debug] - If TRUE, log details to the console.
  *
  * @return {Promise}
  */
