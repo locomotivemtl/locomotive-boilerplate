@@ -14,7 +14,7 @@
  */
 
 /**
- * Watches for the given font faces and triggers a custom event `fontsloaded`
+ * Watches for the given font faces and triggers a custom event `fontsLoaded`
  * when all font faces are loaded.
  *
  * @param {FontFaceReference[]|null} [fonts] - List of fonts to watch
@@ -26,7 +26,7 @@
  export function watchFontFaces(fonts = null, debug = false) {
     return new Promise((resolve) => {
         const onReady = () => {
-            const fontsLoadedEvent = new CustomEvent('fontsloaded');
+            const fontsLoadedEvent = new CustomEvent('fontsLoaded');
             window.dispatchEvent(fontsLoadedEvent);
             window.isFontsLoaded = true;
             resolve();
@@ -37,31 +37,39 @@
             return;
         }
 
+        const fontsToLoad = [...fonts];
+
+        for (const font of fontsToLoad) {
+            const $element = document.createElement("span");
+            $element.textContent = "\xa0";
+            $element.ariaHidden = true;
+            $element.classList.add('u-screen-reader-text');
+            $element.style.fontFamily = font.family;
+            $element.style.fontStyle = font.style;
+            $element.style.fontWeight = font.weight;
+            document.body.appendChild($element);
+        }
+
         const checkFonts = () => {
-            let isAllLoaded = true;
+            for (const [index, font] of fontsToLoad.entries()) {
 
-            for (const font of fonts) {
-                if (!font.isLoaded) {
-                    font.isLoaded = document.fonts.check(
-                        `${font.weight} ${font.style} 16px ${font.fontFamily}`
+                const isFontLoaded = document.fonts.check(
+                    `${font.style} ${font.weight} 16px ${font.family}`
+                );
+
+                if (isFontLoaded) {
+                    fontsToLoad.splice(index, 1);
+                    debug && console.log(
+                        '[watchFontFaces]', `${font.family} is loaded`
                     );
-
-                    if (!font.isLoaded) {
-                        isAllLoaded = false;
-                    } else {
-                        debug && console.log(
-                            `[watchFontFaces]', '${font.fontFamily} is loaded`
-                        );
-                    }
                 }
             }
 
-            if (!isAllLoaded) {
+            if (fontsToLoad.length) {
                 window.requestAnimationFrame(checkFonts);
             } else {
                 debug && console.log('[watchFontFaces]', 'All fonts loaded');
-
-                requestAnimationFrame(() => onReady());
+                window.requestAnimationFrame(() => onReady());
             }
         };
 

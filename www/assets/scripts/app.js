@@ -3668,33 +3668,42 @@
   var isDebug = html.hasAttribute("data-debug");
 
   // assets/scripts/utils/fontFacesWatcher.js
-  function fontFacesWatcher(fonts, isDebug2 = false) {
+  function watchFontFaces(fonts = null, debug = false) {
     return new Promise((resolve) => {
+      const onReady = () => {
+        const fontsLoadedEvent = new CustomEvent("fontsLoaded");
+        window.dispatchEvent(fontsLoadedEvent);
+        window.isFontsLoaded = true;
+        resolve();
+      };
+      if (!fonts) {
+        document.fonts.ready.then(() => onReady());
+        return;
+      }
+      const fontsToLoad = [...fonts];
+      for (const font of fontsToLoad) {
+        const $element = document.createElement("span");
+        $element.textContent = "\xA0";
+        $element.ariaHidden = true;
+        $element.classList.add("u-screen-reader-text");
+        $element.style.fontFamily = font.family;
+        $element.style.fontStyle = font.style;
+        $element.style.fontWeight = font.weight;
+        document.body.appendChild($element);
+      }
       const checkFonts = () => {
-        let isAllLoaded = true;
-        let index = 0;
-        while (index < fonts.length) {
-          const font = fonts[index];
-          if (!font.isLoaded) {
-            font.isLoaded = document.fonts.check(`${font.weight} ${font.style} 16px ${font.fontFamily}`);
-            if (!font.isLoaded) {
-              isAllLoaded = false;
-            } else {
-              isDebug2 && console.log(`${font.fontFamily} is loaded`);
-            }
+        for (const [index, font] of fontsToLoad.entries()) {
+          const isFontLoaded = document.fonts.check(`${font.style} ${font.weight} 16px ${font.family}`);
+          if (isFontLoaded) {
+            fontsToLoad.splice(index, 1);
+            debug && console.log("[watchFontFaces]", `${font.family} is loaded`);
           }
-          index++;
         }
-        if (!isAllLoaded) {
+        if (fontsToLoad.length) {
           window.requestAnimationFrame(checkFonts);
         } else {
-          isDebug2 && console.log("All fonts loaded");
-          requestAnimationFrame(() => {
-            const fontsLoadedEvent = new CustomEvent("fontsLoaded");
-            window.dispatchEvent(fontsLoadedEvent);
-            window.isFontsLoaded = true;
-            resolve();
-          });
+          debug && console.log("[watchFontFaces]", "All fonts loaded");
+          window.requestAnimationFrame(() => onReady());
         }
       };
       window.requestAnimationFrame(checkFonts);
@@ -3725,10 +3734,10 @@
     html.classList.add("is-loaded");
     html.classList.add("is-ready");
     html.classList.remove("is-loading");
-    fontFacesWatcher([
-      { fontFamily: "Webfont", style: 400, weight: "normal" }
-    ]).then(() => {
-      html.classList.add("is-fonts-loaded");
+    watchFontFaces([
+      { family: "Webfont", style: "normal", weight: 400 }
+    ], true).then(() => {
+      html.classList.add("fonts-loaded");
     });
   }
 })();

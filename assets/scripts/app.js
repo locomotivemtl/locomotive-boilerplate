@@ -34,8 +34,8 @@ function init() {
     html.classList.remove('is-loading');
 
     watchFontFaces([
-        { family: 'Webfont', style: 400, weight: 'normal' },
-    ]).then(() => {
+        { family: 'Webfont', style: 'normal', weight: 400 },
+    ], true).then(() => {
         html.classList.add('fonts-loaded');
     });
 }

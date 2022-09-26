@@ -6,7 +6,6 @@ export default class extends module {
 
         // Binding
         this.onFontsLoadedBind = this.onFontsLoaded.bind(this)
-
     }
 
     ///////////////
@@ -41,6 +40,5 @@ export default class extends module {
     ///////////////
     // Callbacks
     ///////////////
-    onFontsLoaded() {
-    }
+    onFontsLoaded() {}
 }

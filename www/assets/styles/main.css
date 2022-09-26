@@ -1088,3 +1088,57 @@ ol) {
     grid-column-end: 13;
   }
 }
+
+.u-clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.u-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  max-width: 100%;
+}
+
+[hidden][aria-hidden="false"] {
+  position: absolute;
+  display: inherit;
+  clip: rect(0, 0, 0, 0);
+}
+
+[hidden][aria-hidden="false"]:focus {
+  clip: auto;
+}
+
+.u-screen-reader-text {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: 0;
+}
+
+@media not print {
+  .u-screen-reader-text\@screen {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+  }
+}
+
+.u-screen-reader-text.-focusable:focus, .u-screen-reader-text.-focusable:active {
+  clip: auto;
+  width: auto;
+  height: auto;
+}
