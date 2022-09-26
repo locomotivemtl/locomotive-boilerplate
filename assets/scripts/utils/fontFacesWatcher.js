@@ -4,6 +4,7 @@
  * Utility for detecting when specific font faces are loaded
  * and dispatching a custom event.
  */
+
 /**
  * @typedef {Object} FontFaceReference
  *
