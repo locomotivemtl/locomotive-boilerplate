@@ -11,6 +11,7 @@
  * @property {string} style  - The style used by the font in our CSS.
  * @property {string} weight - The weight used by the font in our CSS.
  */
+
 /**
  * Watches for the given font faces and triggers a custom event `fontsloaded`
  * when all font faces are loaded.
