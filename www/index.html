@@ -29,11 +29,20 @@
         -->
     <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
 
+    <!-- Preload Fonts -->
+    <link rel="preload" href="assets/fonts/SourceSans3-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/SourceSans3-BoldIt.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/SourceSans3-RegularIt.woff2" as="font" type="font/woff2" crossorigin>
+
     <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print"
         onload="this.media='all'; this.onload=null; this.isLoaded=true">
 </head>
 
 <body data-module-load>
+
+    <!-- <p aria-hidden="true" class="u-screen-reader-text" style="font-family: 'Webfont';">&nbsp;</p> -->
+
     <div data-load-container>
         <div class="o-scroll" data-module-scroll="main">
             <header data-scroll-section>
@@ -49,10 +58,14 @@
                 </nav>
             </header>
 
-            <main data-scroll-section>
+            <main data-module-example data-scroll-section>
                 <div class="o-container">
                     <h1 class="c-heading -h1">Hello</h1>
                 </div>
+
+                <div style="height: 20000px;  background: rgb(144,0,240); background: linear-gradient(180deg, rgba(144,0,240,1) 0%, rgba(0,0,215,1) 35%, rgba(0,212,255,1) 100%); "></div>
+
+                <h2 style="font-family: Source Sans, sans-serif;">Hello, World!</h2>
             </main>
 
             <footer data-scroll-section>
