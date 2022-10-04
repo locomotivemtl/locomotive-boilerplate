@@ -1,8 +1,9 @@
-import loconfig from '../utils/config.js';
-import glob, { supportsGlob } from '../utils/glob.js';
-import message from '../utils/message.js';
-import notification from '../utils/notification.js';
-import resolve from '../utils/template.js';
+import loconfig from '../helpers/config.js';
+import glob, { supportsGlob } from '../helpers/glob.js';
+import message from '../helpers/message.js';
+import notification from '../helpers/notification.js';
+import resolve from '../helpers/template.js';
+import { merge } from '../utils/index.js';
 import concat from 'concat';
 import {
     basename,
@@ -72,7 +73,7 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
             globOptions !== developmentGlobOptions &&
             globOptions !== productionGlobOptions
         ) {
-            globOptions = Object.assign({}, defaultGlobOptions, globOptions);
+            globOptions = merge({}, defaultGlobOptions, globOptions);
         }
     }
 
@@ -82,7 +83,7 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
         concatOptions !== developmentConcatOptions &&
         concatOptions !== productionConcatOptions
     ) {
-        concatOptions = Object.assign({}, defaultConcatOptions, concatOptions);
+        concatOptions = merge({}, defaultConcatOptions, concatOptions);
     }
 
     loconfig.tasks.concats.forEach(async ({

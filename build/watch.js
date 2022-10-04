@@ -2,10 +2,10 @@ import concatFiles, { developmentConcatFilesArgs } from './tasks/concats.js';
 import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
 import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
 import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
-import loconfig, { merge } from './utils/config.js';
-import message from './utils/message.js';
-import notification from './utils/notification.js';
-import resolve from './utils/template.js';
+import loconfig, { merge } from './helpers/config.js';
+import message from './helpers/message.js';
+import notification from './helpers/notification.js';
+import resolve from './helpers/template.js';
 import browserSync from 'browser-sync';
 import { join } from 'node:path';
 

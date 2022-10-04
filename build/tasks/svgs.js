@@ -1,7 +1,8 @@
-import loconfig from '../utils/config.js';
-import message from '../utils/message.js';
-import notification from '../utils/notification.js';
-import resolve from '../utils/template.js';
+import loconfig from '../helpers/config.js';
+import message from '../helpers/message.js';
+import notification from '../helpers/notification.js';
+import resolve from '../helpers/template.js';
+import { merge } from '../utils/index.js';
 import { basename } from 'node:path';
 import mixer from 'svg-mixer';
 
@@ -44,7 +45,7 @@ export default async function compileSVGs(mixerOptions = null) {
         mixerOptions !== developmentMixerOptions &&
         mixerOptions !== productionMixerOptions
     ) {
-        mixerOptions = Object.assign({}, defaultMixerOptions, mixerOptions);
+        mixerOptions = merge({}, defaultMixerOptions, mixerOptions);
     }
 
     loconfig.tasks.svgs.forEach(async ({

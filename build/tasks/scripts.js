@@ -1,7 +1,8 @@
-import loconfig from '../utils/config.js';
-import message from '../utils/message.js';
-import notification from '../utils/notification.js';
-import resolve from '../utils/template.js';
+import loconfig from '../helpers/config.js';
+import message from '../helpers/message.js';
+import notification from '../helpers/notification.js';
+import resolve from '../helpers/template.js';
+import { merge } from '../utils/index.js';
 import esbuild from 'esbuild';
 import { basename } from 'node:path';
 
@@ -50,7 +51,7 @@ export default async function compileScripts(esBuildOptions = null) {
         esBuildOptions !== developmentESBuildOptions &&
         esBuildOptions !== productionESBuildOptions
     ) {
-        esBuildOptions = Object.assign({}, defaultESBuildOptions, esBuildOptions);
+        esBuildOptions = merge({}, defaultESBuildOptions, esBuildOptions);
     }
 
     loconfig.tasks.scripts.forEach(async ({
