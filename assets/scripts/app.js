@@ -24,6 +24,11 @@ window.onload = (event) => {
     }
 };
 
+export const EAGER_FONTS = [
+    { family: 'Source Sans', style: 'normal', weight: 400 },
+    { family: 'Source Sans', style: 'normal', weight: 700 },
+];
+
 function init() {
     globals();
 
@@ -37,10 +42,7 @@ function init() {
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts([
-            { family: 'Source Sans', style: 'normal', weight: 400 },
-            { family: 'Source Sans', style: 'normal', weight: 700 },
-        ], true).then((eagerFonts) => {
+        loadFonts(EAGER_FONTS, true).then((eagerFonts) => {
             html.classList.add('fonts-loaded');
             console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
             console.group('State of eager fonts:')

@@ -1,4 +1,5 @@
 import { module } from 'modujs';
+import { EAGER_FONTS } from '../app';
 import { whenReady } from '../utils/fonts';
 
 export default class extends module {
@@ -7,20 +8,10 @@ export default class extends module {
     }
 
     init() {
-        whenReady(
-            { family: 'Source Sans', style: 'normal', weight: 700 }
-        ).then((fonts) => this.onBoldFontLoaded(fonts));
-
-        whenReady([
-            { family: 'Source Sans', style: 'italic', weight: 400 },
-        ]).then((fonts) => this.onItalicFontLoaded(fonts));
+        whenReady(EAGER_FONTS).then((fonts) => this.onFontsLoaded(fonts));
     }
 
-    onBoldFontLoaded(fonts) {
-        console.log('Example: Bold Normal Font Loaded!', fonts)
-    }
-
-    onItalicFontLoaded(fonts) {
-        console.log('Example: Regular Italic Font Loaded!', fonts)
+    onFontsLoaded(fonts) {
+        console.log('Example: Eager Fonts Loaded!', fonts)
     }
 }
