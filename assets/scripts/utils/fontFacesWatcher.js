@@ -41,7 +41,7 @@
 
         for (const font of fontsToLoad) {
             const $element = document.createElement("span");
-            $element.textContent = "\xa0";
+            $element.textContent = NBSP;
             $element.ariaHidden = true;
             $element.classList.add('u-screen-reader-text');
             $element.style.fontFamily = font.family;
