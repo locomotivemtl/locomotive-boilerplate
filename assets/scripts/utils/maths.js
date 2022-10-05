@@ -32,15 +32,17 @@ const invlerp = (x, y, a) => clamp((v - x)/(a - x))
 
 
 /**
- * Round number to n decimal
- * @param {number}  x   - float number to round
- * @param {number}  n   - integer number of decimals
- * @return {number} rounded number
+ * Round number to the specified precision.
+ *
+ * This function is necessary because `Number.prototype.toPrecision()`
+ * and `Number.prototype.toFixed()`
+ *
+ * @param  {number}  number      - The floating point number to round.
+ * @param  {number}  [precision] - The number of digits to appear after the decimal point.
+ * @return {number} The rounded number.
  */
-
-const roundNumber = (x, n = 2) => {
-    const decimals = 10 ** n
-    return Math.round(x * decimals)/decimals
+const roundNumber = (number, precision = 2) => {
+    return Number.parseFloat(number.toPrecision(precision));
 }
 
 
