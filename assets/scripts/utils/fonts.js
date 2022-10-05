@@ -23,9 +23,6 @@
  * @property {string} [weight] - The weight used by the font in our CSS.
  */
 
-/** No-break space */
-const NBSP = '\xa0';
-
 const isFontLoadingAPIAvailable = ('fonts' in document);
 
 /**
