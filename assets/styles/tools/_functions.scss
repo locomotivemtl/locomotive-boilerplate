@@ -115,7 +115,7 @@
 // @return {string}
 
 @function mq-min($breakpoint) {
-    @return mq($breakpointMin, "min")};
+    @return mq($breakpoint, "min");
 }
 
 // Creates a max-width media query expression.
@@ -124,7 +124,7 @@
 // @return {string}
 
 @function mq-max($breakpoint) {
-    @return mq($breakpointMin, "max")};
+    @return mq($breakpoint, "max");
 }
 
 // Creates a min-width and max-width media query expression.
@@ -134,7 +134,7 @@
 // @return {string}
 
 @function mq-between($breakpointMin, $breakpointMax) {
-    @return "#{mq-min($breakpointMin)} and #{mq-max($breakpointMax, "max")}";
+    @return "#{mq-min($breakpointMin)} and #{mq-max($breakpointMax)}";
 }
 
 // Resolve whether a rule is important or not.
