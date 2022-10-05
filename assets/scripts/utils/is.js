@@ -16,7 +16,7 @@ const isObject = x => (x && typeof x === 'object')
  * @return {boolean}
  */
 
-const isFunction = x => x instanceof Function
+const isFunction = x => typeof x === 'function'
 
 
 export {
