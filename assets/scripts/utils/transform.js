@@ -1,20 +1,4 @@
 /**
- * Transform function
- * @param {HTMLElement} $el         - DOM element
- * @param {number}      value       - transform value
- * @return {void}
- */
-
-const transform = ($el, value) => {
-    $el.style.msTransform = value
-    $el.style.webkitTransform = value
-    $el.style.MozTransform = value
-    $el.style.OTransform = value
-    $el.style.transform = value
-}
-
-
-/**
  * Get translate function
  * @param {HTMLElement}     $el     - DOM Element
  * @return {number|object}  translate value
