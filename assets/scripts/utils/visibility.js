@@ -1,129 +1,118 @@
-import { isFunction } from './is';
-import { arrayContains, findByKeyValue, removeFromArray } from './array';
-import { $document, $window, $html, $body } from './environment';
-
-const CALLBACKS = {
-    hidden: [],
-    visible: []
-};
-
-const ACTIONS = [
-    'addCallback',
-    'removeCallback'
-];
-
-const STATES = [
-    'visible',
-    'hidden'
-];
-
-const PREFIX = 'v-';
-
-let UUID = 0;
-
-// Main event
-$document.on('visibilitychange', function(event) {
-    if (document.hidden) {
-        onDocumentChange('hidden');
-    } else {
-        onDocumentChange('visible');
-    }
-});
-
 /**
- * Add a callback
- * @param {string}   state
- * @param {function} callback
- * @return {string}  ident
+ * The `PageVisibility` interface provides support for dispatching
+ * a custom event derived from the value of {@see document.visibilityState}
+ * when the "visibilitychange" event is fired.
+ *
+ * The custom events are:
+ *
+ * - "visibilityhidden" representing the "hidden" visibility state.
+ * - "visibilityvisible" representing the "visibile" visibility state.
+ *
+ * Example:
+ *
+ * ```js
+ * import pageVisibility from './utils/visibility.js';
+ *
+ * pageVisibility.enableCustomEvents();
+ *
+ * document.addEventListener('visibilityhidden', () => videoElement.pause());
+ * ```
+ *
+ * The dispatched event object is the same from "visibilitychange"
+ * and renamed according to the visibility state.
+ *
+ * The `PageVisibility` interface does not manage the attachment/detachment
+ * of event listeners on the custom event types.
+ *
+ * Further reading:
+ *
+ * - {@link https://www.w3.org/TR/page-visibility/ W3 Specification}
+ * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API MDN Web Docs}
  */
-function addCallback (state, options) {
-    let callback = options.callback || '';
+export default new class PageVisibility {
+    /**
+     * Checks if the "visibilitychange" event listener has been registered.
+     *
+     * @return {boolean} Returns `false` if the event listener is not registered,
+     *     otherwise returns `true`.
+     */
+    get isEnabled() {
+        return isVisibilityChangeObserved;
+    }
 
-    if (!isFunction(callback)) {
-        console.warn('Callback is not a function');
+    /**
+     * Removes the "visibilitychange" event listener.
+     *
+     * @return {boolean} Returns `false` if the event listener was already unregistered,
+     *     otherwise returns `true`.
+     */
+    disableCustomEvents() {
+        if (isVisibilityChangeObserved) {
+            isVisibilityChangeObserved = false;
+            document.removeEventListener('visibilitychange', handleCustomVisibilityChange);
+            return true;
+        }
+
         return false;
     }
 
-    let ident = PREFIX + UUID++;
+    /**
+     * Registers the "visibilitychange" event listener.
+     *
+     * @return {boolean} Returns `false` if the event listener was already registered,
+     *     otherwise returns `true`.
+     */
+    enableCustomEvents() {
+        if (!isVisibilityChangeObserved) {
+            isVisibilityChangeObserved = true;
+            document.addEventListener('visibilitychange', handleCustomVisibilityChange);
+            return true;
+        }
 
-    CALLBACKS[state].push({
-        ident: ident,
-        callback: callback
-    });
-
-    return ident;
-}
-
-/**
- * Remove a callback
- * @param  {string}   state  Visible or hidden
- * @param  {string}   ident  Unique identifier
- * @return {boolean}         If operation was a success
- */
-function removeCallback (state, options) {
-    let ident = options.ident || '';
-
-    if (typeof(ident) === 'undefined' || ident === '') {
-        console.warn('Need ident to remove callback');
-        return false;
-    }
-
-    let index = findByKeyValue(CALLBACKS[state], 'ident', ident)[0];
-
-    // console.log(ident)
-    // console.log(CALLBACKS[state])
-
-    if (typeof(index) !== 'undefined') {
-        removeFromArray(CALLBACKS[state], index);
-        return true;
-    } else {
-        console.warn('Callback could not be found');
         return false;
     }
 }
 
 /**
- * When document state changes, trigger callbacks
- * @param  {string}  state  Visible or hidden
+ * Tracks whether custom visibility event types
+ * are available (`true`) or not (`false`).
+ *
+ * @type {boolean}
  */
-function onDocumentChange (state) {
-    let callbackArray = CALLBACKS[state];
-    let i = 0;
-    let len = callbackArray.length;
+let isVisibilityChangeObserved = false;
 
-    for (; i < len; i++) {
-        callbackArray[i].callback();
-    }
+/**
+ * Dispatches a custom visibility event at the document derived
+ * from the value of {@see document.visibilityState}.
+ *
+ * @listens document#visibilitychange
+ *
+ * @fires PageVisibility#visibilityhidden
+ * @fires PageVisibility#visibilityvisible
+ *
+ * @param  {Event} event
+ * @return {void}
+ */
+function handleCustomVisibilityChange(event) {
+    document.dispatchEvent(new CustomEvent(`visibility${document.visibilityState}`, {
+        detail: {
+            cause: event
+        }
+    }));
 }
 
 /**
- * Public facing API for adding and removing callbacks
- * @param   {object}           options  Options
- * @return  {boolean|integer}           Unique identifier for the callback or boolean indicating success or failure
+ * The "visibilityhidden" eveent is fired at the document when the contents
+ * of its tab have become hidden.
+ *
+ * @event PageVisibility#visibilityhidden
+ * @type  {Event}
  */
-function visibilityApi (options) {
-    let action = options.action || '';
-    let state = options.state || '';
-    let ret;
 
-    // Type and value checking
-    if (!arrayContains(ACTIONS, action)) {
-        console.warn('Action does not exist');
-        return false;
-    }
-    if (!arrayContains(STATES, state)) {
-        console.warn('State does not exist');
-        return false;
-    }
-
-    // @todo Magic call function pls
-    if (action === 'addCallback') {
-        ret = addCallback(state, options);
-    } else if (action === 'removeCallback') {
-        ret = removeCallback(state, options);
-    }
-
-    return ret;
-}
-
-export { visibilityApi };
+/**
+ * The "visibilityvisible" eveent is fired at the document when the contents
+ * of its tab have become visible.
+ *
+ * @event PageVisibility#visibilityvisible
+ * @type  {Event}
+ */

@@ -13,7 +13,6 @@
 .o-container {
     margin-right: auto;
     margin-left: auto;
-    padding-right: rem($padding);
-    padding-left: rem($padding);
-    max-width: rem($container-width + ($padding * 2));
+    padding-right: $base-column-gap;
+    padding-left: $base-column-gap;
 }

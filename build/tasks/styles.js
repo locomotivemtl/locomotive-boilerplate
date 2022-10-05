@@ -7,6 +7,7 @@ import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
 import sass from 'node-sass';
+import { PurgeCSS } from 'purgecss';
 
 const sassRender = promisify(sass.render);
 
@@ -142,7 +143,12 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             }
 
             try {
-                await writeFile(outfile, result.css);
+                await writeFile(outfile, result.css).then(() => {
+                    // Purge CSS once file exists.
+                    if (outfile) {
+                        purgeUnusedCSS(outfile, `${label || `${filestem}.css`}`);
+                    }
+                });
 
                 if (result.css) {
                     message(`${label || `${filestem}.css`} compiled`, 'success', timeLabel);
@@ -211,4 +217,38 @@ function createPostCSSProcessor(pluginsListOrMap, options)
     }
 
     return postcss(plugins);
+}
+
+/**
+ * Purge unused styles from CSS files.
+ *
+ * @async
+ *
+ * @param  {string} outfile - The path of a css file
+ *      If missing the function stops.
+ * @param  {string} label   - The CSS file label or name.
+ * @return {Promise}
+ */
+async function purgeUnusedCSS(outfile, label) {
+    label = label ?? basename(outfile);
+    const timeLabel = `${label} purged in`;
+    console.time(timeLabel);
+
+    const purgeCSSContentFiles = Array.from(loconfig.tasks.purgeCSS.content);
+
+    const purgeCSSResults = await new PurgeCSS().purge({
+        content: purgeCSSContentFiles,
+        css: [ outfile ],
+        rejected: true,
+        defaultExtractor: content => content.match(/[a-z0-9_\-\\\/\@]+/gi) || [],
+        safelist: {
+            standard: [ /^((?!\bu-gc-).)*$/ ]
+        }
+    })
+
+    for(let result of purgeCSSResults) {
+        await writeFile(outfile, result.css)
+
+        message(`${label} purged`, 'chore', timeLabel);
+    }
 }

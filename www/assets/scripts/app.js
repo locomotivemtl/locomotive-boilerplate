@@ -609,9 +609,140 @@
   // assets/scripts/modules.js
   var modules_exports = {};
   __export(modules_exports, {
+    Example: () => Example_default,
     Load: () => Load_default,
     Scroll: () => Scroll_default
   });
+
+  // assets/scripts/utils/fonts.js
+  var isFontLoadingAPIAvailable = "fonts" in document;
+  function conformsToReference(font, criterion2) {
+    for (const [key, value] of Object.entries(criterion2)) {
+      switch (key) {
+        case "family": {
+          if (trim(font[key]) !== value) {
+            return false;
+          }
+          break;
+        }
+        case "weight": {
+          if (font[key] != value) {
+            return false;
+          }
+          break;
+        }
+        default: {
+          if (font[key] !== value) {
+            return false;
+          }
+          break;
+        }
+      }
+    }
+    return true;
+  }
+  function conformsToShorthand(font, criterion2) {
+    const family = trim(font.family);
+    if (trim(family) === criterion2) {
+      return true;
+    }
+    if (criterion2.endsWith(trim(family)) && (criterion2.match(font.weight) || criterion2.match(font.style))) {
+      return true;
+    }
+    return true;
+  }
+  function findManyByReference(search) {
+    const found = [];
+    for (const font of document.fonts) {
+      if (conformsToReference(font, search)) {
+        found.push(font);
+      }
+    }
+    return found;
+  }
+  function findManyByShorthand(search) {
+    const found = [];
+    for (const font of document.fonts) {
+      if (conformsToShorthand(font, search)) {
+        found.push(font);
+      }
+    }
+    return found;
+  }
+  function getMany(queries) {
+    if (!Array.isArray(queries)) {
+      queries = [queries];
+    }
+    const found = /* @__PURE__ */ new Set();
+    queries.forEach((search) => {
+      if (search) {
+        switch (typeof search) {
+          case "string":
+            found.add(...findManyByShorthand(search));
+            return;
+          case "object":
+            found.add(...findManyByReference(search));
+            return;
+        }
+      }
+      throw new TypeError("Expected font query to be font shorthand or font reference");
+    });
+    return [...found];
+  }
+  function loadFonts(fontsToLoad, debug = false) {
+    return __async(this, null, function* () {
+      var _a;
+      if (((_a = fontsToLoad.size) != null ? _a : fontsToLoad.length) === 0) {
+        throw new TypeError("Expected at least one font");
+      }
+      return yield loadFontsWithAPI([...fontsToLoad], debug);
+    });
+  }
+  function loadFontFaceWithAPI(font) {
+    return __async(this, null, function* () {
+      return yield (font.status === "unloaded" ? font.load() : font.loaded).then((font2) => font2, (err) => font);
+    });
+  }
+  function loadFontsWithAPI(fontsToLoad, debug = false) {
+    return __async(this, null, function* () {
+      debug && console.group("[loadFonts:API]", fontsToLoad.length, "/", document.fonts.size);
+      const fontsToBeLoaded = [];
+      for (const fontToLoad of fontsToLoad) {
+        if (fontToLoad instanceof FontFace) {
+          if (!document.fonts.has(fontToLoad)) {
+            document.fonts.add(fontToLoad);
+          }
+          fontsToBeLoaded.push(loadFontFaceWithAPI(fontToLoad));
+        } else {
+          fontsToBeLoaded.push(...getMany(fontToLoad).map((font) => loadFontFaceWithAPI(font)));
+        }
+      }
+      debug && console.groupEnd();
+      return yield Promise.all(fontsToBeLoaded);
+    });
+  }
+  function trim(value) {
+    return value.replace(/['"]+/g, "");
+  }
+  function whenReady(queries) {
+    return __async(this, null, function* () {
+      const fonts = getMany(queries);
+      return yield Promise.all(fonts.map((font) => font.loaded));
+    });
+  }
+
+  // assets/scripts/modules/Example.js
+  var Example_default = class extends _default {
+    constructor(m) {
+      super(m);
+    }
+    init() {
+      whenReady(EAGER_FONTS).then((fonts) => this.onFontsLoaded(fonts));
+    }
+    onFontsLoaded(fonts) {
+      console.log("Example: Eager Fonts Loaded!", fonts);
+    }
+  };
 
   // node_modules/modularload/dist/main.esm.js
   function _classCallCheck2(instance, Constructor) {
@@ -3694,12 +3825,21 @@
       console.warn('The "main-css" stylesheet not found');
     }
   };
+  var EAGER_FONTS = [
+    { family: "Source Sans", style: "normal", weight: 400 },
+    { family: "Source Sans", style: "normal", weight: 700 }
+  ];
   function init() {
     globals_default();
     app.init(app);
     html.classList.add(config_default.CSS_CLASS.LOADED);
     html.classList.add(config_default.CSS_CLASS.READY);
     html.classList.remove(config_default.CSS_CLASS.LOADING);
+    if (isFontLoadingAPIAvailable) {
+      loadFonts(EAGER_FONTS).then((eagerFonts) => {
+        html.classList.add("fonts-loaded");
+      });
+    }
   }
 })();
 /*

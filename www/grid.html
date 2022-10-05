@@ -1,6 +1,5 @@
 <!doctype html>
-<html class="is-loading" lang="en" data-page="home">
-
+<html class="is-loading" lang="en" data-page="grid">
 <head>
     <meta charset="utf-8">
     <title>Locomotive Boilerplate</title>
@@ -29,20 +28,11 @@
         -->
     <!-- <link rel="icon" href="assets/images/favicons/favicon.svg"> -->
 
-    <!-- Preload Fonts -->
-    <link rel="preload" href="assets/fonts/SourceSans3-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/SourceSans3-BoldIt.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/SourceSans3-RegularIt.woff2" as="font" type="font/woff2" crossorigin>
-
     <link id="main-css" rel="stylesheet" href="assets/styles/main.css" media="print"
         onload="this.media='all'; this.onload=null; this.isLoaded=true">
 </head>
 
 <body data-module-load>
-
-    <!-- <p aria-hidden="true" class="u-screen-reader-text" style="font-family: 'Webfont';">&nbsp;</p> -->
-
     <div data-load-container>
         <div class="o-scroll" data-module-scroll="main">
             <header data-scroll-section>
@@ -58,9 +48,31 @@
                 </nav>
             </header>
 
-            <main data-module-example data-scroll-section>
+            <main data-scroll-section>
                 <div class="o-container">
                     <h1 class="c-heading -h1">Hello</h1>
+
+                    <div class="o-grid -col-4 -col-12@from-medium -gutters">
+                        <div class="o-grid_item u-gc-1/8@from-medium" style="background-color: gray;">
+                            <h2 class="c-heading -h2">This grid has 4 columns and 12 columns from `medium` MQ</h2>
+                        </div>
+
+                        <div class="o-grid_item u-gc-1/5@from-medium" style="background-color: yellow;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-5/9@from-medium" style="background-color: red;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-9/13@from-medium" style="background-color: blue;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+
+                        <div class="o-grid_item u-gc-1/3 u-gc-5/13@from-medium" style="background-color: pink;">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita provident distinctio deleniti eaque cumque doloremque aut quo dicta porro commodi, temporibus totam dolor autem tempore quasi ullam sed suscipit vero?</p>
+                        </div>
+                    </div>
                 </div>
             </main>
 

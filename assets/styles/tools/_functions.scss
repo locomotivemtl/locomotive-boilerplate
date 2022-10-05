@@ -2,6 +2,15 @@
 // Tools / Functions
 // ==========================================================================
 
+// Check if the given value is a number in pixel
+//
+// @param  {Number} $number - The value to check
+// @return {Boolean}
+
+@function is-pixel-number($number) {
+    @return type-of($number) == number and unit($number) == "px";
+}
+
 // Converts the given pixel value to its EM quivalent.
 //
 // @param  {Number} $size                     - The pixel value to convert.
@@ -9,20 +18,12 @@
 // @return {Number} Scalable pixel value in EMs.
 
 @function em($size, $base: $font-size) {
-    @if (type-of($size) == number) {
-        @if (unit($size) != "px") {
-            @error "`#{$size}` needs to be a pixel value.";
-        }
-    } @else {
-        @error "`#{$size}` needs to be a number.";
+    @if not is-pixel-number($size) {
+        @error "`#{$size}` needs to be a number in pixel.";
     }
 
-    @if (type-of($base) == number) {
-        @if (unit($base) != "px") {
-            @error "`#{$base}` needs to be a pixel value.";
-        }
-    } @else {
-        @error "`#{$base}` needs to be a number.";
+    @if not is-pixel-number($base) {
+        @error "`#{$base}` needs to be a number in pixel.";
     }
 
     @return ($size / $base) * 1em;
@@ -35,23 +36,41 @@
 // @return {Number} Scalable pixel value in REMs.
 
 @function rem($size, $base: $font-size) {
-    @if (type-of($size) == number) {
-        @if (unit($size) != "px") {
-            @error "`#{$size}` needs to be a pixel value.";
-        }
-    } @else {
-        @error "`#{$size}` needs to be a number.";
+
+    @if not is-pixel-number($size) {
+        @error "`#{$size}` needs to be a number in pixel.";
     }
 
-    @if (type-of($base) == number) {
-        @if (unit($base) != "px") {
-            @error "`#{$base}` needs to be a pixel value.";
-        }
-    } @else {
-        @error "`#{$base}` needs to be a number.";
+    @if not is-pixel-number($base) {
+        @error "`#{$base}` needs to be a number in pixel.";
     }
 
     @return ($size / $base) * 1rem;
+}
+
+// Retrieves the z-index from the {@see $layers master list}.
+//
+// @link on http://css-tricks.com/handling-z-index/
+//
+// @param  {string} $layer    The name of the z-index.
+// @param  {number} $modifier A positive or negative modifier to apply
+//     to the returned z-index value.
+// @throw  Error if the $layer does not exist.
+// @throw  Warning if the $modifier might overlap another master z-index.
+// @return {number}           The computed z-index of $layer and $modifier.
+
+@function z($layer, $modifier: 0) {
+    @if not map-has-key($z-indexes, $layer) {
+        @error "Unknown master z-index layer: #{$layer}";
+    }
+
+    @if ($modifier >= 50 or $modifier <= -50) {
+        @warn "Modifier may overlap the another master z-index layer: #{$modifier}";
+    }
+
+    $index: map-get($z-indexes, $layer);
+
+    @return $index + $modifier;
 }
 
 // Converts a number to a percentage.
@@ -94,7 +113,7 @@
 @function important($flag: false) {
     @if ($flag == true) {
         @return !important;
-    } @elseif ($important == false) {
+    } @else if ($important == false) {
         @return null;
     } @else {
         @error "`#{$flag}` needs to be `true` or `false`.";

@@ -14,26 +14,42 @@ $assets-path: "../"  !default;
 // Typefaces
 // =============================================================================
 
+// Font directory
 $font-dir: "../fonts/";
 
+// Font fallbacks (retrieved from systemfontstack.com on 2022-05-31)
+$font-fallback-sans:    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+$font-fallback-serif:   Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$font-fallback-mono:    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+
+// Map of font families.
+//
+// ```
+// <font-id>: (<font-name>, <font-fallbacks>)
+// ```
 $font-families: (
-    "sans": ("Webfont Sans", "Helvetica Neue", Arial, sans-serif),
-    // "serif": ("Webfont Serif", Georgia, serif)
+    sans: join(Source Sans, $font-fallback-sans, $separator: comma),
 );
 
+// List of custom font faces as tuples.
+//
+// ```
+// <font-name> <font-file-basename> <font-weight> <font-style>
+// ```
 $font-faces: (
-    // "Webfont Sans" "webfont-sans_regular" 400 normal,
-    // "Webfont Sans" "webfont-sans_regular-italic" 400 italic,
-    // "Webfont Serif" "webfont-sans_bold" 700 normal,
+    (Source Sans, "SourceSans3-Bold",      700, normal),
+    (Source Sans, "SourceSans3-BoldIt",    700, italic),
+    (Source Sans, "SourceSans3-Regular",   400, normal),
+    (Source Sans, "SourceSans3-RegularIt", 400, italic),
 );
 
 // Typography
 // =============================================================================
 
 // Base
-$font-size:   16px;
-$line-height: 24px / $font-size;
-$color:       #222222;
+$font-size: 16px;
+$line-height:   24px / $font-size;
+$font-color:    $color-darkest;
 
 // Headings
 $font-size-h1:  36px  !default;
@@ -45,28 +61,30 @@ $font-size-h6:  16px  !default;
 $line-height-h: $line-height;
 
 // Weights
-$light:  300;
-$normal: 400;
-$medium: 500;
-$bold:   700;
+$font-weight-light:     300;
+$font-weight-normal:    400;
+$font-weight-medium:    500;
+$font-weight-bold:      700;
 
 // Transitions
 // =============================================================================
 
-$speed:  0.3s;
-$easing: $Power2EaseOut;
+$speed:     0.3s;
+$easing:    $ease-power2-out;
 
 // Spacing Units
 // =============================================================================
-
 $unit:       60px;
-$unit-small: 30px;
+$unit-small: 20px;
 
 // Container
-// =============================================================================
-
-$container-width: 2000px;
+// ==========================================================================
 $padding:         $unit;
+
+// Grid
+// ==========================================================================
+$base-column-nb: 12;
+$base-column-gap: $unit-small;
 
 // Breakpoints
 // =============================================================================
@@ -89,3 +107,12 @@ $from-gigantic: 2000px             !default;
 $to-gigantic:   $from-gigantic - 1 !default;
 $from-colossal: 2400px             !default;
 $to-colossal:   $from-colossal - 1 !default;
+
+// Master z-indexe
+// =============================================================================
+
+$z-indexes: (
+    "header":   200,
+    "above":    1,
+    "below":    -1
+);
