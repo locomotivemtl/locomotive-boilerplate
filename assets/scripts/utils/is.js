@@ -1,37 +1,25 @@
-const toString = Object.prototype.toString;
-const arrayLikePattern = /^\[object (?:Array|FileList)\]$/;
+/**
+ * Determines if the argument is object-like.
+ *
+ * A value is object-like if it's not `null` and has a `typeof` result of "object".
+ *
+ * @param  {*} x - The value to be checked.
+ * @return {boolean}
+ */
 
-// thanks, http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
-export function isArray ( thing ) {
-    return toString.call( thing ) === '[object Array]';
-}
+const isObject = x => (x && typeof x === 'object')
 
-export function isArrayLike ( obj ) {
-    return arrayLikePattern.test( toString.call( obj ) );
-}
+/**
+ * Determines if the argument is a function.
+ *
+ * @param  {*} x - The value to be checked.
+ * @return {boolean}
+ */
 
-export function isEqual ( a, b ) {
-    if ( a === null && b === null ) {
-        return true;
-    }
+const isFunction = x => typeof x === 'function'
 
-    if ( typeof a === 'object' || typeof b === 'object' ) {
-        return false;
-    }
 
-    return a === b;
-}
-
-// http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-export function isNumeric ( thing ) {
-    return !isNaN( parseFloat( thing ) ) && isFinite( thing );
-}
-
-export function isObject ( thing ) {
-    return ( thing && toString.call( thing ) === '[object Object]' );
-}
-
-export function isFunction( thing ) {
-    const getType = {};
-    return thing && getType.toString.call(thing) === '[object Function]';
+export {
+    isObject,
+    isFunction
 }
