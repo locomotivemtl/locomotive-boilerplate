@@ -32,27 +32,27 @@ html {
         user-select: none;
     }
 
-    @media #{md("medium", "max")} {
+    @media #{mq("medium", "max")} {
         font-size: $font-size - 2px;
     }
 
-    @media #{mdb("medium", "large")} {
+    @media #{mq-between("medium", "large")} {
         font-size: $font-size - 1px;
     }
 
-    @media #{mdb("large", "huge")} {
+    @media #{mq-between("large", "huge")} {
         font-size: $font-size; // [1]
     }
 
-    @media #{mdb("huge", "gigantic")} {
+    @media #{mq-between("huge", "gigantic")} {
         font-size: $font-size + 1px;
     }
 
-    @media #{mdb("gigantic", "colossal")} {
+    @media #{mq-between("gigantic", "colossal")} {
         font-size: $font-size + 2px;
     }
 
-    @media #{md("colossal")} {
+    @media #{mq("colossal", "min")} {
         font-size: $font-size + 4px;
     }
 }
