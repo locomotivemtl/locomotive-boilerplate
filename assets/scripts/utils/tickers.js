@@ -1,9 +1,21 @@
 /**
- * Debounce function: fire the callback before/after the action has finished for the defined amount of time
- * @param {function}    callback    - callback function
- * @param {number}      delay       - waiting time in milisecond
- * @param {boolean}     immediate   - triggers before or after delay
- * @return {function}   callback
+ * Creates a debounced function.
+ *
+ * A debounced function delays invoking `callback` until after
+ * `delay` milliseconds have elapsed since the last time the
+ * debounced function was invoked.
+ *
+ * Useful for behaviour that should only happen _before_ or
+ * _after_ an event has stopped occurring.
+ *
+ * @template {function} T
+ *
+ * @param  {T}       callback    - The function to debounce.
+ * @param  {number}  delay       - The number of milliseconds to wait.
+ * @param  {boolean} [immediate] -
+ *     If `true`, `callback` is invoked before `delay`.
+ *     If `false`, `callback` is invoked after `delay`.
+ * @return {function<T>} The new debounced function.
  */
 
 const debounce = (callback, delay, immediate = false) => {
