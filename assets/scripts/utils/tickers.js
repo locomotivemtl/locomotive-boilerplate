@@ -41,10 +41,18 @@ const debounce = (callback, delay, immediate = false) => {
 
 
 /**
- * Throttle function: fire the callback while the action is being performed for the defined iteration time
- * @param {function}    callback    - callback function
- * @param {number}      delay       - waiting time in milisecond
- * @return {function}   callback
+ * Creates a throttled function.
+ *
+ * A throttled function invokes `callback` at most once per every
+ * `delay` milliseconds.
+ *
+ * Useful for rate-limiting an event that occurs in quick succession.
+ *
+ * @template {function} T
+ *
+ * @param  {T}       callback - The function to throttle.
+ * @param  {number}  delay    - The number of milliseconds to wait.
+ * @return {function<T>} The new throttled function.
  */
 
 const throttle = (callback, delay) => {
