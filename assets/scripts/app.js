@@ -42,15 +42,15 @@ function init() {
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts(EAGER_FONTS, true).then((eagerFonts) => {
+        loadFonts(EAGER_FONTS).then((eagerFonts) => {
             html.classList.add('fonts-loaded');
-            console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
-            console.group('State of eager fonts:')
-            eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-            console.groupEnd()
-            console.group('State of all fonts:')
-            document.fonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-            console.groupEnd()
+            // console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
+            // console.group('State of eager fonts:')
+            // eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
+            // console.groupEnd()
+            // console.group('State of all fonts:')
+            // document.fonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
+            // console.groupEnd()
         });
     }
 }
