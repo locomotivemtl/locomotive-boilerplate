@@ -1,6 +1,7 @@
 import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import resolve from '../utils/template.js';
+import { randomBytes } from 'node:crypto';
 import {
     mkdir,
     readFile,
@@ -13,7 +14,11 @@ import {
 
 /**
  * @typedef  {object} VersionOptions
- * @property {string} versionKey - The JSON field to add or update.
+ * @property {string|number|null} prettyPrint   - A string or number to insert
+ *     white space into the output JSON string for readability purposes.
+ * @property {string}             versionFormat - The version number format.
+ * @property {string}             versionKey    - The JSON field name assign
+ *     the version number to.
  */
 
 /**
@@ -22,7 +27,9 @@ import {
  * @const {VersionOptions} productionVersionOptions  - The predefined version options for production.
  */
 export const defaultVersionOptions = {
-    versionKey: 'version',
+    prettyPrint:   4,
+    versionFormat: 'timestamp',
+    versionKey:    'version',
 };
 export const developmentVersionOptions = Object.assign({}, defaultVersionOptions);
 export const productionVersionOptions  = Object.assign({}, defaultVersionOptions);
@@ -56,46 +63,96 @@ export default async function bumpVersion(versionOptions = null) {
         versionOptions = Object.assign({}, defaultVersionOptions, versionOptions);
     }
 
-    loconfig.tasks.versions.forEach(async ({
+    const queue = new Map();
+
+    loconfig.tasks.versions.forEach(({
         outfile,
-        key = null,
-        label = null
+        label = null,
+        ...options
     }) => {
         if (!label) {
             label = basename(outfile || 'undefined');
         }
 
-        const timeLabel = `${label} bumped in`;
-        console.time(timeLabel);
+        options.pretty = (options.pretty ?? versionOptions.prettyPrint);
+        options.format = (options.format ?? versionOptions.versionFormat);
+        options.key    = (options.key ?? versionOptions.versionKey);
 
-        try {
-            outfile  = resolve(outfile);
-
-            let json
-
-            try {
-                json = JSON.parse(await readFile(outfile));
-            } catch (err) {
-                message(`${label} is a new file`, 'notice');
-
-                await mkdir(dirname(outfile), {recursive: true });
-
-                json = {};
-            }
-
-            json[key || versionOptions.versionKey] = (new Date()).valueOf();
-
-            await writeFile(outfile, JSON.stringify(json, null, 4))
-
-            message(`${label} bumped`, 'success', timeLabel);
-        } catch (err) {
-            message(`Error bumping ${label}`, 'error');
-            message(err);
-
-            notification({
-                title:   `${label} bumping failed 🚨`,
-                message: `${err.name}: ${err.message}`
-            });
+        if (queue.has(outfile)) {
+            queue.get(outfile).then(() => handleBumpVersion(outfile, label, options));
+        } else {
+            queue.set(outfile, handleBumpVersion(outfile, label, options));
         }
     });
 };
+
+/**
+ * Creates a formatted version number or string.
+ *
+ * @param  {string} format - The version format.
+ * @return {string|number}
+ */
+function createVersionNumber(format) {
+    let [ type, modifier ] = format.split(':');
+
+    switch (type) {
+        case 'hex':
+        case 'hexadecimal':
+            modifier = Number.parseInt(modifier);
+
+            if (Number.isNaN(modifier)) {
+                modifier = 6;
+            }
+
+            return randomBytes(modifier).toString('hex');
+
+        case 'timestamp':
+            return Date.now().valueOf();
+    }
+
+    throw new TypeError(
+        'Expected \'format\' to be either "timestamp" or "hexadecimal"'
+    );
+}
+
+/**
+ * @async
+ * @param  {string} outfile
+ * @param  {string} label
+ * @param  {object} options
+ * @return {Promise}
+ */
+async function handleBumpVersion(outfile, label, options) {
+    const timeLabel = `${label} bumped in`;
+    console.time(timeLabel);
+
+    try {
+        outfile = resolve(outfile);
+
+        let json;
+
+        try {
+            json = JSON.parse(await readFile(outfile));
+        } catch (err) {
+            json = {};
+
+            message(`${label} is a new file`, 'notice');
+
+            await mkdir(dirname(outfile), { recursive: true });
+        }
+
+        json[options.key] = createVersionNumber(options.format);
+
+        await writeFile(outfile, JSON.stringify(json, null, options.pretty));
+
+        message(`${label} bumped`, 'success', timeLabel);
+    } catch (err) {
+        message(`Error bumping ${label}`, 'error');
+        message(err);
+
+        notification({
+            title:   `${label} bumping failed 🚨`,
+            message: `${err.name}: ${err.message}`
+        });
+    }
+}
