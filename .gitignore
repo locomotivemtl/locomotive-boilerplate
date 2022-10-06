@@ -3,3 +3,4 @@ node_modules
 Thumbs.db
 loconfig.*.json
 !loconfig.example.json
+.prettierrc

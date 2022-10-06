@@ -6,7 +6,7 @@ import resolve from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
-import sass from 'node-sass';
+import sass, { types } from 'node-sass';
 import { PurgeCSS } from 'purgecss';
 
 const sassRender = promisify(sass.render);
@@ -23,8 +23,14 @@ export const defaultSassOptions = {
     sourceMap: true,
     sourceMapContents: true,
 };
+
 export const developmentSassOptions = Object.assign({}, defaultSassOptions, {
     outputStyle: 'expanded',
+    functions: {
+        'app-env()': function () {
+            return (new types.String('development'))
+        }
+    }
 });
 export const productionSassOptions = Object.assign({}, defaultSassOptions, {
     outputStyle: 'compressed',
