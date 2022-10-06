@@ -8,7 +8,7 @@ import { isFontLoadingAPIAvailable, loadFonts } from './utils/fonts';
 // Dynamic imports for development mode only
 let gridHelper;
 (async () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (config.IS_DEV) {
         const gridHelperModule = await import('./utils/grid-helper');
         gridHelper = gridHelperModule?.gridHelper;
     }
