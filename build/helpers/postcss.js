@@ -12,6 +12,10 @@
  */
 
 /**
+ * @typedef {import('postcss').Postcss} Postcss
+ */
+
+/**
  * @typedef {import('postcss').ProcessOptions} ProcessOptions
  */
 
@@ -38,6 +42,10 @@
  * @property {AutoprefixerOptions} autoprefixer - The `autoprefixer()` options.
  */
 
+/**
+ * @type {Postcss|undefined}        postcss      - The discovered PostCSS function.
+ * @type {AcceptedPlugin|undefined} autoprefixer - The discovered Autoprefixer function.
+ */
 let postcss, autoprefixer;
 
 try {
@@ -50,11 +58,21 @@ try {
     // do nothing
 }
 
+/**
+ * @type {boolean} Whether PostCSS was discovered (TRUE) or not (FALSE).
+ */
 const supportsPostCSS = (typeof postcss === 'function');
 
+/**
+ * @type {PluginList} A list of supported plugins.
+ */
 const pluginsList = [
     autoprefixer,
 ];
+
+/**
+ * @type {PluginMap} A map of supported plugins.
+ */
 const pluginsMap = {
     'autoprefixer': autoprefixer,
 };
@@ -62,10 +80,11 @@ const pluginsMap = {
 /**
  * Attempts to create a PostCSS Processor with the given plugins and options.
  *
- * @param  {PluginCollection} pluginsListOrMap - A list or map of plugins.
+ * @param {PluginCollection} pluginsListOrMap - A list or map of plugins.
  *     If a map of plugins, the plugin name looks up `options`.
- * @param  {PostCSSOptions}   options - The PostCSS wrapper options.
- * @return {?Processor}
+ * @param {PostCSSOptions}   options - The PostCSS wrapper options.
+ *
+ * @returns {Processor|null}
  */
 function createProcessor(pluginsListOrMap, options)
 {
@@ -81,10 +100,11 @@ function createProcessor(pluginsListOrMap, options)
 /**
  * Parses the PostCSS plugins and options.
  *
- * @param  {PluginCollection} pluginsListOrMap - A list or map of plugins.
+ * @param {PluginCollection} pluginsListOrMap - A list or map of plugins.
  *     If a map of plugins, the plugin name looks up `options`.
- * @param  {PostCSSOptions}   options - The PostCSS wrapper options.
- * @return {PluginList}
+ * @param {PostCSSOptions}   options - The PostCSS wrapper options.
+ *
+ * @returns {PluginList}
  */
 function parsePlugins(pluginsListOrMap, options)
 {
