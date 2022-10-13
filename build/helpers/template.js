@@ -9,7 +9,8 @@ import {
 } from '../utils/index.js';
 
 const templateData = flatten({
-    paths: loconfig.paths
+    ...loconfig.data,
+    paths: loconfig.paths,
 });
 
 /**

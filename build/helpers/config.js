@@ -18,6 +18,10 @@ try {
     // do nothing
 }
 
+loconfig.data  = (loconfig.data ?? {});
+loconfig.paths = (loconfig.paths ?? {});
+loconfig.tasks = (loconfig.tasks ?? {});
+
 export default loconfig;
 
 export {
