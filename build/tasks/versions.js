@@ -53,7 +53,7 @@ export const productionVersionFilesArgs  = [
  *     If `null`, default production options are used.
  * @return {Promise}
  */
-export default async function bumpVersion(versionOptions = null) {
+export default async function bumpVersions(versionOptions = null) {
     if (versionOptions == null) {
         versionOptions = productionVersionOptions;
     } else if (
