@@ -50,17 +50,13 @@ try {
     // do nothing
 }
 
-export const supportsPostCSS = (typeof postcss === 'function');
+const supportsPostCSS = (typeof postcss === 'function');
 
-export default postcss;
-export const pluginsList = [
+const pluginsList = [
     autoprefixer,
 ];
-export const pluginsMap = {
+const pluginsMap = {
     'autoprefixer': autoprefixer,
-};
-export {
-    autoprefixer
 };
 
 /**
@@ -71,7 +67,7 @@ export {
  * @param  {PostCSSOptions}   options - The PostCSS wrapper options.
  * @return {?Processor}
  */
-export function createProcessor(pluginsListOrMap, options)
+function createProcessor(pluginsListOrMap, options)
 {
     if (!postcss) {
         return null;
@@ -90,7 +86,7 @@ export function createProcessor(pluginsListOrMap, options)
  * @param  {PostCSSOptions}   options - The PostCSS wrapper options.
  * @return {PluginList}
  */
-export function parsePlugins(pluginsListOrMap, options)
+function parsePlugins(pluginsListOrMap, options)
 {
     if (Array.isArray(pluginsListOrMap)) {
         return pluginsListOrMap;
@@ -109,3 +105,15 @@ export function parsePlugins(pluginsListOrMap, options)
 
     return plugins;
 }
+
+export default postcss;
+
+export {
+    autoprefixer,
+    createProcessor,
+    parsePlugins,
+    pluginsList,
+    pluginsMap,
+    postcss,
+    supportsPostCSS,
+};

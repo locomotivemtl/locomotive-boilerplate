@@ -3,12 +3,17 @@
  */
 
 /**
+ * @type {RegExp} - Match all special characters.
+ */
+const regexUnescaped = /[\[\]\{\}\(\)\-\*\+\?\.\,\\\^\$\|\#\s]/g;
+
+/**
  * Quotes regular expression characters.
  *
  * @param  {string} str - The input string.
  * @return {string} Returns the quoted (escaped) string.
  */
-export function escapeRegExp(str) {
+function escapeRegExp(str) {
     return str.replace(regexUnescaped, '\\$&');
 }
 
@@ -41,7 +46,7 @@ export function escapeRegExp(str) {
  * @param  {object} target - The object that will receive the flattened properties.
  * @return {object} Returns the `target` object.
  */
-export function flatten(input, prefix, target = {}) {
+function flatten(input, prefix, target = {}) {
     for (const key in input) {
         const field = (prefix ? prefix + '.' + key : key);
 
@@ -62,7 +67,7 @@ export function flatten(input, prefix, target = {}) {
  * @return {boolean} Returns `true` if the value is an `Object`,
  *     otherwise `false`.
  */
-export function isObjectLike(value) {
+function isObjectLike(value) {
     return (value != null && typeof value === 'object');
 }
 
@@ -75,7 +80,7 @@ export function isObjectLike(value) {
  * @throws {TypeError} If the target and source are the same.
  * @return {object} Returns the `target` object.
  */
-export function merge(target, ...sources) {
+function merge(target, ...sources) {
     for (const source of sources) {
         if (target === source) {
             throw new TypeError(
@@ -101,7 +106,10 @@ export function merge(target, ...sources) {
     return target;
 }
 
-/**
- * @type {RegExp} - Match all special characters.
- */
-export const regexUnescaped = /[\[\]\{\}\(\)\-\*\+\?\.\,\\\^\$\|\#\s]/g;
+export {
+    escapeRegExp,
+    flatten,
+    isObjectLike,
+    merge,
+    regexUnescaped,
+};

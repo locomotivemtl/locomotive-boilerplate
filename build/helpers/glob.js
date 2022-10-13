@@ -31,9 +31,7 @@ try {
     // do nothing
 }
 
-export const supportsGlob = (typeof glob === 'function');
-
-export default glob;
+const supportsGlob = (typeof glob === 'function');
 
 /**
  * Imports the first available glob function.
@@ -95,3 +93,10 @@ function createArrayableGlob(glob, options) {
         });
     };
 }
+
+export default glob;
+
+export {
+    glob,
+    supportsGlob,
+};

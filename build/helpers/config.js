@@ -17,3 +17,7 @@ try {
 }
 
 export default loconfig;
+
+export {
+    loconfig,
+};

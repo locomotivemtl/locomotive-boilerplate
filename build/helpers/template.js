@@ -26,7 +26,7 @@ const templateData = flatten({
  * @param  {object} [data] - An object in the form `{ 'from': 'to', … }`.
  * @return {*} Returns the transformed value.
  */
-export default function resolve(input, data = templateData) {
+function resolve(input, data = templateData) {
     switch (typeof input) {
         case 'string': {
             return resolveValue(input, data);
@@ -60,7 +60,7 @@ export default function resolve(input, data = templateData) {
  * @param  {object} [data] - An object in the form `{ 'from': 'to', … }`.
  * @return {string} Returns the translated string.
  */
-export function resolveValue(input, data = templateData) {
+function resolveValue(input, data = templateData) {
     const tags = [];
 
     if (data !== templateData) {
@@ -96,3 +96,10 @@ export function resolveValue(input, data = templateData) {
         return '';
     });
 }
+
+export default resolve;
+
+export {
+    resolve,
+    resolveValue,
+};
