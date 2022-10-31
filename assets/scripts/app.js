@@ -6,7 +6,7 @@ import config from './config'
 import { isFontLoadingAPIAvailable, loadFonts } from './utils/fonts';
 
 const app = new modular({
-    modules: modules
+    modules: modules,
 });
 
 window.onload = (event) => {
@@ -35,24 +35,26 @@ function init() {
 
     app.init(app);
 
-    html.classList.add(config.CSS_CLASS.LOADED);
-    html.classList.add(config.CSS_CLASS.READY);
-    html.classList.remove(config.CSS_CLASS.LOADING);
+    html.classList.add('is-loaded');
+    html.classList.add('is-ready');
+    html.classList.remove('is-loading');
 
     /**
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts(EAGER_FONTS).then((eagerFonts) => {
+        loadFonts(EAGER_FONTS, config.IS_DEV).then((eagerFonts) => {
             html.classList.add('fonts-loaded');
-            // console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
-            // console.group('State of eager fonts:')
-            // eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-            // console.groupEnd()
-            // console.group('State of all fonts:')
-            // document.fonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-            // console.groupEnd()
+
+            if (config.IS_DEV) {
+                console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
+                console.group('State of eager fonts:')
+                eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
+                console.groupEnd()
+                console.group('State of all fonts:')
+                document.fonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
+                console.groupEnd()
+            }
         });
     }
 }
-
