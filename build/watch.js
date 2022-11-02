@@ -113,7 +113,8 @@ function createServerOptions({
 }) {
     const config = {
         open: false,
-        notify: false
+        notify: false,
+        ghostMode: false
     };
 
     // Resolve the URL for the BrowserSync server
