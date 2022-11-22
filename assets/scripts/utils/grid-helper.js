@@ -118,9 +118,9 @@ function setGridEvents($container, rgbaColor) {
         } else {
             if (ctrlDown && e.key == 'g') {
                 if (isActive) {
-                    $container.style.visibility = 'visible';
-                } else {
                     $container.style.visibility = 'hidden';
+                } else {
+                    $container.style.visibility = 'visible';
                 }
 
                 isActive = !isActive;
