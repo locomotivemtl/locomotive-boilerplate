@@ -7,7 +7,7 @@
     "type": "module",
     "engines": {
         "node": ">=14.17",
-        "npm": ">=6.0"
+        "npm": ">=8.0"
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
