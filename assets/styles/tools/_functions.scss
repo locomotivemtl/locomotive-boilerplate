@@ -139,3 +139,50 @@
 }
 
 $context: 'frontend' !default;
+
+
+
+/**
+ * Calculate grid space
+ * @param  {number} $number The percentage spacer
+ * @return {number} in calc
+ */
+@function grid-space($percentage, $offset: 0) {
+    // @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin)) - (1 - #{$percentage}) * var(--grid-gutter) + #{$offset} * var(--grid-gutter));
+    @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin, 0px)) - (1 - #{$percentage}) * var(--grid-gutter, 0px) + #{$offset} * var(--grid-gutter, 0px));
+}
+
+
+/**
+ * Calculate vh percentage from number
+ * @param  {number} $number The percentage number
+ * @return {number} in vh
+ */
+@function vh($number) {
+    @return calc(#{$number} * var(--vh, 1vh));
+}
+
+/**
+ * Remove the unit of a length
+ * @param {Number} $number - Number to remove unit from
+ * @return {Number} - Unitless number
+ */
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
+/**
+ * Responsive font size
+ * @param {Number} $min-size - Minimum font size in pixel
+ * @param {Number} $max-size - Maximum font size in pixel
+ * @param {Number} $breakpoint - The breakpoint
+ * @return {Number} - Clamped font size based on breakpoint
+ */
+@function responsive-type($min-size, $max-size, $breakpoint) {
+    @return clamp($min-size, calc(#{strip-unit($max-size)}/#{$breakpoint} * 100vw), $max-size)
+}
