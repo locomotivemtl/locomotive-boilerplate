@@ -184,5 +184,5 @@ $context: 'frontend' !default;
  * @return {Number} - Clamped font size based on breakpoint
  */
 @function responsive-type($min-size, $max-size, $breakpoint) {
-    @return clamp($min-size, calc(#{strip-unit($max-size)}/#{$breakpoint} * 100vw), $max-size)
+    @return clamp($min-size, calc(#{strip-unit($max-size)}/#{strip-unit(#{$breakpoint}) * 100vw), $max-size);
 }
