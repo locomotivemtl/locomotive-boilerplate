@@ -29,10 +29,9 @@
 
 html {
     min-height: 100%; // [2]
-    line-height: $line-height;
+    line-height: $line-height; // [3]
     font-family: ff("sans");
     color: $font-color;
-    line-height: $line-height; // [3]
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
