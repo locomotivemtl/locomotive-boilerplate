@@ -138,51 +138,54 @@
     @return ('frontend' == $context);
 }
 
-$context: 'frontend' !default;
-
-
-
-/**
- * Calculate grid space
- * @param  {number} $number The percentage spacer
- * @return {number} in calc
- */
-@function grid-space($percentage, $offset: 0) {
-    // @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin)) - (1 - #{$percentage}) * var(--grid-gutter) + #{$offset} * var(--grid-gutter));
-    @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin, 0px)) - (1 - #{$percentage}) * var(--grid-gutter, 0px) + #{$offset} * var(--grid-gutter, 0px));
+// Returns calculation of a percentage of the grid cell width
+// with optional inset of grid gutter.
+//
+// ```scss
+// .c-box {
+//     width: grid-space(6/12);
+//     margin-left: grid-space(1/12, 1);
+// }
+// ```
+//
+// @param  {number} $number - The percentage spacer
+// @param  {number} $inset  - The grid gutter inset
+// @return {function<number>}
+@function grid-space($percentage, $inset: 0) {
+    @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin, 0px)) - (1 - #{$percentage}) * var(--grid-gutter, 0px) + #{$inset} * var(--grid-gutter, 0px));
 }
 
-
-/**
- * Calculate vh percentage from number
- * @param  {number} $number The percentage number
- * @return {number} in vh
- */
+// Returns calculation of a percentage of the viewport height.
+//
+// ```scss
+// .c-box {
+//     height: vh(100);
+// }
+// ```
+//
+// @param  {number} $number - The percentage number
+// @return {function<number>} in vh
 @function vh($number) {
     @return calc(#{$number} * var(--vh, 1vh));
 }
 
-/**
- * Remove the unit of a length
- * @param {Number} $number - Number to remove unit from
- * @return {Number} - Unitless number
- */
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-
-  @return $number;
-}
-
-
-/**
- * Responsive font size
- * @param {Number} $min-size - Minimum font size in pixel
- * @param {Number} $max-size - Maximum font size in pixel
- * @param {Number} $breakpoint - The breakpoint
- * @return {Number} - Clamped font size based on breakpoint
- */
+// Returns clamp of calculated preferred responsive font size
+// within a font size and breakpoint range.
+//
+// ```scss
+// .c-heading.-h1 {
+//     font-size: responsive-type(30px, 60px, 1800);
+// }
+//
+// .c-heading.-h2 {
+//     font-size: responsive-type(20px, 40px, $from-big);
+// }
+// ```
+//
+// @param  {number} $min-size   - Minimum font size in pixels.
+// @param  {number} $max-size   - Maximum font size in pixels.
+// @param  {number} $breakpoint - Maximum breakpoint.
+// @return {function<number, function<number>, number>}
 @function responsive-type($min-size, $max-size, $breakpoint) {
     @return clamp($min-size, calc(#{strip-unit($max-size)}/#{strip-unit(#{$breakpoint})} * 100vw), $max-size);
 }
