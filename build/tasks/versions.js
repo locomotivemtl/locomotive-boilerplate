@@ -246,7 +246,20 @@ async function handleBumpVersionWithRegExp(outfile, label, options) {
 
         const writeStream = createWriteStream(outfile, { encoding: 'utf8' });
 
-        rl.on('line', (line) => writeStream.write(line.replace(options.key, version) + "\n"));
+        rl.on('line', (line) => {
+            const found = line.match(options.key);
+
+            if (found) {
+                const groups  = (found.groups ?? {});
+                const replace = found[0].replace(
+                    (groups.build ?? groups.version ?? found[1] ?? found[0]),
+                    version
+                );
+                line = line.replace(found[0], replace);
+            }
+
+            writeStream.write(line + "\n");
+        });
 
         await events.once(rl, 'close');
 

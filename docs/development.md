@@ -387,7 +387,7 @@ The regular expression can be a `RegExp` object or a pattern prefixed with `rege
 
 * ```json
   {
-      "key": "regexp:(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)"
+      "key": "regexp:(?<=^const ASSETS_VERSION = ')(?<build>\\d+)(?=';$)"
   }
   ```
 
@@ -398,9 +398,13 @@ The regular expression can be a `RegExp` object or a pattern prefixed with `rege
   ```
 * ```js
   {
-      key: /(?<=\bconst ASSETS_VERSION = )[^;]+/
+      key: /^ \* Version: +(?:.+?)\+(.+?)$/
   }
   ```
+
+The regular expression pattern will match the first occurrence and replace
+the first match in the following order: `build` (named capture), `version`
+(named capture), `1` (first capture), or `0` (whole match).
 
 See [`versions.js`](../build/tasks/versions.js) for details.
 
