@@ -336,7 +336,7 @@ See [`svgs.js`](../build/tasks/svgs.js) for details.
 
 ### `versions`
 
-A task to create and update keys for use in versioning assets.
+A task to create and update values for use in versioning assets.
 
 Can generate a hexadecimal value (using random bytes) or
 use the current timestamp.
@@ -367,6 +367,41 @@ Example:
 }
 ```
 
+The task supports replacing the value of a data key in a JSON file or replacing
+a string in a file using a [regular expression](RegExp).
+
+* Explicit JSON field name:
+    ```json
+    {
+        "key": "json:version"
+    }
+    ```
+* Implicit JSON field name:
+    ```json
+    {
+        "key": "version"
+    }
+    ```
+
+The regular expression can be a `RegExp` object or a pattern prefixed with `regexp:`.
+
+* ```json
+  {
+      "key": "regexp:(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)"
+  }
+  ```
+
+* ```js
+  {
+      key: new RegExp('(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)')
+  }
+  ```
+* ```js
+  {
+      key: /(?<=\bconst ASSETS_VERSION = )[^;]+/
+  }
+  ```
+
 See [`versions.js`](../build/tasks/versions.js) for details.
 
 [Autoprefixer]: https://npmjs.com/package/autoprefixer
@@ -382,5 +417,6 @@ See [`versions.js`](../build/tasks/versions.js) for details.
 [NVM]:          https://github.com/nvm-sh/nvm
 [PostCSS]:      https://npmjs.com/package/postcss
 [PurgeCSS]:     https://purgecss.com/
+[RegExp]:       https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 [SVG Mixer]:    https://npmjs.com/package/svg-mixer
 [tiny-glob]:    https://npmjs.com/package/tiny-glob
