@@ -8,7 +8,7 @@
 // @return {Boolean}
 
 @function is-pixel-number($number) {
-    @return type-of($number) == number and unit($number) == "px";
+    @return type-of($number) == number and unit($number) == 'px';
 }
 
 // Converts the given pixel value to its EM quivalent.
@@ -36,7 +36,6 @@
 // @return {Number} Scalable pixel value in REMs.
 
 @function rem($size, $base: $font-size) {
-
     @if not is-pixel-number($size) {
         @error "`#{$size}` needs to be a number in pixel.";
     }
@@ -92,12 +91,9 @@
 // @return {Boolean}
 // @access private
 
-@function list-contains(
-    $list,
-    $values...
-) {
+@function list-contains($list, $values...) {
     @each $value in $values {
-        @if type-of(index($list, $value)) != "number" {
+        @if type-of(index($list, $value)) != 'number' {
             @return false;
         }
     }

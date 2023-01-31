@@ -4,15 +4,18 @@
  * @return {string} escaped string
  */
 
-const escapeHtml = str =>
-    str.replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-    }[tag]))
-
+const escapeHtml = (str) =>
+    str.replace(
+        /[&<>'"]/g,
+        (tag) =>
+            ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;',
+            }[tag])
+    )
 
 /**
  * Unescape HTML string
@@ -20,13 +23,13 @@ const escapeHtml = str =>
  * @return {string} unescaped string
  */
 
-const unescapeHtml = str =>
-    str.replace('&amp;', '&')
+const unescapeHtml = (str) =>
+    str
+        .replace('&amp;', '&')
         .replace('&lt;', '<')
         .replace('&gt;', '>')
         .replace('&#39;', "'")
         .replace('&quot;', '"')
-
 
 /**
  * Get element data attributes
@@ -34,8 +37,7 @@ const unescapeHtml = str =>
  * @return {array}       node data
  */
 
-const getNodeData = node => {
-
+const getNodeData = (node) => {
     // All attributes
     const attributes = node.attributes
 
@@ -68,12 +70,8 @@ const getNodeData = node => {
         data[match[1]] = getData(node.getAttribute(name))
     }
 
-    return data;
-
+    return data
 }
-
-
-
 
 /**
  * Parse value to data type.
@@ -84,7 +82,7 @@ const getNodeData = node => {
  */
 
 const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/
-const getData = data => {
+const getData = (data) => {
     if (data === 'true') {
         return true
     }
@@ -98,7 +96,7 @@ const getData = data => {
     }
 
     // Only convert to a number if it doesn't change the string
-    if (data === +data+'') {
+    if (data === +data + '') {
         return +data
     }
 
@@ -109,15 +107,13 @@ const getData = data => {
     return data
 }
 
-
 /**
  * Returns an array containing all the parent nodes of the given node
  * @param  {HTMLElement}    $el     - DOM Element
  * @return {array}          parent nodes
  */
 
-const getParents = $el => {
-
+const getParents = ($el) => {
     // Set up a parent array
     let parents = []
 
@@ -130,11 +126,4 @@ const getParents = $el => {
     return parents
 }
 
-
-export {
-    escapeHtml,
-    unescapeHtml,
-    getNodeData,
-    getData,
-    getParents,
-}
+export { escapeHtml, unescapeHtml, getNodeData, getData, getParents }

@@ -18,15 +18,15 @@
         display: block;
         padding-bottom: 100%; // [1]
         width: 100%;
-        content: "";
+        content: '';
     }
 }
 
 .o-ratio_content,
-    .o-ratio > img,
-    .o-ratio > iframe,
-    .o-ratio > embed,
-    .o-ratio > object {
+.o-ratio > img,
+.o-ratio > iframe,
+.o-ratio > embed,
+.o-ratio > object {
     position: absolute;
     top: 0;
     bottom: 0;

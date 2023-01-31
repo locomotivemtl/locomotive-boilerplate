@@ -29,7 +29,7 @@
  * - {@link https://www.w3.org/TR/page-visibility/ W3 Specification}
  * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API MDN Web Docs}
  */
-export default new class PageVisibility {
+export default new (class PageVisibility {
     /**
      * Checks if the "visibilitychange" event listener has been registered.
      *
@@ -37,7 +37,7 @@ export default new class PageVisibility {
      *     otherwise returns `true`.
      */
     get isEnabled() {
-        return isVisibilityChangeObserved;
+        return isVisibilityChangeObserved
     }
 
     /**
@@ -48,12 +48,15 @@ export default new class PageVisibility {
      */
     disableCustomEvents() {
         if (isVisibilityChangeObserved) {
-            isVisibilityChangeObserved = false;
-            document.removeEventListener('visibilitychange', handleCustomVisibilityChange);
-            return true;
+            isVisibilityChangeObserved = false
+            document.removeEventListener(
+                'visibilitychange',
+                handleCustomVisibilityChange
+            )
+            return true
         }
 
-        return false;
+        return false
     }
 
     /**
@@ -64,14 +67,17 @@ export default new class PageVisibility {
      */
     enableCustomEvents() {
         if (!isVisibilityChangeObserved) {
-            isVisibilityChangeObserved = true;
-            document.addEventListener('visibilitychange', handleCustomVisibilityChange);
-            return true;
+            isVisibilityChangeObserved = true
+            document.addEventListener(
+                'visibilitychange',
+                handleCustomVisibilityChange
+            )
+            return true
         }
 
-        return false;
+        return false
     }
-}
+})()
 
 /**
  * Tracks whether custom visibility event types
@@ -79,7 +85,7 @@ export default new class PageVisibility {
  *
  * @type {boolean}
  */
-let isVisibilityChangeObserved = false;
+let isVisibilityChangeObserved = false
 
 /**
  * Dispatches a custom visibility event at the document derived
@@ -94,11 +100,13 @@ let isVisibilityChangeObserved = false;
  * @return {void}
  */
 function handleCustomVisibilityChange(event) {
-    document.dispatchEvent(new CustomEvent(`visibility${document.visibilityState}`, {
-        detail: {
-            cause: event
-        }
-    }));
+    document.dispatchEvent(
+        new CustomEvent(`visibility${document.visibilityState}`, {
+            detail: {
+                cause: event,
+            },
+        })
+    )
 }
 
 /**

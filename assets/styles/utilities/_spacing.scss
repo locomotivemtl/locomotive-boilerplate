@@ -21,25 +21,25 @@
 /* stylelint-disable string-quotes */
 
 $spacing-directions: (
-    null:          null,
-    '-top':        '-top',
-    '-right':      '-right',
-    '-bottom':     '-bottom',
-    '-left':       '-left',
+    null: null,
+    '-top': '-top',
+    '-right': '-right',
+    '-bottom': '-bottom',
+    '-left': '-left',
     '-horizontal': '-left' '-right',
-    '-vertical':   '-top'  '-bottom',
+    '-vertical': '-top' '-bottom',
 ) !default;
 
 $spacing-properties: (
     'padding': 'padding',
-    'margin':  'margin',
+    'margin': 'margin',
 ) !default;
 
 $spacing-sizes: (
-    null:     $unit,
+    null: $unit,
     '-double': $unit * 2,
     '-small': $unit-small,
-    '-none':  0px
+    '-none': 0px,
 ) !default;
 
 @each $property-namespace, $property in $spacing-properties {

@@ -5,13 +5,12 @@
  * @return {object}             The given image meta data
  */
 
-const getImageMetadata = $img => ({
+const getImageMetadata = ($img) => ({
     url: $img.src,
     width: $img.naturalWidth,
     height: $img.naturalHeight,
     ratio: $img.naturalWidth / $img.naturalHeight,
 })
-
 
 /**
  * Load the given image.
@@ -36,11 +35,13 @@ const loadImage = (url, options = {}) => {
             })
         }
 
-        if($img.decode) {
+        if ($img.decode) {
             $img.src = url
-            $img.decode().then(loadCallback).catch(e => {
-                reject(e)
-            })
+            $img.decode()
+                .then(loadCallback)
+                .catch((e) => {
+                    reject(e)
+                })
         } else {
             $img.onload = loadCallback
             $img.onerror = (e) => {
@@ -50,7 +51,6 @@ const loadImage = (url, options = {}) => {
         }
     })
 }
-
 
 /**
  * Lazy load the given image.
@@ -66,7 +66,7 @@ const LAZY_LOADED_IMAGES = []
 const lazyLoadImage = async ($el, url, callback) => {
     let src = url ? url : $el.dataset.src
 
-    let loadedImage = LAZY_LOADED_IMAGES.find(image => image.url === src)
+    let loadedImage = LAZY_LOADED_IMAGES.find((image) => image.url === src)
 
     if (!loadedImage) {
         loadedImage = await loadImage(src)
@@ -78,7 +78,7 @@ const lazyLoadImage = async ($el, url, callback) => {
         LAZY_LOADED_IMAGES.push(loadedImage)
     }
 
-    if($el.src === src) {
+    if ($el.src === src) {
         return
     }
 
@@ -91,7 +91,7 @@ const lazyLoadImage = async ($el, url, callback) => {
     requestAnimationFrame(() => {
         let lazyParent = $el.closest('.c-lazy')
 
-        if(lazyParent) {
+        if (lazyParent) {
             lazyParent.classList.add('-lazy-loaded')
             lazyParent.style.backgroundImage = ''
         }
@@ -102,9 +102,4 @@ const lazyLoadImage = async ($el, url, callback) => {
     })
 }
 
-
-export {
-    getImageMetadata,
-    loadImage,
-    lazyLoadImage
-}
+export { getImageMetadata, loadImage, lazyLoadImage }

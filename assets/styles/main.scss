@@ -1,23 +1,23 @@
 // ==========================================================================
 // Main
 // ==========================================================================
-$app-env: app-env();  
+$app-env: app-env();
 
 // Settings
 // ==========================================================================
 
-@import "settings/config.eases";
-@import "settings/config.colors";
-@import "settings/config";
+@import 'settings/config.eases';
+@import 'settings/config.colors';
+@import 'settings/config';
 
 // ==========================================================================
 // Tools
 // ==========================================================================
 
-@import "tools/maths";
-@import "tools/functions";
-@import "tools/mixins";
-@import "tools/fonts";
+@import 'tools/maths';
+@import 'tools/functions';
+@import 'tools/mixins';
+@import 'tools/fonts';
 // @import "tools/layout";
 // @import "tools/widths";
 // @import "tools/family";
@@ -25,25 +25,25 @@ $app-env: app-env();
 // Generic
 // ==========================================================================
 
-@import "node_modules/normalize.css/normalize";
-@import "generic/generic";
-@import "generic/media";
-@import "generic/form";
-@import "generic/button";
+@import 'node_modules/normalize.css/normalize';
+@import 'generic/generic';
+@import 'generic/media';
+@import 'generic/form';
+@import 'generic/button';
 
 // Elements
 // ==========================================================================
 
-@import "elements/document";
+@import 'elements/document';
 
 // Objects
 // ==========================================================================
 
-@import "objects/scroll";
-@import "objects/container";
-@import "objects/ratio";
-@import "objects/icons";
-@import "objects/grid";
+@import 'objects/scroll';
+@import 'objects/container';
+@import 'objects/ratio';
+@import 'objects/icons';
+@import 'objects/grid';
 // @import "objects/layout";
 // @import "objects/crop";
 // @import "objects/table";
@@ -55,16 +55,16 @@ $app-env: app-env();
 // Components
 // ==========================================================================
 
-@import "components/scrollbar";
-@import "components/heading";
-@import "components/button";
-@import "components/form";
+@import 'components/scrollbar';
+@import 'components/heading';
+@import 'components/button';
+@import 'components/form';
 
 // Utilities
 // ==========================================================================
 
-@import "utilities/ratio";
-@import "utilities/grid-column";
+@import 'utilities/ratio';
+@import 'utilities/grid-column';
 // @import "utilities/widths";
 // @import "utilities/align";
 // @import "utilities/helpers";

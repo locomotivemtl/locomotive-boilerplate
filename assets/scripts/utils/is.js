@@ -7,7 +7,7 @@
  * @return {boolean}
  */
 
-const isObject = x => (x && typeof x === 'object')
+const isObject = (x) => x && typeof x === 'object'
 
 /**
  * Determines if the argument is a function.
@@ -16,10 +16,6 @@ const isObject = x => (x && typeof x === 'object')
  * @return {boolean}
  */
 
-const isFunction = x => typeof x === 'function'
+const isFunction = (x) => typeof x === 'function'
 
-
-export {
-    isObject,
-    isFunction
-}
+export { isObject, isFunction }

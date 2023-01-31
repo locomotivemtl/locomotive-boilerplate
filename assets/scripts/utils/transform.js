@@ -20,7 +20,7 @@ const getTranslate = $el => {
     } else {
         const matrix = transform.match(/^matrix\((.+)\)$/)
         translate = {
-            x: matrix ? parseFloat(matrix[1].split(', ')[4]) : 0
+            x: matrix ? parseFloat(matrix[1].split(', ')[4]) : 0,
             y: matrix ? parseFloat(matrix[1].split(', ')[5]) : 0
         }
     }
