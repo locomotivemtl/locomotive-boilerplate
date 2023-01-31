@@ -1,7 +1,8 @@
+@use "sass:math";
 // ==========================================================================
 // Main
 // ==========================================================================
-$app-env: app-env();  
+$app-env: app-env();
 
 // Settings
 // ==========================================================================
@@ -45,7 +46,6 @@ $app-env: app-env();
 @import "objects/icons";
 @import "objects/grid";
 // @import "objects/layout";
-// @import "objects/crop";
 // @import "objects/table";
 
 // Vendors

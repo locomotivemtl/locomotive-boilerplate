@@ -6,7 +6,7 @@ import resolve from '../utils/template.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
-import sass, { types } from 'node-sass';
+import sass from 'sass';
 import { PurgeCSS } from 'purgecss';
 
 const sassRender = promisify(sass.render);
