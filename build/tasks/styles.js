@@ -26,11 +26,6 @@ export const defaultSassOptions = {
 
 export const developmentSassOptions = Object.assign({}, defaultSassOptions, {
     outputStyle: 'expanded',
-    functions: {
-        'app-env()': function () {
-            return (new types.String('development'))
-        }
-    }
 });
 export const productionSassOptions = Object.assign({}, defaultSassOptions, {
     outputStyle: 'compressed',
