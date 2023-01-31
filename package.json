@@ -11,7 +11,8 @@
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
-        "build": "node --experimental-json-modules --no-warnings build/build.js"
+        "build": "node --experimental-json-modules --no-warnings build/build.js",
+        "precommit": "prettier --write 'assets/**/*.{js,scss,json}'"
     },
     "dependencies": {
         "locomotive-scroll": "^4.1.4",
@@ -29,6 +30,7 @@
         "node-notifier": "^10.0.1",
         "node-sass": "^8.0.0",
         "postcss": "^8.4.21",
+        "prettier": "^2.8.3",
         "purgecss": "^5.0.0",
         "svg-mixer": "~2.3.14",
         "tiny-glob": "^0.2.9"
