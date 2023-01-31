@@ -1,8 +1,8 @@
-import { module } from 'modujs';
+import { module as Module } from 'modujs';
 import { EAGER_FONTS } from '../app';
 import { whenReady } from '../utils/fonts';
 
-export default class extends module {
+export default class extends Module {
     constructor(m) {
         super(m);
     }

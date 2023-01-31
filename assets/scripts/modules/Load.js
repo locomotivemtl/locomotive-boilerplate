@@ -1,7 +1,7 @@
-import { module } from 'modujs';
+import { module as Module} from 'modujs';
 import modularLoad from 'modularload';
 
-export default class extends module {
+export default class extends Module {
     constructor(m) {
         super(m);
     }

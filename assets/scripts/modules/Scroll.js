@@ -1,8 +1,8 @@
-import { module } from 'modujs';
+import { module as Module } from 'modujs';
 import { lazyLoadImage } from '../utils/image';
 import LocomotiveScroll from 'locomotive-scroll';
 
-export default class extends module {
+export default class extends Module {
     constructor(m) {
         super(m);
     }
