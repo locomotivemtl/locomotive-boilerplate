@@ -265,7 +265,7 @@ See [`scripts.js`](../build/tasks/scripts.js) for details.
 
 ### `styles`
 
-A wrapper around [node-sass] (with optional support for [Autoprefixer]
+A wrapper around [sass] (with optional support for [Autoprefixer]
 via [PostCSS]) for compiling and minifying Sass into CSS.
 
 By default, [PostCSS] and [Autoprefixer] are installed with the boilerplate.
@@ -416,7 +416,7 @@ See [`versions.js`](../build/tasks/versions.js) for details.
 [glob]:         https://npmjs.com/package/glob
 [globby]:       https://npmjs.com/package/globby
 [Node]:         https://nodejs.org/
-[node-sass]:    https://npmjs.com/package/node-sass
+[sass]:         https://npmjs.com/package/sass
 [NPM]:          https://npmjs.com/
 [NVM]:          https://github.com/nvm-sh/nvm
 [PostCSS]:      https://npmjs.com/package/postcss
