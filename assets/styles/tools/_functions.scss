@@ -26,7 +26,7 @@
         @error "`#{$base}` needs to be a number in pixel.";
     }
 
-    @return ($size / $base) * 1em;
+    @return math.div($size, $base) * 1em;
 }
 
 // Converts the given pixel value to its REM quivalent.
@@ -44,7 +44,7 @@
         @error "`#{$base}` needs to be a number in pixel.";
     }
 
-    @return ($size / $base) * 1rem;
+    @return math.div($size, $base) * 1rem;
 }
 
 // Retrieves the z-index from the {@see $layers master list}.

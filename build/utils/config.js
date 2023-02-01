@@ -2,7 +2,7 @@
  * @file Provides simple user configuration options.
  */
 
-import loconfig from '../../loconfig.json';
+import loconfig from '../../loconfig.json' assert { type: "json" };
 
 let usrconfig;
 
