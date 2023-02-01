@@ -64,8 +64,7 @@
                 'normal'
         ) {
             line-height: $line-height $important;
-        }
-        @else if ($line-height != "none" and $line-height != false) {
+        } @else if ($line-height != 'none' and $line-height != false) {
             @error "D’oh! `#{$line-height}` is not a valid value for `$line-height`.";
         }
     }
