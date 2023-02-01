@@ -11,7 +11,6 @@
 ////
 
 @media print {
-
     // 1. Black prints faster: http://www.sanbeiji.com/archives/953
 
     *,
@@ -31,19 +30,19 @@
     }
 
     a[href]:after {
-        content: " (" attr(href) ")";
+        content: ' (' attr(href) ')';
     }
 
     abbr[title]:after {
-        content: " (" attr(title) ")";
+        content: ' (' attr(title) ')';
     }
 
     // Don't show links that are fragment identifiers, or use the `javascript:`
     // pseudo protocol.
 
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
+    a[href^='#']:after,
+    a[href^='javascript:']:after {
+        content: '';
     }
 
     pre,
@@ -62,7 +61,6 @@
     img {
         page-break-inside: avoid;
     }
-
 
     img {
         max-width: 100% !important;

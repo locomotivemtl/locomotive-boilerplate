@@ -19,13 +19,13 @@
 //  Visibility / Display
 // ==========================================================================
 
-[hidden][aria-hidden="false"] {
+[hidden][aria-hidden='false'] {
     position: absolute;
     display: inherit;
     clip: rect(0, 0, 0, 0);
 }
 
-[hidden][aria-hidden="false"]:focus {
+[hidden][aria-hidden='false']:focus {
     clip: auto;
 }
 

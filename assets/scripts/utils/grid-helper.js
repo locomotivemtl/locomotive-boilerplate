@@ -15,9 +15,9 @@
  * @property {string} [rgbaColor=GRID_HELPER_RGBA_COLOR]        - RGBA color for the grid appearence.
  */
 
-const GRID_HELPER_GUTTER_CSS_VAR = '--grid-gutter';
-const GRID_HELPER_MARGIN_CSS_VAR = '--grid-margin';
-const GRID_HELPER_RGBA_COLOR = 'rgba(255, 0, 0, .1)';
+const GRID_HELPER_GUTTER_CSS_VAR = '--grid-gutter'
+const GRID_HELPER_MARGIN_CSS_VAR = '--grid-margin'
+const GRID_HELPER_RGBA_COLOR = 'rgba(255, 0, 0, .1)'
 
 /**
  * Create a grid helper
@@ -31,15 +31,15 @@ function gridHelper({
     rgbaColor = GRID_HELPER_RGBA_COLOR,
 } = {}) {
     // Set grid container
-    const $gridContainer = document.createElement('div');
-    document.body.append($gridContainer);
+    const $gridContainer = document.createElement('div')
+    document.body.append($gridContainer)
 
     // Set grid appearence
-    setGridHelperColumns($gridContainer, rgbaColor);
-    setGridHelperStyles($gridContainer, gutterCssVar, marginCssVar);
+    setGridHelperColumns($gridContainer, rgbaColor)
+    setGridHelperStyles($gridContainer, gutterCssVar, marginCssVar)
 
     // Set grid interactivity
-    setGridEvents($gridContainer, rgbaColor);
+    setGridEvents($gridContainer, rgbaColor)
 }
 
 /**
@@ -51,19 +51,19 @@ function gridHelper({
  *
  */
 function setGridHelperStyles($container, gutterCssVar, marginCssVar) {
-    const elStyles = $container.style;
-    elStyles.zIndex = '10000';
-    elStyles.position = 'fixed';
-    elStyles.top = '0';
-    elStyles.left = '0';
-    elStyles.display = 'flex';
-    elStyles.width = '100%';
-    elStyles.height = '100%';
-    elStyles.columnGap = `var(${gutterCssVar}, 0)`;
-    elStyles.paddingLeft = `var(${marginCssVar}, 0)`;
-    elStyles.paddingRight = `var(${marginCssVar}, 0)`;
-    elStyles.pointerEvents = 'none';
-    elStyles.visibility = 'hidden';
+    const elStyles = $container.style
+    elStyles.zIndex = '10000'
+    elStyles.position = 'fixed'
+    elStyles.top = '0'
+    elStyles.left = '0'
+    elStyles.display = 'flex'
+    elStyles.width = '100%'
+    elStyles.height = '100%'
+    elStyles.columnGap = `var(${gutterCssVar}, 0)`
+    elStyles.paddingLeft = `var(${marginCssVar}, 0)`
+    elStyles.paddingRight = `var(${marginCssVar}, 0)`
+    elStyles.pointerEvents = 'none'
+    elStyles.visibility = 'hidden'
 }
 
 /**
@@ -75,19 +75,19 @@ function setGridHelperStyles($container, gutterCssVar, marginCssVar) {
  */
 function setGridHelperColumns($container, rgbaColor) {
     // Clear columns
-    $container.innerHTML = '';
+    $container.innerHTML = ''
 
     // Loop through columns
     const columns = Number(
         window.getComputedStyle($container).getPropertyValue('--grid-columns')
-    );
+    )
 
-    let $col;
+    let $col
     for (var i = 0; i < columns; i++) {
-        $col = document.createElement('div');
-        $col.style.flex = '1 1 0';
-        $col.style.backgroundColor = rgbaColor;
-        $container.appendChild($col);
+        $col = document.createElement('div')
+        $col.style.flex = '1 1 0'
+        $col.style.backgroundColor = rgbaColor
+        $container.appendChild($col)
     }
 }
 
@@ -106,33 +106,33 @@ function setGridEvents($container, rgbaColor) {
     window.addEventListener(
         'resize',
         setGridHelperColumns($container, rgbaColor)
-    );
+    )
 
     // Toggle grid
-    let ctrlDown = false;
-    let isActive = false;
+    let ctrlDown = false
+    let isActive = false
 
     document.addEventListener('keydown', (e) => {
         if (e.key == 'Control') {
-            ctrlDown = true;
+            ctrlDown = true
         } else {
             if (ctrlDown && e.key == 'g') {
                 if (isActive) {
-                    $container.style.visibility = 'hidden';
+                    $container.style.visibility = 'hidden'
                 } else {
-                    $container.style.visibility = 'visible';
+                    $container.style.visibility = 'visible'
                 }
 
-                isActive = !isActive;
+                isActive = !isActive
             }
         }
-    });
+    })
 
     document.addEventListener('keyup', (e) => {
         if (e.key == 'Control') {
-            ctrlDown = false;
+            ctrlDown = false
         }
-    });
+    })
 }
 
-export { gridHelper };
+export { gridHelper }

@@ -34,7 +34,7 @@
     &::after {
         display: if(list-contains($supports, table), table, block);
         clear: both;
-        content: if(list-contains($supports, opera), " ", "");
+        content: if(list-contains($supports, opera), ' ', '');
     }
 }
 
@@ -50,11 +50,19 @@
     $important: important($important);
     font-size: rem($font-size) $important;
 
-    @if ($line-height == "auto") {
-        line-height: ceil($font-size / $line-height) * ($line-height / $font-size) $important;
-    }
-    @else {
-        @if (type-of($line-height) == number or $line-height == "inherit" or $line-height == "normal") {
+    @if ($line-height == 'auto') {
+        line-height: ceil($font-size / $line-height) *
+            ($line-height / $font-size)
+            $important;
+    } @else {
+        @if (
+            type-of($line-height) ==
+                number or
+                $line-height ==
+                'inherit' or
+                $line-height ==
+                'normal'
+        ) {
             line-height: $line-height $important;
         }
         @elseif ($line-height != "none" and $line-height != false) {
@@ -77,7 +85,7 @@
     &::before {
         display: inline-block;
         height: 100%;
-        content: "";
+        content: '';
         vertical-align: middle;
     }
 
@@ -128,7 +136,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    word-wrap: normal;  // [2]
+    word-wrap: normal; // [2]
     @if $width {
         max-width: $width; // [1]
     }
@@ -176,7 +184,7 @@
 
 @mixin u-hidden($important: true) {
     $important: important($important);
-    display: none   $important;
+    display: none $important;
     visibility: hidden $important;
 }
 
@@ -191,5 +199,5 @@
 @mixin u-shown($display: block, $important: true) {
     $important: important($important);
     display: $display $important;
-    visibility: visible  $important;
+    visibility: visible $important;
 }

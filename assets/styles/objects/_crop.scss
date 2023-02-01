@@ -4,13 +4,18 @@
 
 // @link https://github.com/inuitcss/inuitcss/blob/19d0c7e/objects/_objects.crop.scss
 
-
 // A list of cropping ratios that get generated as modifier classes.
 
 $crop-ratios: (
-    (2:1),
-    (4:3),
-    (16:9),
+    (
+        2: 1,
+    ),
+    (
+        4: 3,
+    ),
+    (
+        16: 9,
+    )
 ) !default;
 
 // Provide a cropping container in order to display media (usually images)

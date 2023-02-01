@@ -16,7 +16,9 @@
         transform: scaleX(1.45);
     }
 
-    &:hover, .has-scroll-scrolling &, .has-scroll-dragging & {
+    &:hover,
+    .has-scroll-scrolling &,
+    .has-scroll-dragging & {
         opacity: 1;
     }
 }

@@ -15,8 +15,8 @@
     @font-face {
         font-display: swap;
         font-family: nth($webfont, 1);
-        src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
-             url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
+        src: url('#{$dir}#{nth($webfont, 2)}.woff2') format('woff2'),
+            url('#{$dir}#{nth($webfont, 2)}.woff') format('woff');
         font-weight: #{nth($webfont, 3)};
         font-style: #{nth($webfont, 4)};
     }
@@ -33,7 +33,7 @@
 
 @mixin font-faces($webfonts, $dir) {
     @if (length($webfonts) > 0) {
-        @if (type-of(nth($webfonts, 1)) == "list") {
+        @if (type-of(nth($webfonts, 1)) == 'list') {
             @each $webfont in $webfonts {
                 @include font-face($webfont, $dir);
             }

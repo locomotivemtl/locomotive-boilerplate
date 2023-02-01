@@ -23,7 +23,7 @@
  * @property {string} [weight] - The weight used by the font in our CSS.
  */
 
-const isFontLoadingAPIAvailable = ('fonts' in document);
+const isFontLoadingAPIAvailable = 'fonts' in document
 
 /**
  * Determines if the given font matches the given `FontFaceReference`.
@@ -33,15 +33,14 @@ const isFontLoadingAPIAvailable = ('fonts' in document);
  *
  * @returns {boolean}
  */
-function conformsToReference(font, criterion)
-{
-    for (const [ key, value ] of Object.entries(criterion)) {
+function conformsToReference(font, criterion) {
+    for (const [key, value] of Object.entries(criterion)) {
         switch (key) {
             case 'family': {
                 if (trim(font[key]) !== value) {
-                    return false;
+                    return false
                 }
-                break;
+                break
             }
 
             case 'weight': {
@@ -54,21 +53,21 @@ function conformsToReference(font, criterion)
                  * @link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#common_weight_name_mapping
                  */
                 if (font[key] != value) {
-                    return false;
+                    return false
                 }
-                break;
+                break
             }
 
             default: {
                 if (font[key] !== value) {
-                    return false;
+                    return false
                 }
-                break;
+                break
             }
         }
     }
 
-    return true;
+    return true
 }
 
 /**
@@ -79,24 +78,21 @@ function conformsToReference(font, criterion)
  *
  * @returns {boolean}
  */
-function conformsToShorthand(font, criterion)
-{
-    const family = trim(font.family);
+function conformsToShorthand(font, criterion) {
+    const family = trim(font.family)
 
     if (trim(family) === criterion) {
-        return true;
+        return true
     }
 
     if (
-        criterion.endsWith(trim(family)) && (
-            criterion.match(font.weight) ||
-            criterion.match(font.style)
-        )
+        criterion.endsWith(trim(family)) &&
+        (criterion.match(font.weight) || criterion.match(font.style))
     ) {
-        return true;
+        return true
     }
 
-    return true;
+    return true
 }
 
 /**
@@ -107,15 +103,14 @@ function conformsToShorthand(font, criterion)
  *
  * @returns {boolean}
  */
-function conformsToAnyReference(font, criteria)
-{
+function conformsToAnyReference(font, criteria) {
     for (const criterion of criteria) {
         if (conformsToReference(font, criterion)) {
-            return true;
+            return true
         }
     }
 
-    return false;
+    return false
 }
 
 /**
@@ -126,17 +121,16 @@ function conformsToAnyReference(font, criteria)
  *
  * @returns {FontFace[]}
  */
-function findManyByReference(search)
-{
-    const found = [];
+function findManyByReference(search) {
+    const found = []
 
     for (const font of document.fonts) {
         if (conformsToReference(font, search)) {
-            found.push(font);
+            found.push(font)
         }
     }
 
-    return found;
+    return found
 }
 
 /**
@@ -147,17 +141,16 @@ function findManyByReference(search)
  *
  * @returns {FontFace[]}
  */
-function findManyByShorthand(search)
-{
-    const found = [];
+function findManyByShorthand(search) {
+    const found = []
 
     for (const font of document.fonts) {
         if (conformsToShorthand(font, search)) {
-            found.push(font);
+            found.push(font)
         }
     }
 
-    return found;
+    return found
 }
 
 /**
@@ -168,15 +161,14 @@ function findManyByShorthand(search)
  *
  * @returns {?FontFace}
  */
-function findOneByReference(search)
-{
+function findOneByReference(search) {
     for (const font of document.fonts) {
         if (conformsToReference(font, criterion)) {
-            return font;
+            return font
         }
     }
 
-    return null;
+    return null
 }
 
 /**
@@ -192,15 +184,14 @@ function findOneByReference(search)
  *
  * @returns {?FontFace}
  */
-function findOneByShorthand(search)
-{
+function findOneByShorthand(search) {
     for (const font of document.fonts) {
         if (conformsToShorthand(font, search)) {
-            return font;
+            return font
         }
     }
 
-    return null;
+    return null
 }
 
 /**
@@ -220,16 +211,16 @@ function getAny(search) {
     if (search) {
         switch (typeof search) {
             case 'string':
-                return findOneByShorthand(search);
+                return findOneByShorthand(search)
 
             case 'object':
-                return findOneByReference(search);
+                return findOneByReference(search)
         }
     }
 
     throw new TypeError(
         'Expected font query to be font shorthand or font reference'
-    );
+    )
 }
 
 /**
@@ -244,30 +235,30 @@ function getAny(search) {
  */
 function getMany(queries) {
     if (!Array.isArray(queries)) {
-        queries = [ queries ];
+        queries = [queries]
     }
 
-    const found = new Set();
+    const found = new Set()
 
     queries.forEach((search) => {
         if (search) {
             switch (typeof search) {
                 case 'string':
-                    found.add(...findManyByShorthand(search));
-                    return;
+                    found.add(...findManyByShorthand(search))
+                    return
 
                 case 'object':
-                    found.add(...findManyByReference(search));
-                    return;
+                    found.add(...findManyByReference(search))
+                    return
             }
         }
 
         throw new TypeError(
             'Expected font query to be font shorthand or font reference'
-        );
+        )
     })
 
-    return [ ...found ];
+    return [...found]
 }
 
 /**
@@ -283,10 +274,10 @@ function getMany(queries) {
  */
 function hasAny(search) {
     if (search instanceof FontFace) {
-        return document.fonts.has(search);
+        return document.fonts.has(search)
     }
 
-    return getAny(search) != null;
+    return getAny(search) != null
 }
 
 /**
@@ -302,15 +293,12 @@ function hasAny(search) {
  *
  * @returns {Promise}
  */
-async function loadFonts(fontsToLoad, debug = false)
-{
+async function loadFonts(fontsToLoad, debug = false) {
     if ((fontsToLoad.size ?? fontsToLoad.length) === 0) {
-        throw new TypeError(
-            'Expected at least one font'
-        );
+        throw new TypeError('Expected at least one font')
     }
 
-    return await loadFontsWithAPI([ ...fontsToLoad ], debug);
+    return await loadFontsWithAPI([...fontsToLoad], debug)
 }
 
 /**
@@ -320,12 +308,11 @@ async function loadFonts(fontsToLoad, debug = false)
  *
  * @returns {Promise}
  */
-async function loadFontFaceWithAPI(font)
-{
-    return await (font.status === 'unloaded'
-        ? font.load()
-        : font.loaded
-    ).then((font) => font, (err) => font)
+async function loadFontFaceWithAPI(font) {
+    return await (font.status === 'unloaded' ? font.load() : font.loaded).then(
+        (font) => font,
+        (err) => font
+    )
 }
 
 /**
@@ -336,31 +323,34 @@ async function loadFontFaceWithAPI(font)
  *
  * @returns {Promise}
  */
-async function loadFontsWithAPI(fontsToLoad, debug = false)
-{
-    debug && console.group('[loadFonts:API]', fontsToLoad.length, '/', document.fonts.size);
+async function loadFontsWithAPI(fontsToLoad, debug = false) {
+    debug &&
+        console.group(
+            '[loadFonts:API]',
+            fontsToLoad.length,
+            '/',
+            document.fonts.size
+        )
 
-    const fontsToBeLoaded = [];
+    const fontsToBeLoaded = []
 
     for (const fontToLoad of fontsToLoad) {
         if (fontToLoad instanceof FontFace) {
             if (!document.fonts.has(fontToLoad)) {
-                document.fonts.add(fontToLoad);
+                document.fonts.add(fontToLoad)
             }
 
-            fontsToBeLoaded.push(
-                loadFontFaceWithAPI(fontToLoad)
-            );
+            fontsToBeLoaded.push(loadFontFaceWithAPI(fontToLoad))
         } else {
             fontsToBeLoaded.push(
                 ...getMany(fontToLoad).map((font) => loadFontFaceWithAPI(font))
-            );
+            )
         }
     }
 
-    debug && console.groupEnd();
+    debug && console.groupEnd()
 
-    return await Promise.all(fontsToBeLoaded);
+    return await Promise.all(fontsToBeLoaded)
 }
 
 /**
@@ -374,7 +364,7 @@ async function loadFontsWithAPI(fontsToLoad, debug = false)
  * @returns {string}
  */
 function trim(value) {
-    return value.replace(/['"]+/g, '');
+    return value.replace(/['"]+/g, '')
 }
 
 /**
@@ -385,11 +375,10 @@ function trim(value) {
  *
  * @returns {Promise}
  */
-async function whenReady(queries)
-{
-    const fonts = getMany(queries);
+async function whenReady(queries) {
+    const fonts = getMany(queries)
 
-    return await Promise.all(fonts.map((font) => font.loaded));
+    return await Promise.all(fonts.map((font) => font.loaded))
 }
 
 export {

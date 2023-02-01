@@ -8,7 +8,6 @@
 
 const clamp = (min = 0, max = 1, a) => Math.min(max, Math.max(min, a))
 
-
 /**
  * Calculate lerp
  * @param {number}  x   - start value
@@ -19,7 +18,6 @@ const clamp = (min = 0, max = 1, a) => Math.min(max, Math.max(min, a))
 
 const lerp = (x, y, a) => x * (1 - a) + y * a
 
-
 /**
  * Calculate inverted lerp
  * @param {number}  x   - start value
@@ -28,8 +26,7 @@ const lerp = (x, y, a) => x * (1 - a) + y * a
  * @return {number} inverted lerp value
  */
 
-const invlerp = (x, y, a) => clamp((v - x)/(a - x))
-
+const invlerp = (x, y, a) => clamp((v - x) / (a - x))
 
 /**
  * Round number to the specified precision.
@@ -42,13 +39,7 @@ const invlerp = (x, y, a) => clamp((v - x)/(a - x))
  * @return {number} The rounded number.
  */
 const roundNumber = (number, precision = 2) => {
-    return Number.parseFloat(number.toPrecision(precision));
+    return Number.parseFloat(number.toPrecision(precision))
 }
 
-
-export {
-    clamp,
-    lerp,
-    invlerp,
-    roundNumber
-}
+export { clamp, lerp, invlerp, roundNumber }

@@ -229,7 +229,8 @@
     $child: nth(nth($selector, -1), -1);
 
     &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child,
-    &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child ~ #{$child} {
+    &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child
+        ~ #{$child} {
         @content;
     }
 }
@@ -240,7 +241,7 @@
 
 @mixin first-child() {
     &:first-of-type {
-        @content
+        @content;
     }
 }
 
@@ -250,7 +251,7 @@
 
 @mixin last-child() {
     &:last-of-type {
-        @content
+        @content;
     }
 }
 

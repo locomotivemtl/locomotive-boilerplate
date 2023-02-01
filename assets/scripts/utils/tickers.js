@@ -39,7 +39,6 @@ const debounce = (callback, delay, immediate = false) => {
     }
 }
 
-
 /**
  * Creates a throttled function.
  *
@@ -71,8 +70,4 @@ const throttle = (callback, delay) => {
     }
 }
 
-
-export {
-    debounce,
-    throttle
-}
+export { debounce, throttle }

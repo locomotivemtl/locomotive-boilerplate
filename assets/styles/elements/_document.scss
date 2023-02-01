@@ -3,17 +3,16 @@
 // ==========================================================================
 
 :root {
-
     // Grid
-    --grid-columns      : 4;
-    --grid-gutter       : #{rem(10px)};
-    --grid-gutter-half  : calc(0.5 * var(--grid-gutter));
-    --grid-margin       : 0px;
+    --grid-columns: 4;
+    --grid-gutter: #{rem(10px)};
+    --grid-gutter-half: calc(0.5 * var(--grid-gutter));
+    --grid-margin: 0px;
 
     @media (min-width: $from-small) {
-        --grid-columns  : 12;
-        --grid-gutter   : #{rem(16px)};
-        --grid-margin   : #{rem(20px)};
+        --grid-columns: 12;
+        --grid-gutter: #{rem(16px)};
+        --grid-margin: #{rem(20px)};
     }
 }
 
@@ -30,7 +29,7 @@
 html {
     min-height: 100%; // [2]
     line-height: $line-height; // [3]
-    font-family: ff("sans");
+    font-family: ff('sans');
     color: $font-color;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

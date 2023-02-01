@@ -68,17 +68,17 @@
     }
 
     &.-flex {
-         display: flex;
+        display: flex;
 
-         &.-top {
+        &.-top {
             align-items: flex-start;
-         }
-         &.-middle {
+        }
+        &.-middle {
             align-items: center;
-         }
-         &.-bottom {
+        }
+        &.-bottom {
             align-items: flex-end;
-         }
+        }
     }
     &.-stretch {
         align-items: stretch;
