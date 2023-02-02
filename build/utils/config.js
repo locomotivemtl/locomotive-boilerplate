@@ -14,7 +14,7 @@ try {
 
     merge(loconfig, usrconfig);
 } catch (err) {
-    console.error(err);
+    // do nothing
 }
 
 export default loconfig;
