@@ -169,7 +169,8 @@
 // By default, a grid item takes full width of its parent.
 //
 .o-grid_item {
-    grid-column: 1 / -1;
+    grid-column-start: var(--gc-start, 1);
+    grid-column-end: var(--gc-end, -1);
 
     &.-align-end {
         align-self: end;
