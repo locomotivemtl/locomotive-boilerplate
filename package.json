@@ -23,9 +23,9 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.13",
-        "browser-sync": "^2.27.5",
+        "browser-sync": "^2.27.11",
         "concat": "^1.0.3",
-        "esbuild": "^0.16.17",
+        "esbuild": "^0.17.6",
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
         "postcss": "^8.4.21",
@@ -34,6 +34,9 @@
         "tiny-glob": "^0.2.9"
     },
     "overrides": {
+        "browser-sync": {
+            "ua-parser-js": "~1.0.33"
+        },
         "svg-mixer": {
             "postcss": "^8.4.20"
         }
