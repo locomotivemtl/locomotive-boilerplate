@@ -11,7 +11,8 @@
 // @link http://stackoverflow.com/a/13202141/140357
 
 .o-container {
-    width: var(--container-width);
     margin-right: auto;
     margin-left: auto;
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
 }
