@@ -13,48 +13,26 @@ $colsMax: $base-column-nb + 1;
 
 $breakpoints: (
     "null" null,
-    "from-tiny" "from-tiny",
-    "from-small" "from-small",
-    "from-medium" "from-medium",
-    "from-large" "from-large",
-    "from-big" "from-big"
+    "from-tiny" $from-tiny,
+    "from-small" $from-small,
+    "from-medium" $from-medium,
+    "from-large" $from-large,
+    "from-big" $from-big
 ) !default;
 
-@each $breakpoint-namespace, $breakpoint in $breakpoints {
+@each $breakpoint, $mediaquery in $breakpoints {
     @for $fromIndex from 1 through $colsMax {
         @for $toIndex from 1 through $colsMax {
-            @if $breakpoint == null {
+            @if $mediaquery == null {
                 .u-gc-#{$fromIndex}\/#{$toIndex} {
-                    grid-column-start: #{$fromIndex};
-                    grid-column-end: #{$toIndex};
+                    --gc-start: #{$fromIndex};
+                    --gc-end: #{$toIndex};
                 }
             } @else {
                 .u-gc-#{$fromIndex}\/#{$toIndex}\@#{$breakpoint} {
-                    @if $breakpoint-namespace == "from-tiny" {
-                        @media (min-width: $from-tiny) {
-                            grid-column-start: #{$fromIndex};
-                            grid-column-end: #{$toIndex};
-                        }
-                    } @else if $breakpoint-namespace == "from-small" {
-                        @media (min-width: $from-small) {
-                            grid-column-start: #{$fromIndex};
-                            grid-column-end: #{$toIndex};
-                        }
-                    } @else if $breakpoint-namespace == "from-medium" {
-                        @media (min-width: $from-medium) {
-                            grid-column-start: #{$fromIndex};
-                            grid-column-end: #{$toIndex};
-                        }
-                    } @else if $breakpoint-namespace == "from-large" {
-                        @media (min-width: $from-large) {
-                            grid-column-start: #{$fromIndex};
-                            grid-column-end: #{$toIndex};
-                        }
-                    } @else if $breakpoint-namespace == "from-big" {
-                        @media (min-width: $from-big) {
-                            grid-column-start: #{$fromIndex};
-                            grid-column-end: #{$toIndex};
-                        }
+                    @media (min-width: #{$mediaquery}) {
+                        --gc-start: #{$fromIndex};
+                        --gc-end: #{$toIndex};
                     }
                 }
             }
