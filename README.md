@@ -23,7 +23,7 @@ Learn more about [languages and technologies](docs/technologies.md).
 
 Make sure you have the following installed:
 
-* [Node] — at least 18.13, the latest LTS is recommended.
+* [Node] — at least 17.9, the latest LTS is recommended.
 * [NPM] — at least 8.0, the latest LTS is recommended.
 
 > 💡 You can use [NVM] to install and use different versions of Node via the command-line.
