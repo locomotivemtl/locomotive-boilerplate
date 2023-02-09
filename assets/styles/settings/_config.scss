@@ -28,7 +28,7 @@ $font-fallback-mono:    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console
 // <font-id>: (<font-name>, <font-fallbacks>)
 // ```
 $font-families: (
-    sans: join(Source Sans, $font-fallback-sans, $separator: comma),
+    sans: join("Source Sans", $font-fallback-sans, $separator: comma),
 );
 
 // List of custom font faces as tuples.
@@ -37,10 +37,10 @@ $font-families: (
 // <font-name> <font-file-basename> <font-weight> <font-style>
 // ```
 $font-faces: (
-    (Source Sans, "SourceSans3-Bold",      700, normal),
-    (Source Sans, "SourceSans3-BoldIt",    700, italic),
-    (Source Sans, "SourceSans3-Regular",   400, normal),
-    (Source Sans, "SourceSans3-RegularIt", 400, italic),
+    ("Source Sans", "SourceSans3-Bold",      700, normal),
+    ("Source Sans", "SourceSans3-BoldIt",    700, italic),
+    ("Source Sans", "SourceSans3-Regular",   400, normal),
+    ("Source Sans", "SourceSans3-RegularIt", 400, italic),
 );
 
 // Typography

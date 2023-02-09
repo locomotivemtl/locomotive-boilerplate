@@ -15,6 +15,7 @@
   * [`scripts`](#scripts)
   * [`styles`](#styles)
   * [`svgs`](#svgs)
+  * [`versions`](#versions)
 
 ---
 
@@ -28,7 +29,9 @@ Learn more about the boilerplate's [tasks](#tasks) below.
 Make sure you have the following installed:
 
 * [Node] — at least 14.17, the latest LTS is recommended.
-* [NPM] — at least 6.0, the latest LTS is recommended.
+* [NPM] — at least 8.0, the latest LTS is recommended.
+
+> 💡 You can use [NVM] to install and use different versions of Node via the command-line.
 
 ```sh
 # Switch to recommended Node version from .nvmrc
@@ -262,8 +265,8 @@ See [`scripts.js`](../build/tasks/scripts.js) for details.
 
 ### `styles`
 
-A wrapper around [node-sass] (and optionally [Autoprefixer] via [PostCSS])
-for compiling and minifying Sass into CSS.
+A wrapper around [node-sass] (with optional support for [Autoprefixer]
+via [PostCSS]) for compiling and minifying Sass into CSS.
 
 By default, [PostCSS] and [Autoprefixer] are installed with the boilerplate.
 
@@ -298,6 +301,9 @@ Example:
 
 See [`styles.js`](../build/tasks/styles.js) for details.
 
+The task also supports [PurgeCSS] to remove unused CSS.
+See the [documentation on our Grid System](grid.md#build-tasks) for details.
+
 ### `svgs`
 
 A wrapper around [SVG Mixer] for transforming and minifying SVG files
@@ -328,6 +334,80 @@ Example:
 
 See [`svgs.js`](../build/tasks/svgs.js) for details.
 
+### `versions`
+
+A task to create and update values for use in versioning assets.
+
+Can generate a hexadecimal value (using random bytes) or
+use the current timestamp.
+
+Example:
+
+```json
+{
+    "versions": [
+        {
+            "format": "timestamp",
+            "key": "now",
+            "outfile": "./assets.json"
+        },
+        {
+            "format": "hex:8",
+            "key": "hex",
+            "outfile": "./assets.json"
+        }
+    ]
+}
+```
+
+```json
+{
+    "now": 1665071717350,
+    "hex": "6ef54181c4ba"
+}
+```
+
+The task supports replacing the value of a data key in a JSON file or replacing
+a string in a file using a [regular expression](RegExp).
+
+* Explicit JSON field name:
+    ```json
+    {
+        "key": "json:version"
+    }
+    ```
+* Implicit JSON field name:
+    ```json
+    {
+        "key": "version"
+    }
+    ```
+
+The regular expression can be a `RegExp` object or a pattern prefixed with `regexp:`.
+
+* ```json
+  {
+      "key": "regexp:(?<=^const ASSETS_VERSION = ')(?<build>\\d+)(?=';$)"
+  }
+  ```
+
+* ```js
+  {
+      key: new RegExp('(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)')
+  }
+  ```
+* ```js
+  {
+      key: /^ \* Version: +(?:.+?)\+(.+?)$/
+  }
+  ```
+
+The regular expression pattern will match the first occurrence and replace
+the first match in the following order: `build` (named capture), `version`
+(named capture), `1` (first capture), or `0` (whole match).
+
+See [`versions.js`](../build/tasks/versions.js) for details.
+
 [Autoprefixer]: https://npmjs.com/package/autoprefixer
 [BrowserSync]:  https://npmjs.com/package/browser-sync
 [concat]:       https://npmjs.com/package/concat
@@ -340,5 +420,7 @@ See [`svgs.js`](../build/tasks/svgs.js) for details.
 [NPM]:          https://npmjs.com/
 [NVM]:          https://github.com/nvm-sh/nvm
 [PostCSS]:      https://npmjs.com/package/postcss
+[PurgeCSS]:     https://purgecss.com/
+[RegExp]:       https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 [SVG Mixer]:    https://npmjs.com/package/svg-mixer
 [tiny-glob]:    https://npmjs.com/package/tiny-glob

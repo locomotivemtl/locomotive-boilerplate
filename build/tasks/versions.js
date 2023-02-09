@@ -2,8 +2,15 @@ import loconfig from '../utils/config.js';
 import message from '../utils/message.js';
 import resolve from '../utils/template.js';
 import { randomBytes } from 'node:crypto';
+import events from 'node:events';
+import {
+    createReadStream,
+    createWriteStream,
+} from 'node:fs';
 import {
     mkdir,
+    rename,
+    rm,
     readFile,
     writeFile,
 } from 'node:fs/promises';
@@ -11,14 +18,41 @@ import {
     basename,
     dirname,
 } from 'node:path';
+import readline from 'node:readline';
 
 /**
  * @typedef  {object} VersionOptions
  * @property {string|number|null} prettyPrint   - A string or number to insert
  *     white space into the output JSON string for readability purposes.
  * @property {string}             versionFormat - The version number format.
- * @property {string}             versionKey    - The JSON field name assign
- *     the version number to.
+ * @property {string|RegExp}      versionKey    - Either:
+ *     - A string representing the JSON field name assign the version number to.
+ *
+ *       Explicit:
+ *
+ *       ```json
+ *       "key": "json:version"
+ *       ```
+ *
+ *       Implicit:
+ *
+ *       ```json
+ *       "key": "version"
+ *       ```
+ *
+ *     - A `RegExp` object or regular expression string prefixed with `regexp:`.
+ *
+ *       ```json
+ *       "key": "regexp:(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)"
+ *       ```
+ *
+ *       ```js
+ *       key: new RegExp('(?<=^const ASSETS_VERSION = ')(?<version>\\d+)(?=';$)')
+ *       ```
+ *
+ *       ```js
+ *       key: /(?<=^const ASSETS_VERSION = ')(?<version>\d+)(?=';$)/
+ *       ```
  */
 
 /**
@@ -93,7 +127,7 @@ export default async function bumpVersions(versionOptions = null) {
  * @return {string|number}
  */
 function createVersionNumber(format) {
-    let [ type, modifier ] = format.split(':');
+    let [ type, modifier ] = format.split(':', 2);
 
     switch (type) {
         case 'hex':
@@ -105,6 +139,9 @@ function createVersionNumber(format) {
             }
 
             return randomBytes(modifier).toString('hex');
+
+        case 'regex':
+            return new RegExp(modifier);
 
         case 'timestamp':
             return Date.now().valueOf();
@@ -127,23 +164,13 @@ async function handleBumpVersion(outfile, label, options) {
     console.time(timeLabel);
 
     try {
-        outfile = resolve(outfile);
+        options.key = parseVersionKey(options.key);
 
-        let json;
-
-        try {
-            json = JSON.parse(await readFile(outfile));
-        } catch (err) {
-            json = {};
-
-            message(`${label} is a new file`, 'notice');
-
-            await mkdir(dirname(outfile), { recursive: true });
+        if (options.key instanceof RegExp) {
+            await handleBumpVersionWithRegExp(outfile, label, options);
+        } else {
+            await handleBumpVersionInJson(outfile, label, options);
         }
-
-        json[options.key] = createVersionNumber(options.format);
-
-        await writeFile(outfile, JSON.stringify(json, null, options.pretty));
 
         message(`${label} bumped`, 'success', timeLabel);
     } catch (err) {
@@ -155,4 +182,134 @@ async function handleBumpVersion(outfile, label, options) {
             message: `${err.name}: ${err.message}`
         });
     }
+}
+
+/**
+ * Changes the version number for the provided JSON key in file.
+ *
+ * @async
+ * @param  {string} outfile
+ * @param  {string} label
+ * @param  {object} options
+ * @param  {string} options.key
+ * @return {Promise}
+ */
+async function handleBumpVersionInJson(outfile, label, options) {
+    outfile = resolve(outfile);
+
+    let json;
+
+    try {
+        json = JSON.parse(await readFile(outfile, { encoding: 'utf8' }));
+    } catch (err) {
+        json = {};
+
+        message(`${label} is a new file`, 'notice');
+
+        await mkdir(dirname(outfile), { recursive: true });
+    }
+
+    const version = createVersionNumber(options.format);
+
+    json[options.key] = version;
+
+    return await writeFile(
+        outfile,
+        JSON.stringify(json, null, options.pretty),
+        { encoding: 'utf8' }
+    );
+}
+
+/**
+ * Changes the version number for the provided RegExp in file.
+ *
+ * @async
+ * @param  {string} outfile
+ * @param  {string} label
+ * @param  {object} options
+ * @param  {RegExp} options.key
+ * @return {Promise}
+ */
+async function handleBumpVersionWithRegExp(outfile, label, options) {
+    outfile = resolve(outfile);
+
+    const bckfile = `${outfile}~`;
+
+    await rename(outfile, bckfile);
+
+    try {
+        const rl = readline.createInterface({
+            input: createReadStream(bckfile),
+        });
+
+        const version = createVersionNumber(options.format);
+
+        const writeStream = createWriteStream(outfile, { encoding: 'utf8' });
+
+        rl.on('line', (line) => {
+            const found = line.match(options.key);
+
+            if (found) {
+                const groups  = (found.groups ?? {});
+                const replace = found[0].replace(
+                    (groups.build ?? groups.version ?? found[1] ?? found[0]),
+                    version
+                );
+                line = line.replace(found[0], replace);
+            }
+
+            writeStream.write(line + "\n");
+        });
+
+        await events.once(rl, 'close');
+
+        await rm(bckfile);
+    } catch (err) {
+        await rm(outfile, { force: true });
+
+        await rename(bckfile, outfile);
+
+        throw err;
+    }
+}
+
+/**
+ * Parses the version key.
+ *
+ * @param  {*} key - The version key.
+ * @return {string|RegExp}
+ */
+function parseVersionKey(key) {
+    if (key instanceof RegExp) {
+        return key;
+    }
+
+    if (typeof key !== 'string') {
+        throw new TypeError(
+            'Expected \'key\' to be either a string or a RegExp'
+        );
+    }
+
+    const delimiter = key.indexOf(':');
+
+    if (delimiter === -1) {
+        // Assumes its a JSON key
+        return key;
+    }
+
+    const type  = key.slice(0, delimiter);
+    const value = key.slice(delimiter + 1);
+
+    switch (type) {
+        case 'json':
+            return value;
+
+        case 'regex':
+        case 'regexp':
+            return new RegExp(value);
+    }
+
+    throw new TypeError(
+        'Expected \'key\' type to be either "json" or "regexp"'
+    );
 }

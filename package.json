@@ -7,7 +7,7 @@
     "type": "module",
     "engines": {
         "node": ">=14.17",
-        "npm": ">=6.0"
+        "npm": ">=8.0"
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
@@ -21,16 +21,21 @@
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.12",
-        "browser-sync": "^2.27.10",
+        "autoprefixer": "^10.4.13",
+        "browser-sync": "^2.27.11",
         "concat": "^1.0.3",
-        "esbuild": "^0.14.54",
+        "esbuild": "^0.16.17",
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
-        "node-sass": "^7.0.1",
-        "postcss": "^8.4.17",
+        "node-sass": "^8.0.0",
+        "postcss": "^8.4.21",
         "purgecss": "^5.0.0",
-        "svg-mixer": "^2.3.14",
+        "svg-mixer": "~2.3.14",
         "tiny-glob": "^0.2.9"
+    },
+    "overrides": {
+        "svg-mixer": {
+            "postcss": "^8.4.20"
+        }
     }
 }
