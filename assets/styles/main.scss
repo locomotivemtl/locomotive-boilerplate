@@ -3,13 +3,6 @@
 // ==========================================================================
 @use "sass:math";
 
-// Settings
-// ==========================================================================
-
-@import "settings/config.eases";
-@import "settings/config.colors";
-@import "settings/config";
-
 // ==========================================================================
 // Tools
 // ==========================================================================
@@ -21,6 +14,14 @@
 // @import "tools/layout";
 // @import "tools/widths";
 // @import "tools/family";
+
+// Settings
+// ==========================================================================
+
+@import "settings/config.eases";
+@import "settings/config.colors";
+@import "settings/config";
+@import "settings/config.variables";
 
 // Generic
 // ==========================================================================
