@@ -31,6 +31,12 @@
     // ==========================================================================
     // Cols
     // ==========================================================================
+
+    // Responsive grid columns based on `--grid-columns`
+    &.-cols {
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+    }
+
     &.-col-#{$base-column-nb} {
         grid-template-columns: repeat(#{$base-column-nb}, 1fr);
     }
@@ -51,8 +57,8 @@
 
     // Gutters rows and columns
     &.-gutters {
-        gap: $base-column-gap;
-        column-gap: $base-column-gap;
+        gap: var(--grid-gutter);
+        column-gap: var(--grid-gutter);
     }
 
     // ==========================================================================
