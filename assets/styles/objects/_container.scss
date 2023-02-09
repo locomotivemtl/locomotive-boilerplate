@@ -11,8 +11,7 @@
 // @link http://stackoverflow.com/a/13202141/140357
 
 .o-container {
+    width: var(--container-width);
     margin-right: auto;
     margin-left: auto;
-    padding-right: $base-column-gap;
-    padding-left: $base-column-gap;
 }
