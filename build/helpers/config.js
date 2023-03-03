@@ -5,9 +5,11 @@
 import loconfig from '../../loconfig.json' assert { type: 'json' };
 import { merge } from '../utils/index.js';
 
+let usrconfig;
+
 try {
-    const usrconfig = await import('../../loconfig.local.json', {
-        assert: { type: "json" },
+    usrconfig = await import('../../loconfig.local.json', {
+        assert: { type: 'json' },
     });
     usrconfig = usrconfig.default;
 
