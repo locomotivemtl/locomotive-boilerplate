@@ -18,7 +18,6 @@
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
         "normalize.css": "^8.0.1",
-        "sass": "^1.57.1",
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
@@ -30,6 +29,7 @@
         "node-notifier": "^10.0.1",
         "postcss": "^8.4.21",
         "purgecss": "^5.0.0",
+        "sass": "^1.57.1",
         "svg-mixer": "~2.3.14",
         "tiny-glob": "^0.2.9"
     },
