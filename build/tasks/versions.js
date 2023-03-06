@@ -1,6 +1,7 @@
-import loconfig from '../utils/config.js';
-import message from '../utils/message.js';
-import resolve from '../utils/template.js';
+import loconfig from '../helpers/config.js';
+import message from '../helpers/message.js';
+import resolve from '../helpers/template.js';
+import { merge } from '../utils/index.js';
 import { randomBytes } from 'node:crypto';
 import events from 'node:events';
 import {
@@ -94,11 +95,22 @@ export default async function bumpVersions(versionOptions = null) {
         versionOptions !== developmentVersionOptions &&
         versionOptions !== productionVersionOptions
     ) {
-        versionOptions = Object.assign({}, defaultVersionOptions, versionOptions);
+        versionOptions = merge({}, defaultVersionOptions, versionOptions);
     }
 
     const queue = new Map();
 
+    /**
+     * @async
+     * @param  {object}         entry          - The entrypoint to process.
+     * @param  {string}         entry.outfile  - The file to write to.
+     * @param  {?string}        [entry.label]  - The task label.
+     *     Defaults to the outfile name.
+     * @param  {?string}        [entry.format] - The version number format.
+     * @param  {?string}        [entry.key]    - The JSON field name assign the version number to.
+     * @param  {?string|number} [entry.pretty] - The white space to use to format the JSON file.
+     * @return {Promise}
+     */
     loconfig.tasks.versions.forEach(({
         outfile,
         label = null,
