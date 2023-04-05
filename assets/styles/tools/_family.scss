@@ -147,7 +147,7 @@
 // @param {number} $num - id of the child
 
 @mixin middle($num) {
-    &:nth-child(#{round($num / 2)}) {
+    &:nth-child(#{round(math.div($num, 2))}) {
         @content;
     }
 }
