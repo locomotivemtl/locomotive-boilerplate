@@ -41,16 +41,16 @@ const CUSTOM_EVENT = Object.freeze({
 })
 
 // Fonts parameters
-const FONTS = Object.freeze({
+const FONT = Object.freeze({
     EAGER: [
         { family: 'Source Sans', style: 'normal', weight: 400 },
         { family: 'Source Sans', style: 'normal', weight: 700 },
     ],
 })
 
-export default {
+export {
     ENV,
     CSS_CLASS,
     CUSTOM_EVENT,
-    FONTS,
+    FONT,
 }

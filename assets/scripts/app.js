@@ -3,7 +3,7 @@ import * as modules from './modules';
 import globals from './globals';
 import { debounce } from './utils/tickers'
 import { $html } from './utils/dom';
-import { ENV, FONTS, CUSTOM_EVENTS, CSS_CLASS } from './config'
+import { ENV, FONT, CUSTOM_EVENT, CSS_CLASS } from './config'
 import { isFontLoadingAPIAvailable, loadFonts } from './utils/fonts';
 
 const app = new modular({
@@ -36,7 +36,7 @@ function init() {
     $html.classList.remove(CSS_CLASS.LOADING);
 
     // Bind window resize event with default vars
-    const resizeEndEvent = new CustomEvent(CUSTOM_EVENTS.RESIZE_END)
+    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END)
     window.addEventListener('resize', () => {
         $html.style.setProperty('--vw', `${document.documentElement.clientWidth * 0.01}px`)
         debounce(() => {
@@ -48,7 +48,7 @@ function init() {
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts(FONTS.EAGER_FONTS, ENV.IS_DEV).then((eagerFonts) => {
+        loadFonts(FONT.EAGER_FONTS, ENV.IS_DEV).then((eagerFonts) => {
             $html.classList.add(CSS_CLASS.FONTS_LOADED);
 
             if (ENV.IS_DEV) {

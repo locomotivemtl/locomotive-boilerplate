@@ -1,4 +1,4 @@
-import { CSS_CLASS } from './config'
+import { CSS_CLASS } from '../config'
 
 /**
  * Get an image meta data
