@@ -21,6 +21,11 @@
     --font-size-h5:     #{rem(18px)};
     --font-size-h6:     #{rem(16px)};
 
+    // // Colors
+    // @each $color, $value in $colors {
+    //     --color-#{"" + $color}: #{$value};
+    // }
+
     @media (min-width: $from-small) {
         --grid-columns:     #{$base-column-nb};
         --grid-gutter:      #{rem(16px)};

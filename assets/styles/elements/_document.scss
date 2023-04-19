@@ -73,8 +73,8 @@ body {
 }
 
 ::selection {
-    background-color: $selection-background-color;
-    color: $selection-text-color;
+    background-color: $color-selection-background;
+    color: $color-selection-text;
     text-shadow: none;
 }
 

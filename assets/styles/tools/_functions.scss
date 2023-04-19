@@ -139,3 +139,24 @@
 }
 
 $context: 'frontend' !default;
+
+
+// Returns color code.
+//
+// ```scss
+// .c-box {
+//     width: color(primary);
+// }
+// ```
+//
+// @param  {string} $key - The color key in $colors
+// @return {function<string>} in hexadecimal
+@function color($key) {
+    @if map-has-key($colors, $key) {
+        @return map-get($colors, $key);
+    }
+
+    @warn "Unkown '#{$key}' in $colors.";
+
+    @return null;
+}
