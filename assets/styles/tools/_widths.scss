@@ -58,7 +58,7 @@ $breakpoint-delimiter: \@ !default;
         @for $numerator from 1 through $denominator {
             // Build a class in the format `.u-3/4[@<breakpoint>]`.
             .u-#{$numerator}#{$fractions-delimiter}#{$denominator}#{$breakpoint} {
-                width: ($numerator / $denominator) * 100% $important;
+                width: math.div($numerator, $denominator) * 100% $important;
             }
 
             @if ($widths-offsets == true) {
@@ -66,13 +66,13 @@ $breakpoint-delimiter: \@ !default;
                 .u-push-#{$numerator}#{$fractions-delimiter}#{$denominator}#{$breakpoint} {
                     position: relative $important;
                     right: auto $important;
-                    left: ($numerator / $denominator) * 100% $important;
+                    left: math.div($numerator, $denominator) * 100% $important;
                 }
 
                 // Build a class in the format `.u-pull-5/6[@<breakpoint>]`.
                 .u-pull-#{$numerator}#{$fractions-delimiter}#{$denominator}#{$breakpoint} {
                     position: relative $important;
-                    right: ($numerator / $denominator) * 100% $important;
+                    right: math.div($numerator, $denominator) * 100% $important;
                     left: auto $important;
                 }
             }

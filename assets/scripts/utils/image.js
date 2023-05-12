@@ -1,3 +1,5 @@
+import { CSS_CLASS } from '../config'
+
 /**
  * Get an image meta data
  *
@@ -89,14 +91,14 @@ const lazyLoadImage = async ($el, url, callback) => {
     }
 
     requestAnimationFrame(() => {
-        let lazyParent = $el.closest('.c-lazy')
+        let lazyParent = $el.closest(`.${CSS_CLASS.LAZY_CONTAINER}`)
 
         if(lazyParent) {
-            lazyParent.classList.add('-lazy-loaded')
+            lazyParent.classList.add(CSS_CLASS.LAZY_LOADED)
             lazyParent.style.backgroundImage = ''
         }
 
-        $el.classList.add('-lazy-loaded')
+        $el.classList.add(CSS_CLASS.LAZY_LOADED)
 
         callback?.()
     })

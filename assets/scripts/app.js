@@ -1,8 +1,9 @@
 import modular from 'modujs';
 import * as modules from './modules';
 import globals from './globals';
-import { html } from './utils/environment';
-import config from './config'
+import { debounce } from './utils/tickers'
+import { $html } from './utils/dom';
+import { ENV, FONT, CUSTOM_EVENT, CSS_CLASS } from './config'
 import { isFontLoadingAPIAvailable, loadFonts } from './utils/fonts';
 
 const app = new modular({
@@ -25,28 +26,32 @@ window.onload = (event) => {
     }
 };
 
-export const EAGER_FONTS = [
-    { family: 'Source Sans', style: 'normal', weight: 400 },
-    { family: 'Source Sans', style: 'normal', weight: 700 },
-];
-
 function init() {
     globals();
 
     app.init(app);
 
-    html.classList.add('is-loaded');
-    html.classList.add('is-ready');
-    html.classList.remove('is-loading');
+    $html.classList.add(CSS_CLASS.LOADED);
+    $html.classList.add(CSS_CLASS.READY);
+    $html.classList.remove(CSS_CLASS.LOADING);
+
+    // Bind window resize event with default vars
+    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END)
+    window.addEventListener('resize', () => {
+        $html.style.setProperty('--vw', `${document.documentElement.clientWidth * 0.01}px`)
+        debounce(() => {
+            window.dispatchEvent(resizeEndEvent)
+        }, 200, false)
+    })
 
     /**
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts(EAGER_FONTS, config.IS_DEV).then((eagerFonts) => {
-            html.classList.add('fonts-loaded');
+        loadFonts(FONT.EAGER_FONTS, ENV.IS_DEV).then((eagerFonts) => {
+            $html.classList.add(CSS_CLASS.FONTS_LOADED);
 
-            if (config.IS_DEV) {
+            if (ENV.IS_DEV) {
                 console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
                 console.group('State of eager fonts:')
                 eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
