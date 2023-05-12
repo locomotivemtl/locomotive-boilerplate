@@ -27,7 +27,7 @@ $input-icon-color: 424242; // No #
 .c-form_input {
     padding: rem(10px);
     border: 1px solid lightgray;
-    background-color: $color-lightest;
+    background-color: color(lightest);
 
     &:hover {
         border-color: darkgray;
@@ -71,7 +71,7 @@ $checkbox-icon-color: $input-icon-color;
     }
 
     &::before {
-        background-color: $color-lightest;
+        background-color: color(lightest);
         border: 1px solid lightgray;
     }
 

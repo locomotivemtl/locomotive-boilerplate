@@ -5,24 +5,26 @@
 // Palette
 // =============================================================================
 
-$color-lightest:    #FFFFFF;
-$color-darkest:     #000000;
+$colors: (
+    primary:        #3297FD,
+    lightest:       #FFFFFF,
+    darkest:        #000000,
+);
 
-// Specific
+
+// Specifics
 // =============================================================================
 
 // Link
-$color-link:        #1A0DAB;
-$color-link-focus:  #1A0DAB;
-$color-link-hover:  darken(#1A0DAB, 10%);
+$color-link:           color(primary);
+$color-link-focus:     color(primary);
+$color-link-hover:     darken(color(primary), 10%);
 
 // Selection
-$selection-text-color:          #3297FD;
-$selection-background-color:    #FFFFFF;
+$color-selection-text:         color(darkest);
+$color-selection-background:   color(lightest);
 
-// Social Colors
-// =============================================================================
-
+// Socials
 $color-facebook:    #3B5998;
 $color-instagram:   #E1306C;
 $color-youtube:     #CD201F;
