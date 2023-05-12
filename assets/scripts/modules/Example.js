@@ -1,5 +1,5 @@
 import { module } from 'modujs';
-import { EAGER_FONTS } from '../app';
+import { FONT } from '../config';
 import { whenReady } from '../utils/fonts';
 
 export default class extends module {
@@ -8,7 +8,7 @@ export default class extends module {
     }
 
     init() {
-        whenReady(EAGER_FONTS).then((fonts) => this.onFontsLoaded(fonts));
+        whenReady(FONT.EAGER).then((fonts) => this.onFontsLoaded(fonts));
     }
 
     onFontsLoaded(fonts) {

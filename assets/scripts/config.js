@@ -7,18 +7,50 @@
  * > (since `process` is a Node API, not a web API).
  * > — https://esbuild.github.io/api/#platform
  */
-const env = process.env.NODE_ENV
 
-export default config = Object.freeze({
-    // Environments
-    ENV: env,
-    IS_PROD: env === 'production',
-    IS_DEV: env === 'development',
+const NODE_ENV = process.env.NODE_ENV
+const IS_DESKTOP = typeof window.orientation === 'undefined'
 
-    // CSS class names
-    CSS_CLASS: {
-        LOADING: 'is-loading',
-        READY: 'is-ready',
-        LOADED: 'is-loaded',
-    },
+// Main environment variables
+const ENV = Object.freeze({
+    // Node environment
+    NAME: NODE_ENV,
+    IS_PROD: NODE_ENV === 'production',
+    IS_DEV: NODE_ENV === 'development',
+
+    // Device
+    IS_DESKTOP,
+    IS_MOBILE: !IS_DESKTOP,
 })
+
+// Main CSS classes used within the project
+const CSS_CLASS = Object.freeze({
+    LOADING: 'is-loading',
+    LOADED: 'is-loaded',
+    READY: 'is-ready',
+    FONTS_LOADED: 'fonts-loaded',
+    LAZY_CONTAINER: 'c-lazy',
+    LAZY_LOADED: '-lazy-loaded',
+    // ...
+})
+
+// Custom js events
+const CUSTOM_EVENT = Object.freeze({
+    RESIZE_END: 'loco.resizeEnd',
+    // ...
+})
+
+// Fonts parameters
+const FONT = Object.freeze({
+    EAGER: [
+        { family: 'Source Sans', style: 'normal', weight: 400 },
+        { family: 'Source Sans', style: 'normal', weight: 700 },
+    ],
+})
+
+export {
+    ENV,
+    CSS_CLASS,
+    CUSTOM_EVENT,
+    FONT,
+}
