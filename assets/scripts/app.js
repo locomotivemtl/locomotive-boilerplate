@@ -48,7 +48,7 @@ function init() {
      * Eagerly load the following fonts.
      */
     if (isFontLoadingAPIAvailable) {
-        loadFonts(FONT.EAGER_FONTS, ENV.IS_DEV).then((eagerFonts) => {
+        loadFonts(FONT.EAGER, ENV.IS_DEV).then((eagerFonts) => {
             $html.classList.add(CSS_CLASS.FONTS_LOADED);
 
             if (ENV.IS_DEV) {
