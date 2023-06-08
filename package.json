@@ -14,7 +14,7 @@
         "build": "node --experimental-json-modules --no-warnings build/build.js"
     },
     "dependencies": {
-        "locomotive-scroll": "^4.1.4",
+        "locomotive-scroll": "^5.0.0-beta.8",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
         "normalize.css": "^8.0.1",
