@@ -1,0 +1,16 @@
+#!/bin/sh
+
+BOLD='\033[1m'
+NONE='\033[00m'
+
+echo "${BOLD}>> Pre-commit —${NONE} Build 🏗️"
+
+git stash -q --keep-index
+
+npm run build
+
+status=$?
+
+git stash pop -q
+
+exit $status
