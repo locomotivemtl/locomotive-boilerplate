@@ -14,7 +14,7 @@
     --container-width:  calc(100% - 2 * var(--grid-margin));
 
     // Font sizes
-    --font-size-h1:     #{rem(36px)};
+    --font-size-h1:     #{responsive-type(36px, 72px, 1400px)};
     --font-size-h2:     #{rem(28px)};
     --font-size-h3:     #{rem(24px)};
     --font-size-h4:     #{rem(20px)};

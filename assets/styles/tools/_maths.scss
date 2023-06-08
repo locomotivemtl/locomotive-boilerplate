@@ -2,13 +2,18 @@
 // Tools / Maths
 // ==========================================================================
 
-// Removes the unit from the given number.
+// Remove the unit of a length
 //
-// @param  {number} $number The number to strip.
-// @return {number}
+// @param {Number} $number Number to remove unit from
+// @return {function<number>}
+@function strip-unit($value) {
+    @if type-of($value) != "number" {
+        @error "Invalid `#{type-of($value)}` type. Choose a number type instead.";
+    } @else if type-of($value) == "number" and not is-unitless($value) {
+        @return math.div($value, $value * 0 + 1);
+    }
 
-@function strip-units($number) {
-    @return math.div($number, ($number * 0 + 1));
+    @return $value;
 }
 
 // Returns the square root of the given number.
