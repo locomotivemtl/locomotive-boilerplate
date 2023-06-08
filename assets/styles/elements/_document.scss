@@ -5,16 +5,14 @@
 //
 // Simple page-level setup.
 //
-// 1. Include web fonts
-// 2. Ensure the page always fills at least the entire height of the viewport.
-// 3. Set the default `font-size` and `line-height` for the entire project,
+// 1. Ensure the page always fills at least the entire height of the viewport.
+// 2. Set the default `font-size` and `line-height` for the entire project,
 //    sourced from our default variables.
 
-@include font-faces($font-faces, $font-dir); // [1]
 
 html {
-    min-height: 100%; // [2]
-    line-height: $line-height; // [3]
+    min-height: 100%; // [1]
+    line-height: $line-height; // [2]
     font-family: ff("sans");
     color: $font-color;
     -webkit-font-smoothing: antialiased;

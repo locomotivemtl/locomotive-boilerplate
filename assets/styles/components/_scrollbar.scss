@@ -9,7 +9,7 @@
     width: 11px;
     height: 100vh;
     transform-origin: center right;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform t(normal), opacity t(normal);
     opacity: 0;
 
     &:hover {
