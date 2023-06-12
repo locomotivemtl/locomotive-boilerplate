@@ -33,6 +33,9 @@ $font-families: (
     sans: join("Source Sans", $font-fallback-sans, $separator: comma),
 );
 
+// Font directory
+$font-dir: "../fonts/";
+
 // Functions
 // ==========================================================================
 
@@ -93,12 +96,3 @@ $font-families: (
     $value: map-get($font-families, $font-family);
     @return $value;
 }
-
-
-// Include fonts
-// ==========================================================================
-
-// Font directory
-$font-dir: "../fonts/";
-
-@include font-faces($font-faces, $font-dir);

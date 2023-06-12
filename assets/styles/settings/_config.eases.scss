@@ -64,7 +64,7 @@ $eases: (
 // ```
 //
 // @param  {string} $key - The ease key in $eases.
-// @return {bezier curve}
+// @return {easing-function}
 
 @function ease($key) {
     @if not map-has-key($eases, $key) {
