@@ -51,25 +51,9 @@ html {
     &.is-loading {
         cursor: wait;
     }
-
-    &.has-scroll-smooth {
-        overflow: hidden;
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    &.has-scroll-dragging {
-        user-select: none;
-    }
 }
 
 body {
-    .has-scroll-smooth & {
-        overflow: hidden;
-    }
 }
 
 ::selection {

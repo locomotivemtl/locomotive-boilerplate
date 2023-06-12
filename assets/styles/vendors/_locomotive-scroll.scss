@@ -1,7 +1,5 @@
 // ==========================================================================
-// Objects / Scroll
+// Vendors / Locomotive Scroll
 // ==========================================================================
 
-.o-scroll {
-    min-height: 100vh;
-}
+@import "node_modules/locomotive-scroll/bundled/locomotive-scroll";

@@ -181,10 +181,7 @@ detection and smooth scrolling with parallax.
 ```js
 import LocomotiveScroll from 'locomotive-scroll';
 
-this.scroll = new LocomotiveScroll({
-    el: this.el,
-    smooth: true
-});
+this.scroll = new LocomotiveScroll({})
 ````
 
 Learn more about [Locomotive Scroll][locomotive-scroll].
