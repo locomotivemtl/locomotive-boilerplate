@@ -11,7 +11,8 @@
     },
     "scripts": {
         "start": "node --experimental-json-modules --no-warnings build/watch.js",
-        "build": "node --experimental-json-modules --no-warnings build/build.js"
+        "build": "node --experimental-json-modules --no-warnings build/build.js",
+        "prestart": "cp scripts/git/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
     },
     "dependencies": {
         "locomotive-scroll": "^4.1.4",
