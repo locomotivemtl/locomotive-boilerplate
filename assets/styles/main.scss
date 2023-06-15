@@ -21,6 +21,7 @@
 @import "settings/config.colors";
 @import "settings/config.eases";
 @import "settings/config.fonts";
+@import "settings/config.spacers";
 @import "settings/config.timings";
 @import "settings/config.zindexes";
 @import "settings/config";
@@ -72,5 +73,5 @@
 // @import "utilities/align";
 // @import "utilities/helpers";
 // @import "utilities/states";
-// @import "utilities/spacing";
+@import "utilities/spacing";
 // @import "utilities/print";

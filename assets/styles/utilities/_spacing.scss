@@ -26,8 +26,8 @@ $spacing-directions: (
     '-right':      '-right',
     '-bottom':     '-bottom',
     '-left':       '-left',
-    '-horizontal': '-left' '-right',
-    '-vertical':   '-top'  '-bottom',
+    '-x':          '-left' '-right',
+    '-y':          '-top'  '-bottom',
 ) !default;
 
 $spacing-properties: (
@@ -35,19 +35,41 @@ $spacing-properties: (
     'margin':  'margin',
 ) !default;
 
-$spacing-sizes: (
-    null:     $unit,
-    '-double': $unit * 2,
-    '-small': $unit-small,
-    '-none':  0px
-) !default;
+$spacing-sizes: join($spacers, (
+    null:       var(--grid-gutter),
+    'none':    0
+));
 
-@each $property-namespace, $property in $spacing-properties {
-    @each $direction-namespace, $direction-rules in $spacing-directions {
-        @each $size-namespace, $size in $spacing-sizes {
-            .u-#{$property-namespace}#{$direction-namespace}#{$size-namespace} {
-                @each $direction in $direction-rules {
-                    #{$property}#{$direction}: rem($size) !important;
+@each $breakpoint, $mediaquery in $breakpoints {
+    @each $property-namespace, $property in $spacing-properties {
+        @each $direction-namespace, $direction-rules in $spacing-directions {
+            @each $size-namespace, $size in $spacing-sizes {
+
+                // Spacer without media query
+                @if $breakpoint == "tiny" {
+                    .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace} {
+                        @each $direction in $direction-rules {
+                            #{$property}#{$direction}: $size !important;
+                        }
+                    }
+                }
+
+                // Spacer min-width breakpoints `@from-*`
+                .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace}\@from-#{$breakpoint} {
+                    @media #{mq-min($breakpoint)} {
+                        @each $direction in $direction-rules {
+                            #{$property}#{$direction}: $size !important;
+                        }
+                    }
+                }
+
+                // Spacer max-width breakpoints @to-*`
+                .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace}\@to-#{$breakpoint} {
+                    @media #{mq-max($breakpoint)} {
+                        @each $direction in $direction-rules {
+                            #{$property}#{$direction}: $size !important;
+                        }
+                    }
                 }
             }
         }
