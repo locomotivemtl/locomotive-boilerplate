@@ -42,31 +42,37 @@ $spacing-sizes: join($spacers, (
 
 @each $breakpoint, $mediaquery in $breakpoints {
     @each $property-namespace, $property in $spacing-properties {
-        @each $direction-namespace, $direction-rules in $spacing-directions {
+        @each $direction-namespace, $directions in $spacing-directions {
             @each $size-namespace, $size in $spacing-sizes {
+
+                // Prepend "-" to spacing sizes if not null
+                $size-namespace: if($size-namespace != null, "-" + $size-namespace, $size-namespace);
+
+                // Base class
+                $base-class: ".u-" + #{$property-namespace}#{$direction-namespace}#{$size-namespace};
 
                 // Spacer without media query
                 @if $breakpoint == "tiny" {
-                    .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace} {
-                        @each $direction in $direction-rules {
+                    #{$base-class} {
+                        @each $direction in $directions {
                             #{$property}#{$direction}: $size !important;
                         }
                     }
                 }
 
                 // Spacer min-width breakpoints `@from-*`
-                .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace}\@from-#{$breakpoint} {
+                #{$base-class}\@from-#{$breakpoint} {
                     @media #{mq-min($breakpoint)} {
-                        @each $direction in $direction-rules {
+                        @each $direction in $directions {
                             #{$property}#{$direction}: $size !important;
                         }
                     }
                 }
 
                 // Spacer max-width breakpoints @to-*`
-                .u-#{$property-namespace}#{$direction-namespace}-#{$size-namespace}\@to-#{$breakpoint} {
+                #{$base-class}\@to-#{$breakpoint} {
                     @media #{mq-max($breakpoint)} {
-                        @each $direction in $direction-rules {
+                        @each $direction in $directions {
                             #{$property}#{$direction}: $size !important;
                         }
                     }
