@@ -37,7 +37,7 @@ export default class extends module {
      * @param {LocomotiveScroll} args - The Locomotive Scroll instance.
      */
     lazyLoad(args) {
-        lazyLoadImage(args.obj.el, null, () => {
+        lazyLoadImage(args.target, null, () => {
             //callback
         })
     }
