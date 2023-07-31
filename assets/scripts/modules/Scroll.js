@@ -1,6 +1,6 @@
-import { module } from 'modujs';
-import { lazyLoadImage } from '../utils/image';
-import LocomotiveScroll from 'locomotive-scroll';
+import { module } from 'modujs'
+import { lazyLoadImage } from '../utils/image'
+import LocomotiveScroll from 'locomotive-scroll'
 
 export default class extends module {
     constructor(m) {
@@ -9,18 +9,14 @@ export default class extends module {
 
     init() {
         this.scroll = new LocomotiveScroll({
-            el: this.el,
-            smooth: true
-        });
-
-        this.scroll.on('call', (func, way, obj, id) => {
-            // Using modularJS
-            this.call(func[0], { way, obj }, func[1], func[2]);
-        });
-
-        this.scroll.on('scroll', (args) => {
-            // console.log(args.scroll);
+            modularInstance: this,
         })
+
+        // // Force scroll to top
+        // if (history.scrollRestoration) {
+        //     history.scrollRestoration = 'manual'
+        //     window.scrollTo(0, 0)
+        // }
     }
 
     /**
@@ -41,9 +37,20 @@ export default class extends module {
      * @param {LocomotiveScroll} args - The Locomotive Scroll instance.
      */
     lazyLoad(args) {
-        lazyLoadImage(args.obj.el, null, () => {
+        lazyLoadImage(args.target, null, () => {
             //callback
         })
+    }
+
+    scrollTo(params) {
+        let { target, ...options } = params
+
+        options = Object.assign({
+            // Defaults
+            duration: 1,
+        }, options)
+
+        this.scroll?.scrollTo(target, options)
     }
 
     destroy() {

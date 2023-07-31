@@ -32,6 +32,10 @@
 @import "generic/form";
 @import "generic/button";
 
+// Vendors
+// ==========================================================================
+@import "node_modules/locomotive-scroll/dist/locomotive-scroll";
+
 // Elements
 // ==========================================================================
 
@@ -40,7 +44,6 @@
 // Objects
 // ==========================================================================
 
-@import "objects/scroll";
 @import "objects/container";
 @import "objects/ratio";
 @import "objects/icons";
@@ -48,14 +51,9 @@
 // @import "objects/layout";
 // @import "objects/table";
 
-// Vendors
-// ==========================================================================
-// @import "vendors/vendor";
-
 // Components
 // ==========================================================================
 
-@import "components/scrollbar";
 @import "components/heading";
 @import "components/button";
 @import "components/form";
