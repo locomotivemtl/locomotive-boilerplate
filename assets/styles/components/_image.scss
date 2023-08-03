@@ -1,0 +1,20 @@
+// ==========================================================================
+// Components / Image
+// ==========================================================================
+
+.c-image {
+
+}
+
+.c-image_img {
+
+    // Lazy loading styles
+    .c-image.-lazy-load & {
+        transition: opacity $speed $easing;
+        opacity: 0;
+    }
+
+    .c-image.-lazy-loaded & {
+        opacity: 1;
+    }
+}

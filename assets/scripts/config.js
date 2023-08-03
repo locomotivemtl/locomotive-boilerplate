@@ -29,9 +29,10 @@ const CSS_CLASS = Object.freeze({
     LOADED: 'is-loaded',
     READY: 'is-ready',
     FONTS_LOADED: 'fonts-loaded',
-    LAZY_CONTAINER: 'c-lazy',
-    LAZY_LOADED: '-lazy-loaded',
-    // ...
+    IMAGE: "c-image",
+    IMAGE_LAZY_LOADED: "-lazy-loaded",
+    IMAGE_LAZY_LOADING: "-lazy-loading",
+    IMAGE_LAZY_ERROR: "-lazy-error",
 })
 
 // Custom js events

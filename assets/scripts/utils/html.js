@@ -4,15 +4,18 @@
  * @return {string} escaped string
  */
 
-const escapeHtml = str =>
-    str.replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-    }[tag]))
-
+const escapeHtml = (str) =>
+    str.replace(
+        /[&<>'"]/g,
+        (tag) =>
+            ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "'": "&#39;",
+                '"': "&quot;",
+            }[tag])
+    );
 
 /**
  * Unescape HTML string
@@ -20,13 +23,13 @@ const escapeHtml = str =>
  * @return {string} unescaped string
  */
 
-const unescapeHtml = str =>
-    str.replace('&amp;', '&')
-        .replace('&lt;', '<')
-        .replace('&gt;', '>')
-        .replace('&#39;', "'")
-        .replace('&quot;', '"')
-
+const unescapeHtml = (str) =>
+    str
+        .replace("&amp;", "&")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&#39;", "'")
+        .replace("&quot;", '"');
 
 /**
  * Get element data attributes
@@ -34,46 +37,41 @@ const unescapeHtml = str =>
  * @return {array}       node data
  */
 
-const getNodeData = node => {
-
+const getNodeData = (node) => {
     // All attributes
-    const attributes = node.attributes
+    const attributes = node.attributes;
 
     // Regex Pattern
-    const pattern = /^data\-(.+)$/
+    const pattern = /^data\-(.+)$/;
 
     // Output
-    const data = {}
+    const data = {};
 
     for (let i in attributes) {
         if (!attributes[i]) {
-            continue
+            continue;
         }
 
         // Attributes name (ex: data-module)
-        let name = attributes[i].name
+        let name = attributes[i].name;
 
         // This happens.
         if (!name) {
-            continue
+            continue;
         }
 
-        let match = name.match(pattern)
+        let match = name.match(pattern);
         if (!match) {
-            continue
+            continue;
         }
 
         // If this throws an error, you have some
         // serious problems in your HTML.
-        data[match[1]] = getData(node.getAttribute(name))
+        data[match[1]] = getData(node.getAttribute(name));
     }
 
     return data;
-
-}
-
-
-
+};
 
 /**
  * Parse value to data type.
@@ -83,32 +81,31 @@ const getNodeData = node => {
  * @return {mixed}  value in its natural data type
  */
 
-const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/
-const getData = data => {
-    if (data === 'true') {
-        return true
+const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
+const getData = (data) => {
+    if (data === "true") {
+        return true;
     }
 
-    if (data === 'false') {
-        return false
+    if (data === "false") {
+        return false;
     }
 
-    if (data === 'null') {
-        return null
+    if (data === "null") {
+        return null;
     }
 
     // Only convert to a number if it doesn't change the string
-    if (data === +data+'') {
-        return +data
+    if (data === +data + "") {
+        return +data;
     }
 
     if (rbrace.test(data)) {
-        return JSON.parse(data)
+        return JSON.parse(data);
     }
 
-    return data
-}
-
+    return data;
+};
 
 /**
  * Returns an array containing all the parent nodes of the given node
@@ -116,20 +113,45 @@ const getData = data => {
  * @return {array}          parent nodes
  */
 
-const getParents = $el => {
-
+const getParents = ($el) => {
     // Set up a parent array
-    let parents = []
+    let parents = [];
 
     // Push each parent element to the array
     for (; $el && $el !== document; $el = $el.parentNode) {
-        parents.push($el)
+        parents.push($el);
     }
 
     // Return our parent array
-    return parents
-}
+    return parents;
+};
 
+// https://gomakethings.com/how-to-get-the-closest-parent-element-with-a-matching-selector-using-vanilla-javascript/
+const queryClosestParent = ($el, selector) => {
+    // Element.matches() polyfill
+    if (!Element.prototype.matches) {
+        Element.prototype.matches =
+            Element.prototype.matchesSelector ||
+            Element.prototype.mozMatchesSelector ||
+            Element.prototype.msMatchesSelector ||
+            Element.prototype.oMatchesSelector ||
+            Element.prototype.webkitMatchesSelector ||
+            function (s) {
+                var matches = (
+                        this.document || this.ownerDocument
+                    ).querySelectorAll(s),
+                    i = matches.length;
+                while (--i >= 0 && matches.item(i) !== this) {}
+                return i > -1;
+            };
+    }
+
+    // Get the closest matching element
+    for (; $el && $el !== document; $el = $el.parentNode) {
+        if ($el.matches(selector)) return $el;
+    }
+    return null;
+};
 
 export {
     escapeHtml,
@@ -137,4 +159,5 @@ export {
     getNodeData,
     getData,
     getParents,
-}
+    queryClosestParent,
+};

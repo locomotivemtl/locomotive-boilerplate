@@ -1,5 +1,6 @@
 import svg4everybody from 'svg4everybody';
 import { ENV } from './config';
+import { triggerLazyloadCallbacks } from './utils/image';
 
 // Dynamic imports for development mode only
 let gridHelper;
@@ -20,4 +21,9 @@ export default function () {
      * Add grid helper
      */
     gridHelper?.();
+
+    /**
+     * Trigger lazyload
+     */
+    triggerLazyloadCallbacks();
 }
