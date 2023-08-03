@@ -1,4 +1,5 @@
 import { CSS_CLASS } from '../config'
+import { queryClosestParent } from './html'
 
 /**
  * Get an image meta data
@@ -91,22 +92,111 @@ const lazyLoadImage = async ($el, url, callback) => {
     }
 
     requestAnimationFrame(() => {
-        let lazyParent = $el.closest(`.${CSS_CLASS.LAZY_CONTAINER}`)
+        let lazyParent = $el.closest(`.${CSS_CLASS.IMAGE}`)
 
         if(lazyParent) {
-            lazyParent.classList.add(CSS_CLASS.LAZY_LOADED)
+            lazyParent.classList.add(CSS_CLASS.IMAGE_LAZY_LOADED)
             lazyParent.style.backgroundImage = ''
         }
 
-        $el.classList.add(CSS_CLASS.LAZY_LOADED)
+        $el.classList.add(CSS_CLASS.IMAGE_LAZY_LOADED)
 
         callback?.()
     })
 }
 
+/**
+ * Lazyload Callbacks
+ *
+ */
+const lazyImageLoad = (e) => {
+    const $img = e.currentTarget;
+    const $parent = queryClosestParent($img, `.${CSS_CLASS.IMAGE}`);
+
+    requestAnimationFrame(() => {
+        if ($parent) {
+            $parent.classList.remove(CSS_CLASS.IMAGE_LAZY_LOADING);
+            $parent.classList.add(CSS_CLASS.IMAGE_LAZY_LOADED);
+        }
+
+        $img.classList.add(CSS_CLASS.IMAGE_LAZY_LOADED);
+    });
+};
+
+const lazyImageError = (e) => {
+    const $img = e.currentTarget;
+    const $parent = queryClosestParent($img, `.${CSS_CLASS.IMAGE}`);
+
+    requestAnimationFrame(() => {
+        if ($parent) {
+            $parent.classList.remove(CSS_CLASS.IMAGE_LAZY_LOADING);
+            $parent.classList.add(CSS_CLASS.IMAGE_LAZY_ERROR);
+        }
+    });
+};
+
+/* Trigger Lazyload Callbacks */
+const triggerLazyloadCallbacks = ($lazyImagesArgs) => {
+    const $lazyImages = $lazyImagesArgs
+        ? $lazyImagesArgs
+        : document.querySelectorAll('[loading="lazy"]');
+
+    if ("loading" in HTMLImageElement.prototype) {
+        for (const $img of $lazyImages) {
+            const $parent = queryClosestParent(
+                $img,
+                `.${CSS_CLASS.IMAGE}`
+            );
+
+
+            if (!$img.complete) {
+                if($parent) {
+                    $parent.classList.add(
+                        CSS_CLASS.IMAGE_LAZY_LOADING
+                    );
+                }
+
+                $img.addEventListener("load", lazyImageLoad, { once: true });
+                $img.addEventListener("error", lazyImageError, { once: true });
+            } else {
+                if (!$img.complete) {
+                    $parent.classList.add(
+                        CSS_CLASS.IMAGE_LAZY_LOADED
+                    );
+                }
+            }
+        }
+    } else {
+        // if 'loading' supported
+        for (const $img of $lazyImages) {
+            const $parent = queryClosestParent(
+                $img,
+                `.${CSS_CLASS.IMAGE}`
+            );
+
+            if($parent) {
+                $parent.classList.add(CSS_CLASS.IMAGE_LAZY_LOADED);
+            }
+        }
+    }
+};
+
+/* Reset Lazyload Callbacks */
+const resetLazyloadCallbacks = () => {
+    if ("loading" in HTMLImageElement.prototype) {
+        const $lazyImages = document.querySelectorAll('[loading="lazy"]');
+        for (const $img of $lazyImages) {
+            $img.removeEventListener("load", lazyImageLoad, { once: true });
+            $img.removeEventListener("error", lazyImageError, { once: true });
+        }
+    }
+};
+
 
 export {
     getImageMetadata,
     loadImage,
-    lazyLoadImage
+    lazyLoadImage,
+    triggerLazyloadCallbacks,
+    resetLazyloadCallbacks
 }

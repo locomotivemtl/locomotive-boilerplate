@@ -39,78 +39,18 @@
 
                             <h3 class="c-heading -h3">Basic</h3>
 
-                            <div style="width: 640px; max-width: 100%;">
-                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/800/600?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                                <div class="o-ratio u-4:3"><img data-load-src="http://picsum.photos/800/600?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
-                            </div>
-
-                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
-
-                            <div style="width: 480px; max-width: 100%;">
-                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=1);"></div>
-                                <div class="o-ratio u-16:9" data-load-style="background-size: cover; background-position: center; background-image: url(http://picsum.photos/640/480?v=2);"></div>
-                            </div>
-                        </section>
-
-                        <section>
-                            <h3 class="c-heading -h3">Relative to scroll</h3>
-
-                            <h4 class="c-heading -h3">Using o-ratio & img</h3>
+                            <img src="http://picsum.photos/800/600?v=1" alt="" loading="lazy" class="c-image_img" width="800" height="600"/>
 
                             <div style="width: 640px; max-width: 100%;">
-                                <div class="o-ratio u-4:3">
-                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/800/600?v=1" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                                </div>
-                                <div class="o-ratio u-4:3">
-                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/800/600?v=2" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                                </div>
-                                <div class="o-ratio u-4:3">
-                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/800/600?v=3" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                                </div>
-                                <div class="o-ratio u-4:3">
-                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/800/600?v=4" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                                </div>
-                                <div class="o-ratio u-4:3">
-                                    <img data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/800/600?v=5" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                                </div>
+                                <div class="c-image"><img src="http://picsum.photos/800/600?v=2" alt="" loading="lazy" class="c-image_img" width="800" height="600"/></div>
+                                <div class="c-image"><img src="http://picsum.photos/800/600?v=3" alt="" loading="lazy" class="c-image_img" width="800" height="600"/></div>
                             </div>
 
-                            <h4 class="c-heading -h3">Using o-ratio & background-image</h3>
+                            <h4 class="c-heading -h3">Using o-ratio</h3>
 
                             <div style="width: 480px; max-width: 100%;">
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/1280/720?v=1"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/1280/720?v=2"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/1280/720?v=3"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/1280/720?v=4"></div>
-                                <div style="background-size: cover; background-position: center;" class="o-ratio u-16:9" data-scroll data-scroll-call="lazyLoad, Scroll, main" data-src="http://picsum.photos/1280/720?v=5"></div>
-                            </div>
-
-                            <h4 class="c-heading -h3">Using SVG viewport for ratio</h3>
-
-                            <div style="width: 480px; max-width: 100%;">
-                                <img
-                                    data-scroll
-                                    data-scroll-call="lazyLoad, Scroll, main"
-                                    data-src="http://picsum.photos/640/480?v=6"
-                                    alt=""
-                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
-                                />
-
-                                <img
-                                    data-scroll
-                                    data-scroll-call="lazyLoad, Scroll, main"
-                                    data-src="http://picsum.photos/640/480?v=7"
-                                    alt=""
-                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
-                                />
-
-                                <img
-                                    data-scroll
-                                    data-scroll-call="lazyLoad, Scroll, main"
-                                    data-src="http://picsum.photos/640/480?v=8"
-                                    alt=""
-                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480'%3E%3C/svg%3E"
-                                />
+                                <div class="o-ratio u-4:3"><div class="c-image || o-ratio_content"><img src="http://picsum.photos/800/600?v=4" alt="" loading="lazy" class="c-image_img"/></div></div>
+                                <div class="o-ratio u-4:3"><div class="c-image || o-ratio_content"><img src="http://picsum.photos/800/600?v=5" alt="" loading="lazy" class="c-image_img"/></div></div>
                             </div>
                         </section>
                     </div>
