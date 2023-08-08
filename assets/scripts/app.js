@@ -10,7 +10,7 @@ const app = new modular({
     modules: modules,
 });
 
-window.onload = (event) => {
+window.addEventListener('load', (event) => {
     const $style = document.getElementById('main-css');
 
     if ($style) {
@@ -24,7 +24,7 @@ window.onload = (event) => {
     } else {
         console.warn('The "main-css" stylesheet not found');
     }
-};
+});
 
 function init() {
     globals();
