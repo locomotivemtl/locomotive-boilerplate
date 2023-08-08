@@ -111,7 +111,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
      *     Defaults to the outfile name.
      * @return {Promise}
      */
-    loconfig.tasks.styles.forEach(async ({
+    loconfig.tasks.styles?.forEach(async ({
         infile,
         outfile,
         label = null
@@ -216,15 +216,18 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
  * @return {Promise}
  */
 async function purgeUnusedCSS(outfile, label) {
+    const contentFiles = loconfig.tasks.purgeCSS?.content;
+    if (!Array.isArray(contentFiles) || !contentFiles.length) {
+        return;
+    }
+
     label = label ?? basename(outfile);
 
     const timeLabel = `${label} purged in`;
     console.time(timeLabel);
 
-    const purgeCSSContentFiles = Array.from(loconfig.tasks.purgeCSS.content);
-
     const purgeCSSResults = await (new PurgeCSS()).purge({
-        content: purgeCSSContentFiles,
+        content: contentFiles,
         css: [ outfile ],
         rejected: true,
         defaultExtractor: (content) => content.match(/[a-z0-9_\-\\\/\@]+/gi) || [],

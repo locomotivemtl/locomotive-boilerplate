@@ -111,7 +111,7 @@ export default async function bumpVersions(versionOptions = null) {
      * @param  {?string|number} [entry.pretty] - The white space to use to format the JSON file.
      * @return {Promise}
      */
-    loconfig.tasks.versions.forEach(({
+    loconfig.tasks.versions?.forEach(({
         outfile,
         label = null,
         ...options

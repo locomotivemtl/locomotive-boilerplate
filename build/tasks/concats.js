@@ -95,7 +95,7 @@ export default async function concatFiles(globOptions = null, concatOptions = nu
      *     Defaults to the outfile name.
      * @return {Promise}
      */
-    loconfig.tasks.concats.forEach(async ({
+    loconfig.tasks.concats?.forEach(async ({
         includes,
         outfile,
         label = null

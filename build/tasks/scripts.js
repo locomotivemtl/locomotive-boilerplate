@@ -65,7 +65,7 @@ export default async function compileScripts(esBuildOptions = null) {
      * @throws {TypeError} If outdir and outfile are missing.
      * @return {Promise}
      */
-    loconfig.tasks.scripts.forEach(async ({
+    loconfig.tasks.scripts?.forEach(async ({
         includes,
         outdir = '',
         outfile = '',

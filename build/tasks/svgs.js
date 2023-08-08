@@ -57,7 +57,7 @@ export default async function compileSVGs(mixerOptions = null) {
      *     Defaults to the outfile name.
      * @return {Promise}
      */
-    loconfig.tasks.svgs.forEach(async ({
+    loconfig.tasks.svgs?.forEach(async ({
         includes,
         outfile,
         label = null
