@@ -70,16 +70,18 @@ function configureServer(server, { paths, tasks }) {
     });
 
     // Watch source concats
-    server.watch(
-        resolve(
-            tasks.concats.reduce(
-                (patterns, { includes }) => patterns.concat(includes),
-                []
+    if (tasks.concats?.length) {
+        server.watch(
+            resolve(
+                tasks.concats.reduce(
+                    (patterns, { includes }) => patterns.concat(includes),
+                    []
+                )
             )
-        )
-    ).on('change', () => {
-        concatFiles(...developmentConcatFilesArgs);
-    });
+        ).on('change', () => {
+            concatFiles(...developmentConcatFilesArgs);
+        });
+    }
 
     // Watch source styles
     server.watch(
