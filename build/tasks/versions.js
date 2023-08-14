@@ -21,6 +21,8 @@ import {
 } from 'node:path';
 import readline from 'node:readline';
 
+export const REGEXP_SEMVER = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
+
 /**
  * @typedef  {object} VersionOptions
  * @property {string|number|null} prettyPrint   - A string or number to insert
@@ -135,32 +137,64 @@ export default async function bumpVersions(versionOptions = null) {
 /**
  * Creates a formatted version number or string.
  *
- * @param  {string} format - The version format.
+ * @param  {string}  format     - The version format.
+ * @param  {?string} [oldValue] - The old version value.
  * @return {string|number}
+ * @throws TypeError If the format or value are invalid.
  */
-function createVersionNumber(format) {
+function createVersionNumber(format, oldValue = null) {
     let [ type, modifier ] = format.split(':', 2);
 
     switch (type) {
         case 'hex':
         case 'hexadecimal':
-            modifier = Number.parseInt(modifier);
+            try {
+                modifier = Number.parseInt(modifier);
 
-            if (Number.isNaN(modifier)) {
-                modifier = 6;
+                if (Number.isNaN(modifier)) {
+                    modifier = 6;
+                }
+
+                return randomBytes(modifier).toString('hex');
+            } catch (err) {
+                throw new TypeError(
+                    `${err.message} for \'format\' type "hexadecimal"`,
+                    { cause: err }
+                );
             }
 
-            return randomBytes(modifier).toString('hex');
+        case 'inc':
+        case 'increment':
+            try {
+                if (modifier === 'semver') {
+                    return incrementSemVer(oldValue, [ 'buildmetadata', 'patch' ]);
+                }
+
+                return incrementNumber(oldValue, modifier);
+            } catch (err) {
+                throw new TypeError(
+                    `${err.message} for \'format\' type "increment"`,
+                    { cause: err }
+                );
+            }
 
         case 'regex':
-            return new RegExp(modifier);
+        case 'regexp':
+            try {
+                return new RegExp(modifier);
+            } catch (err) {
+                throw new TypeError(
+                    `${err.message} for \'format\' type "regexp"`,
+                    { cause: err }
+                );
+            }
 
         case 'timestamp':
             return Date.now().valueOf();
     }
 
     throw new TypeError(
-        'Expected \'format\' to be either "timestamp" or "hexadecimal"'
+        'Expected \'format\' to be either "timestamp", "increment", or "hexadecimal"'
     );
 }
 
@@ -221,9 +255,7 @@ async function handleBumpVersionInJson(outfile, label, options) {
         await mkdir(dirname(outfile), { recursive: true });
     }
 
-    const version = createVersionNumber(options.format);
-
-    json[options.key] = version;
+    json[options.key] = createVersionNumber(options.format, json?.[options.key]);
 
     return await writeFile(
         outfile,
@@ -254,7 +286,7 @@ async function handleBumpVersionWithRegExp(outfile, label, options) {
             input: createReadStream(bckfile),
         });
 
-        const version = createVersionNumber(options.format);
+        let newVersion = null;
 
         const writeStream = createWriteStream(outfile, { encoding: 'utf8' });
 
@@ -262,12 +294,12 @@ async function handleBumpVersionWithRegExp(outfile, label, options) {
             const found = line.match(options.key);
 
             if (found) {
-                const groups  = (found.groups ?? {});
-                const replace = found[0].replace(
-                    (groups.build ?? groups.version ?? found[1] ?? found[0]),
-                    version
-                );
-                line = line.replace(found[0], replace);
+                const groups      = (found.groups ?? {});
+                const oldVersion  = (groups.build ?? groups.version ?? found[1] ?? found[0]);
+                const newVersion  = createVersionNumber(options.format, oldVersion);
+                const replacement = found[0].replace(oldVersion, newVersion);
+
+                line = line.replace(found[0], replacement);
             }
 
             writeStream.write(line + "\n");
@@ -283,6 +315,88 @@ async function handleBumpVersionWithRegExp(outfile, label, options) {
 
         throw err;
     }
+}
+
+/**
+ * Increments the given integer.
+ *
+ * @param  {string|int} value         - The number to increment.
+ * @param  {string|int} [increment=1] - The amount to increment by.
+ * @return {int}
+ * @throws TypeError If the version number is invalid.
+ */
+function incrementNumber(value, increment = 1) {
+    const version = Number.parseInt(value);
+    if (Number.isNaN(version)) {
+        throw new TypeError(
+            `Expected an integer version number, received [${value}]`
+        );
+    }
+
+    increment = Number.parseInt(increment);
+    if (Number.isNaN(increment)) {
+        throw new TypeError(
+            'Expected an integer increment number'
+        );
+    }
+
+    return (version + increment);
+}
+
+/**
+ * Increments the given SemVer version number.
+ *
+ * @param  {string}          value     - The version to mutate.
+ * @param  {string|string[]} [target]  - The segment to increment, one of:
+ *     'major', 'minor', 'patch', ~~'prerelease'~~, 'buildmetadata'.
+ * @param  {string|int}      [increment=1] - The amount to increment by.
+ * @return {string}
+ * @throws TypeError If the version or target are invalid.
+ */
+function incrementSemVer(value, target = 'patch', increment = 1) {
+    const found = value.match(REGEXP_SEMVER);
+    if (!found) {
+        throw new TypeError(
+            `Expected a SemVer version number, received [${value}]`
+        );
+    }
+
+    if (Array.isArray(target)) {
+        for (const group of target) {
+            if (found.groups[group] != null) {
+                target = group;
+                break;
+            }
+        }
+    }
+
+    if (!target || !found.groups[target]) {
+        throw new TypeError(
+            `Expected a supported SemVer segment, received [${target}]`
+        );
+    }
+
+    const segments = {
+        'major':         '',
+        'minor':         '.',
+        'patch':         '.',
+        'prerelease':    '-',
+        'buildmetadata': '+',
+    };
+
+    let replacement = '';
+
+    for (const [ segment, delimiter ] of Object.entries(segments)) {
+        if (found.groups?.[segment] != null) {
+            const newVersion = (segment === target)
+                ? incrementNumber(found.groups[segment], increment)
+                : found.groups[segment];
+
+            replacement += `${delimiter}${newVersion}`;
+        }
+    }
+
+    return value.replace(found[0], replacement);
 }
 
 /**

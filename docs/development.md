@@ -338,8 +338,8 @@ See [`svgs.js`](../build/tasks/svgs.js) for details.
 
 A task to create and update values for use in versioning assets.
 
-Can generate a hexadecimal value (using random bytes) or
-use the current timestamp.
+Can generate a hexadecimal value (using random bytes), use the current timestamp,
+or increment a number.
 
 Example:
 
@@ -355,6 +355,11 @@ Example:
             "format": "hex:8",
             "key": "hex",
             "outfile": "./assets.json"
+        },
+        {
+            "format": "inc:semver",
+            "key": "inc",
+            "outfile": "./assets.json"
         }
     ]
 }
@@ -363,7 +368,8 @@ Example:
 ```json
 {
     "now": 1665071717350,
-    "hex": "6ef54181c4ba"
+    "hex": "6ef54181c4ba",
+    "hex": "1.0.2"
 }
 ```
 
