@@ -9,7 +9,7 @@
  */
 
 const NODE_ENV = process.env.NODE_ENV
-const IS_DESKTOP = typeof window.orientation === 'undefined'
+const IS_MOBILE = window.matchMedia('(any-pointer:coarse)').matches
 
 // Main environment variables
 const ENV = Object.freeze({
@@ -19,8 +19,8 @@ const ENV = Object.freeze({
     IS_DEV: NODE_ENV === 'development',
 
     // Device
-    IS_DESKTOP,
-    IS_MOBILE: !IS_DESKTOP,
+    IS_MOBILE,
+    IS_DESKTOP: !IS_MOBILE,
 })
 
 // Main CSS classes used within the project
