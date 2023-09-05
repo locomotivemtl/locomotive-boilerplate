@@ -25,10 +25,10 @@ $font-weight-normal:    400;
 $font-weight-medium:    500;
 $font-weight-bold:      700;
 
-// Transitions
+// Transition defaults
 // =============================================================================
 $speed:     t(normal);
-$easing:    ease(power2-out);
+$easing:    ease("power2.out");
 
 // Spacing Units
 // =============================================================================

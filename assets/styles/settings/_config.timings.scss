@@ -15,6 +15,9 @@ $timings: (
     slowest:    2s,
 );
 
+// Default timing for t()
+$timing-default: "normal" !default;
+
 // Function
 // ==========================================================================
 
@@ -29,7 +32,7 @@ $timings: (
 // @param  {string} $key - The timing key in $timings.
 // @return {duration}
 
-@function t($key) {
+@function t($key: $timing-default) {
     @if not map-has-key($timings, $key) {
         @error "Unknown '#{$key}' in $timings.";
     }
