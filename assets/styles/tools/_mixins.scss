@@ -196,11 +196,9 @@
 
 // Aspect-ratio polyfill
 //
-// The element will be accessible from screen readers and visible in the document flow.
-//
-// @param  {Number} $ratio      [19/6]  - The ratio of the element.
-// @param  {Number} $width      [100%]  - The width of element.
-// @param  {Boolean} $children  [false] - Whether the element contains children.
+// @param  {Number}  $ratio     [19/6]  - The ratio of the element.
+// @param  {Number}  $width     [100%]  - The fallback width of element.
+// @param  {Boolean} $children  [false] - Whether the element contains children for the fallback properties.
 // @output Properties for maintaining aspect-ratio
 
 @mixin aspect-ratio($ratio: math.div(16, 9), $width: 100%, $children: false) {
