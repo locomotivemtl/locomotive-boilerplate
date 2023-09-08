@@ -11,7 +11,7 @@ import { merge } from '../utils/index.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { promisify } from 'node:util';
-import sass from 'sass';
+import * as sass from 'sass';
 import { PurgeCSS } from 'purgecss';
 
 const sassRender = promisify(sass.render);
