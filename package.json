@@ -27,7 +27,7 @@
         "esbuild": "^0.17.6",
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
-        "postcss": "^8.4.21",
+        "postcss": "^8.4.31",
         "purgecss": "^5.0.0",
         "sass": "^1.57.1",
         "svg-mixer": "~2.3.14",
