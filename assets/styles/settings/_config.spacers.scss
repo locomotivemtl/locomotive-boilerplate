@@ -7,7 +7,6 @@
 
 $spacers: (
     'gutter':       var(--grid-gutter),
-    'gutter-2x':    calc(2 * var(--grid-gutter)),
     'xs':           #{vh(5)},
     'sm':           #{vh(7.5)},
     'md':           #{vh(10)},
@@ -27,14 +26,15 @@ $spacers: (
 // ```
 //
 // @param  {string} $key - The spacer key in $spacers.
+// @param  {number} $multiplier - The multiplier of the spacer value.
 // @return {size}
 
-@function spacer($spacer) {
+@function spacer($spacer: $spacer-default, $multiplier: 1) {
     @if not map-has-key($spacers, $spacer) {
         @error "Unknown master spacer: #{$spacer}";
     }
 
     $index: map-get($spacers, $spacer);
 
-    @return $index;
+    @return calc(#{$index} * #{$multiplier});
 }
