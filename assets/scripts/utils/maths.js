@@ -28,7 +28,7 @@ const lerp = (x, y, a) => x * (1 - a) + y * a
  * @return {number} inverted lerp value
  */
 
-const invlerp = (x, y, a) => clamp((v - x)/(a - x))
+const invlerp = (x, y, a) => clamp((a - x)/(y - x))
 
 
 /**
