@@ -193,3 +193,32 @@
     display: $display $important;
     visibility: visible  $important;
 }
+
+// Aspect-ratio polyfill
+//
+// @param  {Number}  $ratio     [19/6]  - The ratio of the element.
+// @param  {Number}  $width     [100%]  - The fallback width of element.
+// @param  {Boolean} $children  [false] - Whether the element contains children for the fallback properties.
+// @output Properties for maintaining aspect-ratio
+
+@mixin aspect-ratio($ratio: math.div(16, 9), $width: 100%, $children: false) {
+
+    @supports (aspect-ratio: 1) {
+        aspect-ratio: $ratio;
+    }
+
+    @supports not (aspect-ratio: 1) {
+        height: 0;
+        padding-top: calc(#{$width} * #{math.div(1, $ratio)});
+
+        @if ($children == true) {
+            position: relative;
+
+            > * {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+}
