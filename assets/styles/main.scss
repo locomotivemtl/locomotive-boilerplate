@@ -10,7 +10,6 @@
 @import "tools/maths";
 @import "tools/functions";
 @import "tools/mixins";
-@import "tools/fonts";
 // @import "tools/layout";
 // @import "tools/widths";
 // @import "tools/family";
@@ -18,8 +17,13 @@
 // Settings
 // ==========================================================================
 
-@import "settings/config.eases";
+@import "settings/config.breakpoints";
 @import "settings/config.colors";
+@import "settings/config.eases";
+@import "settings/config.fonts";
+@import "settings/config.spacers";
+@import "settings/config.timings";
+@import "settings/config.zindexes";
 @import "settings/config";
 @import "settings/config.variables";
 
@@ -67,5 +71,5 @@
 // @import "utilities/align";
 // @import "utilities/helpers";
 // @import "utilities/states";
-// @import "utilities/spacing";
+@import "utilities/spacing";
 // @import "utilities/print";

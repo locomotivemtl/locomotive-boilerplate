@@ -60,10 +60,12 @@ export const productionPostCSSOptions  = Object.assign({}, defaultPostCSSOptions
 export const developmentStylesArgs = [
     developmentSassOptions,
     developmentPostCSSOptions,
+    false
 ];
 export const productionStylesArgs  = [
     productionSassOptions,
     productionPostCSSOptions,
+    true
 ];
 
 /**
@@ -80,7 +82,7 @@ export const productionStylesArgs  = [
  *     If `false`, PostCSS processing will be ignored.
  * @return {Promise}
  */
-export default async function compileStyles(sassOptions = null, postcssOptions = null) {
+export default async function compileStyles(sassOptions = null, postcssOptions = null, purge = true) {
     if (sassOptions == null) {
         sassOptions = productionSassOptions;
     } else if (
@@ -160,7 +162,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             try {
                 await writeFile(outfile, result.css).then(() => {
                     // Purge CSS once file exists.
-                    if (outfile) {
+                    if (outfile && purge) {
                         purgeUnusedCSS(outfile, `${label || `${filestem}.css`}`);
                     }
                 });
@@ -229,11 +231,14 @@ async function purgeUnusedCSS(outfile, label) {
     const purgeCSSResults = await (new PurgeCSS()).purge({
         content: contentFiles,
         css: [ outfile ],
-        rejected: true,
-        defaultExtractor: (content) => content.match(/[a-z0-9_\-\\\/\@]+/gi) || [],
+        defaultExtractor: content => content.match(/[a-z0-9_\-\\\/\@]+/gi) || [],
+        fontFaces: true,
+        keyframes: true,
         safelist: {
-            standard: [ /^((?!\bu-gc-).)*$/ ]
-        }
+            // Keep all except .u-gc-* | .u-margin-* | .u-padding-*
+            standard: [ /^(((?!\bu-gc-).)*$ | (((?!\bu-margin-).)*$) | (((?!\bu-padding-).)*$))/ ]
+        },
+        variables: true,
     })
 
     for (let result of purgeCSSResults) {

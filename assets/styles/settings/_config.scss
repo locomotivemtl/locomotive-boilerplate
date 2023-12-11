@@ -11,43 +11,11 @@ $context: frontend  !default;
 // Path is relative to the stylesheets directory.
 $assets-path: "../"  !default;
 
-// Typefaces
-// =============================================================================
-
-// Font directory
-$font-dir: "../fonts/";
-
-// Font fallbacks (retrieved from systemfontstack.com on 2022-05-31)
-$font-fallback-sans:    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-$font-fallback-serif:   Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-$font-fallback-mono:    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-
-// Map of font families.
-//
-// ```
-// <font-id>: (<font-name>, <font-fallbacks>)
-// ```
-$font-families: (
-    sans: join("Source Sans", $font-fallback-sans, $separator: comma),
-);
-
-// List of custom font faces as tuples.
-//
-// ```
-// <font-name> <font-file-basename> <font-weight> <font-style>
-// ```
-$font-faces: (
-    ("Source Sans", "SourceSans3-Bold",      700, normal),
-    ("Source Sans", "SourceSans3-BoldIt",    700, italic),
-    ("Source Sans", "SourceSans3-Regular",   400, normal),
-    ("Source Sans", "SourceSans3-RegularIt", 400, italic),
-);
-
 // Typography
 // =============================================================================
 
 // Base
-$font-size: 16px;
+$font-size:     16px;
 $line-height:   math.div(24px, $font-size);
 $font-color:    color(darkest);
 
@@ -57,11 +25,10 @@ $font-weight-normal:    400;
 $font-weight-medium:    500;
 $font-weight-bold:      700;
 
-// Transitions
+// Transition defaults
 // =============================================================================
-
-$speed:     0.3s;
-$easing:    $ease-power2-out;
+$speed:     t(normal);
+$easing:    ease("power2.out");
 
 // Spacing Units
 // =============================================================================
@@ -75,34 +42,3 @@ $padding:         $unit;
 // Grid
 // ==========================================================================
 $base-column-nb: 12;
-
-// Breakpoints
-// =============================================================================
-
-$from-tiny:     500px              !default;
-$to-tiny:       $from-tiny - 1     !default;
-$from-small:    700px              !default;
-$to-small:      $from-small - 1    !default;
-$from-medium:   1000px             !default;
-$to-medium:     $from-medium - 1   !default;
-$from-large:    1200px             !default;
-$to-large:      $from-large - 1    !default;
-$from-big:      1400px             !default;
-$to-big:        $from-big - 1      !default;
-$from-huge:     1600px             !default;
-$to-huge:       $from-huge - 1     !default;
-$from-enormous: 1800px             !default;
-$to-enormous:   $from-enormous - 1 !default;
-$from-gigantic: 2000px             !default;
-$to-gigantic:   $from-gigantic - 1 !default;
-$from-colossal: 2400px             !default;
-$to-colossal:   $from-colossal - 1 !default;
-
-// Master z-indexe
-// =============================================================================
-
-$z-indexes: (
-    "header":   200,
-    "above":    1,
-    "below":    -1
-);

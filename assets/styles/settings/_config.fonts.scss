@@ -1,5 +1,42 @@
 // ==========================================================================
-// Tools / Font Faces
+// Settings / Config / Breakpoints
+// ==========================================================================
+
+// Font fallbacks (retrieved from systemfontstack.com on 2022-05-31)
+// ==========================================================================
+
+$font-fallback-sans:    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+$font-fallback-serif:   Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$font-fallback-mono:    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+
+// Typefaces
+// ==========================================================================
+
+// List of custom font faces as tuples.
+//
+// ```
+// <font-name> <font-file-basename> <font-weight> <font-style>
+// ```
+$font-faces: (
+    ("Source Sans", "SourceSans3-Bold",      700, normal),
+    ("Source Sans", "SourceSans3-BoldIt",    700, italic),
+    ("Source Sans", "SourceSans3-Regular",   400, normal),
+    ("Source Sans", "SourceSans3-RegularIt", 400, italic),
+);
+
+// Map of font families.
+//
+// ```
+// <font-id>: (<font-name>, <font-fallbacks>)
+// ```
+$font-families: (
+    sans: join("Source Sans", $font-fallback-sans, $separator: comma),
+);
+
+// Font directory
+$font-dir: "../fonts/";
+
+// Functions
 // ==========================================================================
 
 // Imports the custom font.

@@ -11,29 +11,31 @@
 
 $colsMax: $base-column-nb + 1;
 
-$breakpoints: (
-    "null" null,
-    "from-tiny" $from-tiny,
-    "from-small" $from-small,
-    "from-medium" $from-medium,
-    "from-large" $from-large,
-    "from-big" $from-big
-) !default;
-
 @each $breakpoint, $mediaquery in $breakpoints {
     @for $fromIndex from 1 through $colsMax {
         @for $toIndex from 1 through $colsMax {
-            @if $mediaquery == null {
+
+            // Columns without media query
+            @if $breakpoint == "tiny" {
                 .u-gc-#{$fromIndex}\/#{$toIndex} {
                     --gc-start: #{$fromIndex};
                     --gc-end: #{$toIndex};
                 }
-            } @else {
-                .u-gc-#{$fromIndex}\/#{$toIndex}\@#{$breakpoint} {
-                    @media (min-width: #{$mediaquery}) {
-                        --gc-start: #{$fromIndex};
-                        --gc-end: #{$toIndex};
-                    }
+            }
+
+            // Columns min-width breakpoints `@from-*`
+            .u-gc-#{$fromIndex}\/#{$toIndex}\@from-#{$breakpoint} {
+                @media #{mq-min($breakpoint)} {
+                    --gc-start: #{$fromIndex};
+                    --gc-end: #{$toIndex};
+                }
+            }
+
+            // Columns max-width breakpoints @to-*`
+            .u-gc-#{$fromIndex}\/#{$toIndex}\@to-#{$breakpoint} {
+                @media #{mq-max($breakpoint)} {
+                    --gc-start: #{$fromIndex};
+                    --gc-end: #{$toIndex};
                 }
             }
         }

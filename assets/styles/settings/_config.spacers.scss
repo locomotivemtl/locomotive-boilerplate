@@ -1,0 +1,40 @@
+// ==========================================================================
+// Settings / Config / Spacers
+// ==========================================================================
+
+// Spacers
+// ==========================================================================
+
+$spacers: (
+    'gutter':       var(--grid-gutter),
+    'xs':           #{vh(5)},
+    'sm':           #{vh(7.5)},
+    'md':           #{vh(10)},
+    'lg':           #{vh(12.5)},
+    'xl':           #{vh(15)},
+);
+
+// Function
+// ==========================================================================
+
+// Returns spacer.
+//
+// ```scss
+// .c-box {
+//     margin-top: spacer(gutter);
+// }
+// ```
+//
+// @param  {string} $key - The spacer key in $spacers.
+// @param  {number} $multiplier - The multiplier of the spacer value.
+// @return {size}
+
+@function spacer($spacer: $spacer-default, $multiplier: 1) {
+    @if not map-has-key($spacers, $spacer) {
+        @error "Unknown master spacer: #{$spacer}";
+    }
+
+    $index: map-get($spacers, $spacer);
+
+    @return calc(#{$index} * #{$multiplier});
+}

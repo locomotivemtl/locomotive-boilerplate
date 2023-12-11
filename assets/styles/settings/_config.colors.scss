@@ -3,7 +3,7 @@
 // ==========================================================================
 
 // Palette
-// =============================================================================
+// ==========================================================================
 
 $colors: (
     primary:        #3297FD,
@@ -11,9 +11,37 @@ $colors: (
     darkest:        #000000,
 );
 
+// Function
+// ==========================================================================
+
+// Returns color code.
+//
+// ```scss
+// .c-box {
+//     color: color(primary);
+// }
+// ```
+//
+// @param  {string} $key - The color key in $colors.
+// @param  {number} $alpha - The alpha for the color value.
+// @return {color}
+
+@function color($key, $alpha: 1) {
+    @if not map-has-key($colors, $key) {
+        @error "Unknown '#{$key}' in $colors.";
+    }
+
+    @if($alpha < 0 or $alpha > 1) {
+        @error "Alpha '#{$alpha}' must be in range [0, 1].";
+    }
+
+    $color: map-get($colors, $key);
+
+    @return rgba($color, $alpha);
+}
 
 // Specifics
-// =============================================================================
+// ==========================================================================
 
 // Link
 $color-link:           color(primary);
