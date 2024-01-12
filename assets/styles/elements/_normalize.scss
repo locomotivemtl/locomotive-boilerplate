@@ -10,8 +10,8 @@
 
 // Box sizing rules
 *,
-*:before,
-*:after {
+*:after,
+*:before {
     box-sizing: border-box;
 }
 
@@ -28,11 +28,13 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 dl,
 dd,
 figure,
 blockquote {
-    margin-block-end: 0;
+    margin-block: unset;
 }
 
 // Remove list styles on ul, ol elements with a class, which suggests default styling will be removed
@@ -49,7 +51,7 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: unset;
 }
 
 // Set shorter line heights on headings and interactive elements
@@ -57,9 +59,11 @@ h1,
 h2,
 h3,
 h4,
-button,
+h5,
+h6,
 input,
-label {
+label,
+button {
     line-height: 1.1;
 }
 
@@ -67,7 +71,9 @@ label {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
     text-wrap: balance;
 }
 
@@ -77,11 +83,14 @@ a[class] {
     text-decoration: none;
 }
 
-// Make images easier to work with
+// Make assets easier to work with
 img,
+svg,
+canvas,
 picture {
-    max-width: 100%;
     display: block;
+    max-inline-size: 100%;
+    block-size: auto;
 }
 
 // Inherit fonts for inputs and buttons
@@ -100,4 +109,16 @@ textarea:not([rows]) {
 // Anything that has been anchored to should have extra scroll margin
 :target {
     scroll-margin-block: 1rlh;
+}
+
+// Reduced mootion preference
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *:after,
+    *:before {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
