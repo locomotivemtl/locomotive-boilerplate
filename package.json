@@ -10,7 +10,7 @@
         "npm": ">=8.0"
     },
     "scripts": {
-        "start": "node --experimental-json-modules --no-warnings build/watch.js",
+        "dev": "node --experimental-json-modules --no-warnings build/watch.js",
         "build": "node --experimental-json-modules --no-warnings build/build.js"
     },
     "dependencies": {
@@ -28,9 +28,11 @@
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
         "postcss": "^8.4.21",
+        "postcss-import": "^16.0.0",
         "purgecss": "^5.0.0",
         "sass": "^1.69.5",
         "svg-mixer": "~2.3.14",
+        "tailwindcss": "^3.4.1",
         "tiny-glob": "^0.2.9"
     },
     "overrides": {

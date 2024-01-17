@@ -3,6 +3,10 @@
 // ==========================================================================
 @use "sass:math";
 
+@import "node_modules/tailwindcss/base";
+@import "node_modules/tailwindcss/components";
+@import "node_modules/tailwindcss/utilities";
+
 // ==========================================================================
 // Tools
 // ==========================================================================
@@ -66,10 +70,10 @@
 // ==========================================================================
 
 @import "utilities/ratio";
-@import "utilities/grid-column";
+// @import "utilities/grid-column";
 // @import "utilities/widths";
 // @import "utilities/align";
 // @import "utilities/helpers";
 // @import "utilities/states";
-@import "utilities/spacing";
+// @import "utilities/spacing";
 // @import "utilities/print";

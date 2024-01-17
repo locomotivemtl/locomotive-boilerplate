@@ -46,7 +46,7 @@
  * @type {Postcss|undefined}        postcss      - The discovered PostCSS function.
  * @type {AcceptedPlugin|undefined} autoprefixer - The discovered Autoprefixer function.
  */
-let postcss, autoprefixer;
+let postcss, autoprefixer, tailwindcss;
 
 try {
     postcss = await import('postcss');
@@ -54,6 +54,9 @@ try {
 
     autoprefixer = await import('autoprefixer');
     autoprefixer = autoprefixer.default;
+
+    tailwindcss = await import('tailwindcss');
+    tailwindcss = tailwindcss.default;
 } catch (err) {
     // do nothing
 }
@@ -67,6 +70,7 @@ const supportsPostCSS = (typeof postcss === 'function');
  * @type {PluginList} A list of supported plugins.
  */
 const pluginsList = [
+    tailwindcss,
     autoprefixer,
 ];
 
@@ -74,6 +78,7 @@ const pluginsList = [
  * @type {PluginMap} A map of supported plugins.
  */
 const pluginsMap = {
+    'tailwindcss': tailwindcss,
     'autoprefixer': autoprefixer,
 };
 

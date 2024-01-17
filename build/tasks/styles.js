@@ -49,6 +49,11 @@ export const defaultPostCSSOptions = {
             sourcesContent: true,
         },
     },
+    plugins: {
+        tailwindcss: {
+            config: resolve('../../tailwind.config.js'),
+        },
+    }
 };
 export const developmentPostCSSOptions = Object.assign({}, defaultPostCSSOptions);
 export const productionPostCSSOptions  = Object.assign({}, defaultPostCSSOptions);
