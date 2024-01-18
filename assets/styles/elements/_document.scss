@@ -69,3 +69,27 @@ a {
         color: $color-link-hover;
     }
 }
+
+/* Define a transition duration during page visits */
+html.is-changing .transition-fade {
+    transition: opacity 0.1s;
+    opacity: 1;
+}
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+    opacity: 0;
+}
+
+#paginated.is-changing {
+    transition: opacity 250ms;
+}
+#paginated.is-animating {
+    opacity: 0;
+}
+
+#modal.is-changing {
+    transition: opacity 100ms;
+}
+#modal.is-animating {
+    opacity: 0;
+}

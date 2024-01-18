@@ -14,11 +14,13 @@
         "build": "node --experimental-json-modules --no-warnings build/build.js"
     },
     "dependencies": {
+        "@swup/fragment-plugin": "^0.3.7",
         "locomotive-scroll": "^5.0.0-beta.9",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
         "normalize.css": "^8.0.1",
-        "svg4everybody": "^2.1.9"
+        "svg4everybody": "^2.1.9",
+        "swup": "^4.5.1"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.13",
