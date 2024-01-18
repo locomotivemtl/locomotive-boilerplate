@@ -1,0 +1,26 @@
+---
+pagination:
+    data: projects
+    size: 1
+    alias: project
+permalink: "project/{{ project.title | slug }}/index.html"
+---
+
+{% extends "@layouts/base.twig" %}
+
+{% block content %}
+    <div class="o-container">
+        <main id="modal">
+            <h1 class="c-heading -h1">{{project.title}}</h1>
+            <p>{{project.desc}}</p>
+
+            {% if pagination.page.previous %}
+            <a style="float: left;" href="/project/{{pagination.page.previous.title | slug}}">← {{pagination.page.previous.title}}</a>
+            {% endif %}
+            {% if pagination.page.next %}
+            <a style="float: right;" href="/project/{{pagination.page.next.title | slug}}">{{pagination.page.next.title}} →</a>
+            {% endif %}
+            <div style="clear: both;"></div>
+        </main>
+    </div>
+{% endblock %}

@@ -2,6 +2,7 @@ import concatFiles, { developmentConcatFilesArgs } from './tasks/concats.js';
 import compileScripts, { developmentScriptsArgs } from './tasks/scripts.js';
 import compileStyles, { developmentStylesArgs } from './tasks/styles.js' ;
 import compileSVGs, { developmentSVGsArgs } from './tasks/svgs.js';
+import buildEleventy, { developmentEleventyOptions } from './tasks/eleventy.js';
 import loconfig from './helpers/config.js';
 import message from './helpers/message.js';
 import notification from './helpers/notification.js';
@@ -19,6 +20,7 @@ concatFiles(...developmentConcatFilesArgs);
 compileScripts(...developmentScriptsArgs);
 compileStyles(...developmentStylesArgs);
 compileSVGs(...developmentSVGsArgs);
+await buildEleventy(developmentEleventyOptions);
 
 // Create a new BrowserSync instance
 const server = browserSync.create();
@@ -53,10 +55,7 @@ function configureServer(server, { paths, tasks }) {
     // Reload on any changes to views or processed files
     server.watch(
         [
-            ...views,
-            join(paths.scripts.dest, '*.js'),
-            join(paths.styles.dest, '*.css'),
-            join(paths.svgs.dest, '*.svg'),
+            join(paths.dest, '**/*')
         ]
     ).on('change', server.reload);
 

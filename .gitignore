@@ -4,3 +4,4 @@ Thumbs.db
 loconfig.*.json
 !loconfig.example.json
 .prettierrc
+www/**/*.html

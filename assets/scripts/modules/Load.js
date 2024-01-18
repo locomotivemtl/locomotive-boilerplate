@@ -15,25 +15,25 @@ export default class extends module {
                 new SwupFragmentPlugin({
                     rules: [
                         {
-                            from: ['/','/index.php','/index.php/per_page/:per_page/page/:page'],
-                            to: ['/','/index.php','/index.php/per_page/:per_page/page/:page'],
+                            from: ['/projects/:page?'],
+                            to: ['/projects/:page?'],
                             containers: ['#paginated']
                         },
                         {
-                            from: ['/','/index.php', '/index.php/per_page/:per_page/page/:page'],
-                            to: ['/index.php/modal/:modal'],
+                            from: ['/projects/:page?'],
+                            to: ['/project/:slug'],
                             containers: ['#modal'],
                             name: 'open-modal'
                         },
                         {
-                            from: ['/index.php/modal/:modal'],
-                            to: ['/index.php/modal/:modal'],
+                            from: ['/project/:slug'],
+                            to: ['/project/:slug'],
                             containers: ['#modal'],
                             name: 'modal-update'
                         },
                         {
-                            from: ['/index.php/modal/:modal'],
-                            to: ['/','/index.php', '/index.php/per_page/:per_page/page/:page'],
+                            from: ['/project/:slug'],
+                            to: ['/projects/:page?'],
                             containers: ['#modal', '#paginated'],
                             name: 'close-modal'
                         },
