@@ -19,7 +19,10 @@
             "dest": "./www/assets/images"
         },
         "views": {
-            "src": "./www/"
+            "src": "./views/"
+        },
+        "data": {
+            "src": "./data/"
         }
     },
     "tasks": {

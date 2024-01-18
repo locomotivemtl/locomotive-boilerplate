@@ -1,0 +1,30 @@
+---
+pagination:
+  data: projects
+  size: 4
+---
+
+{% extends "@layouts/base.twig" %}
+
+{% block content %}
+    <div data-module-scroll="main">
+
+        <h1 class="c-heading -h1">Projects</h1>
+
+        <ul>
+        {% for item in pagination.items %}
+            <li><a href="/project/{{item.title|slug}}">{{ item.title }}</a></li>
+        {% endfor %}
+        </ul>
+
+        <ol>
+        {% for pageEntry in pagination.pages %}
+            {% if page.url == pagination.hrefs[ loop.index0 ] %}
+                <span aria-current="page">{{ loop.index }}</span>
+            {% else %}
+                <a href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a>
+            {% endif %}
+        {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

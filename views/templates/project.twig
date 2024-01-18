@@ -1,0 +1,16 @@
+---
+pagination:
+    data: projects
+    size: 1
+    alias: project
+permalink: "project/{{ project.title | slug }}/index.html"
+---
+
+{% extends "@layouts/base.twig" %}
+
+{% block content %}
+    <div data-module-scroll="main">
+        <h1 class="c-heading -h1">{{project.title}}</h1>
+        <p>{{project.desc}}</p>
+    </div>
+{% endblock %}
