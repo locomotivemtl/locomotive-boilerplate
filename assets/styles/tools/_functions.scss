@@ -132,18 +132,46 @@ $context: 'frontend' !default;
     @return calc(#{$percentage} * (100vw - 2 * var(--grid-margin, 0px)) - (1 - #{$percentage}) * var(--grid-gutter, 0px) + #{$inset} * var(--grid-gutter, 0px));
 }
 
-// Returns calculation of a percentage of the viewport height.
+// Returns calculation of a percentage of the viewport small height.
 //
 // ```scss
 // .c-box {
-//     height: vh(100);
+//     height: svh(100);
 // }
 // ```
 //
 // @param  {number} $number - The percentage number
-// @return {function<number>} in vh
-@function vh($number) {
-    @return calc(#{$number} * var(--vh, 1vh));
+// @return {function<number>} in svh
+@function svh($number) {
+    @return calc(#{$number} * var(--svh, 1svh));
+}
+
+// Returns calculation of a percentage of the viewport large height.
+//
+// ```scss
+// .c-box {
+//     height: lvh(100);
+// }
+// ```
+//
+// @param  {number} $number - The percentage number
+// @return {function<number>} in lvh
+@function lvh($number) {
+    @return calc(#{$number} * var(--lvh, 1lvh));
+}
+
+// Returns calculation of a percentage of the viewport dynamic height.
+//
+// ```scss
+// .c-box {
+//     height: dvh(100);
+// }
+// ```
+//
+// @param  {number} $number - The percentage number
+// @return {function<number>} in dvh
+@function dvh($number) {
+    @return calc(#{$number} * var(--dvh, 1dvh));
 }
 
 // Returns calculation of a percentage of the viewport width.
