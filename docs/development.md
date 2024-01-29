@@ -49,6 +49,9 @@ npm start
 
 # Compile and minify assets
 npm run build
+
+# Optimize individual SVG files
+npm run optimize:svg -- -f ./assets/images ./assets/images
 ```
 
 See [`build.js`](../build/build.js) and [`watch.js`](../build/watch.js)
@@ -306,7 +309,7 @@ See the [documentation on our Grid System](grid.md#build-tasks) for details.
 
 ### `svgs`
 
-A wrapper around [SVG Mixer] for transforming and minifying SVG files
+A wrapper around [SVG Mixer] and [SVGO] for transforming and minifying SVG files
 and generating spritesheets.
 
 Example:
@@ -429,4 +432,5 @@ See [`versions.js`](../build/tasks/versions.js) for details.
 [PurgeCSS]:     https://purgecss.com/
 [RegExp]:       https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 [SVG Mixer]:    https://npmjs.com/package/svg-mixer
+[SVGO]:         https://npmjs.com/package/svgo
 [tiny-glob]:    https://npmjs.com/package/tiny-glob

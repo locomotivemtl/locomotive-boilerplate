@@ -1,3 +1,4 @@
+import defaultSVGOOptions from '../config/svgo.js';
 import loconfig from '../helpers/config.js';
 import message from '../helpers/message.js';
 import notification from '../helpers/notification.js';
@@ -21,12 +22,21 @@ export const developmentMixerOptions = Object.assign({}, defaultMixerOptions);
 export const productionMixerOptions  = Object.assign({}, defaultMixerOptions);
 
 /**
+ * Exclude certain SVGO plugins for the purposes of building a spritesheet.
+ */
+const excludeSVGOPlugins = [
+    'cleanupIds',
+    'removeHiddenElems',
+];
+defaultSVGOOptions.plugins = defaultSVGOOptions.plugins.filter((plugin) => !excludeSVGOPlugins.includes(plugin));
+defaultSVGOOptions.js2svg.pretty = false;
+
+/**
  * @const {object} defaultSVGOOptions     - The default shared SVGO options.
  * @const {object} developmentSVGOOptions - The predefined SVGO options for development.
  * @const {object} productionSVGOOptions  - The predefined SVGO options for production.
  */
-export const defaultSVGOOptions = {
-};
+export { defaultSVGOOptions };
 export const developmentSVGOOptions = Object.assign({}, defaultSVGOOptions);
 export const productionSVGOOptions  = Object.assign({}, defaultSVGOOptions);
 
