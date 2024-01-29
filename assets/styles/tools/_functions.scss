@@ -109,8 +109,8 @@ $context: 'frontend' !default;
 //
 // ```scss
 // .c-box {
-//     width: grid-space(6/12);
-//     margin-left: grid-space(1/12, 1);
+//     width: grid-space(math.div(6, 12));
+//     margin-left: grid-space(math.div(1, 12), 1);
 // }
 // ```
 //
