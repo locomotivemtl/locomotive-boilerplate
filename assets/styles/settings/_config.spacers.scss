@@ -33,14 +33,14 @@
 
 $spacers: (
     'gutter':   var(--grid-gutter),
-    '2xs':      #{spacingClamp('2xs')},
-    'xs':       #{spacingClamp('xs')},
-    'sm':       #{spacingClamp('sm')},
-    'md':       #{spacingClamp('md')},
-    'lg':       #{spacingClamp('lg')},
-    'xl':       #{spacingClamp('xl')},
-    '2xl':      #{spacingClamp('2xl')},
-    '3xl':      #{spacingClamp('3xl')},
+    '2xs':      #{size-clamp('2xs')},
+    'xs':       #{size-clamp('xs')},
+    'sm':       #{size-clamp('sm')},
+    'md':       #{size-clamp('md')},
+    'lg':       #{size-clamp('lg')},
+    'xl':       #{size-clamp('xl')},
+    '2xl':      #{size-clamp('2xl')},
+    '3xl':      #{size-clamp('3xl')},
 );
 
 // Function
