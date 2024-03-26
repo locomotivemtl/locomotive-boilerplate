@@ -17,7 +17,6 @@
         "locomotive-scroll": "^5.0.0-beta.11",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
-        "normalize.css": "^8.0.1",
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {

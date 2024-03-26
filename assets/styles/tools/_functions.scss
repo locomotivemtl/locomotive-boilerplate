@@ -178,6 +178,19 @@ $context: 'frontend' !default;
     @return calc(#{$number} * var(--vw, 1vw));
 }
 
+@function clamp-with-max($min, $size, $max) {
+    $vw-context: $vw-viewport * 0.01;
+    @return clamp(#{$min}, calc(#{$size} / #{$vw-context} * 1vw), #{$max});
+}
+
+@function size-clamp($size) {
+    @return clamp-with-max(
+        calc(#{rem(1px)} * var(--spacing-#{$size}-mobile)),
+        var(--spacing-#{$size}-desktop),
+        calc(#{rem(1px)} * var(--spacing-#{$size}-desktop))
+    );
+}
+
 // Returns clamp of calculated preferred responsive font size
 // within a font size and breakpoint range.
 //

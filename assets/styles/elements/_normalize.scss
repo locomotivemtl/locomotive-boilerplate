@@ -1,0 +1,124 @@
+// ==========================================================================
+// Elements / Normalize
+// ==========================================================================
+
+// Modern CSS Normalize
+// Based on the reset by Andy.set with some tweaks.
+// Original by Andy.set: https://piccalil.li/blog/a-more-modern-css-reset/
+// Review by Chris collier: https://chriscoyier.net/2023/10/03/being-picky-about-a-css-reset-for-fun-pleasure/
+
+
+// Box sizing rules
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+// Prevent font size inflation
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+// Remove default margin in favour of better control in authored CSS
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dd,
+figure,
+blockquote {
+    margin-block: unset;
+}
+
+// Remove list styles on ul, ol elements with a class, which suggests default styling will be removed
+ul[class],
+ol[class] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+// Set core defaults
+html {
+    line-height: 1.5;
+}
+
+body {
+    margin: unset;
+}
+
+// Set shorter line heights on headings and interactive elements
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+button {
+    line-height: 1.1;
+}
+
+// Balance text wrapping on headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+// Remove a elements default styles if they have a class
+a[class] {
+    color: inherit;
+    text-decoration: none;
+}
+
+// Make assets easier to work with
+img,
+svg,
+canvas,
+picture {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+// Inherit fonts for inputs and buttons
+input,
+button,
+select,
+textarea {
+    font: inherit;
+}
+
+// Make sure textareas without a rows attribute are not tiny
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+// Anything that has been anchored to should have extra scroll margin
+:target {
+    scroll-margin-block: 1rlh;
+}
+
+// Reduced mootion preference
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *:after,
+    *:before {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
