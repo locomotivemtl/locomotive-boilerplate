@@ -33,6 +33,7 @@
         "svg-mixer": "~2.3.14",
         "tiny-glob": "^0.2.9",
         "@11ty/eleventy": "^2.0.1",
+        "@11ty/eleventy-img": "^4.0.2",
         "@factorial/eleventy-plugin-twig": "^0.1.2",
         "twig": "^1.16.0"
     },
