@@ -37,7 +37,7 @@ html {
     }
 
     @media (min-width: $from-3xl) {
-        font-size: $font-size + 3px;
+        font-size: $font-size + 2px;
     }
 
     &.is-loading {
