@@ -109,16 +109,16 @@ $context: 'frontend' !default;
 //
 // ```scss
 // .c-box {
-//     width: grid-space(math.div(6, 12));
-//     margin-left: grid-space(math.div(1, 12), 1);
+//     width: grid-space(6/12);
+//     margin-left: grid-space(1/12, 1);
 // }
 // ```
 //
-// @param  {number} $number - The percentage number
-// @param  {number} $inset  - The grid gutter inset
+// @param  {number} $percentage - The percentage spacer
+// @param  {number} $inset      - The grid gutter inset
 // @return {function<number>}
-@function grid-space($number, $inset: 0) {
-    @return calc(#{$number} * (100vw - 2 * var(--grid-margin, 0px)) - (1 - #{$number}) * var(--grid-gutter, 0px) + #{$inset} * var(--grid-gutter, 0px));
+@function grid-space($percentage, $inset: 0) {
+    @return calc(#{$percentage} * (#{vw(100)} - 2 * var(--grid-margin, 0px)) - (1 - #{$percentage}) * var(--grid-gutter, 0px) + #{$inset} * var(--grid-gutter, 0px));
 }
 
 // Returns calculation of a percentage of the viewport small height.
