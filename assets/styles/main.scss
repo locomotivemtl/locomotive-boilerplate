@@ -30,15 +30,6 @@
 @import "settings/config.zindexes";
 @import "settings/config.variables";
 
-// Generic
-// ==========================================================================
-
-@import "node_modules/normalize.css/normalize";
-@import "generic/generic";
-@import "generic/media";
-@import "generic/form";
-@import "generic/button";
-
 // Vendors
 // ==========================================================================
 @import "node_modules/locomotive-scroll/dist/locomotive-scroll";
@@ -46,6 +37,7 @@
 // Elements
 // ==========================================================================
 
+@import "elements/normalize";
 @import "elements/document";
 
 // Objects
