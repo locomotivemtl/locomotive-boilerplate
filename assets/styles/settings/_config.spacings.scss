@@ -1,5 +1,5 @@
 // ==========================================================================
-// Settings / Config / Spacers
+// Settings / Config / Spacings
 // ==========================================================================
 
 :root {
@@ -28,10 +28,10 @@
     --spacing-3xl-desktop: 224;
 }
 
-// Spacers
+// Spacings
 // ==========================================================================
 
-$spacers: (
+$spacings: (
     'gutter':   var(--grid-gutter),
     '2xs':      #{size-clamp('2xs')},
     'xs':       #{size-clamp('xs')},
@@ -46,24 +46,24 @@ $spacers: (
 // Function
 // ==========================================================================
 
-// Returns spacer.
+// Returns spacing.
 //
 // ```scss
 // .c-box {
-//     margin-top: spacer(gutter);
+//     margin-top: spacing(gutter);
 // }
 // ```
 //
-// @param  {string} $key - The spacer key in $spacers.
-// @param  {number} $multiplier - The multiplier of the spacer value.
+// @param  {string} $key - The spacing key in $spacings.
+// @param  {number} $multiplier - The multiplier of the spacing value.
 // @return {size}
 
-@function spacer($spacer: $spacer-default, $multiplier: 1) {
-    @if not map-has-key($spacers, $spacer) {
-        @error "Unknown master spacer: #{$spacer}";
+@function spacing($spacing: 'sm', $multiplier: 1) {
+    @if not map-has-key($spacings, $spacing) {
+        @error "Unknown master spacing: #{$spacing}";
     }
 
-    $index: map-get($spacers, $spacer);
+    $index: map-get($spacings, $spacing);
 
     @return calc(#{$index} * #{$multiplier});
 }
