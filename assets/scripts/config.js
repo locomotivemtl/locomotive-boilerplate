@@ -21,6 +21,15 @@ const ENV = Object.freeze({
     // Device
     IS_MOBILE,
     IS_DESKTOP: !IS_MOBILE,
+
+    // Supports
+    SUPPORTS_VH: (
+        'CSS' in window
+        && 'supports' in window.CSS
+        && window.CSS.supports('height: 100svh')
+        && window.CSS.supports('height: 100dvh')
+        && window.CSS.supports('height: 100lvh')
+    )
 })
 
 // Main CSS classes used within the project

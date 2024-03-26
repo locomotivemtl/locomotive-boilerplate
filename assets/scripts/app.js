@@ -1,25 +1,66 @@
 import modular from 'modujs';
 import * as modules from './modules';
 import globals from './globals';
-import { debounce } from './utils/tickers'
+import { debounce } from './utils/tickers';
 import { $html } from './utils/dom';
 import { ENV, FONT, CUSTOM_EVENT, CSS_CLASS } from './config'
 import { isFontLoadingAPIAvailable, loadFonts } from './utils/fonts';
 
 const app = new modular({
-    modules: modules,
+    modules,
 });
 
-window.addEventListener('load', (event) => {
+const setViewportSizes = () => {
+
+    // Document styles
+    const documentStyles = document.documentElement.style;
+
+    // Viewport width
+    const vw = document.body.clientWidth * 0.01;
+    documentStyles.setProperty('--vw', `${vw}px`);
+
+    // Return if browser supports vh, svh, dvh, & lvh
+    if (ENV.SUPPORTS_VH) {
+        return
+    }
+
+    // Viewport height
+    const height = window.innerHeight;
+    const svh = document.documentElement.clientHeight * 0.01;
+    documentStyles.setProperty('--svh', `${svh}px`);
+    const dvh = height * 0.01;
+    documentStyles.setProperty('--dvh', `${dvh}px`);
+
+    if (document.body) {
+        const fixed = document.createElement('div');
+        fixed.style.width = '1px';
+        fixed.style.height = '100vh';
+        fixed.style.position = 'fixed';
+        fixed.style.left = '0';
+        fixed.style.top = '0';
+        fixed.style.bottom = '0';
+        fixed.style.visibility = 'hidden';
+
+        document.body.appendChild(fixed);
+
+        var fixedHeight = fixed.clientHeight;
+
+        fixed.remove();
+
+        const lvh = fixedHeight * 0.01;
+
+        documentStyles.setProperty('--lvh', `${lvh}px`);
+    }
+}
+
+window.addEventListener('load', () => {
     const $style = document.getElementById('main-css');
 
     if ($style) {
         if ($style.isLoaded) {
             init();
         } else {
-            $style.addEventListener('load', (event) => {
-                init();
-            });
+            $style.addEventListener('load', init);
         }
     } else {
         console.warn('The "main-css" stylesheet not found');
@@ -28,6 +69,7 @@ window.addEventListener('load', (event) => {
 
 function init() {
     globals();
+    setViewportSizes();
 
     app.init(app);
 
@@ -36,12 +78,16 @@ function init() {
     $html.classList.remove(CSS_CLASS.LOADING);
 
     // Bind window resize event with default vars
-    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END)
+    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END);
     window.addEventListener('resize', () => {
-        $html.style.setProperty('--vw', `${document.documentElement.clientWidth * 0.01}px`)
+        setViewportSizes();
         debounce(() => {
-            window.dispatchEvent(resizeEndEvent)
+            window.dispatchEvent(resizeEndEvent);
         }, 200, false)
+    })
+
+    window.addEventListener('orientationchange', () => {
+        setViewportSizes();
     })
 
     /**
@@ -53,12 +99,12 @@ function init() {
 
             if (ENV.IS_DEV) {
                 console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
-                console.group('State of eager fonts:')
-                eagerFonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-                console.groupEnd()
-                console.group('State of all fonts:')
-                document.fonts.forEach((font) => console.log(font.family, font.style, font.weight, font.status/*, font*/))
-                console.groupEnd()
+                console.group('State of eager fonts:');
+                eagerFonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
+                console.groupEnd();
+                console.group('State of all fonts:');
+                document.fonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
+                console.groupEnd();
             }
         });
     }
