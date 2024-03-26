@@ -2,16 +2,45 @@
 // Settings / Config / Spacers
 // ==========================================================================
 
+:root {
+    --spacing-2xs-mobile: 6;
+    --spacing-2xs-desktop: 10;
+
+    --spacing-xs-mobile: 12;
+    --spacing-xs-desktop: 16;
+
+    --spacing-sm-mobile: 22;
+    --spacing-sm-desktop: 32;
+
+    --spacing-md-mobile: 32;
+    --spacing-md-desktop: 56;
+
+    --spacing-lg-mobile: 48;
+    --spacing-lg-desktop: 96;
+
+    --spacing-xl-mobile: 64;
+    --spacing-xl-desktop: 128;
+
+    --spacing-2xl-mobile: 88;
+    --spacing-2xl-desktop: 176;
+
+    --spacing-3xl-mobile: 122;
+    --spacing-3xl-desktop: 224;
+}
+
 // Spacers
 // ==========================================================================
 
 $spacers: (
-    'gutter':       var(--grid-gutter),
-    'xs':           #{vh(5)},
-    'sm':           #{vh(7.5)},
-    'md':           #{vh(10)},
-    'lg':           #{vh(12.5)},
-    'xl':           #{vh(15)},
+    'gutter':   var(--grid-gutter),
+    '2xs':      #{spacingClamp('2xs')},
+    'xs':       #{spacingClamp('xs')},
+    'sm':       #{spacingClamp('sm')},
+    'md':       #{spacingClamp('md')},
+    'lg':       #{spacingClamp('lg')},
+    'xl':       #{spacingClamp('xl')},
+    '2xl':      #{spacingClamp('2xl')},
+    '3xl':      #{spacingClamp('3xl')},
 );
 
 // Function
