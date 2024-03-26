@@ -6,15 +6,13 @@
 // ==========================================================================
 
 $breakpoints: (
-    "tiny":     500px,
-    "small":    700px,
-    "medium":   1000px,
-    "large":    1200px,
-    "big":      1400px,
-    "huge":     1600px,
-    "enormous": 1800px,
-    "gigantic": 2000px,
-    "colossal": 2400px
+    "xs":  500px,
+    "sm":  700px,
+    "md":  1000px,
+    "lg":  1200px,
+    "xl":  1400px,
+    "2xl": 1600px,
+    "3xl": 1800px
 );
 
 // Functions
@@ -75,21 +73,17 @@ $breakpoints: (
 // Legacy
 // ==========================================================================
 
-$from-tiny:     map-get($breakpoints, "tiny")           !default;
-$to-tiny:       map-get($breakpoints, "tiny") - 1       !default;
-$from-small:    map-get($breakpoints, "small")          !default;
-$to-small:      map-get($breakpoints, "small") - 1      !default;
-$from-medium:   map-get($breakpoints, "medium")         !default;
-$to-medium:     map-get($breakpoints, "medium") - 1     !default;
-$from-large:    map-get($breakpoints, "large")          !default;
-$to-large:      map-get($breakpoints, "large") - 1      !default;
-$from-big:      map-get($breakpoints, "big")            !default;
-$to-big:        map-get($breakpoints, "big") - 1        !default;
-$from-huge:     map-get($breakpoints, "huge")           !default;
-$to-huge:       map-get($breakpoints, "huge") - 1       !default;
-$from-enormous: map-get($breakpoints, "enormous")       !default;
-$to-enormous:   map-get($breakpoints, "enormous") - 1   !default;
-$from-gigantic: map-get($breakpoints, "gigantic")       !default;
-$to-gigantic:   map-get($breakpoints, "gigantic") - 1   !default;
-$from-colossal: map-get($breakpoints, "colossal")       !default;
-$to-colossal:   map-get($breakpoints, "colossal") - 1   !default;
+$from-xs:  map-get($breakpoints, "xs")      !default;
+$to-xs:    map-get($breakpoints, "xs") - 1  !default;
+$from-sm:  map-get($breakpoints, "sm")      !default;
+$to-sm:    map-get($breakpoints, "sm") - 1  !default;
+$from-md:  map-get($breakpoints, "md")      !default;
+$to-md:    map-get($breakpoints, "md") - 1  !default;
+$from-lg:  map-get($breakpoints, "lg")      !default;
+$to-lg:    map-get($breakpoints, "lg") - 1  !default;
+$from-xl:  map-get($breakpoints, "xl")      !default;
+$to-xl:    map-get($breakpoints, "xl") - 1  !default;
+$from-2xl: map-get($breakpoints, "2xl")     !default;
+$to-2xl:   map-get($breakpoints, "2xl") - 1 !default;
+$from-3xl: map-get($breakpoints, "3xl")     !default;
+$to-3xl:   map-get($breakpoints, "3xl") - 1 !default;

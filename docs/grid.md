@@ -70,8 +70,8 @@ The first step is to set intial SCSS values in the following files :
             grid-template-columns: repeat(4, 1fr);
         }
 
-        &.-col-#{$base-column-nb}\@from-medium {
-            @media (min-width: $from-medium) {
+        &.-col-#{$base-column-nb}\@from-md {
+            @media (min-width: $from-md) {
                 grid-template-columns: repeat(#{$base-column-nb}, 1fr);
             }
         }

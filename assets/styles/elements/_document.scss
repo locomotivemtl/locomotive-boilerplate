@@ -20,32 +20,24 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    @media (max-width: $to-small) {
+    @media (max-width: $to-sm) {
         font-size: $font-size - 2px;
     }
 
-    @media (min-width: $from-small) and (max-width: $to-medium) {
-        font-size: $font-size - 2px;
-    }
-
-    @media (min-width: $from-medium) and (max-width: $to-large) {
+    @media (min-width: $from-sm) and (max-width: $to-lg) {
         font-size: $font-size - 1px;
     }
 
-    @media (min-width: $from-large) and (max-width: $to-huge) {
-        font-size: $font-size; // [1]
+    @media (min-width: $from-lg) and (max-width: $to-2xl) {
+        font-size: $font-size;
     }
 
-    @media (min-width: $from-huge) and (max-width: $to-gigantic) {
+    @media (min-width: $from-2xl) and (max-width: $to-3xl) {
         font-size: $font-size + 1px;
     }
 
-    @media (min-width: $from-gigantic) and (max-width: $to-colossal) {
-        font-size: $font-size + 2px;
-    }
-
-    @media (min-width: $from-colossal) {
-        font-size: $font-size + 4px;
+    @media (min-width: $from-3xl) {
+        font-size: $font-size + 3px;
     }
 
     &.is-loading {
