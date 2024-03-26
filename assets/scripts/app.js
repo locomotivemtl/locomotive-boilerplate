@@ -10,7 +10,73 @@ const app = new modular({
     modules,
 });
 
-const setViewportSizes = () => {
+function init() {
+    bindEvents();
+    globals();
+    setViewportSizes();
+
+    app.init(app);
+
+    $html.classList.add(CSS_CLASS.LOADED, CSS_CLASS.READY);
+    $html.classList.remove(CSS_CLASS.LOADING);
+
+    /**
+     * Debug focus
+     */
+    // document.addEventListener(
+    //     "focusin",
+    //     function () {
+    //         console.log('focused: ', document.activeElement)
+    //     }, true
+    // );
+
+    /**
+     * Eagerly load the following fonts.
+     */
+    if (isFontLoadingAPIAvailable) {
+        loadFonts(FONT.EAGER, ENV.IS_DEV).then((eagerFonts) => {
+            $html.classList.add(CSS_CLASS.FONTS_LOADED);
+
+            /**
+             * Debug fonts loading
+             */
+            // if (ENV.IS_DEV) {
+            //     console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
+            //     console.group('State of eager fonts:');
+            //     eagerFonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
+            //     console.groupEnd();
+            //     console.group('State of all fonts:');
+            //     document.fonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
+            //     console.groupEnd();
+            // }
+        });
+    }
+}
+
+////////////////
+// Global events
+////////////////
+function bindEvents() {
+
+    // Resize event
+    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END)
+    window.addEventListener(
+        "resize",
+        debounce(() => {
+            window.dispatchEvent(resizeEndEvent)
+        }, 200, false)
+    )
+    window.addEventListener(
+        "resize",
+        onResize
+    )
+}
+
+function onResize() {
+    setViewportSizes()
+}
+
+function setViewportSizes() {
 
     // Document styles
     const documentStyles = document.documentElement.style;
@@ -25,10 +91,10 @@ const setViewportSizes = () => {
     }
 
     // Viewport height
-    const height = window.innerHeight;
     const svh = document.documentElement.clientHeight * 0.01;
     documentStyles.setProperty('--svh', `${svh}px`);
-    const dvh = height * 0.01;
+
+    const dvh = window.innerHeight * 0.01;
     documentStyles.setProperty('--dvh', `${dvh}px`);
 
     if (document.body) {
@@ -53,6 +119,9 @@ const setViewportSizes = () => {
     }
 }
 
+////////////////
+// Execute
+////////////////
 window.addEventListener('load', () => {
     const $style = document.getElementById('main-css');
 
@@ -66,46 +135,3 @@ window.addEventListener('load', () => {
         console.warn('The "main-css" stylesheet not found');
     }
 });
-
-function init() {
-    globals();
-    setViewportSizes();
-
-    app.init(app);
-
-    $html.classList.add(CSS_CLASS.LOADED);
-    $html.classList.add(CSS_CLASS.READY);
-    $html.classList.remove(CSS_CLASS.LOADING);
-
-    // Bind window resize event with default vars
-    const resizeEndEvent = new CustomEvent(CUSTOM_EVENT.RESIZE_END);
-    window.addEventListener('resize', () => {
-        setViewportSizes();
-        debounce(() => {
-            window.dispatchEvent(resizeEndEvent);
-        }, 200, false)
-    })
-
-    window.addEventListener('orientationchange', () => {
-        setViewportSizes();
-    })
-
-    /**
-     * Eagerly load the following fonts.
-     */
-    if (isFontLoadingAPIAvailable) {
-        loadFonts(FONT.EAGER, ENV.IS_DEV).then((eagerFonts) => {
-            $html.classList.add(CSS_CLASS.FONTS_LOADED);
-
-            if (ENV.IS_DEV) {
-                console.group('Eager fonts loaded!', eagerFonts.length, '/', document.fonts.size);
-                console.group('State of eager fonts:');
-                eagerFonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
-                console.groupEnd();
-                console.group('State of all fonts:');
-                document.fonts.forEach(font => console.log(font.family, font.style, font.weight, font.status));
-                console.groupEnd();
-            }
-        });
-    }
-}
