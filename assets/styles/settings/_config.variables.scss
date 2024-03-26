@@ -25,7 +25,7 @@
     //     --color-#{"" + $color}: #{$value};
     // }
 
-    @media (min-width: $from-small) {
+    @media (min-width: $from-sm) {
         --grid-columns:     #{$base-column-nb};
         --grid-gutter:      #{rem(16px)};
         --grid-margin:      #{rem(20px)};

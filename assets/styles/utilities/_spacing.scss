@@ -51,7 +51,7 @@ $spacing-sizes: join($spacings, (
                 $base-class: ".u-" + #{$property-namespace}#{$direction-namespace}#{$size-namespace};
 
                 // Spacing without media query
-                @if $breakpoint == "tiny" {
+                @if $breakpoint == "xs" {
                     #{$base-class} {
                         @each $direction in $directions {
                             #{$property}#{$direction}: $size !important;
