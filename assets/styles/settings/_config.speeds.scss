@@ -1,22 +1,19 @@
 // ==========================================================================
-// Settings / Config / Timings
+// Settings / Config / Speeds
 // ==========================================================================
 
-// Timings
+// Speeds
 // ==========================================================================
 
-$timings: (
+$speeds: (
     fastest:    0.1s,
     faster:     0.15s,
     fast:       0.25s,
-    normal:     0.5s,
-    slow:       0.75s,
-    slower:     1s,
-    slowest:    2s,
+    normal:     0.3s,
+    slow:       0.5s,
+    slower:     0.75s,
+    slowest:    1s,
 );
-
-// Default timing for t()
-$timing-default: "normal" !default;
 
 // Function
 // ==========================================================================
@@ -25,17 +22,17 @@ $timing-default: "normal" !default;
 //
 // ```scss
 // .c-box {
-//     transition-duration: t(slow);
+//     transition-duration: speed(slow);
 // }
 // ```
 //
-// @param  {string} $key - The timing key in $timings.
+// @param  {string} $key - The speed key in $speeds.
 // @return {duration}
 
-@function t($key: $timing-default) {
-    @if not map-has-key($timings, $key) {
-        @error "Unknown '#{$key}' in $timings.";
+@function speed($key: "normal") {
+    @if not map-has-key($speeds, $key) {
+        @error "Unknown '#{$key}' in $speeds.";
     }
 
-    @return map-get($timings, $key);
+    @return map-get($speeds, $key);
 }
