@@ -20,6 +20,9 @@
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
+        "@11ty/eleventy": "^2.0.1",
+        "@11ty/eleventy-img": "^3.1.8",
+        "@factorial/eleventy-plugin-twig": "^0.1.2",
         "autoprefixer": "^10.4.17",
         "browser-sync": "^3.0.2",
         "concat": "^1.0.3",
@@ -31,10 +34,7 @@
         "sass": "^1.70.0",
         "svg-mixer": "~2.3.14",
         "tiny-glob": "^0.2.9",
-        "@11ty/eleventy": "^2.0.1",
-        "@11ty/eleventy-img": "^4.0.2",
-        "@factorial/eleventy-plugin-twig": "^0.1.2",
-        "twig": "^1.16.0"
+        "twig": "^1.17.1"
     },
     "overrides": {
         "browser-sync": {
