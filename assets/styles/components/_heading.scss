@@ -2,30 +2,78 @@
 // Components / Headings
 // ==========================================================================
 
+// Font sizes
+// ==========================================================================
+:root {
+    // Default
+    --font-size-h1: #{responsive-value(38px, 90px, $from-xl)};
+    --font-size-h2: #{responsive-value(34px, 72px, $from-xl)};
+    --font-size-h3: #{responsive-value(28px, 54px, $from-xl)};
+    --font-size-h4: #{responsive-value(24px, 40px, $from-xl)};
+    --font-size-h5: #{responsive-value(20px, 30px, $from-xl)};
+    --font-size-h6: #{responsive-value(18px, 23px, $from-xl)};
+}
+
+// Mixins
+// ==========================================================================
+
+@mixin heading {
+    font-family: ff('sans');
+    font-weight: $font-weight-medium;
+}
+
+@mixin heading-h1 {
+    font-size: var(--font-size-h1);
+    line-height: 1.1;
+}
+
+@mixin heading-h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.1;
+}
+
+@mixin heading-h3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.1;
+}
+
+@mixin heading-h4 {
+    font-size: var(--font-size-h4);
+    line-height: 1.2;
+}
+
+@mixin heading-h5 {
+    font-size: var(--font-size-h5);
+    line-height: 1.2;
+}
+
+@mixin heading-h6 {
+    font-size: var(--font-size-h6);
+    line-height: 1.4;
+}
+
+// Styles
+// ==========================================================================
+
 .c-heading {
-    margin-bottom: rem(30px);
+    @include heading;
 
     &.-h1 {
-        font-size: var(--font-size-h1);
+        @include heading-h1;
     }
-
     &.-h2 {
-        font-size: var(--font-size-h2);
+        @include heading-h2;
     }
-
     &.-h3 {
-        font-size: var(--font-size-h3);
+        @include heading-h3;
     }
-
     &.-h4 {
-        font-size: var(--font-size-h4);
+        @include heading-h4;
     }
-
     &.-h5 {
-        font-size: var(--font-size-h5);
+        @include heading-h5;
     }
-
     &.-h6 {
-        font-size: var(--font-size-h6);
+        @include heading-h6;
     }
 }
