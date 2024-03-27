@@ -6,12 +6,12 @@
 // ==========================================================================
 :root {
     // Default
-    --font-size-h1: #{responsive-type(38px, 90px, $from-xl)};
-    --font-size-h2: #{responsive-type(34px, 72px, $from-xl)};
-    --font-size-h3: #{responsive-type(28px, 54px, $from-xl)};
-    --font-size-h4: #{responsive-type(24px, 40px, $from-xl)};
-    --font-size-h5: #{responsive-type(20px, 30px, $from-xl)};
-    --font-size-h6: #{responsive-type(18px, 23px, $from-xl)};
+    --font-size-h1: #{responsive-value(38px, 90px, $from-xl)};
+    --font-size-h2: #{responsive-value(34px, 72px, $from-xl)};
+    --font-size-h3: #{responsive-value(28px, 54px, $from-xl)};
+    --font-size-h4: #{responsive-value(24px, 40px, $from-xl)};
+    --font-size-h5: #{responsive-value(20px, 30px, $from-xl)};
+    --font-size-h6: #{responsive-value(18px, 23px, $from-xl)};
 }
 
 // Mixins

@@ -196,11 +196,11 @@ $context: 'frontend' !default;
 //
 // ```scss
 // .c-heading.-h1 {
-//     font-size: responsive-type(30px, 60px, 1800);
+//     font-size: responsive-value(30px, 60px, 1800);
 // }
 //
 // .c-heading.-h2 {
-//     font-size: responsive-type(20px, 40px, $from-xl);
+//     font-size: responsive-value(20px, 40px, $from-xl);
 // }
 // ```
 //
@@ -208,7 +208,7 @@ $context: 'frontend' !default;
 // @param  {number} $max-size   - Maximum font size in pixels.
 // @param  {number} $breakpoint - Maximum breakpoint.
 // @return {function<number, function<number>, number>}
-@function responsive-type($min-size, $max-size, $breakpoint) {
+@function responsive-value($min-size, $max-size, $breakpoint) {
     $delta: math.div($max-size, $breakpoint);
     @return clamp($min-size, calc(#{strip-unit($delta)} * #{vw(100)}), $max-size);
 }
