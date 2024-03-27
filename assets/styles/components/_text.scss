@@ -1,0 +1,53 @@
+// ==========================================================================
+// Components / Texts
+// ==========================================================================
+
+// Font sizes
+// ==========================================================================
+:root {
+    --font-size-body-regular:   #{responsive-value(15px, 17px, $from-lg)};
+    --font-size-body-medium:    #{responsive-value(18px, 23px, $from-lg)};
+    --font-size-body-small:     #{responsive-value(13px, 16px, $from-lg)};
+}
+
+// Mixins
+// ==========================================================================
+@mixin text {
+    font-family: ff('sans');
+}
+
+@mixin body-regular {
+    font-size: var(--font-size-body-regular);
+    font-weight: $font-weight-normal;
+    line-height: 1.2;
+}
+
+@mixin body-medium {
+    font-size: var(--font-size-body-medium);
+    font-weight: $font-weight-normal;
+    line-height: 1.2;
+}
+
+@mixin body-small {
+    font-size: var(--font-size-body-small);
+    font-weight: $font-weight-normal;
+    line-height: 1.2;
+}
+
+// Styles
+// ==========================================================================
+.c-text {
+    @include text;
+
+    &.-body-regular {
+        @include body-regular;
+    }
+
+    &.-body-medium {
+        @include body-medium;
+    }
+
+    &.-body-small {
+        @include body-small;
+    }
+}
