@@ -1,0 +1,363 @@
+// ==========================================================================
+// Components / Wysiwyg
+// ==========================================================================
+
+.c-wysiwyg {
+    // ==========================================================================
+    // Margins
+    // ==========================================================================
+    &-first-element,
+    >:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    &-last-element,
+    >:last-child {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    // ==========================================================================
+    // Default
+    // ==========================================================================
+    // @include text;
+    // @include body-large;
+
+    // ==========================================================================
+    // Paragraph
+    // ==========================================================================
+    p,
+    iframe,
+    img,
+    table {
+        margin-bottom: rem(30px);
+        & + p,
+        & + ul,
+        & + ol {
+            margin-top: 1em;
+            margin-bottom: rem(30px);
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: rem(60px);
+        }
+    }
+
+    ul, ol, p {
+        line-height: 1.5;
+    }
+
+
+    // ==========================================================================
+    // Headings
+    // ==========================================================================
+    b, strong {
+
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        // @include heading;
+        font-weight: normal;
+    }
+
+    h1 {
+        // @include heading-h3;
+        margin-top: size-clamp('lg');
+        margin-bottom: rem(40px);
+
+        & + p,
+        & + ul,
+        & + ol,
+        & + table,
+        & + figure {
+            margin-top: rem(40px);
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: size-clamp('md');
+        }
+    }
+
+    h2 {
+        // @include heading-h3;
+        margin-top: size-clamp('lg');
+        margin-bottom: size-clamp('md');
+
+        & + p,
+        & + ul,
+        & + ol,
+        & + table,
+        & + figure {
+            margin-top: size-clamp('md');
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: size-clamp('md');
+        }
+    }
+
+    h3 {
+        // @include heading-h4;
+        margin-top: size-clamp('lg');
+        margin-bottom: size-clamp('md');
+
+        & + p,
+        & + ul,
+        & + ol,
+        & + table,
+        & + figure {
+            margin-top: size-clamp('md');
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: size-clamp('md');
+        }
+    }
+
+    h4,
+    h5,
+    h6 {
+        margin-top: size-clamp('lg');
+        margin-bottom: size-clamp('sm');
+
+        & + p,
+        & + ul,
+        & + ol,
+        & + table,
+        & + figure {
+            margin-top: size-clamp('sm');
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: size-clamp('sm');
+        }
+    }
+
+    h4 {
+        // @include heading-h5;
+    }
+
+    h5 {
+        // @include heading-h6;
+    }
+
+    h6 {
+        // @include heading-h6;
+    }
+
+
+    // ==========================================================================
+    // Lists
+    // ==========================================================================
+    ul,
+    ol {
+        position: relative;
+        margin: size-clamp('md') 0;
+
+        >li {
+            padding-left: rem(30px);
+        }
+    }
+
+    ul {
+        & > li {
+            position: relative;
+
+            & + li {
+                margin-top: 0;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 9px;
+                width: 8px;
+                height: 8px;
+                background-color: currentColor;
+                border-radius: 100%;
+            }
+        }
+    }
+
+    ol {
+        counter-reset: counter;
+
+        & > li {
+            counter-increment: counter;
+            position: relative;
+
+
+            & + li {
+                margin-top: 0;
+            }
+
+            &::before {
+                position: absolute;
+                left: 0;
+                content: counter(counter);
+            }
+        }
+    }
+
+    // ==========================================================================
+    // Link
+    // ==========================================================================
+    a {
+        display: inline;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        color: currentColor;
+        word-wrap: break-word;
+
+        &:hover {
+            text-decoration-thickness: 2px;
+        }
+    }
+
+    // ==========================================================================
+    // Image
+    // ==========================================================================
+    img {
+        width: 100%;
+        margin: size-clamp('lg') 0;
+    }
+
+    // ==========================================================================
+    // iFrame
+    // ==========================================================================
+    iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin: size-clamp('lg') 0;
+    }
+
+    // ==========================================================================
+    // Table
+    // ==========================================================================
+    table {
+        width: 100%;
+        margin: size-clamp('lg') 0;
+
+        & + p,
+        & + ul,
+        & + ol {
+            margin-top: 1em;
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: 1em;
+        }
+    }
+
+    thead {
+
+    }
+
+    th {
+        vertical-align: top;
+        text-align: left;
+        padding: 20px 10px;
+        border-bottom: solid 1px currentColor;
+    }
+
+    tr {
+    }
+
+    td {
+        border-bottom: solid 1px currentColor;
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    caption {
+        padding: 10px;
+        caption-side: bottom;
+        font-style: italic;
+    }
+
+    // ==========================================================================
+    // Blockquote
+    // ==========================================================================
+    blockquote {
+        // @include heading;
+        // @include heading-h3;
+        padding: 0;
+        color: currentColor;
+        line-height: 1;
+        padding: 0;
+        padding-top: rem(80px);
+        margin-left: 0;
+        margin-top: size-clamp('lg');
+        margin-bottom: size-clamp('lg');
+        position: relative;
+
+        &::before {
+            content:'â€œ';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: currentColor;
+            font-weight: $font-weight-normal;
+
+            @media (min-width: $from-md) {
+                font-size: rem(140px);
+            }
+
+            @media (max-width: $to-md) {
+                font-size: rem(90px);
+            }
+        }
+
+        * {
+            line-height: 1;
+        }
+
+        & + p {
+            padding-top: 0;
+        }
+
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6,
+        & + blockquote {
+            margin-top: 0;
+        }
+    }
+}
