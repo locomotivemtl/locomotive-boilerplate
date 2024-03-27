@@ -5,3 +5,14 @@ loconfig.*.json
 !loconfig.example.json
 .prettierrc
 www/**/*.html
+
+www/assets/scripts/app.js
+www/assets/scripts/app.js.map
+www/assets/scripts/vendors.js
+
+www/assets/styles/main.css
+www/assets/styles/main.css.map
+www/assets/styles/critical.css
+www/assets/styles/critical.css.map
+
+assets.json

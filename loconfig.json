@@ -15,7 +15,7 @@
             "dest": "./www/assets/scripts"
         },
         "svgs": {
-            "src": "./assets/images/sprite",
+            "src": "./assets/svgs",
             "dest": "./www/assets/images"
         },
         "views": {

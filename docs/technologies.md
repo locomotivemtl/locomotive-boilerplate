@@ -80,10 +80,10 @@ Learn about [namespacing](https://csswizardry.com/2015/03/more-transparent-ui-co
 }
 
 .c-block_heading {
-    @media (max-width: $to-medium) {
+    @media (max-width: $to-md) {
         .c-block.-large & {
             margin-bottom: rem(40px);
-        } 
+        }
     }
 }
 ```

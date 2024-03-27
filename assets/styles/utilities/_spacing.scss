@@ -8,12 +8,11 @@
 ///
 /// @example
 ///   .u-margin-top {}
-///   .u-padding-left-large {}
-///   .u-margin-right-small {}
+///   .u-margin-top-xs {}
+///   .u-padding-left-lg {}
+///   .u-margin-right-sm {}
 ///   .u-padding {}
 ///   .u-padding-right-none {}
-///   .u-padding-horizontal {}
-///   .u-padding-vertical-small {}
 ///
 /// @link https://github.com/inuitcss/inuitcss/blob/512977a/utilities/_utilities.spacing.scss
 ////
@@ -35,7 +34,7 @@ $spacing-properties: (
     'margin':  'margin',
 ) !default;
 
-$spacing-sizes: join($spacers, (
+$spacing-sizes: join($spacings, (
     null:       var(--grid-gutter),
     'none':    0
 ));
@@ -51,8 +50,8 @@ $spacing-sizes: join($spacers, (
                 // Base class
                 $base-class: ".u-" + #{$property-namespace}#{$direction-namespace}#{$size-namespace};
 
-                // Spacer without media query
-                @if $breakpoint == "tiny" {
+                // Spacing without media query
+                @if $breakpoint == "xs" {
                     #{$base-class} {
                         @each $direction in $directions {
                             #{$property}#{$direction}: $size !important;
@@ -60,7 +59,7 @@ $spacing-sizes: join($spacers, (
                     }
                 }
 
-                // Spacer min-width breakpoints `@from-*`
+                // Spacing min-width breakpoints `@from-*`
                 #{$base-class}\@from-#{$breakpoint} {
                     @media #{mq-min($breakpoint)} {
                         @each $direction in $directions {
@@ -69,7 +68,7 @@ $spacing-sizes: join($spacers, (
                     }
                 }
 
-                // Spacer max-width breakpoints @to-*`
+                // Spacing max-width breakpoints @to-*`
                 #{$base-class}\@to-#{$breakpoint} {
                     @media #{mq-max($breakpoint)} {
                         @each $direction in $directions {

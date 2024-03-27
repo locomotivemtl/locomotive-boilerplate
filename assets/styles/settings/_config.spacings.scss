@@ -1,0 +1,69 @@
+// ==========================================================================
+// Settings / Config / Spacings
+// ==========================================================================
+
+:root {
+    --spacing-2xs-mobile: 6;
+    --spacing-2xs-desktop: 10;
+
+    --spacing-xs-mobile: 12;
+    --spacing-xs-desktop: 16;
+
+    --spacing-sm-mobile: 22;
+    --spacing-sm-desktop: 32;
+
+    --spacing-md-mobile: 32;
+    --spacing-md-desktop: 56;
+
+    --spacing-lg-mobile: 48;
+    --spacing-lg-desktop: 96;
+
+    --spacing-xl-mobile: 64;
+    --spacing-xl-desktop: 128;
+
+    --spacing-2xl-mobile: 88;
+    --spacing-2xl-desktop: 176;
+
+    --spacing-3xl-mobile: 122;
+    --spacing-3xl-desktop: 224;
+}
+
+// Spacings
+// ==========================================================================
+
+$spacings: (
+    'gutter':   var(--grid-gutter),
+    '2xs':      #{size-clamp('2xs')},
+    'xs':       #{size-clamp('xs')},
+    'sm':       #{size-clamp('sm')},
+    'md':       #{size-clamp('md')},
+    'lg':       #{size-clamp('lg')},
+    'xl':       #{size-clamp('xl')},
+    '2xl':      #{size-clamp('2xl')},
+    '3xl':      #{size-clamp('3xl')},
+);
+
+// Function
+// ==========================================================================
+
+// Returns spacing.
+//
+// ```scss
+// .c-box {
+//     margin-top: spacing(gutter);
+// }
+// ```
+//
+// @param  {string} $key - The spacing key in $spacings.
+// @param  {number} $multiplier - The multiplier of the spacing value.
+// @return {size}
+
+@function spacing($spacing: 'sm', $multiplier: 1) {
+    @if not map-has-key($spacings, $spacing) {
+        @error "Unknown master spacing: #{$spacing}";
+    }
+
+    $index: map-get($spacings, $spacing);
+
+    @return calc(#{$index} * #{$multiplier});
+}
