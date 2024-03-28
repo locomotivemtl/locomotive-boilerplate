@@ -166,58 +166,16 @@
         // @include heading-h6;
     }
 
-
     // ==========================================================================
     // Lists
     // ==========================================================================
     ul,
     ol {
-        position: relative;
-        margin: size-clamp('md') 0;
-
-        >li {
-            padding-left: rem(30px);
-        }
-    }
-
-    ul {
-        & > li {
-            position: relative;
-
-            & + li {
-                margin-top: 0;
-            }
-
-            &::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 9px;
-                width: 8px;
-                height: 8px;
-                background-color: currentColor;
-                border-radius: 100%;
-            }
-        }
-    }
-
-    ol {
-        counter-reset: counter;
-
-        & > li {
-            counter-increment: counter;
-            position: relative;
-
-
-            & + li {
-                margin-top: 0;
-            }
-
-            &::before {
-                position: absolute;
-                left: 0;
-                content: counter(counter);
-            }
+        & + p,
+        & + ul,
+        & + ol,
+        & + blockquote {
+            margin-top: size-clamp('sm');
         }
     }
 
