@@ -1,0 +1,185 @@
+// ==========================================================================
+// Components / Wysiwyg
+// ==========================================================================
+
+.c-wysiwyg {
+
+    // ==========================================================================
+    // Margins
+    // ==========================================================================
+    & > * + * {
+        margin-bottom: size-clamp('md');
+    }
+
+    &-first-element,
+    >:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    &-last-element,
+    >:last-child {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    // ==========================================================================
+    // Default
+    // ==========================================================================
+    // @include text;
+    // @include body-large;
+
+    // ==========================================================================
+    // Headings
+    // ==========================================================================
+    h1,h2,h3,h4,h5,h6 {
+        // @include heading;
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    h1 {
+        // @include heading-h3;
+    }
+
+    h2 {
+        // @include heading-h3;
+    }
+
+    h3 {
+        // @include heading-h4;
+    }
+
+    h4 {
+        // @include heading-h5;
+    }
+
+    h5 {
+        // @include heading-h6;
+    }
+
+    h6 {
+        // @include heading-h6;
+    }
+
+    // ==========================================================================
+    // Lists
+    // ==========================================================================
+    ul,
+    ol {
+        list-style: none;
+        padding-left: 0;
+
+        > li {
+            position: relative;
+            padding-left: 1.5em;
+        }
+    }
+
+    ul {
+        > li {
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: calc(50% - 3px);
+                width: 6px;
+                height: 6px;
+                background-color: currentColor;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    ol {
+        counter-reset: counter;
+
+        > li {
+            counter-increment: counter;
+
+            &::before {
+                content: counter(counter);
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+
+    // ==========================================================================
+    // Link
+    // ==========================================================================
+    a {
+        color: $color-link;
+
+        &:focus-visible {
+            color: $color-link-focus;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-link-hover;
+            }
+        }
+    }
+
+    // ==========================================================================
+    // Image
+    // ==========================================================================
+    img {
+        width: 100%;
+    }
+
+    // ==========================================================================
+    // iFrame
+    // ==========================================================================
+    iframe {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:not([width]) {
+            width: 100%;
+        }
+
+        &:not([height]) {
+            height: auto;
+        }
+    }
+
+    // ==========================================================================
+    // Table
+    // ==========================================================================
+    table {
+        width: 100%;
+    }
+
+    caption {
+        // @include text;
+        // @include body-small;
+        margin: 1em 0;
+    }
+
+    // ==========================================================================
+    // Blockquote
+    // ==========================================================================
+    blockquote {
+        // @include heading;
+        // @include heading-h3;
+        quotes: "“" "”" "’" "’";
+        padding: 0;
+
+        p {
+            &::before {
+                content: open-quote;
+            }
+
+            &::after {
+                content: close-quote;
+            }
+        }
+
+        & + p {
+            padding-top: 0;
+        }
+    }
+}
