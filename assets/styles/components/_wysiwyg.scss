@@ -305,30 +305,17 @@
     blockquote {
         // @include heading;
         // @include heading-h3;
+        quotes: "“" "”" "’" "’";
         padding: 0;
-        color: currentColor;
-        padding: 0;
-        padding-top: rem(80px);
-        margin-left: 0;
-        margin-top: size-clamp('lg');
-        margin-bottom: size-clamp('lg');
-        position: relative;
+        margin: size-clamp('md') 0;
 
-        &::before {
-            content:'â€œ';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            color: currentColor;
-            font-weight: $font-weight-normal;
-
-            @media (min-width: $from-md) {
-                font-size: rem(140px);
+        p {
+            &::before {
+                content: open-quote;
             }
 
-            @media (max-width: $to-md) {
-                font-size: rem(90px);
+            &::after {
+                content: close-quote;
             }
         }
 
