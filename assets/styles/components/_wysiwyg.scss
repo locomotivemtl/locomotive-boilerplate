@@ -316,7 +316,6 @@
         // @include heading-h3;
         padding: 0;
         color: currentColor;
-        line-height: 1;
         padding: 0;
         padding-top: rem(80px);
         margin-left: 0;
@@ -340,10 +339,6 @@
             @media (max-width: $to-md) {
                 font-size: rem(90px);
             }
-        }
-
-        * {
-            line-height: 1;
         }
 
         & + p {
