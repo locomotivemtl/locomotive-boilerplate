@@ -67,6 +67,42 @@
     // ==========================================================================
     ul,
     ol {
+        list-style: none;
+        padding-left: 0;
+
+        > li {
+            position: relative;
+            padding-left: 1.5em;
+        }
+    }
+
+    ul {
+        > li {
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: calc(50% - 3px);
+                width: 6px;
+                height: 6px;
+                background-color: currentColor;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    ol {
+        counter-reset: counter;
+
+        > li {
+            counter-increment: counter;
+
+            &::before {
+                content: counter(counter);
+                position: absolute;
+                left: 0;
+            }
+        }
     }
 
     // ==========================================================================
