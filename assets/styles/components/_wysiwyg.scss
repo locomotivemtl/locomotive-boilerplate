@@ -3,9 +3,14 @@
 // ==========================================================================
 
 .c-wysiwyg {
+
     // ==========================================================================
     // Margins
     // ==========================================================================
+    & > * + * {
+        margin-bottom: size-clamp('md');
+    }
+
     &-first-element,
     >:first-child {
         margin-top: 0 !important;
@@ -25,133 +30,24 @@
     // @include body-large;
 
     // ==========================================================================
-    // Paragraph
-    // ==========================================================================
-    p,
-    iframe,
-    img,
-    table {
-        margin-bottom: rem(30px);
-        & + p,
-        & + ul,
-        & + ol {
-            margin-top: 1em;
-            margin-bottom: rem(30px);
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: rem(60px);
-        }
-    }
-
-    // ==========================================================================
     // Headings
     // ==========================================================================
-    b, strong {
-
-    }
-
     h1,h2,h3,h4,h5,h6 {
         // @include heading;
-        font-weight: normal;
+        margin-top: 1.5em;
+        margin-bottom: 1em;
     }
 
     h1 {
         // @include heading-h3;
-        margin-top: size-clamp('lg');
-        margin-bottom: rem(40px);
-
-        & + p,
-        & + ul,
-        & + ol,
-        & + table,
-        & + figure {
-            margin-top: rem(40px);
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: size-clamp('md');
-        }
     }
 
     h2 {
         // @include heading-h3;
-        margin-top: size-clamp('lg');
-        margin-bottom: size-clamp('md');
-
-        & + p,
-        & + ul,
-        & + ol,
-        & + table,
-        & + figure {
-            margin-top: size-clamp('md');
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: size-clamp('md');
-        }
     }
 
     h3 {
         // @include heading-h4;
-        margin-top: size-clamp('lg');
-        margin-bottom: size-clamp('md');
-
-        & + p,
-        & + ul,
-        & + ol,
-        & + table,
-        & + figure {
-            margin-top: size-clamp('md');
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: size-clamp('md');
-        }
-    }
-
-    h4,
-    h5,
-    h6 {
-        margin-top: size-clamp('lg');
-        margin-bottom: size-clamp('sm');
-
-        & + p,
-        & + ul,
-        & + ol,
-        & + table,
-        & + figure {
-            margin-top: size-clamp('sm');
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: size-clamp('sm');
-        }
     }
 
     h4 {
@@ -171,24 +67,22 @@
     // ==========================================================================
     ul,
     ol {
-        & + p,
-        & + ul,
-        & + ol,
-        & + blockquote {
-            margin-top: size-clamp('sm');
-        }
     }
 
     // ==========================================================================
     // Link
     // ==========================================================================
     a {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        word-wrap: break-word;
+        color: $color-link;
 
-        &:hover {
-            text-decoration-thickness: 2px;
+        &:focus-visible {
+            color: $color-link-focus;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-link-hover;
+            }
         }
     }
 
@@ -197,7 +91,6 @@
     // ==========================================================================
     img {
         width: 100%;
-        margin: size-clamp('lg') 0;
     }
 
     // ==========================================================================
@@ -206,7 +99,6 @@
     iframe {
         width: 100%;
         height: auto;
-        margin: size-clamp('lg') 0;
     }
 
     // ==========================================================================
@@ -214,27 +106,12 @@
     // ==========================================================================
     table {
         width: 100%;
-        margin: size-clamp('lg') 0;
-
-        & + p,
-        & + ul,
-        & + ol {
-            margin-top: 1em;
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: 1em;
-        }
     }
 
     caption {
-        padding: 10px;
-        font-style: italic;
+        // @include text;
+        // @include body-small;
+        margin: 1em 0;
     }
 
     // ==========================================================================
@@ -245,7 +122,6 @@
         // @include heading-h3;
         quotes: "“" "”" "’" "’";
         padding: 0;
-        margin: size-clamp('md') 0;
 
         p {
             &::before {
@@ -259,16 +135,6 @@
 
         & + p {
             padding-top: 0;
-        }
-
-        & + h1,
-        & + h2,
-        & + h3,
-        & + h4,
-        & + h5,
-        & + h6,
-        & + blockquote {
-            margin-top: 0;
         }
     }
 }
