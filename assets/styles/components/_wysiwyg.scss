@@ -133,6 +133,10 @@
     // iFrame
     // ==========================================================================
     iframe {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
         &:not([width]) {
             width: 100%;
         }
