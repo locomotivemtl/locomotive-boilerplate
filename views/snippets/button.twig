@@ -17,10 +17,18 @@
     {% set _tag = 'span' %}
 {% endif %}
 
+{% if _classes != null %}
+    {% set _classes = ' ' ~ _classes %}
+{% endif %}
+
+{% if _modifiers != null %}
+    {% set _classes = ' ' ~ _modifiers ~ ' ' ~ _classes %}
+{% endif %}
+
 {# ---------------------------------------- #}
 
 <{{ _tag }}
-    class="c-button {{ _classes }} {{ _modifiers }}"
+    class="c-button{{ _classes }}"
     {% if _href %}href="{{ _href }}"{% endif %}
     {% if _external %}target="_blank" rel="noopener noreferrer" data-load="false"{% endif %}
     {% if _attr %}{{  _attr | raw }}{% endif %}
