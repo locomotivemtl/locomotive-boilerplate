@@ -1,0 +1,95 @@
+{#
+    Image snippet
+
+    The `img` parameter was made to receive formatted data from a CMS.
+    The use case would be to output an image without overriding is dimensions or other properties.
+
+    It needs to be an object with the following keys :
+        -src: String,
+        -width: Int,
+        -height: Int,
+        -alt?: String,
+        -caption?: String
+
+    ```twig
+    {% include '@snippets/image.twig' with
+        img: project.featured_image
+    %}
+    ```
+#}
+
+{# Defaults #}
+{% set _width = img.width | default(1) %}
+{% set _height = img.height | default(1) %}
+{% set _src = img.src | default(null) %}
+{% set _alt = img.alt | default(null) %}
+{% set _caption = img.caption | default(null) %}
+{% set _attr = attr | default(null) %}
+{% set _has_parallax = has_parallax | default(null) %}
+{% set _parallax_speed = parallax_speed | default('-0.1') %}
+
+{# Override properties #}
+{% set _width = width | default(_width) %}
+{% set _height = height | default(_height) %}
+{% set _src = src | default(_src) %}
+{% set _alt = alt | default(_alt) %}
+{% set _caption = caption | default(_caption) %}
+
+{# Misc. #}
+{% set _is_figure = is_figure | default(false) %}
+{% set _is_lazy_load = is_lazy_load | default(true) %}
+{% set _tag = _is_figure ? 'figure' : 'div' %}
+
+{# Classes & modifiers #}
+{% set _classes = classes | default(null) %}
+{% set _modifiers = modifiers | default(null) %}
+
+{% if _has_parallax %}
+    {% set _modifiers = _modifiers ~ ' -parallax' %}
+{% endif %}
+
+{% if _is_lazy_load %}
+    {% set _modifiers = _modifiers ~ ' -lazy-load' %}
+    {% set _loading = 'lazy' %}
+{% else %}
+    {% set _loading = 'eager' %}
+{% endif %}
+
+{% if _classes != null %}
+    {% set _classes = ' ' ~ _classes %}
+{% endif %}
+
+{% if _modifiers != null %}
+    {% set _classes = ' ' ~ _modifiers ~ ' ' ~ _classes %}
+{% endif %}
+
+{# ---------------------------------------- #}
+
+<{{_tag}} class="c-image{{ _classes }}" {{_attr}}>
+    <div
+        class="c-image_inner"
+        {% if has_parallax %}
+            data-scroll
+            data-scroll-speed="{{ _parallax_speed }}"
+        {% endif %}
+    >
+        <img
+            class="c-image_img"
+            src="{{ _src }}"
+            alt="{{ _alt }}"
+            width="{{ _width }}"
+            height="{{ _height }}"
+            loading="{{ _loading }}"
+            onload="this.closest('.c-image')?.classList?.add('is-loaded');"
+        >
+    </div>
+
+    {% if _caption %}
+        {% if _is_figure %}
+        <figcaption class="c-image_description">{{ _caption }}</figcaption>
+        {% else %}
+        <div class="c-image_description"><span>{{ _caption }}</span></div>
+        {% endif %}
+    {% endif %}
+
+</{{ _tag }}>
