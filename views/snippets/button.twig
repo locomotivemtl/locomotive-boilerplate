@@ -1,0 +1,43 @@
+{# --- Parameters ------------------------- #}
+
+{% set _tag             = tag | default('button') %}
+{% set _href            = href | default(null) %}
+{% set _external        = external ?? false %}
+{% set _classes         = classes | default(null) %}
+{% set _modifiers       = modifiers | default(null) %}
+{% set _label           = label | default(null) %}
+{% set _icon            = icon | default(null) %}
+{% set _attr            = attr | default(null) %}
+
+{# --- Computed --------------------------- #}
+
+{% if _href != null %}
+    {% set _tag = 'a' %}
+{% elseif _tag == 'a' %}
+    {% set _tag = 'span' %}
+{% endif %}
+
+{# ---------------------------------------- #}
+
+<{{ _tag }}
+    class="c-button {{ _classes }} {{ _modifiers }}"
+    {% if _href %}href="{{ _href }}"{% endif %}
+    {% if _external %}target="_blank" rel="noopener noreferrer" data-load="false"{% endif %}
+    {% if _attr %}{{  _attr | raw }}{% endif %}
+>
+    {% block inner %}
+        <span class="c-button_inner">
+            {% if _label %}
+                <span class="c-button_label">
+                    {{ _label }}
+                </span>
+            {% endif %}
+            {% if _icon %}
+                {% include "@snippets/icon.twig" with {
+                    icon: _icon,
+                    classes: 'c-button_icon',
+                } only %}
+            {% endif %}
+        </span>
+    {% endblock %}
+</{{ _tag }}>

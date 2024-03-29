@@ -1,0 +1,15 @@
+{# --- Parameters ------------------------- #}
+
+{% set _icon        = icon %}
+{% set _classes     = classes | default(null) %}
+{% set _modifiers   = modifiers | default(null) %}
+
+{# ---------------------------------------- #}
+
+{% if _icon %}
+    <span class="o-icon {{ _classes }} {{ _modifiers }}">
+        <svg class="svg-{{ _icon }}" focusable="false" aria-hidden="true">
+            <use xlink:href="#{{ _icon }}"></use>
+        </svg>
+    </span>
+{% endif %}

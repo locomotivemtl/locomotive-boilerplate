@@ -6,6 +6,29 @@ title: Home
 
 {% block content %}
     <div class="o-container">
-        <h1 class="c-heading -h1">Hello</h1>
+
+        <h1 class="c-heading -h1">Heading 1</h1>
+        <h1 class="c-heading -h2">Heading 2</h1>
+        <h1 class="c-heading -h3">Heading 3</h1>
+        <h1 class="c-heading -h4">Heading 4</h1>
+        <h1 class="c-heading -h5">Heading 5</h1>
+        <h1 class="c-heading -h6">Heading 6</h1>
+
+        <hr>
+
+        <p class="c-text -body-regular" style="max-width: 500px">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam libero, sit pariatur voluptatum amet magni odio ducimus! Saepe facere iste porro voluptatem. Tenetur perferendis ea a quasi vitae! Ullam, blanditiis.
+        </p>
+
+        <hr>
+
+        <p class="c-text -body-regular">Buttons</p>
+
+        {% include "@snippets/button.twig" with {
+            label: 'Button'
+        } %}
+
+        <hr>
+
     </div>
 {% endblock %}
