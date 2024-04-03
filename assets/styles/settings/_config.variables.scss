@@ -12,19 +12,6 @@
     // Container
     --container-width:  calc(100% - 2 * var(--grid-margin));
 
-    // Font sizes
-    --font-size-h1:     #{responsive-type(36px, 72px, 1400px)};
-    --font-size-h2:     #{rem(28px)};
-    --font-size-h3:     #{rem(24px)};
-    --font-size-h4:     #{rem(20px)};
-    --font-size-h5:     #{rem(18px)};
-    --font-size-h6:     #{rem(16px)};
-
-    // // Colors
-    // @each $color, $value in $colors {
-    //     --color-#{"" + $color}: #{$value};
-    // }
-
     @media (min-width: $from-sm) {
         --grid-columns:     #{$base-column-nb};
         --grid-gutter:      #{rem(16px)};
