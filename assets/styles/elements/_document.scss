@@ -53,11 +53,3 @@ body {
     color: $color-selection-text;
     text-shadow: none;
 }
-
-a {
-    color: $color-link;
-
-    @include u-hocus {
-        color: $color-link-hover;
-    }
-}
