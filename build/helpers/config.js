@@ -2,14 +2,14 @@
  * @file Provides simple user configuration options.
  */
 
-import loconfig from '../../loconfig.json' assert { type: 'json' };
+import loconfig from '../../loconfig.json' with { type: 'json' };
 import { merge } from '../utils/index.js';
 
 let usrconfig;
 
 try {
     usrconfig = await import('../../loconfig.local.json', {
-        assert: { type: 'json' },
+        with: { type: 'json' },
     });
     usrconfig = usrconfig.default;
 
