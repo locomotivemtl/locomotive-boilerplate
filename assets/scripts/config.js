@@ -46,6 +46,8 @@ const CSS_CLASS = Object.freeze({
 // Custom js events
 const CUSTOM_EVENT = Object.freeze({
     RESIZE_END: 'loco.resizeEnd',
+    VISIT_START: 'visit.start',
+    MODAL_OPEN: 'modal.open',
     // ...
 })
 

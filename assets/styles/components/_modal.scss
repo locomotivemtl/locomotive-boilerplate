@@ -1,0 +1,52 @@
+// ==========================================================================
+// Components / Modal
+// ==========================================================================
+
+.c-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100dvh;
+    max-width: inherit;
+    max-height: 100lvh;
+    margin: 0;
+    padding: 0 var(--grid-margin);
+    background: transparent;
+    border: none;
+    visibility: hidden;
+    pointer-events: none;
+    overflow: hidden;
+
+    // Backdrop
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: color(darkest, 0.5);
+        z-index: -1;
+    }
+
+    html.is-first-loaded & {
+        transition: visibility speed(normal);
+    }
+
+    &.is-open {
+        pointer-events: auto;
+        visibility: visible;
+        transition-duration: 0s;
+    }
+}
+
+.c-modal_inner {
+    width: 100%;
+    max-width: rem(500px);
+    padding: $unit-small;
+    background-color: color(lightest);
+}
