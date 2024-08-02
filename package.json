@@ -14,6 +14,7 @@
         "build": "node --no-warnings build/build.js"
     },
     "dependencies": {
+        "focus-trap": "^7.5.4",
         "locomotive-scroll": "^5.0.0-beta.13",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
