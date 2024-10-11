@@ -10,11 +10,8 @@ import resolve from '../helpers/template.js';
 import { merge } from '../utils/index.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
-import { promisify } from 'node:util';
 import * as sass from 'sass';
 import { PurgeCSS } from 'purgecss';
-
-const sassRender = promisify(sass.render);
 
 let postcssProcessor;
 
