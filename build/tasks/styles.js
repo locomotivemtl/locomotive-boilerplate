@@ -123,10 +123,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             infile  = resolve(infile);
             outfile = resolve(outfile);
 
-            let result = sass.compile(infile, Object.assign({}, sassOptions, {
-                file: infile,
-                outFile: outfile,
-            }));
+            let result = sass.compile(infile, sassOptions);
 
             if (supportsPostCSS && postcssOptions) {
                 if (typeof postcssProcessor === 'undefined') {
