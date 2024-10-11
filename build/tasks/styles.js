@@ -24,16 +24,15 @@ let postcssProcessor;
  * @const {object} productionSassOptions  - The predefined Sass options for production.
  */
 export const defaultSassOptions = {
-    omitSourceMapUrl: true,
+    sourceMapIncludeSources: true,
     sourceMap: true,
-    sourceMapContents: true,
 };
 
 export const developmentSassOptions = Object.assign({}, defaultSassOptions, {
-    outputStyle: 'expanded',
+    style: 'expanded',
 });
 export const productionSassOptions = Object.assign({}, defaultSassOptions, {
-    outputStyle: 'compressed',
+    style: 'compressed',
 });
 
 /**
@@ -127,7 +126,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             infile  = resolve(infile);
             outfile = resolve(outfile);
 
-            let result = await sassRender(Object.assign({}, sassOptions, {
+            let result = sass.compile(infile, Object.assign({}, sassOptions, {
                 file: infile,
                 outFile: outfile,
             }));
