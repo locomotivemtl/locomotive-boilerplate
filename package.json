@@ -14,23 +14,23 @@
         "build": "node --no-warnings build/build.js"
     },
     "dependencies": {
-        "locomotive-scroll": "^5.0.0-beta.13",
+        "locomotive-scroll": "^5.0.0-beta.21",
         "modujs": "^1.4.2",
         "modularload": "^1.2.6",
         "svg4everybody": "^2.1.9"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.19",
+        "autoprefixer": "^10.4.20",
         "browser-sync": "^3.0.2",
         "common-path": "^1.0.1",
         "concat": "^1.0.3",
-        "esbuild": "^0.21.5",
+        "esbuild": "^0.24.0",
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
-        "postcss": "^8.4.38",
+        "postcss": "^8.4.47",
         "purgecss": "^6.0.0",
         "sass": "^1.79.5",
-        "svg-mixer": "^2.3.14",
+        "svg-mixer": "^2.4.0",
         "tiny-glob": "^0.2.9"
     },
     "overrides": {
@@ -38,7 +38,7 @@
             "ua-parser-js": "^1.0.33"
         },
         "svg-mixer": {
-            "micromatch": "^4.0.4",
+            "micromatch": "^4.0.8",
             "postcss": "^8.4.38"
         },
         "svg-mixer-utils": {
