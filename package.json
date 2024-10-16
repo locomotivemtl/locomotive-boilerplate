@@ -21,7 +21,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
-        "browser-sync": "^3.0.2",
+        "browser-sync": "^3.0.3",
         "common-path": "^1.0.1",
         "concat": "^1.0.3",
         "esbuild": "^0.21.5",
