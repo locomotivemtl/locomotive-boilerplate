@@ -17,7 +17,7 @@ $assets-path: "../"  !default;
 // Base
 $font-size:     16px;
 $line-height:   math.div(24px, $font-size);
-$font-color:    color(darkest);
+$font-color:    colorCode(darkest);
 
 // Weights
 $font-weight-light:     300;

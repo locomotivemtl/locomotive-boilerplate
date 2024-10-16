@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // ==========================================================================
 // Settings / Config / Colors
 // ==========================================================================
@@ -18,7 +20,7 @@ $colors: (
 //
 // ```scss
 // .c-box {
-//     color: color(primary);
+//     color: colorCode(primary);
 // }
 // ```
 //
@@ -26,7 +28,7 @@ $colors: (
 // @param  {number} $alpha - The alpha for the color value.
 // @return {color}
 
-@function color($key, $alpha: 1) {
+@function colorCode($key, $alpha: 1) {
     @if not map-has-key($colors, $key) {
         @error "Unknown '#{$key}' in $colors.";
     }
@@ -44,13 +46,13 @@ $colors: (
 // ==========================================================================
 
 // Link
-$color-link:           color(primary);
-$color-link-focus:     color(primary);
-$color-link-hover:     darken(color(primary), 10%);
+$color-link:           colorCode(primary);
+$color-link-focus:     colorCode(primary);
+$color-link-hover:     color.adjust(colorCode(primary), $lightness: -10%);
 
 // Selection
-$color-selection-text:         color(darkest);
-$color-selection-background:   color(lightest);
+$color-selection-text:         colorCode(darkest);
+$color-selection-background:   colorCode(lightest);
 
 // Socials
 $color-facebook:    #3B5998;

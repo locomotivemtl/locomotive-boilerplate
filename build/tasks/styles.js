@@ -10,11 +10,8 @@ import resolve from '../helpers/template.js';
 import { merge } from '../utils/index.js';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
-import { promisify } from 'node:util';
 import * as sass from 'sass';
 import { PurgeCSS } from 'purgecss';
-
-const sassRender = promisify(sass.render);
 
 let postcssProcessor;
 
@@ -24,16 +21,15 @@ let postcssProcessor;
  * @const {object} productionSassOptions  - The predefined Sass options for production.
  */
 export const defaultSassOptions = {
-    omitSourceMapUrl: true,
+    sourceMapIncludeSources: true,
     sourceMap: true,
-    sourceMapContents: true,
 };
 
 export const developmentSassOptions = Object.assign({}, defaultSassOptions, {
-    outputStyle: 'expanded',
+    style: 'expanded',
 });
 export const productionSassOptions = Object.assign({}, defaultSassOptions, {
-    outputStyle: 'compressed',
+    style: 'compressed',
 });
 
 /**
@@ -127,10 +123,7 @@ export default async function compileStyles(sassOptions = null, postcssOptions =
             infile  = resolve(infile);
             outfile = resolve(outfile);
 
-            let result = await sassRender(Object.assign({}, sassOptions, {
-                file: infile,
-                outFile: outfile,
-            }));
+            let result = sass.compile(infile, sassOptions);
 
             if (supportsPostCSS && postcssOptions) {
                 if (typeof postcssProcessor === 'undefined') {
