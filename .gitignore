@@ -5,9 +5,7 @@ loconfig.*.json
 !loconfig.example.json
 .prettierrc
 
-www/assets/scripts/*
-!www/assets/scripts/.gitkeep
-www/assets/styles/*
-!www/assets/styles/.gitkeep
-
 assets.json
+dist
+www
+.env

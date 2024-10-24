@@ -10,39 +10,22 @@
         "npm": ">=10"
     },
     "scripts": {
-        "start": "node --no-warnings build/watch.js",
-        "build": "node --no-warnings build/build.js"
+        "start": "npm run dev",
+        "dev": "vite serve",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
-        "locomotive-scroll": "^5.0.0-beta.21",
-        "modujs": "^1.4.2",
-        "modularload": "^1.2.6",
-        "svg4everybody": "^2.1.9"
+        "locomotive-scroll": "^5.0.0-beta.21"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.20",
-        "browser-sync": "^3.0.2",
-        "common-path": "^1.0.1",
-        "concat": "^1.0.3",
-        "esbuild": "^0.24.0",
-        "kleur": "^4.1.5",
-        "node-notifier": "^10.0.1",
-        "postcss": "^8.4.47",
-        "purgecss": "^6.0.0",
-        "sass": "^1.79.5",
-        "svg-mixer": "^2.4.0",
-        "tiny-glob": "^0.2.9"
-    },
-    "overrides": {
-        "browser-sync": {
-            "ua-parser-js": "^1.0.33"
-        },
-        "svg-mixer": {
-            "micromatch": "^4.0.8",
-            "postcss": "^8.4.38"
-        },
-        "svg-mixer-utils": {
-            "anymatch": "^3.1.3"
-        }
+        "@types/node": "^22.7.7",
+        "dotenv": "^16.4.5",
+        "fast-glob": "^3.3.2",
+        "path": "^0.12.7",
+        "sass-embedded": "^1.80.3",
+        "typescript": "^5.6.3",
+        "url": "^0.11.4",
+        "vite": "^5.4.9"
     }
 }
