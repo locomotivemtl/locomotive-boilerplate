@@ -16,8 +16,7 @@
     "dependencies": {
         "locomotive-scroll": "^5.0.0-beta.21",
         "modujs": "^1.4.2",
-        "modularload": "^1.2.6",
-        "svg4everybody": "^2.1.9"
+        "modularload": "^1.2.6"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",
