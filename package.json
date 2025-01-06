@@ -24,11 +24,11 @@
         "browser-sync": "^3.0.2",
         "common-path": "^1.0.1",
         "concat": "^1.0.3",
-        "esbuild": "^0.24.0",
+        "esbuild": "^0.24.2",
         "kleur": "^4.1.5",
         "node-notifier": "^10.0.1",
-        "postcss": "^8.4.47",
-        "purgecss": "^6.0.0",
+        "postcss": "^8.4.49",
+        "purgecss": "^7.0.2",
         "sass": "^1.79.5",
         "svg-mixer": "^2.4.0",
         "tiny-glob": "^0.2.9"
@@ -39,7 +39,7 @@
         },
         "svg-mixer": {
             "micromatch": "^4.0.8",
-            "postcss": "^8.4.38"
+            "postcss": "^8.4.49"
         },
         "svg-mixer-utils": {
             "anymatch": "^3.1.3"
