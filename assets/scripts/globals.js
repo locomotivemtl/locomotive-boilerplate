@@ -1,4 +1,3 @@
-import svg4everybody from 'svg4everybody';
 import { ENV } from './config';
 
 // Dynamic imports for development mode only
@@ -11,11 +10,6 @@ let gridHelper;
 })();
 
 export default function () {
-    /**
-     * Use external SVG spritemaps
-     */
-    svg4everybody();
-
     /**
      * Add grid helper
      */
