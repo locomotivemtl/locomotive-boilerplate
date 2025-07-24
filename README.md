@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository is no longer maintained. We recommend checking out our [Astro](https://github.com/locomotivemtl/astro-boilerplate) or [Craft](https://github.com/locomotivemtl/craft-boilerplate) boilerplates instead.
+
 <p align="center">
     <a href="https://github.com/locomotivemtl/locomotive-boilerplate">
         <img src="https://user-images.githubusercontent.com/4596862/54868065-c2aea200-4d5e-11e9-9ce3-e0013c15f48c.png" height="140">
